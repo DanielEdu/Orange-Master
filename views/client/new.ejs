@@ -1,1 +1,11 @@
 <h1>Create Client</h1>
+<form role="form" action="/client/create" method="POST" class="" id="">
+	<input type="text" name="documentNumber" placeholder="DNI " required/> <br/>
+	<input type="text" name="firstName" placeholder="Nombres" required/> <br/>
+	<input type="text" name="lastName" placeholder="Apellidos" required/> <br/>
+	<input type="text" name="phoneNumber" placeholder="Telefono/celular" required/> <br/>		
+	<input type="email" name="email" placeholder="e-mail" required/> <br/>
+	<input type="text" name="address" placeholder="Dirección" required/> <br/>
+	<input type="submit" value="Crear Cliente"/> <br/>
+	<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+</form>

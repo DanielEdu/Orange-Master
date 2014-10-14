@@ -22,7 +22,7 @@ module.exports = {
 			size: 70
 		},
 		servicePrice: {
-			type: 'float',
+			type: 'integer',
 			required: true
 
 		},

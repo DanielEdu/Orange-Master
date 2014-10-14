@@ -16,9 +16,10 @@ module.exports = {
 		    primaryKey: true,
 		    autoIncrement: true
 		  },
-		userName: {
+		userId: {
 			type: 'string',
-			required: true
+			required: true,
+			size: 15
 		},
 		firstName: {
 			type: 'string',
