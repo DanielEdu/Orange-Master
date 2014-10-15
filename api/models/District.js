@@ -23,10 +23,7 @@ module.exports = {
 			type: 'string',
 			required: true,
 			size: 3
-		},
-		owner:{
-            model:'Client'
-        }
+		}
 
 	}
 };

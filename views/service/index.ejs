@@ -1,0 +1,28 @@
+<h1>Services</h1>
+
+<div>
+	<table>
+		<tr>
+			<th>Servicio</th>
+			<th>precio</th>
+			<th></th>
+			<th></th>
+		</tr>
+
+		<% _.each(services, function(service){ %>
+		<tr data-id="" data-model="service"> 
+			<td><%= service.serviceName %></td>
+			<td><%= service.servicePrice %></td>
+			<td><a href="/service/show/<%= service.id_service %>">Show</a></td>
+			<td><a href="/service/edit/<%= service.id_service %>">Edit</a></td>
+			<td><form action="/service/destroy/<%= service.id_service %>" method="POST"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input type="submit" value="Borrar">
+				<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+				
+			</form></td>
+		</tr>
+		<%})%>
+
+	</table>
+</div>

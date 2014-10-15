@@ -1,0 +1,8 @@
+<div>
+	<h2>nombre: <%= user.firstName %> <%= user.lastName %></h2>
+	<h3>DNI: <%= user.documentNumber %></h3>
+	<p>Teléfono: <%= user.phoneNumber %> </p> 
+	<p>Email: <%= user.email %> </p>
+
+	<a href="/user/edit/<%= user.id_user %>">Edit</a>
+</div>

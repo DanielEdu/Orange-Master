@@ -1,0 +1,30 @@
+<h1>Clientes</h1>
+
+<div>
+	<table>
+		<tr>
+			<th>Nombres</th>
+			<th>Apellidos</th>
+			<th>E-mail</th>
+			<th></th>
+			<th></th>
+		</tr>
+
+		<% _.each(clients, function(client){ %>
+		<tr data-id="" data-model="client"> 
+			<td><%= client.firstName %></td>
+			<td><%= client.lastName %></td>
+			<td><%= client.email %></td>
+			<td><a href="/client/show/<%= client.id_client %>">Show</a></td>
+			<td><a href="/client/edit/<%= client.id_client %>">Edit</a></td>
+			<td><form action="/client/destroy/<%= client.id_client %>" method="POST"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input type="submit" value="Borrar">
+				<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+				
+			</form></td>
+		</tr>
+		<%})%>
+
+	</table>
+</div>

@@ -1,0 +1,10 @@
+<h1>Estas editando un servicio</h1>
+
+<form action="/service/update/<%= service.id_service %>" method="POST">
+
+	<input type="text" name="serviceName" value="<%= service.serviceName %>" /> <br/>
+	<input type="text" name="servicePrice" value="<%= service.servicePrice %>" /> <br/>
+	<textarea name="serviceDescription" rows="10" cols="50" placeholder="<%= service.serviceDescription %>" ></textarea> <br/>
+	<input type="submit" value="Proceed"/>
+	<input type="hidden" name="_csrf" value="<%= _csrf %>"/>	
+</form>
