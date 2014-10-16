@@ -26,7 +26,17 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
+ '*': "flash",
+
+  user: {
+    'new': "flash",
+    subscribe: ["flash", "userCanSeeProfile"],
+    create: "flash",
+    show: "userCanSeeProfile",
+    edit: "userCanSeeProfile",
+    update: "userCanSeeProfile",
+    '*': "admin"
+  }
 
   /***************************************************************************
   *                                                                          *

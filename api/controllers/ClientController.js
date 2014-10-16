@@ -7,8 +7,13 @@
 
 module.exports = {
 	
-	'new': function (req, res) {
-    	res.view();
+	'new': function (req, res, next) {
+		District.find(function (err, distritos) {
+	    if (err) return next(err);
+	      res.view({
+	      	distritos: distritos
+	      });
+	  });
     },
 
     'index': function (req, res, next) {
@@ -49,7 +54,8 @@ module.exports = {
 	      lastName:     req.param('lastName'),
 	      phoneNumber:  req.param('phoneNumber'),
 	      email:    	req.param('email'),
-	      address: 		req.param('address')
+	      address: 		req.param('address'),
+	      district: 	req.param('district')
 	    }
 
 	    Client.create(clientObj, function (err, client){

@@ -51,22 +51,46 @@ module.exports = {
 	      lastName:     req.param('lastName'),
 	      phoneNumber:  req.param('phoneNumber'),
 	      email:    	req.param('email'),
+	      confirmation: req.param('confirmation'),
 	      password: 	req.param('password')
 	    }
 
 	    User.create(userObj, function (err, user){
 	      if(err){
 	        console.log(err);
-	        return res.redirect('user/new');
+	        req.session.flash = {
+          		err: err
+        	}
+	        return res.redirect('/user/new');
 	      } 
-	      res.redirect('user');
+	      res.redirect('/user/show/' + user.id_user);
 	      console.log("Create OK!");
 	    });
 	},
 
 
 	update: function (req, res, next) {
-		User.update(req.param('id'), req.params.all(), function userUpdated (err){
+
+		 if (req.session.User.admin) {
+		 	var userObj = {
+		        firstName:    req.param('firstName'),
+	      		lastName:     req.param('lastName'),
+	      		phoneNumber:  req.param('phoneNumber'),
+	      		email:    	req.param('email'),
+		        admin: 		req.param('admin')
+		    }
+		} else {
+			var userObj = {
+				firstName:    req.param('firstName'),
+	      		lastName:     req.param('lastName'),
+	      		phoneNumber:  req.param('phoneNumber'),
+	      		email:    	req.param('email')
+	      	}
+	      }
+
+	      console.log(userObj);
+
+		User.update(req.param('id'), userObj, function userUpdated (err){
 			if (err) {
 				return res.redirect('/user/edit/' + req.param('id'));
 			}

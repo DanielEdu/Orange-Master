@@ -1,4 +1,11 @@
 <div>
+
+	<% if (user.admin) { %>
+	<img src="/images/admin.png">administrador
+	<% } else { %>
+	<img src="/images/pawn.png">usuario
+	<% } %>	
+
 	<h2>nombre: <%= user.firstName %> <%= user.lastName %></h2>
 	<h3>DNI: <%= user.documentNumber %></h3>
 	<p>Teléfono: <%= user.phoneNumber %> </p> 

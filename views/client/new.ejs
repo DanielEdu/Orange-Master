@@ -6,6 +6,16 @@
 	<input type="text" name="phoneNumber" placeholder="Telefono/celular" required/> <br/>		
 	<input type="email" name="email" placeholder="e-mail" required/> <br/>
 	<input type="text" name="address" placeholder="Dirección" required/> <br/>
+	<select  id="pais" class="cambio" name="district" required>
+			<option value=""> - - - </option>
+			<% _.each(distritos, function(distrito){ %>
+
+			<option value="<%= distrito.id_district %>"> 
+				<%= distrito.districtName %>
+			</option>
+			
+			<%})%>
+    </select><br>
 	<input type="submit" value="Crear Cliente"/> <br/>
 	<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
 </form>

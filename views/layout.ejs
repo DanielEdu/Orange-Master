@@ -34,6 +34,27 @@
   </head>
 
   <body>
+
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <% if (session.authenticated) { %>
+              <li class="active"><a href="/user/show/<%= session.User.id_user%>"><%= session.User.firstName %> </a> </li>
+            <% } %>
+            <% if (session.authenticated && session.User.admin) { %>
+            <li><a href="/user">User Admin</a></li>
+            <% } %>
+          </ul>
+          <div class="navbar-right">
+            <% if (session.authenticated) { %>
+              <a class="btn btn-default navbar-btn navbar-right" href="/session/destroy">sign-out</a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <%- body %>
 
 

@@ -10,7 +10,7 @@ module.exports = {
 	tableName: 'mDistricts',
 
 	attributes: {
-		id_client: {
+		id_district: {
   			type: 'integer',
 		    primaryKey: true,
 		    autoIncrement: true
