@@ -14,7 +14,8 @@ module.exports = {
     'index': function (req, res, next) {
 	  User.find(function (err, users) {
 	    if (err) return next(err);
-	      res.view({
+	    console.log(req);
+	    	res.view({
 	      	users: users
 	      });
 	  });
@@ -42,7 +43,6 @@ module.exports = {
 	},
 
 
-
 	create: function (req, res, next) {
 
 	    var userObj = {
@@ -52,8 +52,10 @@ module.exports = {
 	      phoneNumber:  req.param('phoneNumber'),
 	      email:    	req.param('email'),
 	      confirmation: req.param('confirmation'),
-	      password: 	req.param('password')
+	      password: 	req.param('password'),
+	      saleSerialized: req.param('saleSerialized')
 	    }
+
 
 	    User.create(userObj, function (err, user){
 	      if(err){

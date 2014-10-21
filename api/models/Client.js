@@ -42,7 +42,11 @@ module.exports = {
 			type: 'string'
 		},
 		district:{
-            model: 'district'
+            model: 'District'
+        },
+        sales:{
+            collection: 'Sale',
+            via: 'id_client'
         }
 
   }

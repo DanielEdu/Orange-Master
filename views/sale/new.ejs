@@ -1,0 +1,62 @@
+<h1>Venta!!!</h1>
+
+<input id="mysearch" type="search" />
+<h2>Registrar cliente</h2>
+<div ng-controller="controllerD as cd">
+<form method="POST" class="sale" ng-submit="cd.addDetalle()">
+	<input type="text" name="firstName" placeholder="Nombres" required/> <br/>
+	<input type="text" name="lastName" placeholder="Apellidos" /> <br/>
+	<input type="text" name="phoneNumber" placeholder="Telefono/celular" /> <br/>		
+	<input type="email" name="email" placeholder="e-mail" /> <br/>
+	<input type="text" name="address" placeholder="Dirección" /> <br/>
+	<select name="district" />
+			<option value=""> - - - </option>
+			<% _.each(distritos, function(distrito){ %>
+
+			<option value="<%= distrito.id_district %>"> 
+				<%= distrito.districtName %>
+			</option>
+			
+			<%})%>
+    </select><br>
+
+
+<h2>seleccionar servicio</h2>
+		<select  name="service" ng-model="cd.detalle.service"/>
+			<option value=""> - - - </option>
+			<% _.each(servicios, function(servicio){ %>
+
+			<option value="<%= servicio.serviceName %>"> 
+				<%= servicio.serviceName %>
+			</option>
+			<%})%>
+   		</select>
+
+			<input type="text" name="" placeholder="precio" ng-model="cd.detalle.price"/>
+			<input type="number" name="" placeholder="cantidad" ng-model="cd.detalle.cantidad"/>
+			<button type="submit" id="go">
+				GO
+			</button><br/>
+
+<table >
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="detalle in cd.detalles" class="table">
+            <tr>
+                <td class="producto">{{detalle.service}}</td>
+                <td class="cantidad">{{detalle.cantidad}}</td>
+                <td class="precio">{{detalle.price}}</td>
+            </tr>
+            </tr>
+        </tbody>
+    </table>
+
+</form>
+</div>
+
+

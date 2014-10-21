@@ -1,34 +1,36 @@
 /**
-* Service.js
+* SaleDetail.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
 module.exports = {
-
 	schema: true,
-	tableName: 'mServices',
+	tableName: 'tSaleDetails',
 
 	attributes: {
-		id_service: {
-  			type: 'integer',
-		    primaryKey: true,
-		    autoIncrement: true
-		},
 		serviceName: {
 			type: 'string',
-			required: true,
-			size: 70
-		},
-		servicePrice: {
-			type: 'integer',
 			required: true
+		},
+		quantity: {
+			type: 'string'
+		},
+		price: {
+			type: 'integer'
+		},
+		fullPrice: {
+			type :'float',
+			required: true
+		},
+		id_sale: {
+            model:'Sale'
+        },
+        id_service: {
+            model:'Service'
+        }
 
-		},
-		serviceDescription: {
-			type: 'text'
-		},
 	}
 };
 
