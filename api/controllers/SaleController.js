@@ -21,6 +21,16 @@ module.exports = {
 		      
 	  });
     },
+
+
+
+    create: function (req, res, next) {
+    	var saleObj = {
+	      userId:     	req.param('firstName')
+	    }
+
+	    console.log(req.params.all())
+	},
 	
 };
 
