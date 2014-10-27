@@ -5,30 +5,41 @@ function OnReady(){
 	$("#mysearch").keypress(function(e){
 		if(e.which == 13){
 			$.get("/client/findByDni/", {dni: $(this).val()}, function(data){
-				console.log(data)
+				console.log(data);
+				$('input[name="firstName"]').val(data.firstName);
+				$('input[name="lastName"]').val(data.lastName);
+				$('input[name="phoneNumber"]').val(data.phoneNumber);
+				$('input[name="email"]').val(data.email);
+				$('input[name="address"]').val(data.address);
 			});
 		}	
 	});
 
 
 
+
 	  
-var firstName, lastName;
+var firstName, lastName, clientDocument, fullPrice;
     $('#send').on('click',function(e){
 
     	e.preventDefault();
 
     	firstName = document.fo.firstName.value;
 	    lastName = document.fo.lastName.value;
-	    var $filas = $('.table');
+	    clientDocument = document.fo.dniSeach.value;
+	    fullPrice = document.fo.fullPrice.value;
+
+	    var $filas = $('.tableSale');
 	    var arr = [];
 
 	    for (var i = 0; i < $filas.length; i++) {
 	    	var fila = $filas[i];
 	    	var json = {
-	    		producto: $(fila).find('.producto').text(),
-	    		cantidad: $(fila).find('.cantidad').text(),
-	    		precio: $(fila).find('.precio').text()
+	    		serviceName: $(fila).find('.producto').text(),
+	    		quantity: $(fila).find('.cantidad').text(),
+	    		fullPrice: $(fila).find('.precio').text(),
+	    		id_sale: '',
+	    		id_service: ''
 	    	};
 	    	arr.push(json);
 	    }
@@ -40,9 +51,11 @@ var firstName, lastName;
 	    	url: "/sale/create",
 	    	type: "POST",
 	    	data: {
-	    		firstName:firstName,
-	    		lastName:lastName,
-	    		detalle:arr
+	    		firstName: firstName,
+	    		lastName: lastName,
+	    		clientDocument: clientDocument,
+	    		fullPrice: fullPrice,
+	    		details: arr
 	    	},
 	    	success: function (resp) {
 	    		console.log(resp);

@@ -89,8 +89,6 @@ module.exports = {
 	      	}
 	      }
 
-	      console.log(userObj);
-
 		User.update(req.param('id'), userObj, function userUpdated (err){
 			if (err) {
 				return res.redirect('/user/edit/' + req.param('id'));

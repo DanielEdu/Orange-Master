@@ -20,11 +20,9 @@ module.exports = {
 			type: 'string',
 			required: true
 		},
-		cardName: {
-			type: 'string'
-		},
-		cardNumber: {
-			type: 'integer'
+		clientDocument: {
+			type: 'integer',
+			required: true
 		},
 		fullPrice: {
 			type :'float',

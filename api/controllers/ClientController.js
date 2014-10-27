@@ -94,7 +94,6 @@ module.exports = {
 
 	findByDni: function(req, res, next) {
 		var dni = req.param('dni');
-		console.log(dni);
 
 	    Client.findOne({ documentNumber: dni }, function (err, dni) {
 		  if(err) console.log('Error:' + err);

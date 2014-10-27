@@ -1,14 +1,29 @@
-<h1>Venta!!!</h1>
 
-<input id="mysearch" type="search" name="dniSeach" />
-<h2>Registrar cliente</h2>
-<div id="main" ng-controller="controllerD as cd">
-<form name="fo" class="sale" ng-submit="cd.addDetalle()">
-	<input type="text" name="firstName" placeholder="Nombres" required/> <br/>
+
+
+<div id="main" ng-controller="controllerD as cd" class="container col-md-8 col-md-offset-2" >
+<h1>Venta!!!</h1>
+<form name="fo" class="sale form-inline" ng-submit="cd.addDetalle()" role="form">
+<div class="form-group " >
+	<label >Buscar por DNI:</label>
+	<input id="mysearch" type="search" name="dniSeach" /><br/><br/>
+	<input type="text" name="firstName" placeholder="Nombres" required/><br/>
 	<input type="text" name="lastName" placeholder="Apellidos" /> <br/>
-	<input type="text" name="phoneNumber" placeholder="Telefono/celular" /> <br/>		
-	<input type="email" name="email" placeholder="e-mail" /> <br/>
-	<input type="text" name="address" placeholder="Dirección" /> <br/>
+	<div class="form-group">
+	    <div class="input-group">
+	      <div class="input-group-addon">#</div>
+	      <input type="text" name="phoneNumber" placeholder="Telefono/celular" /> 
+	    </div>
+  	</div>	
+	<div class="form-group">
+	    <div class="input-group">
+	      <div class="input-group-addon">@</div>
+			<input type="email" name="email" placeholder="e-mail" />
+	    </div>
+  	</div><br/>		
+	<label >Dirección:</label>
+	<input type="text" name="address" placeholder="Dirección" />
+	<label >Distrito:</label>
 	<select name="district" />
 			<option value=""> - - - </option>
 			<% _.each(distritos, function(distrito){ %>
@@ -34,11 +49,11 @@
 
 			<input type="text" name="" placeholder="precio" ng-model="cd.detalle.price"/>
 			<input type="number" name="" placeholder="cantidad" ng-model="cd.detalle.cantidad"/>
-			<button type="submit" id="go">
+			<button type="submit" id="go" class="btn">
 				+
 			</button><br/>
 
-<table >
+<table class="table table-borderd table-hover" >
         <thead>
             <tr>
                 <th>Producto</th>
@@ -46,7 +61,7 @@
                 <th>Precio</th>
             </tr>
         </thead>
-        <tbody ng-repeat="detalle in cd.detalles" class="table">
+        <tbody ng-repeat="detalle in cd.detalles" class="tableSale">
             <tr>
                 <td class="producto">{{detalle.service}}</td>
                 <td class="cantidad">{{detalle.cantidad}}</td>
@@ -55,9 +70,10 @@
             </tr>
         </tbody>
     </table>
+    <input type="text" name="fullPrice">
 
-    <button type="submit" id="send"> SEND </button><br/>
-
+    <button type="submit" id="send" class="btn btn-success"> SEND </button><br/>
+</div>
 </form>
 </div>
 

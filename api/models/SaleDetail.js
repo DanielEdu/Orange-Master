@@ -17,12 +17,11 @@ module.exports = {
 		quantity: {
 			type: 'string'
 		},
-		price: {
-			type: 'integer'
+		unityPrice: {
+			type: 'string'
 		},
 		fullPrice: {
-			type :'float',
-			required: true
+			type :'string',
 		},
 		id_sale: {
             model:'Sale'
