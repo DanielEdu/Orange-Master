@@ -1,36 +1,39 @@
-<h1>Users!!!</h1> 
 
-<div>
-	<table>
+<div class="container">
+<h1>Usuarios!</h1> 
+	<table id="example" class="display table table-borderd table-hover" >
+	<thead>
 		<tr>
-
 			<th>Nombres</th>
 			<th>Apellidos</th>
 			<th>E-mail</th>
-			<th></th>
-			<th></th>
+			<th>Permisos</th>
+			<th>ver/editar</th>
+			<th> </th>
 		</tr>
-
+	</thead>
+	<tbody>	
 		<% _.each(users, function(user){ %>
-		<tr data-id="" data-model="user"> 
+		<tr data-model="user"> 
 			<td><%= user.firstName %></td>
 			<td><%= user.lastName %></td>
 			<td><%= user.email %></td>
+
 			<% if (user.admin) { %>
 			<td> <img src="/images/admin.png"></td>
 			<% } else { %>
 			<td> <img src="/images/pawn.png"></td>
 			<% } %>	
-			<td><a href="/user/show/<%= user.id_user %>">Show</a></td>
-			<td><a href="/user/edit/<%= user.id_user %>">Edit</a></td>
+			<td><a href="/user/show/<%= user.id_user %>">Show</a>
+			<a href="/user/edit/<%= user.id_user %>">Edit</a></td>
 			<td><form action="/user/destroy/<%= user.id_user %>" method="POST"/>
 				<input type="hidden" name="_method" value="delete"/>
 				<input type="submit" value="Borrar">
-				<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
-				
-			</form></td>
+				</form>
+			</td>
 		</tr>
 		<%})%>
+	</tbody>
 
 	</table>
 </div>

@@ -23,12 +23,10 @@ module.exports = {
 		firstName: {
 			type: 'string',
 			required: true,
-			size: 40
 		},
 		lastName: {
 			type: 'string',
 			required: true,
-			size: 40
 		},
 		phoneNumber: {
 			type: 'string',

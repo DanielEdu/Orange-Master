@@ -81,8 +81,21 @@ module.exports = {
 			});
 			
 		});
-	}
+	},
 
+	findByName: function(req, res, next) {
+		var name = req.param('service');
+
+	    Service.findOne({ serviceName: name }, function (err, service) {
+			if(err) console.log('Error:' + err);
+
+			else {
+				res.send({
+					price: service.servicePrice
+				});
+			}
+	    });
+  	}
 
 	
 };

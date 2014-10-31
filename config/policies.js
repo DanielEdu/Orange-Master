@@ -28,24 +28,16 @@ module.exports.policies = {
 
  '*': "flash",
 
-  user: {
+  /*user: {
     'new': "flash",
     subscribe: ["flash", "userCanSeeProfile"],
     show: "userCanSeeProfile",
     edit: "userCanSeeProfile",
     update: "userCanSeeProfile",
     '*': "admin"
-  },
+  },*/
 
-  service: {
-    'new': "flash",
-    subscribe: ["flash", "userCanSeeProfile"],
-    create: "flash",
-    show: "userCanSeeProfile",
-    edit: "userCanSeeProfile",
-    update: "userCanSeeProfile",
-    '*': "admin"
-  }
+ 
 
   /***************************************************************************
   *                                                                          *

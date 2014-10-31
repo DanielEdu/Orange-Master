@@ -3,78 +3,90 @@
 
 <div id="main" ng-controller="controllerD as cd" class="container col-md-8 col-md-offset-2" >
 <h1>Venta!!!</h1>
-<form name="fo" class="sale form-inline" ng-submit="cd.addDetalle()" role="form">
+<div id="mensaje" >
+	<ul class="alert alert-success">
+		<li id="msj" >mensaje: </li>
+	</ul>
+</div>
+
 <div class="form-group " >
+<form name="fo1" class="form-inline" >
 	<label >Buscar por DNI:</label>
-	<input id="mysearch" type="search" name="dniSeach" /><br/><br/>
-	<input type="text" name="firstName" placeholder="Nombres" required/><br/>
-	<input type="text" name="lastName" placeholder="Apellidos" /> <br/>
+	<input id="mysearch" type="search" name="dniSeach" class="form-control" /> 
+	<button id="searchBT" class="btn btn-info"/> Buscar</button><br/><br/>
+	<input type="text" class="clientInfo form-control" name="firstName" placeholder="Nombres" required/><br/>
+	<input type="text" class="clientInfo form-control" name="lastName" placeholder="Apellidos" /> <br/>
 	<div class="form-group">
 	    <div class="input-group">
 	      <div class="input-group-addon">#</div>
-	      <input type="text" name="phoneNumber" placeholder="Telefono/celular" /> 
+	      <input type="text" class="clientInfo form-control" name="phoneNumber" placeholder="Telefono/celular" /> 
 	    </div>
   	</div>	
 	<div class="form-group">
 	    <div class="input-group">
 	      <div class="input-group-addon">@</div>
-			<input type="email" name="email" placeholder="e-mail" />
+			<input type="email" class="clientInfo form-control" name="email" placeholder="e-mail" />
 	    </div>
   	</div><br/>		
 	<label >Dirección:</label>
-	<input type="text" name="address" placeholder="Dirección" />
+	<input type="text" class="clientInfo form-control" name="address" placeholder="Dirección" />
 	<label >Distrito:</label>
-	<select name="district" />
+	
+	<select class="clientInfo form-control " name="district" />
 			<option value=""> - - - </option>
 			<% _.each(distritos, function(distrito){ %>
 
-			<option value="<%= distrito.id_district %>"> 
+			<option value="<%= distrito.id_district %>" > 
 				<%= distrito.districtName %>
 			</option>
 			
 			<%})%>
     </select><br>
+</form>
 
+<form name="fo2">
 
+<div >
+	
 <h2>seleccionar servicio</h2>
-		<select  name="service" ng-model="cd.detalle.service"/>
-			<option value=""> - - - </option>
-			<% _.each(servicios, function(servicio){ %>
-
-			<option value="<%= servicio.serviceName %>"> 
-				<%= servicio.serviceName %>
+		<select class="form-control" id="idService" name="service"/>
+			
+			<% _.each(servicios, function(serv){ %>
+			<option value="<%= serv.serviceName %>"> 
+				<%= serv.serviceName %>
 			</option>
+			
 			<%})%>
    		</select>
 
-			<input type="text" name="" placeholder="precio" ng-model="cd.detalle.price"/>
-			<input type="number" name="" placeholder="cantidad" ng-model="cd.detalle.cantidad"/>
-			<button type="submit" id="go" class="btn">
-				+
-			</button><br/>
 
-<table class="table table-borderd table-hover" >
+			<input type="number" id="sCantidad" class="form-control" placeholder="cantidad" />
+			<input type="text" name="sPrice" id="sPrice" class="form-control" placeholder="0.00"/>
+			<input id="add" class="btn btn-success" value=" + " /><br/>
+</div>
+
+<table id="tableSale" class="table table-borderd table-hover" >
         <thead>
             <tr>
+            	<th>borrar</th>
                 <th>Producto</th>
                 <th>Cantidad</th>
-                <th>Precio</th>
+                <th>precio/u</th>
+                <th>Precio total</th>
             </tr>
         </thead>
-        <tbody ng-repeat="detalle in cd.detalles" class="tableSale">
-            <tr>
-                <td class="producto">{{detalle.service}}</td>
-                <td class="cantidad">{{detalle.cantidad}}</td>
-                <td class="precio">{{detalle.price}}</td>
-            </tr>
-            </tr>
+        <tbody class="tableSale">
+
+           
         </tbody>
     </table>
-    <input type="text" name="fullPrice">
 
+    <label >TOTAL: </label><input class="form-control" id="total" type="text" name="fullPrice" disabled value="0.00">
     <button type="submit" id="send" class="btn btn-success"> SEND </button><br/>
 </div>
 </form>
 </div>
 
-<script src="/js/dependencies/form.js"></script>
+
+<script src="/js/form.js"></script>
+

@@ -1,17 +1,24 @@
+
+<div class="container">
 <h1>Clientes</h1>
 
-<div>
-	<table>
+	<table id="example" class="display table table-borderd table-hover" >
+		<thead>
 		<tr>
+			<th>DNI</th>
 			<th>Nombres</th>
 			<th>Apellidos</th>
 			<th>E-mail</th>
 			<th></th>
 			<th></th>
+			<th></th>
 		</tr>
+		</thead>
 
+		<tbody>
 		<% _.each(clients, function(client){ %>
-		<tr data-id="" data-model="client"> 
+		<tr data-id="" data-model="client">
+			<td><%= client.documentNumber %></td> 
 			<td><%= client.firstName %></td>
 			<td><%= client.lastName %></td>
 			<td><%= client.email %></td>
@@ -25,6 +32,6 @@
 			</form></td>
 		</tr>
 		<%})%>
-
+		</tbody>
 	</table>
 </div>

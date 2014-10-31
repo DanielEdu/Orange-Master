@@ -15,13 +15,16 @@ module.exports = {
 			required: true
 		},
 		quantity: {
-			type: 'string'
+			type: 'integer',
+			required: true
 		},
 		unityPrice: {
-			type: 'string'
+			type :'integer',
+			//required: true
 		},
 		fullPrice: {
-			type :'string',
+			type :'integer',
+			//required: true
 		},
 		id_sale: {
             model:'Sale'

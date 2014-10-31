@@ -57,7 +57,7 @@ module.exports = {
 	      address: 		req.param('address'),
 	      district: 	req.param('district')
 	    }
-
+console.log(clientObj);
 	    Client.create(clientObj, function (err, client){
 	      if(err){
 	        console.log(err);
@@ -94,13 +94,25 @@ module.exports = {
 
 	findByDni: function(req, res, next) {
 		var dni = req.param('dni');
+		var resJson = {
+			cod: '',
+			dat: '',
+			resp: ''
+		}
 
 	    Client.findOne({ documentNumber: dni }, function (err, dni) {
 		  if(err) console.log('Error:' + err);
-		  if(!dni) return next('El cliente no existe.');
+		  if(!dni){
+		  	resJson.resp = "El Cliente no existe";
+	    	resJson.cod = 0;
+	    	res.send(resJson);
+	    	 }
 		  else {
 	    		console.log("peticion de DNI OK");
-	    		res.send(dni);
+	    		resJson.dat = dni;
+	    		resJson.resp = "Cliente encontrado!!"
+	    		resJson.cod = 1;
+	    		res.send(resJson);
 	    	}
 	    });
   	}

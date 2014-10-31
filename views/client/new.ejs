@@ -1,5 +1,7 @@
+<div class="container">
+
 <h1>Create Client</h1>
-<form role="form" action="/client/create" method="POST" class="" id="">
+<form  action="/client/create" method="POST" class="" >
 	<input type="text" name="documentNumber" placeholder="DNI " required/> <br/>
 	<input type="text" name="firstName" placeholder="Nombres" required/> <br/>
 	<input type="text" name="lastName" placeholder="Apellidos" required/> <br/>
@@ -17,5 +19,5 @@
 			<%})%>
     </select><br>
 	<input type="submit" value="Crear Cliente"/> <br/>
-	<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
 </form>
+</div>

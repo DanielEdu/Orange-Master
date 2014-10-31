@@ -7,7 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+
+    $(document).ready(OnReady);
+      function OnReady(){
+        $('#example').DataTable();
+      }
+        
+    </script>
      
 
     
@@ -33,9 +41,9 @@
     -->
 
     <!--STYLES-->
-    <link rel="stylesheet" href="/styles/bootstrap-theme.css">
     <link rel="stylesheet" href="/styles/bootstrap.css">
     <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/jquery.dataTables.css">
     <link rel="stylesheet" href="/styles/normalize.css">
     <!--STYLES END-->
   </head>
@@ -117,9 +125,7 @@
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
-    <script src="/js/dependencies/form.js"></script>
-    <script src="/js/dependencies/jquery-1.11.1.js"></script>
-    <script src="/js/dependencies/ngcontroller.js"></script>
+    <script src="/js/dependencies/jquery.dataTables.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
