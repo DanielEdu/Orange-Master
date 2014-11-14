@@ -41,7 +41,6 @@ module.exports = {
 		});
 	},
 
-
 	create: function (req, res, next) {
 
 	    var userObj = {
@@ -55,7 +54,6 @@ module.exports = {
 	      saleSerialized: req.param('saleSerialized')
 	    }
 
-
 	    User.create(userObj, function (err, user){
 	      if(err){
 	        console.log(err);
@@ -64,36 +62,47 @@ module.exports = {
         	}
 	        return res.redirect('/user/new');
 	      } 
-	      res.redirect('/user/show/' + user.id_user);
-	      console.log("Create OK!");
+	      res.redirect('/user/new');
 	    });
 	},
 
-
-	update: function (req, res, next) {
-
-		 if (req.session.User.admin) {
-		 	var userObj = {
-		        firstName:    req.param('firstName'),
-	      		lastName:     req.param('lastName'),
-	      		phoneNumber:  req.param('phoneNumber'),
-	      		email:    	req.param('email'),
-		        admin: 		req.param('admin')
-		    }
-		} else {
+	update: function (req, res, next) {		
+	
+		if(req.param('cod')=='4'){
 			var userObj = {
-				firstName:    req.param('firstName'),
-	      		lastName:     req.param('lastName'),
-	      		phoneNumber:  req.param('phoneNumber'),
-	      		email:    	req.param('email')
+				state: req.param('state')
 	      	}
-	      }
+	    }
+	    if(req.param('cod')=='5')
+	    {
+	    	var userObj = {
+				admin: req.param('admin')
+	      	}
+	    }
+	    if(req.param('cod')=='')
+	    {
+	    	var userObj = {
+		        firstName:   req.param('firstName'),
+	      		lastName:    req.param('lastName'),
+	      		phoneNumber: req.param('phoneNumber'),
+	      		email:    	 req.param('email'),		        
+		    }
+	    }
+
+	    //-----------------------------------------------------------------
 
 		User.update(req.param('id'), userObj, function userUpdated (err){
 			if (err) {
 				return res.redirect('/user/edit/' + req.param('id'));
 			}
-			res.redirect('/user/show/' + req.param('id'));
+			if (req.param('cod')=='') {
+				res.redirect('/user/show/' + req.param('id'));
+			}
+			if(req.param('cod')=='5' || req.param('cod')=='4')
+			{
+				
+				res.send("Update success");
+			}
 
 		});
 	},

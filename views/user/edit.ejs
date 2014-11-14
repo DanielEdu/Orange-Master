@@ -1,19 +1,94 @@
-<h1>Estas editando un usuario</h1>
+<div class="container">
+<h1>EDITAR USUARIO</h1>
 
 <form action="/user/update/<%= user.id_user %>" method="POST">
 
+	<label for="">Nombres: </label>
 	<input type="text" name="firstName" value="<%= user.firstName %>" /> <br/>
+	<label for="">Apellidos: </label>
 	<input type="text" name="lastName" value="<%= user.lastName %>" /> <br/>
+	<label for="">Teléfono: </label>
 	<input type="text" name="phoneNumber" value="<%= user.phoneNumber %>" /> <br/>
+	<label for="">E-mail: </label>
 	<input type="text" name="email" value="<%= user.email %>" /> <br/>
-	<% if (session.authenticated && session.User.admin) { %>
-			<% if (user.admin) { %>
-				<input type="hidden" name="admin" value="unchecked">
-				<label class="checkbox"><input type="checkbox" name="admin" checked> Admin</label>
-			<% } else { %>
-				<label class="checkbox"><input type="checkbox" name="admin"> Admin</label>
-			<% } %> 
-		<% } %> 
-	<input type="submit" value="Editar"/>
-	<input type="hidden" name="_csrf" value="<%= _csrf %>"/>	
+	<input type="text" name="cod" value="" hidden>
+	
+	<input class="btn " type="submit" value="Guardar"/>	
 </form>
+
+<div>
+	<% if (session.authenticated && session.User.admin==='admin') { %>
+		<% if (user.admin==='admin') { %>
+			<div>
+			<input type="radio" name="admin" value="admin" id="admin" checked>
+			<label for="admin">Administrador</label>
+			</div>
+			<div>
+			<input type="radio" name="admin" value="user" id="user">
+			<label for="user">Usuario</label>
+			</div>
+			<div>
+			<input type="radio" name="admin" value="trainer" id="trainer">
+			<label for="trainer">Entrenador</label>
+			</div>
+		<% } %>
+		<% if (user.admin==='user') { %>
+			<div>
+			<input type="radio" name="admin" value="admin" id="admin" />
+			<label for="admin">Administrador</label>
+			</div>
+			<div>
+			<input type="radio" name="admin" value="user" id="user" checked />
+			<label for="user">Usuario</label>
+			</div>
+			<div>
+			<input type="radio" name="admin" value="trainer" id="trainer">
+			<label for="trainer">Entrenador</label>
+			</div>
+		<% } %>
+		<% if (user.admin==='trainer') { %>
+			<div>
+			<input type="radio" name="admin" value="admin" id="admin" />
+			<label for="admin">Administrador</label>
+			</div>
+			<div>
+			<input type="radio" name="admin" value="user" id="user"  />
+			<label for="user">Usuario</label>
+			</div>
+			<div>
+			<input type="radio" name="admin" name="fruit" value="trainer" id="trainer" checked />
+			<label for="trainer">Entrenador</label>
+			</div>
+		<% } %>
+	<% } %> 
+</div>
+</div>
+<script>
+	$( "input:radio" ).on("click", function (){
+		url = $("form").attr('action');
+    	var val = $( "input:checked" ).val();
+    	var data = {
+    		admin: val,
+    		cod: 5
+    	}
+
+    	$.ajax({
+
+	    	url: url,
+	    	type: "POST",
+	    	data: data,
+	    	success: function (resp) {
+	    		console.log(resp);
+	    		alertify.success("Success log message");
+	    	},
+	    	error: function (jqXHR, estado, error) {
+	    		console.log(estado);
+	    		console.log(error);
+	    	},
+	    	complete: function (jqXHR, estado) {
+	    		console.log(estado);
+	    	}
+   	 	});
+    	    
+    });
+</script>

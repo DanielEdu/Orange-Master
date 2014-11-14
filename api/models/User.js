@@ -37,13 +37,27 @@ module.exports = {
 			type: 'string',
 			email: true
 		},
+		state: {
+			type: 'boolean',
+			defaultsTo: true
+		},
 		encryptedPassword: {
   			type: 'string'
   		},
   		admin: {
+  			type: 'string',
+  			enum: ['admin', 'user', 'trainer'],
+  			defaultsTo: 'user',
+  			columnName: 'userRole'
+  		},
+  		/*admin: {
   			type: 'boolean',
   			defaultsTo: false
-    	},
+    	},*/
+    	sales:{
+            collection: 'Sale',
+            via: 'id_user'
+        },
 		// Override toJSON instance method to remove password value.
 		toJSON: function() {
 			var obj = this.toObject();
@@ -56,8 +70,7 @@ module.exports = {
 
 	},
 
-
-	beforeValidation: function (values, next) {
+	/*beforeValidation: function (values, next) {
 		
       if (values.admin === 'unchecked') {
         values.admin = false;
@@ -69,7 +82,7 @@ module.exports = {
         console.log("se ejecuto true");
       }
      next();
-  },
+  },*/
 
 	beforeCreate: function (values, next) {
 

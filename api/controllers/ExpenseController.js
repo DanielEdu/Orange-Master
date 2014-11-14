@@ -13,7 +13,7 @@ module.exports = {
 
 
 create: function (req, res, next) {
-
+//console.log(req.params.all());
     var expenseObj = {
       firstName:   req.param('firstName'),
       lastName:    req.param('lastName'),
@@ -23,9 +23,9 @@ create: function (req, res, next) {
     Expense.create(expenseObj, function (err, expense){
       if(err){
         console.log("Error: " + err);
-        return res.redirect('client/new');
+        return res.redirect('/expense/new/');
       } 
-      //res.redirect('clientObj');
+      res.redirect('/expense/new/');
       console.log("Egreso registrado");
     });
 },

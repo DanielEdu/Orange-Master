@@ -1,6 +1,7 @@
 <div class="container">
-<h1>Services</h1>
-	<table id="example" class="display table table-borderd table-hover" >
+<h1>SERVICIOS</h1> 
+<a class="btn btn-success btn-default" href="/service/new/">+ Crear nuevo Servicio</a><br>
+	<table id="dvData" class="display table table-borderd table-hover" >
 		<thead>
 		<tr>
 			<th>Servicio</th>
@@ -13,19 +14,70 @@
 
 		<tbody>	
 		<% _.each(services, function(service){ %>
-		<tr data-id="" data-model="service"> 
+		<tr> 
 			<td><%= service.serviceName %></td>
 			<td><%= service.servicePrice %></td>
-			<td><a href="/service/show/<%= service.id_service %>">Show</a></td>
-			<td><a href="/service/edit/<%= service.id_service %>">Edit</a></td>
-			<td><form action="/service/destroy/<%= service.id_service %>" method="POST"/>
-				<input type="hidden" name="_method" value="delete"/>
-				<input type="submit" value="Borrar">
-				
-			</form></td>
+			<td><a href="/service/show/<%= service.id_service %>">Ver</a></td>
+			<td><a href="/service/edit/<%= service.id_service %>">Editar</a></td>
+
+			<td><div class="onoffswitch">
+			<input type="checkbox" name="onoffswitch" class="check onoffswitch-checkbox" id="<%= service.id_service %>" <% if (service.state) { %>checked<% } %> >
+			<label class="onoffswitch-label" for="<%= service.id_service %>">
+			<span class="onoffswitch-inner"></span>
+			<span class="onoffswitch-switch"></span>
+			</label>
+			</div></td>
+
 		</tr>
 		<%})%>
 		</tbody>
 
 	</table>
 </div>
+
+<script>
+
+$(document).ready(OnReady);
+  function OnReady(){
+    $('#dvData').DataTable({
+    	"paging":   false,
+    	"info":     false,
+    	"language": {
+    		"search": "Buscar",
+    	}
+    });
+
+    $( "table" ).on("click","td .check", function (){
+		var id = $(this).attr('id');
+		var data = {
+			state: '',
+	        cod: 4
+		}
+
+		if(this.checked) { // check select status
+			data.state = true;
+			 }else{
+	        data.state = false;
+	    }    
+
+		$.ajax({
+
+	    	url: "/service/update/"+id,
+	    	type: "POST",
+	    	data: data,
+	    	success: function (resp) {
+	    		console.log(resp);
+	    	},
+	    	error: function (jqXHR, estado, error) {
+	    		console.log(estado);
+	    		console.log(error);
+	    	},
+	    	complete: function (jqXHR, estado) {
+	    		console.log(estado);
+	    	}
+	    });
+	});
+
+ }
+        
+</script>

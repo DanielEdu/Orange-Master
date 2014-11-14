@@ -29,6 +29,10 @@ module.exports = {
 		serviceDescription: {
 			type: 'text'
 		},
+		state: {
+			type: 'boolean',
+			defaultsTo: true
+		},
 	}
 };
 

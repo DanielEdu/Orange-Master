@@ -1,88 +1,105 @@
 
 
-
-<div id="main" ng-controller="controllerD as cd" class="container col-md-8 col-md-offset-2" >
-<h1>Venta!!!</h1>
+<div id="main" class="container col-md-8 col-md-offset-2" >
+<h1>VENTA</h1>
 <div id="mensaje" >
 	<ul class="alert alert-success">
 		<li id="msj" >mensaje: </li>
-	</ul>
+	</ul> 
 </div>
 
 <div class="form-group " >
 <form name="fo1" class="form-inline" >
-	<label >Buscar por DNI:</label>
+	<label >Ingresar DNI:</label>
 	<input id="mysearch" type="search" name="dniSeach" class="form-control" /> 
 	<button id="searchBT" class="btn btn-info"/> Buscar</button><br/><br/>
+	<div class="form-group"><div class="input-group">
+	<div class="input-group-addon">Nombres</div>
 	<input type="text" class="clientInfo form-control" name="firstName" placeholder="Nombres" required/><br/>
-	<input type="text" class="clientInfo form-control" name="lastName" placeholder="Apellidos" /> <br/>
+	</div></div><br>
+	<div class="form-group"><div class="input-group">
+	<div class="input-group-addon">Apellidos</div>
+	<input type="text" class="clientInfo form-control" name="lastName" placeholder="Apellidos" /> 
+	</div></div><br/>
+
 	<div class="form-group">
 	    <div class="input-group">
-	      <div class="input-group-addon">#</div>
+	      <div class="input-group-addon">#Teléfono</div>
 	      <input type="text" class="clientInfo form-control" name="phoneNumber" placeholder="Telefono/celular" /> 
 	    </div>
   	</div>	
 	<div class="form-group">
 	    <div class="input-group">
-	      <div class="input-group-addon">@</div>
+	      <div class="input-group-addon">@E-mail</div>
 			<input type="email" class="clientInfo form-control" name="email" placeholder="e-mail" />
 	    </div>
   	</div><br/>		
-	<label >Dirección:</label>
-	<input type="text" class="clientInfo form-control" name="address" placeholder="Dirección" />
-	<label >Distrito:</label>
+	<div class="form-group">
+	    <div class="input-group">
+	      <div class="input-group-addon">Dirección</div>
+			<input type="text" class="clientInfo form-control" name="address" placeholder="Dirección" />
+	</div></div>
+	<div class="form-group">
+	    <div class="input-group">
+	      <div class="input-group-addon">Dirección</div>
 	
-	<select class="clientInfo form-control " name="district" />
-			<option value=""> - - - </option>
-			<% _.each(distritos, function(distrito){ %>
-
-			<option value="<%= distrito.id_district %>" > 
-				<%= distrito.districtName %>
-			</option>
-			
-			<%})%>
-    </select><br>
+			<select class="clientInfo form-control " name="district" />
+				<% _.each(distritos, function(distrito){ %>
+				<option value="<%= distrito.id_district %>" > 
+					<%= distrito.districtName %>
+				</option>
+				<%})%>
+		    </select>
+	</div></div>
 </form>
 
-<form name="fo2">
-
-<div >
-	
-<h2>seleccionar servicio</h2>
-		<select class="form-control" id="idService" name="service"/>
-			
-			<% _.each(servicios, function(serv){ %>
-			<option value="<%= serv.serviceName %>"> 
-				<%= serv.serviceName %>
-			</option>
-			
-			<%})%>
-   		</select>
-
-
-			<input type="number" id="sCantidad" class="form-control" placeholder="cantidad" />
-			<input type="text" name="sPrice" id="sPrice" class="form-control" placeholder="0.00"/>
-			<input id="add" class="btn btn-success" value=" + " /><br/>
+<form name="fo2" class="form-inline">
+<div >	
+<hr>
+<h3>seleccionar servicio</h2>
+<div class="form-group"><div class="input-group">
+	<div class="input-group-addon">Servicio</div>
+	<select class="form-control" id="idService" name="service"/>	
+		<% _.each(servicios, function(serv){ %>
+		<option value="<%= serv.serviceName %>"> 
+			<%= serv.serviceName %>
+		</option>
+		<%})%>
+   	</select>
+</div></div><br>
+<div class="form-group"><div class="input-group">
+	<div class="input-group-addon">#Cantidad</div>
+	<input type="number" id="sCantidad" class="form-control" placeholder="cantidad" />
+</div></div>
+<div class="form-group"><div class="input-group">
+	<div class="input-group-addon">S/.</div>
+	<input type="text" name="sPrice" id="sPrice" class="form-control" placeholder="0.00"/>
+</div></div>
+	<input id="add" class="btn btn-success" value="Agregar" /><br/>
 </div>
-
+<hr>
 <table id="tableSale" class="table table-borderd table-hover" >
-        <thead>
-            <tr>
-            	<th>borrar</th>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>precio/u</th>
-                <th>Precio total</th>
-            </tr>
-        </thead>
-        <tbody class="tableSale">
+    <thead>
+        <tr>
+        	<th>borrar</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>precio/u</th>
+            <th>Precio total</th>
+        </tr>
+    </thead>
+    <tbody class="tableSale"> </tbody>
+</table>
 
-           
-        </tbody>
-    </table>
+<hr>
+<div class="form-group"><div class="input-group">
+	<div class="input-group-addon">Total: S/.</div>
+	<input class="form-control" id="total" type="text" name="fullPrice" disabled value="0.00">
+</div></div>	
 
-    <label >TOTAL: </label><input class="form-control" id="total" type="text" name="fullPrice" disabled value="0.00">
-    <button type="submit" id="send" class="btn btn-success"> SEND </button><br/>
+    <button type="submit" id="send" class="btn btn-success"> imprimir y Guardar </button>
+    <button type="submit" id="" class="btn btn-success"> Guardar </button>
+    <a class="btn btn-danger navbar-btn navbar-right" href="/sale/new">Borrar Todo</a>
 </div>
 </form>
 </div>

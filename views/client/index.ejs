@@ -1,8 +1,18 @@
 
-<div class="container">
-<h1>Clientes</h1>
+<style type="text/css">
+#observation{
+   	font-size: 16px;
+    background: gray;
+ 
+}
+</style>
 
-	<table id="example" class="display table table-borderd table-hover" >
+
+<div class="container">
+<h1>CLIENTES</h1> 
+<a class="btn btn-success" href="/client/new/">+ Registrar nuevo cliente</a><br>
+
+	<table id="dvData" class="display table table-borderd table-hover dataTable no-footer" >
 		<thead>
 		<tr>
 			<th>DNI</th>
@@ -22,16 +32,31 @@
 			<td><%= client.firstName %></td>
 			<td><%= client.lastName %></td>
 			<td><%= client.email %></td>
-			<td><a href="/client/show/<%= client.id_client %>">Show</a></td>
-			<td><a href="/client/edit/<%= client.id_client %>">Edit</a></td>
-			<td><form action="/client/destroy/<%= client.id_client %>" method="POST"/>
-				<input type="hidden" name="_method" value="delete"/>
-				<input type="submit" value="Borrar">
-				<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
-				
-			</form></td>
+			<td><a href="/client/show/<%= client.id_client %>">Ver</a></td>
+			<td><a href="/client/edit/<%= client.id_client %>">Editar</a></td>
+			<td>
+			<div class="onoffswitch">
+			    <input type="checkbox" name="onoffswitch" class="check onoffswitch-checkbox" id="<%= client.id_client %>" <% if (client.state) { %>checked<% } %> >
+			    <label class="onoffswitch-label" for="<%= client.id_client %>">
+			        <span class="onoffswitch-inner"></span>
+			        <span class="onoffswitch-switch"></span>
+			    </label>
+			</div>
+			</td>
 		</tr>
 		<%})%>
 		</tbody>
 	</table>
 </div>
+
+<!-- **********    Form pop up  **********   -->
+<div id="dialogo" class="ventana"  title="Observaciones del usuario">
+    
+    <textarea id="observation" rows="7" cols="60" /><%= client.observation%></textarea> <br/>
+	<input type="submit" id="observationBtn" class="btn btn-success" value="Guardar"/>
+    
+</div>
+<!-- ************************************  -->
+
+
+ <script src="/js/scriptIndexClient.js" > </script>

@@ -1,14 +1,14 @@
 
 <div class="container">
-<h1>Usuarios!</h1> 
-	<table id="example" class="display table table-borderd table-hover" >
+<h1>USUARIOS</h1>  <a class="btn btn-success btn-default" href="/user/new/">+ Agregar usuario</a>
+	<table id="dvData" class="display table table-borderd table-hover" >
 	<thead>
 		<tr>
 			<th>Nombres</th>
 			<th>Apellidos</th>
 			<th>E-mail</th>
 			<th>Permisos</th>
-			<th>ver/editar</th>
+			<th></th>
 			<th> </th>
 		</tr>
 	</thead>
@@ -19,21 +19,42 @@
 			<td><%= user.lastName %></td>
 			<td><%= user.email %></td>
 
-			<% if (user.admin) { %>
+			<% if (user.admin==='admin') { %>
 			<td> <img src="/images/admin.png"></td>
-			<% } else { %>
+			<% } %>	
+			<% if (user.admin==='trainer') { %>
+			<td> <img src="/images/trainer.png"></td>
+			<% } %>
+			<% if (user.admin==='user') { %>
 			<td> <img src="/images/pawn.png"></td>
 			<% } %>	
-			<td><a href="/user/show/<%= user.id_user %>">Show</a>
-			<a href="/user/edit/<%= user.id_user %>">Edit</a></td>
-			<td><form action="/user/destroy/<%= user.id_user %>" method="POST"/>
-				<input type="hidden" name="_method" value="delete"/>
-				<input type="submit" value="Borrar">
-				</form>
+			<td><a href="/user/show/<%= user.id_user %>">Ver</a>
+				<a href="/user/edit/<%= user.id_user %>">Editar</a></td>
+			<td>
+			<div class="onoffswitch">
+			    <input type="checkbox" name="onoffswitch" class="check onoffswitch-checkbox" id="<%= user.id_user %>" <% if (user.state) { %>checked<% } %> >
+			    <label class="onoffswitch-label" for="<%= user.id_user %>">
+			        <span class="onoffswitch-inner"></span>
+			        <span class="onoffswitch-switch"></span>
+			    </label>
+			</div>
 			</td>
 		</tr>
 		<%})%>
 	</tbody>
-
-	</table>
+	</table> <br/>
+		<a download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'dvData', 'Sheet Name Here');">Export to Excel</a>
 </div>
+
+<div id="dialogo" class="ventana"  title="Observaciones del usuario">
+     
+    <p>Esto es un dialogo no modal, por lo que la web no queda bloqueada al abrir la ventana. También se pueden introducir fotos, videos o cualquer cosa en las ventanas. </p>
+    
+ 
+</div>
+
+<script src="/js/userScript.js"></script>
+
+
+
+       

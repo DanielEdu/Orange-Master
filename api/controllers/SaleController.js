@@ -21,65 +21,103 @@ module.exports = {
 },
 
 
-create: function (req, res, next) {
-	
-	Client.findOne({ documentNumber: req.param('clientDocument') }, function (err, client, next) {
-		if(err) console.log('Error:' + err);
-		if(!client) return next('El cliente no existe.');
+	create: function (req, res, next) {
+		//console.log(req.session.User);
+		var sellerName = req.session.User.firstName + " " + req.session.User.lastName;
+		var sellerId = req.session.User.id_user;
 
-		var saleObj = {
-			id_client: 		 client.id_client,
-		    clienteName:     req.param('firstName')+" "+req.param('lastName'),
-		    clientDocument:  req.param('clientDocument'),
-		    fullPrice: 		 req.param('fullPrice')
-		};
 
-	    Sale.create(saleObj, function (err, sale){
-		    if(err){
-		        console.log("lalala:"+err);
-		        return res.redirect('/sale/new');
-		     } 
-		    console.log("Sale Header OK!    " + sale.id_sale);
+		Client.findOne({ documentNumber: req.param('clientDocument') }, function (err, client, next) {
+			
+			if(err) console.log('Error:' + err);
+			if(!client){
+				console.log("cliente no existe y se creara.");
+				createClient(saleObj, req, res, sellerName, sellerId);
+			} 
+			else{
+				var saleObj = {
+					id_client: 		 client.id_client,
+					clienteName:     req.param('firstName')+" "+req.param('lastName'),
+					clientDocument:  req.param('clientDocument'),
+					id_user: 		 sellerId,
+					sellerName: 	 sellerName,
+					fullPrice: 		 req.param('fullPrice')
+				};
 
-		    var json = req.param('details');
-		    var saleDetailObj
-
-		    _.each(json, function(j){	    	
-
-		    	Service.findOne({ serviceName: j.serviceName }, function (err, service, next) {
-		    		console.log(service);
-		    		if(err) console.log('Error:' + err);
-					//if(!service) return next('El servicio no existe.');
-					
-					console.log("***"+service.id_service);
-					//console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")	
-
-		    		saleDetailObj = {
-						id_service: 	service.id_service,
-					    quantity:     	j.quantity,
-					    fullPrice: 		j.fullPrice,
-					    id_sale:  		sale.id_sale,
-					    serviceName: 	j.serviceName
-			    	};
-
-			    	//console.log(saleDetailObj);
-			    	//console.log("//////////5555555555555555555555//////////////")
-			    	SaleDetail.create(saleDetailObj, function (err, saleDetail, next){
-				    	if(err){
-				    		console.log(err);
-				    		//return res.redirect('/sale/new');
-				    	} 
-		    			console.log("Sale Detail OK!");
-
-		    		});
-
-		    	});
-
-		    	//console.log(saleDetailObj);
-		  
-		    }); 
+			   createSale(saleObj, req, res);
+			}
 	    });
-    });
-},	
+	},
+
 };
 
+// All Functions
+
+function createSale(saleObj, req, res){
+	 Sale.create(saleObj, function (err, sale, res){
+	    if(err){
+	        console.log("error:"+err);
+	        return res.redirect('/sale/new');
+	     } 
+	    console.log("Sale Header OK!    " + sale.id_sale);
+
+	    var json = req.param('details');
+	    var saleDetailObj
+
+	    _.each(json, function(j){	    	
+
+	    	Service.findOne({ serviceName: j.serviceName }, function (err, service, next) {
+	    		//console.log(service);
+	    		if(err) console.log('Error:' + err);
+
+	    		saleDetailObj = {
+					id_service: 	service.id_service,
+				    quantity:     	j.quantity,
+				    fullPrice: 		j.endPrice,
+				    id_sale:  		sale.id_sale,
+				    serviceName: 	j.serviceName
+		    	};
+
+		    	SaleDetail.create(saleDetailObj, function (err, saleDetail, next){
+			    	if(err){
+			    		console.log(err);
+			    		return res.redirect('/sale/new');
+			    	}
+	    			
+	    			console.log("Sale Detail OK!");
+	    		});
+	    	});
+	    }); 
+
+    });
+}
+
+function createClient (saleObj, req, res, sellerName, sellerId){
+	var clientObj = {
+	      documentNumber: req.param('clientDocument'),
+	      firstName:    req.param('firstName'),
+	      lastName:     req.param('lastName'),
+	      phoneNumber:  req.param('phoneNumber'),
+	      email:    	req.param('email'),
+	      address: 		req.param('address'),
+	      district: 	req.param('district')
+	    }
+	    console.log(req.session.User);
+    Client.create(clientObj, function (err, client){
+	    if(err){
+	        console.log("Error al crear User: "+err);
+	        return res.redirect('client/new');
+	    } 
+	    console.log("Cliente creado OK!");
+	    var saleObj = {
+	    	id_client: 		client.id_client,
+	    	clienteName:    req.param('firstName')+" "+req.param('lastName'),
+	    	clientDocument: req.param('clientDocument'),
+			fullPrice: 		req.param('fullPrice'),
+			id_user: 		sellerId,
+			sellerName: 	sellerName,
+		};
+
+	    createSale(saleObj, req, res);
+    });
+}

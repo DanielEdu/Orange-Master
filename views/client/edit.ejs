@@ -1,22 +1,35 @@
-<h1>Esta editando un cliente</h1>
+
+<div class="container">
+<h1>EDITAR CLIENTE</h1>
 
 <form action="/client/update/<%= client.id_client %>" method="POST">
+	<input type="text" name="cod" value="" hidden />
+	<label for="">DIN: </label>
 	<input type="text" name="documentNumber" value="<%= client.documentNumber %>" /> <br/>
+	<label for="">Nombres: </label>
 	<input type="text" name="firstName" value="<%= client.firstName %>" /> <br/>
+	<label for="">Apellidos: </label>
 	<input type="text" name="lastName" value="<%= client.lastName %>" /> <br/>
+	<label for="">Telefono: </label>
 	<input type="text" name="phoneNumber" value="<%= client.phoneNumber %>" /> <br/>
+	<label for="">E-mail: </label>
 	<input type="text" name="email" value="<%= client.email %>" /> <br/>
+	<label for="">Dirección: </label>
 	<input type="text" name="address" value="<%= client.address %>" /> <br/>
-	<select  id="pais" class="cambio" name="district" required>
-			<option value=""> <%= client.district.districtName %> </option>
+	<label for="">Distrito: </label>
+	<select  id="district" class="cambio" name="district" required>
+			<option value="<%= client.district %>"> <%= district %> </option>
 			<% _.each(distritos, function(distrito){ %>
 
-			<option value="<%= distrito.id_district %>"> 
+			<option value="<%= distrito.id_district %>" > 
 				<%= distrito.districtName %>
 			</option>
 			
 			<%})%>
     </select><br>
-	<input type="submit" value="Proceed"/>
-	<input type="hidden" name="_csrf" value="<%= _csrf %>"/>	
+     <label for="">Observaciones: </label>
+    <textarea name="observations" rows="10" cols="50" value="<%= client.serviceDescription %>" ></textarea> <br/>
+	<input type="submit" class="btn btn-success" value="Guardar"/>	
 </form>
+
+</div>

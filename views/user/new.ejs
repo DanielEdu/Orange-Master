@@ -1,3 +1,4 @@
+<div class="container">
 
 	<% if(flash && flash.err) { %>
 		<ul class="alert alert-success">
@@ -8,19 +9,19 @@
 	<% } %>
 
 
-<h1>CREAR NUEVO USUARIO</h1>
+<h1>CREAR USUARIO</h1>
 
-<form role="form" action="/user/create" method="POST" class="" id="">
+<form role="form" action="/user/create" method="POST" >
 
-	<input type="text" name="userId" 	placeholder="ID del usuario" required/> <br/>
-	<input type="text" name="firstName" placeholder="Nombres" required/> <br/>
-	<input type="text" name="lastName" 	placeholder="Apellidos" required/> <br/>
-	<input type="text" name="phoneNumber" placeholder="Telefono/celular" required/> <br/>		
-	<input type="email" name="email" 	placeholder="e-mail" required/> <br/>
-	<input type="password" name="password" placeholder="Password" required/> <br/>
-	<input type="password" clas="form-control" placeholder="confirmar password" name="confirmation">
-	<br />
-	<input type="submit" value="Crear Usuario"/> <br/>
-	<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+	<input type="text" name="userId" class="form-control" placeholder="ingresar ID del usuario" required/> <br/>
+	<input type="text" name="firstName" class="form-control" placeholder="Ingresar Nombre(s)" required/> <br/>
+	<input type="text" name="lastName" class="form-control"	placeholder="Ingresar Apellido(s)" required/> <br/>
+	<input type="text" name="phoneNumber" class="form-control" placeholder="ingresar Telefono o celular" required/> <br/>		
+	<input type="email" name="email" class="form-control"	placeholder="ingresar E-mail" required/> <br/>
+	<input type="password" name="password" class="form-control" placeholder="ingresar Contraseña" required/> <br/>
+	<input type="password"  placeholder="confirmar Contraseña" name="confirmation" class="form-control">
+	<br /><br>
+	<input type="submit" class="btn btn-success" value="Crear" /> <br/>
 
 </form>
+</div>

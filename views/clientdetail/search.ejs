@@ -1,0 +1,38 @@
+<div id="main" class="container col-md-8 col-md-offset-2" >
+<h1>HISTORIAL</h1>
+
+<div >
+
+	<label >Ingresar DNI:</label>
+	<input id="mysearch" type="search" name="userSeach" list="myUserList" class="form-control" /> 
+	<datalist id="myUserList" >
+		
+	</datalist>
+	<button id="searchBT" class="btn btn-info"/> Buscar</button><br/><br/>
+
+</div>
+
+<div id="mensaje" >
+	<ul class="alert alert-info">
+		<li id="msj"> </li>
+	</ul>
+	<div id="create">
+	<h3 id="h" > </h3>
+
+	<form class="form-inline" action="" method="POST" >
+
+		<input type="text" name="height" class="form-control"placeholder="ingresar altura en metros (m)" /> 
+		<input type="text" name="weight" class="form-control" placeholder="Ingresar el peso en Kilogramos(Kg.)" /> <br>
+		<textarea name="workout" rows="5" cols="50" placeholder="Ingresar rutina de entrenamiento"></textarea> 		
+		<textarea name="diet" rows="5" cols="50" placeholder="Ingresar name de dieta..."></textarea>
+		<textarea name="observations" rows="5" cols="50" placeholder="Ingresar observaciones..."></textarea>
+		<br /><br>
+		<input type="submit" class="btn btn-success" value="Registrar Nuevo Historial" /> <br/>
+
+	</form>
+	</div>
+
+</div>
+
+
+<script src="/js/clientDetail.js"></script>

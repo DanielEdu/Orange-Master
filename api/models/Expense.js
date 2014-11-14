@@ -24,7 +24,7 @@ module.exports = {
 			required: true
 		},
 		moneyOutput: {
-			type: 'integer',
+			type: 'float',
 			required: true
 		}
 

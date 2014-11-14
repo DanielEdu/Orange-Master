@@ -28,6 +28,13 @@ module.exports = {
 			type :'float',
 			required: true
 		},
+		sellerName: {
+			type: 'string',
+			required: true
+		},
+		id_user: {
+			model:'User'
+		},
 		id_client: {
             model:'Client'
         },

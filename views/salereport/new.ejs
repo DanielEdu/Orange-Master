@@ -1,0 +1,51 @@
+
+
+<div class="container">
+<div class="col-md-6 col-md-offset-3">
+<h1>REPORTE DE VENTAS</h1>
+<div id="mensaje" >
+    <ul class="alert alert-info">
+        <li id="msj"></li>
+    </ul>
+</div>
+<form >
+	<label for="">Desde: </label>
+	<input type="date" id="inicio" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
+	<label for="">Hasta: </label>
+	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01"><br><br>
+    <div class="form-group"><div class="input-group">
+    <div class="input-group-addon">Servicio</div>
+    <select class="form-control" id="idService" name="service"/>    
+        <% _.each(servicios, function(serv){ %>
+        <option value="<%= serv.id_service %>"> 
+            <%= serv.serviceName %>
+        </option>
+        <%})%>
+    </select>
+    </div></div>
+	<button id="send" class="btn btn-success"> Filtrar </button> 
+	
+</form>
+</div>
+<br>
+
+<br>
+<div class="tableContainer">
+<hr>
+<table id="advData" class="display table table-borderd table-hover" >
+    <thead>
+        <tr>
+        	<th>Cliente</th>
+            <th>Vendedor</th>
+            <th>Monto</th>
+            <th>Fecha y hora</th>
+        </tr>
+    </thead>
+    <tbody class=""></tbody>
+</table>
+<a download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'advData', 'Sheet Name Here');">Exportar a Excel</a>
+</div>
+        <br/>
+</div>
+
+<script src="/js/saleReport.js"></script>

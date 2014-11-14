@@ -27,6 +27,7 @@ module.exports.policies = {
   ***************************************************************************/
 
  '*': "flash",
+ 
 
   /*user: {
     'new': "flash",
@@ -34,7 +35,13 @@ module.exports.policies = {
     show: "userCanSeeProfile",
     edit: "userCanSeeProfile",
     update: "userCanSeeProfile",
-    '*': "admin"
+    '*': "admin",
+  },
+  sale: {
+    'new': ["flash", "userCanSeeProfile"],
+    create: "userCanSeeProfile",
+    '*': "admin",
+
   },*/
 
  

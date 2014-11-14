@@ -1,10 +1,14 @@
-<h1>CREAR NUEVO SERVICIO</h1>
+<div class="container">
+	
+
+
+<h1>CREAR SERVICIO</h1>
 
 <form role="form" action="/service/create" method="POST" class="" id="">
 
-	<input type="text" name="serviceName" 	placeholder="Nombre del servicio" required/> <br/>
-	<input type="text" name="servicePrice" placeholder="Precio del servicio" required/> <br/>
-	<textarea name="serviceDescription" rows="10" cols="50" placeholder="..."></textarea> <br/>
-	<input type="submit" value="Crear Servicio"/> <br/>
-	<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+	<input type="text" name="serviceName" 	placeholder="Ingresar Nombre del servicio" required/> <br/>
+	<input type="text" name="servicePrice" placeholder="Ingresar Precio del servicio" required/> <br/>
+	<textarea name="serviceDescription" rows="10" cols="50" placeholder="Ingresar breve descripción del servicio..."></textarea> <br/>
+	<input type="submit" value=" Crear " class="btn " /> <br/>
 </form>
+</div>

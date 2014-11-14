@@ -1,10 +1,41 @@
-<h1>Generar Reportes!</h1>
-<form role="form" action="#" method="GET" class="" id="">
-	<label for="">desde: </label>
-	<input type="date" name="" step="1" min="2013-01-01" max="2013-12-31" value="2013-01-01">
-	<label for="">hasta: </label>
-	<input type="date" name="" step="1" min="2013-01-01" max="2013-12-31" value="2013-01-01">
+<div class="container">
+<div class="col-md-6 col-md-offset-3">
+<h1>REPORTE DE EGRESOS</h1>
+<div id="mensaje" >
+    <ul class="alert alert-info">
+        <li id="msj">indique el intervalo de tiempo para su reporte</li>
+    </ul>
+</div>
+<form >
+	<label for="">Desde: </label>
+	<input type="date" id="inicio" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
+	<label for="">Hasta: </label>
+	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
 
-	<input type="submit" value="Generar Reporte" class="btn" /> 
-	
+	<button id="send" class="btn btn-success"> Filtrar </button> 
+
 </form>
+</div>
+<br>
+
+<br>
+<div class="tableContainer">
+<hr>
+<table id="dvData" class="display table table-borderd table-hover" >
+    <thead>
+        <tr>
+        	<th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Monto</th>
+            <th>Fecha y hora</th>
+        </tr>
+    </thead>
+    <tbody class=""></tbody>
+</table>
+<a id="excel" download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'dvData', 'Sheet Name Here');">Exportar a Excel</a>
+</div>
+        <br/>
+</div>
+
+<script src="/js/Report.js"></script>
+ 

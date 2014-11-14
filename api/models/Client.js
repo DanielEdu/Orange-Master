@@ -42,10 +42,21 @@ module.exports = {
 		district:{
             model: 'District'
         },
+        state: {
+			type: 'boolean',
+			defaultsTo: true
+		},
         sales:{
             collection: 'Sale',
             via: 'id_client'
-        }
+        },
+        clientDetail:{
+            collection: 'ClientDetail',
+            via: 'id_client'
+        },
+        observations: {
+			type: 'text'
+		},
 
   }
 };

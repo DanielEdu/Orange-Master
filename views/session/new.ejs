@@ -1,16 +1,31 @@
-<h1>LOGIN!!!</h1>
+
+<div class="container col-md-6 col-md-offset-3">
+<h1>LOGIN</h1>
 
 	<% if(flash && flash.err) { %>
-		<ul class="alert alert-success">
+		<ul class="alert alert-danger">
 	<% Object.keys(flash.err).forEach(function(error) { %>
-		<li><%- JSON.stringify(flash.err[error]) %></li>
+		<li><%=flash.err[error] %></li>
 	<% }) %>
 	</ul>
+	<% }else{ %>
+			<ul class="alert alert-info">
+        <li id="msj">Ingrese su ID de usuario y contraseña para ingresar al sistema</li>
+    </ul>
 	<% } %>
 
-<form action="/session/create" method="POST">
-	<input type="text" placeholder="email" name="email"> <br/>
-	<input type="password" placeholder="Password" name="password"><br/>
-	<input type="submit" value="Sign-in"><br/>
-	<input type="hidden" name="_csrf" value="<%= _csrf %>">
+<form action="/session/create" method="POST" class="form-inline">
+	<table><tr>
+	<td><label for="id">ID del Usuario </label></td><td><input type="text" id="id" placeholder="Ingrese se E-mail" name="email" class="form-control"></td>
+	</tr>
+	<tr>
+	<td><label for="password">contraseña </label></td><td><input type="password" id="password" placeholder="Ingrese su Contraseña" name="password" class="form-control"></td>
+	</tr>
+	</table>
+	<input type="submit" id="login" class="btn btn-primary" value="Sign-in">
 </form>
+</div>
+
+
+
+

@@ -27,22 +27,30 @@ module.exports = {
 
 	'show': function (req, res, next) {
 	    Client.findOne(req.param('id'), function (err, client){
-	      if (err) return next(err);
-	      // if (!err) return next();
-	      res.view({
-	        client: client
-	      });
-
-	    });
+	    	District.findOne({ id_district: client.district }, function (err, district){
+			    if (err) return next(err);
+			      // if (!err) return next();
+			    res.view({
+			      	district: district.districtName,
+			        client: client
+			    });
+			});
+		});
 	},
 
 	'edit': function (req, res, next) {
 		Client.findOne(req.param('id'), function (err, client){
-			if (err) return next(err);
-			//if (!err) return next();
-			res.view({
-				client: client
-	      });
+			District.find(function (err, distritos) {
+	    	District.findOne({ id_district: client.district }, function (err, district){
+			    if (err) return next(err);
+			      // if (!err) return next();
+			    res.view({
+			      	district: district.districtName,
+			      	distritos: distritos,
+			        client: client
+			    });
+			});
+			});
 		});
 	},
 
@@ -57,24 +65,30 @@ module.exports = {
 	      address: 		req.param('address'),
 	      district: 	req.param('district')
 	    }
-console.log(clientObj);
+
 	    Client.create(clientObj, function (err, client){
 	      if(err){
 	        console.log(err);
 	        return res.redirect('client/new');
 	      } 
-	      //res.redirect('clientObj');
-	      console.log("Create client OK!");
+	      res.redirect('/client/new/');
+	      console.log("Cliente creado OK!");
 	    });
 	},
 
 	update: function (req, res, next) {
+		console.log(req.params.all())
+
 		Client.update(req.param('id'), req.params.all(), function userUpdated (err){
 			if (err) {
 				return res.redirect('/client/edit/' + req.param('id'));
 			}
-			res.redirect('/client/show/' + req.param('id'));
-
+			if(req.param('cod')==''){
+				res.redirect('/client/show/' + req.param('id'));				
+			}
+			if(req.param('cod')=='4' || req.param('cod')=='6'){
+				res.send("succsess cod: "+req.param('cod'));
+			}		
 		});
 	},
 
@@ -85,7 +99,7 @@ console.log(clientObj);
 
 			User.destroy(req.param('id'), function (err){
 				if(err) return next(err);
-				res.redirect('/client');
+				res.redirect('/client/');
 			});
 			
 		});
@@ -94,27 +108,69 @@ console.log(clientObj);
 
 	findByDni: function(req, res, next) {
 		var dni = req.param('dni');
+		var cadena = req.param('dni');
 		var resJson = {
 			cod: '',
 			dat: '',
 			resp: ''
 		}
+		var obj = parseInt(dni)
+		if(obj/obj === 1){
+			Client.findOne({ documentNumber: dni }, function (err, client){
+				if(err) console.log('Error:' + err);
+				if(!client){
+				  	resJson.resp = "El Cliente no existe";
+			    	resJson.cod = 0;
+			    	res.send(resJson);
+			    }
+				else{
+					console.log("peticion de DNI OK");
+		    		resJson.dat = client;
+		    		resJson.resp = "Cliente encontrado!!"
+		    		resJson.cod = 1;
+		    		res.send(resJson);
+		    	}
+				
+			});
+		}
+		if(cadena!=='' && (obj/obj !== 1))
+		{
+			
+			Client.find({or : [{ firstName: { 'startsWith': cadena } }, { lastName: {'startsWith': cadena } }]}, function (err, client) {
+			  	if(err) console.log('Error:' + err);
+				if(!client){res.send("DNI no existe");}
+				//res.send("ok"+client);
+				if(client.length>0){
+					//res.send("existe la cadena")
+					var data = []
 
-	    Client.findOne({ documentNumber: dni }, function (err, dni) {
-		  if(err) console.log('Error:' + err);
-		  if(!dni){
+					_.each(client, function(i){
+						console.log(i.firstName+" "+i.lastName);
+						data.push("<option value='"+i.firstName+" "+i.lastName+"'>");
+						
+					});
+					res.send(data);
+				}
+			});
+		}if (cadena==='')
+		{
+			res.send("vacio")
+		}
+
+	    
+		 /* if(!client){
 		  	resJson.resp = "El Cliente no existe";
 	    	resJson.cod = 0;
 	    	res.send(resJson);
 	    	 }
 		  else {
 	    		console.log("peticion de DNI OK");
-	    		resJson.dat = dni;
+	    		resJson.dat = client;
 	    		resJson.resp = "Cliente encontrado!!"
 	    		resJson.cod = 1;
 	    		res.send(resJson);
-	    	}
-	    });
+	    	}*/
+	   
   	}
 
 

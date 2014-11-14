@@ -1,13 +1,16 @@
-<div>
+<div class="container">
 
-	<% if (user.admin) { %>
-	<img src="/images/admin.png">administrador
-	<% } else { %>
-	<img src="/images/pawn.png">usuario
-	<% } %>	
+	<% if (user.admin==='admin') { %>
+	<img src="/images/admin.png">Administrador
+	<% } %>
+	<% if (user.admin==='user') { %>
+	<img src="/images/pawn.png">Usuario
+	<% } %>
+	<% if (user.admin==='trainer') { %>
+	<img src="/images/trainer.png">Entrenador
+	<% } %>
 
 	<h2>nombre: <%= user.firstName %> <%= user.lastName %></h2>
-	<h3>DNI: <%= user.documentNumber %></h3>
 	<p>Teléfono: <%= user.phoneNumber %> </p> 
 	<p>Email: <%= user.email %> </p>
 

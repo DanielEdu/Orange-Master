@@ -1,10 +1,16 @@
-<div>
-	<h2>nombre: <%= client.firstName %> <%= client.lastName %></h2>
-	<h3>DNI: <%= client.documentNumber %></h3>
-	<p>Teléfono: <%= client.phoneNumber %> </p> 
-	<p>Email: <%= client.email %> </p>
-	<p>Dirección <%= client.address %> </p>
-	<p>Distrito: <%= client.district %> </p>
 
-	<a href="/client/edit/<%= client.id_client %>">Edit</a>
-</div>
+<div class="container">
+	<h2><strong>nombre:</strong> <%= client.firstName %> <%= client.lastName %></h2>
+	<h3><strong>DNI:</strong> <%= client.documentNumber %></h3>
+	<p><strong>Teléfono:</strong> <%= client.phoneNumber %> </p> 
+	<p><strong>Email:</strong> <%= client.email %> </p>
+	<p><strong>Dirección:</strong> <%= client.address %> </p>
+	<p><strong>Distrito:</strong> <%= district %> </p>
+	<p><strong>Observaciones:</strong> <%= client.observations %></p>
+
+	<a href="/client/edit/<%= client.id_client %>"><strong>Editar</strong></a>
+</div> 
+
+
+
+
