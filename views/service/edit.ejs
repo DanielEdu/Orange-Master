@@ -2,16 +2,16 @@
 	
 
 <h1>EDITAR SERVICIO</h1>
-
+<div class="divForms">
 <form action="/service/update/<%= service.id_service %>" method="POST">
 <input type="text" name="cod" value="" hidden />
-	<label for="">Nombre del Servicio</label>
-	<input type="text" name="serviceName" value="<%= service.serviceName %>" /> <br/>
+	<label for="">Nombre</label>
+	<input type="text" name="serviceName" class="form-control" value="<%= service.serviceName %>" /> <br/>
 	<label for="">Precio S/.</label>
-	<input type="text" name="servicePrice" value="<%= service.servicePrice %>" /> <br/>
+	<input type="text" name="servicePrice" class="form-control" value="<%= service.servicePrice %>" /> <br/>
 	<label for="">Descripción</label>
-	<textarea name="serviceDescription" rows="10" cols="50" placeholder="<%= service.serviceDescription %>" ></textarea> <br/>
+	<textarea name="serviceDescription" class="form-control" rows="10" cols="50" placeholder="<%= service.serviceDescription %>" ></textarea> <br/>
 	<input type="submit" class="btn" value="Guardar"/>	
 </form>
-
+</div>
 </div>

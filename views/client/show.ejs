@@ -1,6 +1,8 @@
 
 <div class="container">
-	<h2><strong>nombre:</strong> <%= client.firstName %> <%= client.lastName %></h2>
+<h1>Información Personal de <%= client.firstName %></h1>
+<div class="divForms">
+	<h3><strong>Nombre:</strong> <%= client.firstName %> <%= client.lastName %></h3>
 	<h3><strong>DNI:</strong> <%= client.documentNumber %></h3>
 	<p><strong>Teléfono:</strong> <%= client.phoneNumber %> </p> 
 	<p><strong>Email:</strong> <%= client.email %> </p>
@@ -9,6 +11,7 @@
 	<p><strong>Observaciones:</strong> <%= client.observations %></p>
 
 	<a href="/client/edit/<%= client.id_client %>"><strong>Editar</strong></a>
+</div>
 </div> 
 
 

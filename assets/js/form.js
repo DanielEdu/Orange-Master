@@ -75,8 +75,8 @@ function OnReady(){
 			});
 	});
 
-	$('#add').on('click',function(){
-
+	$('#add').on('click',function(e){
+		e.preventDefault();
 		var producto = $('#idService').val();
 		var cant = $('#sCantidad').val();
 		var precioUnit = parseFloat($('#sPrice').val()).toFixed(roundUp);

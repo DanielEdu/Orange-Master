@@ -1,14 +1,15 @@
 <div class="container">
 	
-
-
-<h1>CREAR SERVICIO</h1>
-
-<form role="form" action="/service/create" method="POST" class="" id="">
-
-	<input type="text" name="serviceName" 	placeholder="Ingresar Nombre del servicio" required/> <br/>
-	<input type="text" name="servicePrice" placeholder="Ingresar Precio del servicio" required/> <br/>
-	<textarea name="serviceDescription" rows="10" cols="50" placeholder="Ingresar breve descripción del servicio..."></textarea> <br/>
-	<input type="submit" value=" Crear " class="btn " /> <br/>
-</form>
+	<h1>CREAR SERVICIO</h1>
+	<div class="divForms">
+	<form action="/service/create" method="POST">
+		<label>Servicio:</label>
+		<input type="text" class="form-control" name="serviceName" placeholder="Ingresar Nombre del servicio" required/><br>
+		<label>Precio:</label>
+		<input type="text" class="form-control" name="servicePrice" placeholder="Ingresar Precio del servicio" required/><br>
+		<label>Descripción:</label>
+		<textarea name="serviceDescription" class="form-control" rows="10" cols="50" placeholder="Ingresar breve descripción del servicio..."></textarea> <br/>
+		<input type="submit" value=" Crear " class="btn " /> <br/>
+	</form>
+	</div>
 </div>

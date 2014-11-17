@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html >
   <head>
-    <title>ONE</title>
-
+    <meta charset="utf-8" >
+    <meta name="description" content="Sistema administrativo de ONE Fitness" >
+    <title>ONE Fitness</title>
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -29,71 +30,74 @@
             + Use a different or additional preprocessor, like SASS, SCSS or Stylus
     -->
 
-    <!--STYLES-->
-    <link rel="stylesheet" href="/styles/bootstrap.css">
-    <link rel="stylesheet" href="/styles/ejemplo.css">
+  </head>
+    <link rel="stylesheet" href="/styles/1normalize.css">
+    <link rel="stylesheet" href="/styles/bootstrap.css"> 
+    <link rel="stylesheet" href="/styles/layoutStyles.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/jquery-ui.min.css">
     <link rel="stylesheet" href="/styles/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="/styles/jquery-ui.theme.min.css">
-    <link rel="stylesheet" href="/styles/jquery.dataTables.css">
-    <link rel="stylesheet" href="/styles/normalize.css">
+    <link rel="stylesheet" href="/styles/jquery.dataTables.css"> 
     <link rel="stylesheet" href="/styles/switch.css">
-    <!--STYLES END-->
-  </head>
 
-  <body>
-
+    
+  <body>   
+      <% if (session.authenticated) { %>
+  <header>
+    <figure id="avatar">
+      <% if (session.User.admin === 'admin') { %>
+        <img src="/images/admin.png">
+      <% }%>
+      <% if (session.User.admin === 'trainer') { %> 
+        <img src="/images/trainer.png">
+      <% }%>
+      <% if (session.User.admin === 'user') { %>
+        <img src="/images/pawn.png">
+      <% } %> 
+    </figure>
+    <ul>
+      <li>
+        <a href="/user/show/<%= session.User.id_user%>"> <%= session.User.firstName %>   </a>
+      </li>
+      <li>
+        <a href="/session/destroy">Salir</a>
+      </li>
+    </ul>
+  </header>
+    <% } %>
+    
   
-      <div class="container header">
-      <div>
-        <img src="/images/1.png" alt="">
-      </div>
-        <div clas="navbar-collapse collapse">
+  <nav> 
+    <figure id="logo">
+      <img  src="/images/1.png" alt="ONE Fitnes">
+    </figure>
+    <ul>
+    <% if (session.authenticated && session.User.admin === 'trainer' ) { %>
+    
+      <li><a href="/clientdetail/search/">Rutinas</a></li>
+    <% } %>
+    <% if (session.authenticated) { %>
+      <li><a href="/sale/new/"> Ventas </a></li>
+      <li><a href="/expense/new/"> Egresos </a></li>
+      <li><a href="/report/new/"> Reporte De Egresos </a></li>
+      <li><a href="/salereport/new/"> Reporte De Ventas </a></li>
+    <% } %>
+    <% if (session.authenticated && session.User.admin==='admin' ) { %>
+      <li><a href="/clientdetail/search/">Rutinas</a></li>
+      <li><a href="/client/">Clientes</a></li>
+      <li><a href="/service/">Servicios</a></li>
+      <li><a href="/user/">Usuarios</a></li>
+    <% } %>
 
-          <ul class="nav navbar-nav">
-            <% if (session.authenticated && session.User.admin==='trainer' ) { %>
-              <li><a href="/clientdetail/search/">Rutinas</a></li>
-            <% } %>
-            <% if (session.authenticated) { %>
-              <li><a href="/sale/new/"> Ventas </a></li>
-              <li><a href="/expense/new/"> Egresos </a></li>
-              <li><a href="/report/new/"> Reporte De Egresos </a></li>
-              <li><a href="/salereport/new/"> Reporte De Ventas </a></li>
-            <% } %>
-            <% if (session.authenticated && session.User.admin==='admin' ) { %>
-              <li><a href="/clientdetail/search/">Rutinas</a></li>
-              <li><a href="/client/">Clientes</a></li>
-              <li><a href="/service/">Servicios</a></li>
-              <li><a href="/user/">Usuarios</a></li>
-            <% } %>
-
-          </ul>
-          <div class="navbar-right">
-            <% if (session.authenticated) { %>
-               <% if (session.User.admin === 'admin') { %>
-                <img src="/images/admin.png">
-                <% }%>
-               <% if (session.User.admin === 'trainer') { %> 
-               <img src="/images/trainer.png">
-               <% }%>
-               <% if (session.User.admin === 'user') { %>
-               <img src="/images/pawn.png">
-                <% } %> 
-                
-                <a class="btn btn-default navbar-btn " href="/user/show/<%= session.User.id_user%>"> <%= session.User.firstName %>   </a>
-              <a class="btn btn-default navbar-btn navbar-right" href="/session/destroy">Salir</a>
-            <% } %>
-          </div>
-        </div>
-      </div>
+    </ul>  
+  </nav>
    
     <%- body %>
 
  <footer>
-      desarrollado por: 
+      desarrollado por <img src="/images/ia_blanco.png" alt="iaSoft Groupe">
 </footer>
-
     <!--
         Client-side Templates
         ========================

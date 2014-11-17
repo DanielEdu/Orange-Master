@@ -1,19 +1,19 @@
 
 <div class="container">
-<h3><strong>Plan de Seguimiento de:</strong>  <%= client.firstName %> <%= client.lastName %></h3>
-	
+<h1><strong>Plan de Seguimiento de:</strong>  <%= client.firstName %> <%= client.lastName %></h1>
+	<div class="divForms">
 	<h3><strong>Altura:</strong> <%= detail[0].height %> m.</h3>
-	<p><strong>Peso:</strong> <%= detail[0].weight %> kg.</p> 
+	<h3><strong>Peso:</strong> <%= detail[0].weight %> kg.</h3> 
 	<p><strong>Rutina:</strong> <%= detail[0].workout %> </p>
 	<p><strong>IMC: </strong> <%= (detail[0].weight/Math.pow(detail[0].height , 2)).toFixed(2) %> </p>
 	<p><strong>Dieta: </strong> <%= detail[0].diet %> </p>
-	<p><strong>observaciones: </strong> <%= detail[0].observations %> </p>
+	<p><strong>Observaciones: </strong> <%= detail[0].observations %> </p>
 	<p><strong>Ultima Fecha: </strong> <%= detail[0].createdAt %> </p>
 	<br>
 	
 
-	<a href="/clientdetail/upgrade/<%= client.id_client %>"><strong>Añadir Nuevo Historial</strong></a><br><br><hr><br>
-
+	<a href="/clientdetail/upgrade/<%= client.id_client %>"><strong>Añadir Nuevo Historial</strong></a>
+</div>
 	<table id="dvData" class="display table table-borderd table-hover" >
 		<thead>
 		<tr>

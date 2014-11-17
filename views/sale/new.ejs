@@ -1,15 +1,17 @@
+<link rel="stylesheet" href="/styles/newSaleStyle.css">
 
+<!-- //////////////////////////// -->
 
-<div id="main" class="container col-md-8 col-md-offset-2" >
-<h1>VENTA</h1>
+<div id="main" class="container" >
+<h1>INGRESO DE VENTA</h1>
 <div id="mensaje" >
 	<ul class="alert alert-success">
 		<li id="msj" >mensaje: </li>
 	</ul> 
 </div>
 
-<div class="form-group " >
-<form name="fo1" class="form-inline" >
+<div class="divForms">
+	<form name="fo1" class="form-inline" >
 	<label >Ingresar DNI:</label>
 	<input id="mysearch" type="search" name="dniSeach" class="form-control" /> 
 	<button id="searchBT" class="btn btn-info"/> Buscar</button><br/><br/>
@@ -41,9 +43,9 @@
 	</div></div>
 	<div class="form-group">
 	    <div class="input-group">
-	      <div class="input-group-addon">Dirección</div>
+	      <div class="input-group-addon">Distrito</div>
 	
-			<select class="clientInfo form-control " name="district" />
+			<select class="clientInfo form-control" name="district" />
 				<% _.each(distritos, function(distrito){ %>
 				<option value="<%= distrito.id_district %>" > 
 					<%= distrito.districtName %>
@@ -54,54 +56,55 @@
 </form>
 
 <form name="fo2" class="form-inline">
-<div >	
-<hr>
-<h3>seleccionar servicio</h2>
-<div class="form-group"><div class="input-group">
-	<div class="input-group-addon">Servicio</div>
-	<select class="form-control" id="idService" name="service"/>	
-		<% _.each(servicios, function(serv){ %>
-		<option value="<%= serv.serviceName %>"> 
-			<%= serv.serviceName %>
-		</option>
-		<%})%>
-   	</select>
-</div></div><br>
-<div class="form-group"><div class="input-group">
-	<div class="input-group-addon">#Cantidad</div>
-	<input type="number" id="sCantidad" class="form-control" placeholder="cantidad" />
-</div></div>
-<div class="form-group"><div class="input-group">
-	<div class="input-group-addon">S/.</div>
-	<input type="text" name="sPrice" id="sPrice" class="form-control" placeholder="0.00"/>
-</div></div>
-	<input id="add" class="btn btn-success" value="Agregar" /><br/>
-</div>
-<hr>
-<table id="tableSale" class="table table-borderd table-hover" >
-    <thead>
-        <tr>
-        	<th>borrar</th>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>precio/u</th>
-            <th>Precio total</th>
-        </tr>
-    </thead>
-    <tbody class="tableSale"> </tbody>
-</table>
+	<div >	
+	<div class="form-group"><div class="input-group">
+		<div class="input-group-addon">Servicio</div>
+		<select class="form-control" id="idService" name="service"/>	
+			<% _.each(servicios, function(serv){ %>
+			<option value="<%= serv.serviceName %>"> 
+				<%= serv.serviceName %>
+			</option>
+			<%})%>
+	   	</select>
+	</div></div>
+	<div class="form-group"><div class="input-group">
+		<div class="input-group-addon">#Cantidad</div>
+		<input type="number" id="sCantidad" class="form-control" placeholder="cantidad" />
+	</div></div>
+	<div class="form-group"><div class="input-group">
+		<div class="input-group-addon">S/.</div>
+		<input type="text" name="sPrice" id="sPrice" class="form-control" placeholder="0.00"/>
+	</div></div>
+		<input type="submit" id="add" class="btn btn-danger" value="+" /><br/>
+	</div>
+	<hr>
+	<div id="tableSale">
+	<table id="tableSale" class="table table-hover" >
+	    <thead>
+	        <tr>
+	        	<th>borrar</th>
+	            <th>Producto</th>
+	            <th>Cantidad</th>
+	            <th>precio/u</th>
+	            <th>Precio total</th>
+	        </tr>
+	    </thead>
+	    <tbody class="tableSale"> </tbody>
+	</table>
+	</div>
 
-<hr>
-<div class="form-group"><div class="input-group">
-	<div class="input-group-addon">Total: S/.</div>
-	<input class="form-control" id="total" type="text" name="fullPrice" disabled value="0.00">
-</div></div>	
+	<hr>
+	<div class="form-group"><div class="input-group">
+		<div class="input-group-addon">Total: S/.</div>
+		<input class="form-control" id="total" type="text" name="fullPrice" disabled value="0.00">
+	</div></div>	
 
-    <button type="submit" id="send" class="btn btn-success"> imprimir y Guardar </button>
-    <button type="submit" id="" class="btn btn-success"> Guardar </button>
+    <button type="submit" id="send" class="btn btn-danger"> imprimir y Guardar </button>
+    <button type="submit" id="" class="btn btn-danger"> Guardar </button>
     <a class="btn btn-danger navbar-btn navbar-right" href="/sale/new">Borrar Todo</a>
+	</div>
+	</form>
 </div>
-</form>
 </div>
 
 

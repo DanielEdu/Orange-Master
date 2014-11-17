@@ -1,0 +1,10 @@
+#sCantidad{
+	width: 4.5em;
+}
+#sPrice{
+	width: 6em;
+}
+.table thead{
+	background: #DE3327;
+	color: white;
+}

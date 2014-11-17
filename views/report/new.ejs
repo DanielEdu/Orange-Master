@@ -1,24 +1,25 @@
+
 <div class="container">
-<div class="col-md-6 col-md-offset-3">
 <h1>REPORTE DE EGRESOS</h1>
+<div class="divForms">
 <div id="mensaje" >
     <ul class="alert alert-info">
         <li id="msj">indique el intervalo de tiempo para su reporte</li>
     </ul>
 </div>
-<form >
-	<label for="">Desde: </label>
-	<input type="date" id="inicio" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
-	<label for="">Hasta: </label>
-	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
 
-	<button id="send" class="btn btn-success"> Filtrar </button> 
+    <form >
+    	<label for="">Desde: </label>
+    	<input type="date" id="inicio" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
+    	<label for="">Hasta: </label>
+    	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
 
-</form>
+    	<button id="send" class="btn btn-success"> Filtrar </button> 
+
+    </form>
 </div>
-<br>
+</div>
 
-<br>
 <div class="tableContainer">
 <hr>
 <table id="dvData" class="display table table-borderd table-hover" >

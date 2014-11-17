@@ -1,18 +1,19 @@
 <div class="container">
-
+<div class="divForms">
 	<% if (user.admin==='admin') { %>
-	<img src="/images/admin.png">Administrador
+	<img src="/images/admin.png"><strong>Administrador</strong>
 	<% } %>
 	<% if (user.admin==='user') { %>
-	<img src="/images/pawn.png">Usuario
+	<img src="/images/pawn.png"><strong>Usuario</strong>
 	<% } %>
 	<% if (user.admin==='trainer') { %>
-	<img src="/images/trainer.png">Entrenador
+	<img src="/images/trainer.png"><strong>Entrenador</strong>
 	<% } %>
 
-	<h2>nombre: <%= user.firstName %> <%= user.lastName %></h2>
+	<h2>Nombre: <%= user.firstName %> <%= user.lastName %></h2>
 	<p>Teléfono: <%= user.phoneNumber %> </p> 
-	<p>Email: <%= user.email %> </p>
+	<p>E-mail: <%= user.email %> </p>
 
 	<a href="/user/edit/<%= user.id_user %>">Edit</a>
+</div>
 </div>

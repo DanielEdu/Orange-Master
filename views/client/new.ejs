@@ -1,15 +1,22 @@
 <div class="container">
 
 <h1>CREAR CLIENTE</h1>
-<form  action="/client/create" method="POST" class="" >
-	<input type="text" name="documentNumber" placeholder="DNI " required/> <br/>
-	<input type="text" name="firstName" placeholder="Nombres" required/> <br/>
-	<input type="text" name="lastName" placeholder="Apellidos" required/> <br/>
-	<input type="text" name="phoneNumber" placeholder="Telefono/celular" required/> <br/>		
-	<input type="email" name="email" placeholder="e-mail" required/> <br/>
-	<input type="text" name="address" placeholder="Dirección" required/> <br/>
-	<select  id="pais" class="cambio" name="district" required>
-			<option value=""> - - - </option>
+<div class="divForms">
+<form  action="/client/create" method="POST" >
+	<label>DNI: </label>
+	<input type="text" name="documentNumber" class="form-control" placeholder="Ingresar DNI " required/> <br/>
+	<label>Nombres: </label>
+	<input type="text" name="firstName" class="form-control" placeholder="Ingresar Nombres" required/> <br/>
+	<label>Apellidos: </label>
+	<input type="text" name="lastName" class="form-control" placeholder="Ingresar Apellidos" required/> <br/>
+	<label>Teléfono: </label>
+	<input type="text" name="phoneNumber" class="form-control" placeholder="Telefono/celular" required/> <br/>
+	<label>E-mail: </label>		
+	<input type="email" name="email" class="form-control" placeholder="Ingresar E-mail" required/> <br/>
+	<label>Direccón: </label>
+	<input type="text" name="address" class="form-control" placeholder="Ingresar Dirección" required/> <br/>
+	<label>Distrito: </label>
+	<select  id="pais" class="cambio" class="form-control" name="district" required>
 			<% _.each(distritos, function(distrito){ %>
 
 			<option value="<%= distrito.id_district %>"> 
@@ -18,6 +25,14 @@
 			
 			<%})%>
     </select><br>
-	<input type="submit" value=" Crear "/> <br/>
+	<input type="submit" class="btn btn-danger" value=" Crear "/> <br/>
 </form>
 </div>
+</div>
+
+<script>
+(document).ready(OnReady);
+	function OnReady(){
+	$("#mysearch").focus();
+}
+</script>
