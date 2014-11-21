@@ -14,9 +14,16 @@ function OnReady(){
 		}
 	);
 	$("#mysearch").focus();
-
 	$('#sCantidad').val("1");
 	$('#mensaje').hide();
+
+	$('#print').on('click', function() {
+		var restorepage = document.body.innerHTML;
+		var printcontent = document.getElementById('ticket').innerHTML;
+		document.body.innerHTML = printcontent;
+		window.print();
+		$("body").innerHTML = restorepage;
+	})
 
 	$("#searchBT").on('click', function(){
 		$.ajax({
@@ -37,10 +44,11 @@ function OnReady(){
 						$('input[name="address"]').val(data.dat.address);
 						$('select[name="district"]').val(data.dat.district);
 
-						//$(".clientInfo").prop('disabled', true);
+						$(".clientInfo").prop('disabled', true);
 						$("#msj").append("cliente encontrado");
 						$('#mensaje').show();
 						bUser = true;
+						$("#idService").focus();
 	    			}
 	    			if(!data.dat.state){
 	    				alert("El cliente esta desabilitado, contacte con su administrador.")
@@ -50,7 +58,7 @@ function OnReady(){
 				}else{
 				$("#msj").append(data.resp);
 				$('#mensaje').show();
-				//bUser = false;
+					bUser = false;
 				}
 	    	},
 	    	error: function (jqXHR, estado, error) {
@@ -84,7 +92,7 @@ function OnReady(){
 		var button = "<p class='delete btn-danger'>x</p>";
 		
 
-		$('tbody:first').append("<tr><td>"+button+"</td><td class='producto'>"+producto+"</td><td class='cantidad'>"+cant+"</td><td class='precio'>"+precioUnit+"</td><td>"+precioTotal+"</td></tr>");
+		$('tbody:first').append("<tr><td>"+button+"</td><td class='producto'>"+producto+"</td><td class='cantidad'>"+cant+"</td><td class='precio'>"+precioUnit+"</td><td class='endPrice'>"+precioTotal+"</td></tr>");
 
 		total = total + (precioUnit * cant);
 		$('#total').val(total.toFixed(roundUp));
@@ -119,7 +127,8 @@ function OnReady(){
 		    var json = {
 		        serviceName: $(fila).find('.producto').text(),
 		        quantity: $(fila).find('.cantidad').text(),
-		        endPrice: $(fila).find('.precio').text(),
+		        endPrice: $(fila).find('.endPrice').text(),
+		        unityPrice: $(fila).find('.precio').text(),
 		        id_sale: '',
 	    		id_service: ''
 		    };

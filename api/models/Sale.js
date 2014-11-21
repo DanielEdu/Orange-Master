@@ -25,7 +25,7 @@ module.exports = {
 			required: true
 		},
 		fullPrice: {
-			type :'float',
+			type :'decimal',
 			required: true
 		},
 		sellerName: {

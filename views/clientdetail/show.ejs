@@ -4,9 +4,13 @@
 	<div class="divForms">
 	<h3><strong>Altura:</strong> <%= detail[0].height %> m.</h3>
 	<h3><strong>Peso:</strong> <%= detail[0].weight %> kg.</h3> 
-	<p><strong>Rutina:</strong> <%= detail[0].workout %> </p>
 	<p><strong>IMC: </strong> <%= (detail[0].weight/Math.pow(detail[0].height , 2)).toFixed(2) %> </p>
+	<% if (session.User.admin==='admin' || session.User.admin==='trainer' ) { %>
+	<p><strong>Rutina:</strong> <%= detail[0].workout %> </p>
+	<% } %>
+	<% if (session.User.admin==='admin' || session.User.admin==='nutritionist' ) { %>
 	<p><strong>Dieta: </strong> <%= detail[0].diet %> </p>
+	<% } %>
 	<p><strong>Observaciones: </strong> <%= detail[0].observations %> </p>
 	<p><strong>Ultima Fecha: </strong> <%= detail[0].createdAt %> </p>
 	<br>
@@ -21,8 +25,12 @@
 			<th>Peso</th>
 			<th>Altura</th>
 			<th>IMC: </th>
+		<% if (session.User.admin==='admin' || session.User.admin==='trainer' ) { %>
 			<th>Rutina</th>
+		<% } %>
+		<% if (session.User.admin==='admin' || session.User.admin==='nutritionist' ) { %>
 			<th>Dieta</th>
+		<% } %>		
 			<th>observaciones</th>
 			<th></th>
 		</tr>
@@ -35,10 +43,14 @@
 			<td><%= dt.weight %></td>
 			<td><%= dt.height %></td>
 			<td><%=(dt.weight/Math.pow(dt.height , 2)).toFixed(2) %></td>
+		<% if (session.User.admin==='admin' || session.User.admin==='trainer' ) { %>
 			<td><%= dt.workout %></td>
+		<% } %>
+		<% if (session.User.admin==='admin' || session.User.admin==='nutritionist' ) { %>
 			<td><%= dt.diet %></td>
+		<% } %>	
 			<td><%= dt.observations %></td>
-			<td><form action="" method="POST"/>
+			<td><form action="/clientdetail/destroy/?id=<%= dt.id_detail %>" method="POST"/>
 				<input type="hidden" name="_method" value="delete"/>
 				<input type="submit" class="btn btn-danger" value="Borrar">
 				

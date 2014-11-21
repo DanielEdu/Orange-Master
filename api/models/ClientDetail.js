@@ -21,19 +21,23 @@ module.exports = {
             required: true,
         },
 		height: {
-			type: 'float',
+			type: 'decimal',
+			
 		},
 		weight: {
-			type: 'float',
+			type: 'decimal',
 		},
 		workout: {
 			type: 'text',
+			defaultsTo: '',
 		},
 		diet: {
 			type: 'text',
+			defaultsTo: '',
 		},
 		observations: {
-			type: 'text'
+			type: 'text',
+			defaultsTo: '',
 		}
 
 	}

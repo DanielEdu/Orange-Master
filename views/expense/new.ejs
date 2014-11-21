@@ -3,15 +3,26 @@
 	<h1>EGRESO DE DINERO</h1>
 <div class="divForms">
 	<form action="/expense/create" method="POST">
-	<label>Nombres: </label>
-		<input type="text" name="firstName" class="form-control" placeholder="Ingresar Nombres"><br>
-	<label>Apellidos: </label>
-		<input type="text" name="lastName" class="form-control" placeholder="Ingresar Apellidos"><br>
-	<label>Nombres: </label>	
-		<input type="text" name="moneyOutput" class="form-control" placeholder="S/. Monto"><br>
-	<label>Descripción: </label>
-		<textarea name="expenseDescription" class="form-control" rows="10" cols="80" placeholder="..."></textarea> <br/>
-		<input type="submit" value="Guardar" class="btn btn-danger">
+	<table>
+	<tr>
+	<td class="labeltd" ><label>Nombres: </label></td >
+		<td ><input type="text" name="firstName" class="form-control" placeholder="Ingresar Nombres"></td >
+	</tr>
+	<tr>
+	<td class="labeltd" ><label>Apellidos: </label></td >
+		<td  ><input type="text" name="lastName" class="form-control" placeholder="Ingresar Apellidos"></td >
+	</tr>
+	<tr>
+	<td class="labeltd" ><label>Monto: </label></td >	
+		<td  ><input type="text" name="moneyOutput" class="form-control" placeholder="S/. Monto"></td >
+	</tr>
+	<tr>
+	<td class="labeltd" ><label>Descripción: </label>
+		<td  ><textarea name="expenseDescription" class="form-control" rows="10" cols="80" placeholder="..."></textarea></td >
+		
+	</tr>
+	</table>
+	<input type="submit" value="Guardar" class="btn btn-danger">
 	</form>
 </div>
 </div>

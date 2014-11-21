@@ -14,29 +14,41 @@
     	<label for="">Hasta: </label>
     	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
 
-    	<button id="send" class="btn btn-success"> Filtrar </button> 
-
+    	<button id="send" class="btn btn-info"> Filtrar </button> 
     </form>
-</div>
+   
+
 </div>
 
-<div class="tableContainer">
-<hr>
-<table id="dvData" class="display table table-borderd table-hover" >
-    <thead>
-        <tr>
-        	<th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Monto</th>
-            <th>Fecha y hora</th>
-        </tr>
-    </thead>
-    <tbody class=""></tbody>
-</table>
-<a id="excel" download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'dvData', 'Sheet Name Here');">Exportar a Excel</a>
-</div>
-        <br/>
-</div>
+
+    <div class="tableContainer">
+    <hr>
+    <table id="dvData" class="display table table-borderd table-hover" >
+        <thead>
+            <tr>
+            	<th>Fecha y hora</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Observaciones</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+        <tbody ></tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>TOTAL:</th>
+                <th id="total">S/.</th>
+            </tr>
+        </tfoot>
+    </table>
+    <br>
+    <a id="excel" download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'dvData', 'Sheet Name Here');"><img src="/images/excel.png" class="" height="42" width="42"> Exportar a Excel</a>
+    </div>
+        
+</div><br><br>
 
 <script src="/js/Report.js"></script>
  

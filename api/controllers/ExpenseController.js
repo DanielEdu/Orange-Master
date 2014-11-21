@@ -18,6 +18,7 @@ create: function (req, res, next) {
       firstName:   req.param('firstName'),
       lastName:    req.param('lastName'),
       moneyOutput: req.param('moneyOutput'),
+      observations:req.param('expenseDescription'),
     }
 
     Expense.create(expenseObj, function (err, expense){

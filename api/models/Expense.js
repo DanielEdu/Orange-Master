@@ -24,11 +24,12 @@ module.exports = {
 			required: true
 		},
 		moneyOutput: {
-			type: 'float',
+			type: 'decimal',
 			required: true
+		},
+		observations: {
+			type: 'text',
 		}
-
-
 	}
 };
 

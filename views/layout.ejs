@@ -32,6 +32,9 @@
 
   </head>
     <link rel="stylesheet" href="/styles/1normalize.css">
+  <body>  
+
+<% if (session.authenticated) { %>  
     <link rel="stylesheet" href="/styles/bootstrap.css"> 
     <link rel="stylesheet" href="/styles/layoutStyles.css">
     <link rel="stylesheet" href="/styles/importer.css">
@@ -41,8 +44,6 @@
     <link rel="stylesheet" href="/styles/jquery.dataTables.css"> 
     <link rel="stylesheet" href="/styles/switch.css">
 
-    
-  <body>   
       <% if (session.authenticated) { %>
   <header>
     <figure id="avatar">
@@ -50,10 +51,13 @@
         <img src="/images/admin.png">
       <% }%>
       <% if (session.User.admin === 'trainer') { %> 
-        <img src="/images/trainer.png">
+        <img src="/images/trainer.png" height="35" width="45">
+      <% }%>
+      <% if (session.User.admin === 'nutritionist') { %> 
+        <img src="/images/doctor.png" height="35" width="35">
       <% }%>
       <% if (session.User.admin === 'user') { %>
-        <img src="/images/pawn.png">
+        <img src="/images/pawn.png" height="35" width="35">
       <% } %> 
     </figure>
     <ul>
@@ -70,14 +74,15 @@
   
   <nav> 
     <figure id="logo">
-      <img  src="/images/1.png" alt="ONE Fitnes">
+      <a href="http://www.onefitness.pe" target="_blank"><img  src="/images/1.png" alt="ONE Fitnes"></a>
     </figure>
+    
     <ul>
-    <% if (session.authenticated && session.User.admin === 'trainer' ) { %>
+    <% if (session.authenticated && (session.User.admin === 'trainer' || session.User.admin === 'nutritionist') ) { %>
     
       <li><a href="/clientdetail/search/">Rutinas</a></li>
     <% } %>
-    <% if (session.authenticated) { %>
+    <% if (session.authenticated && (session.User.admin==='admin' || session.User.admin==='user')) { %>
       <li><a href="/sale/new/"> Ventas </a></li>
       <li><a href="/expense/new/"> Egresos </a></li>
       <li><a href="/report/new/"> Reporte De Egresos </a></li>
@@ -98,6 +103,7 @@
  <footer>
       desarrollado por <img src="/images/ia_blanco.png" alt="iaSoft Groupe">
 </footer>
+
     <!--
         Client-side Templates
         ========================
@@ -156,5 +162,12 @@
     <script src="/js/dependencies/jquery.dataTables.js"></script>
     <script src="/js/dependencies/tableExport.js"></script>
     <!--SCRIPTS END-->
+  <% }%>
+  <% if (!session.authenticated) { %> 
+ <%- body %>
+ <footer>
+      desarrollado por <img src="/images/ia_blanco.png" alt="iaSoft Groupe">
+</footer>
+ <% }%>
   </body>
 </html>

@@ -13,7 +13,7 @@
 	<input type="text" name="email" class="form-control" value="<%= user.email %>" /> <br/>
 	<input type="text" name="cod" value="" hidden>
 	
-	<input class="btn " type="submit" value="Guardar"/>	
+	<input class="btn btn-danger" type="submit" value="Guardar"/>	
 </form>
 
 <div>
@@ -31,6 +31,10 @@
 			<input type="radio" name="admin" value="trainer" id="trainer">
 			<label for="trainer">Entrenador</label>
 			</div>
+			<div>
+			<input type="radio" name="admin" value="nutritionist" id="nutritionist">
+			<label for="trainer">Nutricionista</label>
+			</div>
 		<% } %>
 		<% if (user.admin==='user') { %>
 			<div>
@@ -45,6 +49,10 @@
 			<input type="radio" name="admin" value="trainer" id="trainer">
 			<label for="trainer">Entrenador</label>
 			</div>
+			<div>
+			<input type="radio" name="admin" value="nutritionist" id="nutritionist">
+			<label for="trainer">Nutricionista</label>
+			</div>
 		<% } %>
 		<% if (user.admin==='trainer') { %>
 			<div>
@@ -58,6 +66,10 @@
 			<div>
 			<input type="radio" name="admin" name="fruit" value="trainer" id="trainer" checked />
 			<label for="trainer">Entrenador</label>
+			</div>
+			<div>
+			<input type="radio" name="admin" value="nutritionist" id="nutritionist">
+			<label for="trainer">Nutricionista</label>
 			</div>
 		<% } %>
 	<% } %> 

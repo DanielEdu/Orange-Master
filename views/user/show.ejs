@@ -3,11 +3,14 @@
 	<% if (user.admin==='admin') { %>
 	<img src="/images/admin.png"><strong>Administrador</strong>
 	<% } %>
+	<% if (user.admin==='nutritionist') { %>
+	<img src="/images/doctor.png">
+	<% } %>
 	<% if (user.admin==='user') { %>
-	<img src="/images/pawn.png"><strong>Usuario</strong>
+	<img src="/images/pawn.png">
 	<% } %>
 	<% if (user.admin==='trainer') { %>
-	<img src="/images/trainer.png"><strong>Entrenador</strong>
+	<img src="/images/trainer.png">
 	<% } %>
 
 	<h2>Nombre: <%= user.firstName %> <%= user.lastName %></h2>

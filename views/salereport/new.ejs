@@ -13,9 +13,9 @@
 	<input type="date" id="inicio" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
 	<label for="">Hasta: </label>
 	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01"><br><br>
-    <div class="form-group"><div class="input-group">
+    <div class="form-group" hidden><div class="input-group">
     <div class="input-group-addon">Servicio</div>
-    <select class="form-control" id="idService" name="service"/>    
+    <select class="form-control" id="idService"  name="service"/>    
         <% _.each(servicios, function(serv){ %>
         <option value="<%= serv.id_service %>"> 
             <%= serv.serviceName %>
@@ -32,18 +32,32 @@
 <br>
 <div class="tableContainer">
 <hr>
-<table id="advData" class="display table table-borderd table-hover" >
+<table id="advData" class=" table table-borderd table-hover" >
     <thead>
         <tr>
+            <th>Nro. de Venta</th>
         	<th>Cliente</th>
             <th>Vendedor</th>
-            <th>Monto</th>
             <th>Fecha y hora</th>
+            <th>Monto</th>
+            <th></th>
         </tr>
     </thead>
-    <tbody class=""></tbody>
+
+    <tbody></tbody>
+
+    <tfoot>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>TOTAL:</th>
+            <th id="total">S/.</th>
+            <th></th>
+        </tr>
+    </tfoot>
 </table>
-<a download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'advData', 'Sheet Name Here');">Exportar a Excel</a>
+<a download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'advData', 'Sheet Name Here');"><img src="/images/excel.png" height="42" width="42"> Exportar a Excel</a>
 </div>
         <br/>
 </div>

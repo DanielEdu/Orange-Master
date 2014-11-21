@@ -15,6 +15,20 @@ module.exports = {
 		});
 	},
 
+	'show': function (req, res, next) {
+
+
+	    Sale.findOne(req.param('id'), function (err, sale){
+	   		SaleDetail.find({id_sale:req.param('id')}, function (err, details){
+			    if (err) return next(err);
+			    res.view({
+			    	sale:sale,
+			    	details:details
+			    });
+			});
+	   	});
+	},
+
 	report: function (req, res, next) {
 
 		var gmtPeru 	= '00:00:00-05';
@@ -28,7 +42,7 @@ module.exports = {
 				//SaleDetail.find({id_service})
 				var saleInfo = parsingDate(sale);
 				res.send(saleInfo);		
-				console.log(saleInfo)
+				console.log("Reporte de ventas ok");
 			}
 	    });
 	},

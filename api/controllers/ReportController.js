@@ -20,30 +20,24 @@ module.exports = {
 		Expense.find({ createdAt: { '>': new Date(startDate+' '+gmtPeru), '<': new Date(endDate+' '+gmtPeru) } }, function (err, expense) {
 			if(err) console.log('Error:' + err);
 
-
 			else {
-				console.log(expense)
-
 				var expenseInfo = parsingDate(expense);
-				
 				res.send(expenseInfo);	
 			}
 	    });
-
 	},
 
-	
 };
 
 function parsingDate(data){
-	_.each(data, function(d){
-			d.createdAt = (d.createdAt).toISOString().replace(/T/, ' ').replace(/\..+/, '');
 
-		});
+	_.each(data, function(d){
+		d.createdAt = (d.createdAt).toISOString().replace(/T/, ' ').replace(/\..+/, '');
+	});
 
 	return data
-
 }
+
 
 function parsing(a){
  	var n='';

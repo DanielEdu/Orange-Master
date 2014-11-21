@@ -19,12 +19,12 @@ module.exports = {
 			required: true
 		},
 		unityPrice: {
-			type :'integer',
-			//required: true
+			type :'decimal',
+			required: true
 		},
 		fullPrice: {
-			type :'integer',
-			//required: true
+			type :'decimal',
+			required: true
 		},
 		id_sale: {
             model:'Sale'

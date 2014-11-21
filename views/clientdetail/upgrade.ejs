@@ -1,22 +1,37 @@
 
-<div id="main" class="container col-md-8 col-md-offset-2" >
+<div id="main" class="container" >
 <h1>HISTORIAL</h1>
 
 <div class="divForms">
-<form action="/clientdetail/create/?id_client=<%= id_client %>" method="POST" >
-
-		<label >Altura: </label> 
-		<input type="text" name="height" class="form-control"placeholder="ingresar altura en metros (m)" /> 
-		<label >Peso: </label>
-		<input type="text" name="weight" class="form-control" placeholder="Ingresar el peso en Kilogramos(Kg.)" />
-		<label >Rutina: </label>
-		<textarea name="workout" rows="4" cols="45" class="form-control" placeholder="Ingresar rutina de entrenamiento"></textarea>		
-		<label >Dieta: </label>
-		<textarea name="diet" rows="4" cols="45" class="form-control" placeholder="Ingresar plan de dieta..."></textarea>
-		<label >Observaciones: </label>
-		<textarea name="observations" rows="4" cols="45" class="form-control" placeholder="Ingresar observaciones..."></textarea>
+<form action="/clientdetail/create/?id_client=<%= client.id_client %>" method="POST" >
+	<table>
+	<tr>
+	<td class="labeltd" ><label >Altura: </label></td> 
+		<td><input type="text" name="height" class="form-control" value="<%= client.height %>" placeholder="Altura en metros (m)" /> </td>
+	</tr>
+	<tr>
+	<td class="labeltd" ><label >Peso: </label></td> 
+		<td><input type="text" name="weight" class="form-control" value="<%= client.weight %>" placeholder="Peso en Kilogramos(Kg.)" /></td>
+	</tr>
+<% if (session.User.admin === 'trainer') { %>  
+	<tr>
+	<td class="labeltd" ><label >Rutina: </label></td> 
+		<td><textarea name="workout" rows="4" cols="45" class="form-control" placeholder="Ingresar rutina de entrenamiento"></textarea>	</td>
+	</tr>
+<% }%>
+<% if (session.User.admin === 'nutritionist') { %>  
+	<tr>	
+	<td class="labeltd" ><label >Dieta: </label></td> 
+		<td><textarea name="diet" rows="4" cols="45" class="form-control" placeholder="Ingresar plan de dieta..."></textarea></td>
+	</tr>
+<% }%>
+	<tr>
+	<td class="labeltd" ><label >Observaciones: </label></td> 
+		<td><textarea name="observations" rows="4" cols="45" class="form-control" placeholder="Ingresar observaciones..."></textarea></td>
+	</tr>
+	</table>
 		<input type="submit" id="regDetails" class="btn btn-danger" value="Registrar " />
-
+	
 	</form>
 </div>
 </div>

@@ -9,6 +9,16 @@ var clientNoHistory 	= 2;
 var successFull 		= 1;
 var thereIsNotClient 	= 0;
 
+function parsingDate(data){ 
+
+	_.each(data, function(d){
+		d.createdAt = (d.createdAt).toISOString().replace(/T/, ' Hora: ').replace(/\..+/, '');
+	});
+
+	return data
+}
+
+
 module.exports = {
 	'show': function (req, res, next) {
 	    ClientDetail.find({ where: { id_client: req.param("id") }, sort: 'updatedAt DESC'}, function (err, detail) {
@@ -17,8 +27,9 @@ module.exports = {
 		    	if (err) return next(err);
 		      	//if (!err) return next();
 		      	//console.log(detail[0])
+		      	var detailFormat = parsingDate(detail);
 		      	res.view({
-		      		detail: detail,
+		      		detail: detailFormat,
 		      		client: client
 		      	});
 		    });
@@ -36,7 +47,8 @@ module.exports = {
 			//if (!err) return next();
 	
 			res.view({
-				id_client: client.id_client
+				client: client,
+
 			});
 		});
 	},
@@ -59,6 +71,18 @@ module.exports = {
 	      console.log("rutinas creadas")
 	      res.redirect('/clientdetail/show/' + client.id_client);
 	    });
+	},
+
+	destroy: function (req, res, next) {
+		ClientDetail.findOne(req.param('id'), function (err, detail){
+			if(!detail) console.log("no existe ese detalle de cliente");
+
+			ClientDetail.destroy(req.param('id'), function (err){
+				if(err) return next(err);
+				res.redirect('/clientdetail/show/'+detail.id_client);
+			});
+			
+		});
 	},
 
     findByDni: function(req, res, next) {

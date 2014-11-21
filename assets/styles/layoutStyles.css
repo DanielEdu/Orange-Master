@@ -3,6 +3,7 @@ body
 {
   background: #EEEEEE;
   font-size: 17px;
+
 }
 
 figure
@@ -17,6 +18,7 @@ footer
   text-align: center;
   clear: both;
   border-top: 0.33em solid #e21607;
+  
 }
 h1 
 {
@@ -99,4 +101,13 @@ ul
 .form-control {
   display: inline-block;
   width: 75%;
+}
+
+.table thead{
+  background: #DE3327;
+  color: white;
+}
+.labeltd{
+  text-align: right;
+  padding: 0 .5em;
 }

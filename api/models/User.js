@@ -46,7 +46,7 @@ module.exports = {
   		},
   		admin: {
   			type: 'string',
-  			enum: ['admin', 'user', 'trainer'],
+  			enum: ['admin', 'user', 'trainer','nutritionist'],
   			defaultsTo: 'user',
   			columnName: 'userRole'
   		},

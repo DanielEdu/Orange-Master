@@ -1,0 +1,48 @@
+
+
+<div class="container">
+<h1>Reporte de Venta Nro. <%= sale.id_sale %></h1>
+<div class="divForms">
+	<h2>Cliente: <%= sale.clienteName %></h2>
+	<p>Nro de Documento: <%= sale.clientDocument %> </p> 
+	<p>Vendedor: <%= sale.sellerName %> </p>
+	<p>Total:  <strong>S/.<%= sale.fullPrice %></strong></p>
+</div>
+
+
+	<table id="dvData" class="display table table-borderd table-hover">
+	<thead>
+		<tr>
+			<td>Servicio</td>
+			<td>Cantidad</td>
+			<td>Precio/u.</td>
+			<td>Precio total</td>
+		</tr>
+	</thead>
+	<% _.each(details, function(detail){ %>
+	<tr> 
+		<td><%= detail.serviceName %></td>
+		<td><%= detail.quantity %></td>
+		<td><%= detail.unityPrice %></td>
+		<td><%= detail.fullPrice %></td>
+	</tr>
+	<%})%>
+	</table>
+
+<br><br>
+<a id="excel" download="<%= sale.clienteName %>.xls" onclick="return ExcellentExport.excel(this, 'dvData', 'Sheet Name Here');" ><img src="/images/excel.png" height="42" width="42">  Exportar el detalle de la venta de <strong><%= sale.clienteName %></strong></a>
+</div>
+
+
+<script>
+$(document).ready(OnReady);
+function OnReady(){
+    $('#dvData').DataTable({
+    	"paging":   false,
+    	"info":     false,
+    	"language": {
+    		"search": "Buscar",
+    	}
+    });
+}
+</script>

@@ -55,7 +55,7 @@ module.exports = {
 				if (!valid) {
 					var usernamePasswordMismatchError = {
 						//name: 'usernamePasswordMismatch',
-						message: 'Combinación de usuario y contraseña incorrecta'
+						message: 'Combinación de usuario y/o contraseña incorrecta'
 					}
 					req.session.flash = {
 						err: usernamePasswordMismatchError
@@ -94,6 +94,10 @@ module.exports = {
 					// If the user is also an admin redirect to the user list (e.g. /views/user/index.ejs)
 					// This is used in conjunction with config/policies.js file
 					if (req.session.User.admin==='trainer') {
+						res.redirect('/clientdetail/search/');
+						return;
+					}
+					if (req.session.User.admin==='nutritionist') {
 						res.redirect('/clientdetail/search/');
 						return;
 					}

@@ -1,3 +1,13 @@
+
+<style type="text/css">
+.labeltd{
+	text-align: right;
+	padding: 0 .5em;
+}
+</style>
+
+
+
 <div id="main" class="container col-md-8 col-md-offset-2" >
 <h1>HISTORIAL</h1>
 
@@ -20,14 +30,34 @@
 	<h3 id="h" > </h3>
 
 	<form class="form-inline" action="" method="POST" >
-
-		<input type="text" name="height" class="form-control"placeholder="ingresar altura en metros (m)" /> 
-		<input type="text" name="weight" class="form-control" placeholder="Ingresar el peso en Kilogramos(Kg.)" /> <br>
-		<textarea name="workout" rows="5" cols="50" placeholder="Ingresar rutina de entrenamiento"></textarea> 		
-		<textarea name="diet" rows="5" cols="50" placeholder="Ingresar name de dieta..."></textarea>
-		<textarea name="observations" rows="5" cols="50" placeholder="Ingresar observaciones..."></textarea>
+		<table>
+		<tr>
+		<td class="labeltd"><label>Altura: </label></td>
+		<td><input type="text" name="height" class="form-control"placeholder="ingresar altura en metros (m)" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Peso: </label></td>
+		<td><input type="text" name="weight" class="form-control" placeholder="Ingresar el peso en Kilogramos(Kg.)" /></td> 
+		</tr>
+<% if (session.User.admin === 'trainer') { %> 	
+		<tr>
+		<td class="labeltd"><label>Rutina: </label></td>
+		<td><textarea name="workout" rows="5" cols="50" placeholder="Ingresar rutina de entrenamiento"></textarea></td>
+		</tr>
+<% }%>
+<% if (session.User.admin === 'nutritionist') { %> 		
+		<tr>
+		<td class="labeltd"><label>Dieta: </label> </td>		
+		<td><textarea name="diet" rows="5" cols="50" placeholder="Ingresar la dieta..."></textarea></td>
+		</tr>
+<% }%>
+		<tr>
+		<td class="labeltd"><label>Observaciones: </label></td>
+		<td><textarea name="observations" rows="5" cols="50" placeholder="Ingresar observaciones..."></textarea></td>
+		</tr>
+		</table>
 		<br /><br>
-		<input type="submit" class="btn btn-success" value="Registrar Nuevo Historial" /> <br/>
+		<input type="submit" class="btn btn-success" value="Registrar Nuevo Historial" /> <br/><br><br>
 
 	</form>
 	</div>

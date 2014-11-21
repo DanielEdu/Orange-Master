@@ -10,9 +10,89 @@
 	<p><strong>Distrito:</strong> <%= district %> </p>
 	<p><strong>Observaciones:</strong> <%= client.observations %></p>
 
-	<a href="/client/edit/<%= client.id_client %>"><strong>Editar</strong></a>
+	<a href="/client/edit/<%= client.id_client %>"><strong>Editar</strong></a>	
 </div>
+
+<% if (session.User.admin === 'admin') { %>
+<h2>Historial del Plan de Entrenamiento</h2>
+<table  class="display table table-borderd table-hover" >
+		<thead>
+		<tr>
+			<th>Fecha</th>
+			<th>Peso</th>
+			<th>Altura</th>
+			<th>IMC: </th>
+			<th>Rutina</th>
+			<th>Dieta</th>
+			<th>observaciones</th>
+			<th></th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<% _.each(detail, function(dt){ %>
+		<tr>
+			<td><%= dt.createdAt %></td> 
+			<td><%= dt.weight %> Kg.</td>
+			<td><%= dt.height %> m.</td>
+			<td><%=(dt.weight/Math.pow(dt.height , 2)).toFixed(2) %></td>
+			<td><%= dt.workout %></td>
+			<td><%= dt.diet %></td>
+			<td><%= dt.observations %></td>
+			<td>
+				<form action="/clientdetail/destroy/?id=<%= dt.id_detail %>" method="POST"/>
+				<input type="hidden" name="_method" value="delete"/>
+				<input type="submit" class="btn btn-danger" value="Borrar">	
+				</form>
+			</td>
+		</tr>
+		<%})%>
+		</tbody>
+	</table>
+<hr>
+
+<h2>Historial de Compras</h2>
+
+	<table class="display table table-borderd table-hover">
+	<thead>
+		<tr>
+			<td>Nro de Venta</td>
+			<td>Vendedor</td>
+			<td>Monto</td>
+			<td>Fecha</td>
+		</tr>
+	</thead>
+	<% _.each(details, function(detail){ %>
+	<tr> 
+		<td><%= detail.id_sale %></td>
+		<td><%= detail.sellerName %></td>
+		<td>S/. <%= detail.fullPrice %></td>
+		<td><%= detail.createdAt %></td>
+	</tr>
+	<%})%>
+	</table>
+
+<% } %>
 </div> 
+
+<script>
+$(document).ready(OnReady);
+function OnReady(){
+	$('.table').DataTable({
+    	"scrollY":        "300px",
+        "scrollCollapse": true,
+ 		"paging":   	  false,
+    	"info":     	  false,
+    	"language": {
+    		"search": 		"Buscar",
+    		"lengthMenu": 	"Mostrar _MENU_ campos por página",
+    		"zeroRecords": 	"No se encontro - intente con otros datos",
+    		"info": 		"",
+    		"infoFiltered": "",
+    	}
+    });
+}
+</script>
 
 
 

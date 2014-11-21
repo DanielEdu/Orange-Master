@@ -1,30 +1,86 @@
+<style type="text/css">
+
+figure{
+	text-align: center;
+margin: 0em;
+padding: 1em 0em;
+}
+
+body{
+	font-size: 18px;
+}
+footer{
+	position: absolute;
+bottom: 0;
+right: 1em;
+color: white;
+font-size: 0.8em;
+}
+html {
+    background: url(/images/login.jpg) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+input{
+	width: 93%;
+padding: 11px 10px 11px 13px;
+display: block;
+margin: 0;
+border: 0;
+}
+ul {
+background-color: rgba(30, 30, 30, 0.46);
+color: white;
+font-size: 0.9em;
+list-style: none;
+border-radius: 5px;
+}
 
 
-<h1>LOGIN</h1>
+.divForms{
+	position: absolute;
+padding: 0 10px 0 10px;
+width: 302px;
+height: 500px;
+top: 50%;
+left: 50%;
+margin-left: -156px;
+margin-top: -229px;
+}
+#login {
+margin: 0.2em 0em;
+width: 100%;
+color: white;
+background: rgba(213, 43, 43, 0.96);
+}
+
+</style>
+
+
 <div class="divForms">
+<figure id="logo">
+      <a href="http://www.onefitness.pe" target="_blank"><img  src="/images/1.png" alt="ONE Fitnes"></a>
+</figure>
 	<% if(flash && flash.err) { %>
-		<ul class="alert alert-danger">
-	<% Object.keys(flash.err).forEach(function(error) { %>
-		<li><%=flash.err[error] %></li>
-	<% }) %>
-	</ul>
-	<% }else{ %>
-			<ul class="alert alert-info">
-        <li id="msj">Ingrese su ID de usuario y contraseña para ingresar al sistema</li>
-    </ul>
+		<ul>
+			<% Object.keys(flash.err).forEach(function(error) { %>
+			<li><%=flash.err[error] %></li>
+			<% }) %>
+		</ul>
+			
 	<% } %>
 
 <form action="/session/create" method="POST">
-	<table><tr>
-	<td><label for="id">ID del Usuario </label></td><td><input type="text" id="id" placeholder="Ingrese se E-mail" name="email" class="form-control"></td>
-	</tr>
-	<tr>
-	<td><label for="password">contraseña </label></td><td><input type="password" id="password" placeholder="Ingrese su Contraseña" name="password" class="form-control"></td>
-	</tr>
-	</table>
-	<input type="submit" id="login" class="btn btn-danger" value="Sign-in">
+	<input type="text" id="id" placeholder="Ingrese se E-mail" name="email">
+	<input type="password" id="password" placeholder="Ingrese su Contraseña" name="password" ></td>
+	
+	<input type="submit" id="login" class="btn" value="Ingresar">
 </form>
 </div>
+
+
 
 
 

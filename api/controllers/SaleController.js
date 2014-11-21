@@ -10,50 +10,56 @@ module.exports = {
 'new': function (req, res, next) {
 	District.find(function (err, distritos) {
 		if (err) return next(err);
-		Service.find(function (err, servicios){
+		Service.find({sort: 'id_service'},function (err, servicios){
 			if (err) return next(err);
+			//--------enviar los servicios que estan activos----
+			var serviceCheck=[];
+			_.each(servicios, function(serv){
+				if(serv.state)
+					serviceCheck.push(serv);
+			});
+			//----------------------------------------------
 			res.view({
 				distritos: distritos,
-				servicios: servicios
+				servicios: serviceCheck
 			});
 		});
 	});
 },
 
 
-	create: function (req, res, next) {
-		//console.log(req.session.User);
-		var sellerName = req.session.User.firstName + " " + req.session.User.lastName;
-		var sellerId = req.session.User.id_user;
+create: function (req, res, next) {
 
+	var sellerName = req.session.User.firstName + " " + req.session.User.lastName;
+	var sellerId = req.session.User.id_user;
 
-		Client.findOne({ documentNumber: req.param('clientDocument') }, function (err, client, next) {
-			
-			if(err) console.log('Error:' + err);
-			if(!client){
-				console.log("cliente no existe y se creara.");
-				createClient(saleObj, req, res, sellerName, sellerId);
-			} 
-			else{
-				var saleObj = {
-					id_client: 		 client.id_client,
-					clienteName:     req.param('firstName')+" "+req.param('lastName'),
-					clientDocument:  req.param('clientDocument'),
-					id_user: 		 sellerId,
-					sellerName: 	 sellerName,
-					fullPrice: 		 req.param('fullPrice')
-				};
+	Client.findOne({ documentNumber: req.param('clientDocument') }, function (err, client, next) {
+		
+		if(err) console.log('Error:' + err);
+		if(!client){
+			console.log("cliente no existe y se creara.");
+			createClient(saleObj, req, res, sellerName, sellerId);
+		} 
+		else{
+			var saleObj = {
+				id_client: 		 client.id_client,
+				clienteName:     req.param('firstName')+" "+req.param('lastName'),
+				clientDocument:  req.param('clientDocument'),
+				id_user: 		 sellerId,
+				sellerName: 	 sellerName,
+				fullPrice: 		 req.param('fullPrice')
+			};
 
-			   createSale(saleObj, req, res);
-			}
-	    });
-	},
+		   createSale(saleObj, req, res, next);
+		}
+    });
+},
 
 };
 
 // All Functions
 
-function createSale(saleObj, req, res){
+function createSale(saleObj, req, res, next){
 	 Sale.create(saleObj, function (err, sale, res){
 	    if(err){
 	        console.log("error:"+err);
@@ -75,7 +81,8 @@ function createSale(saleObj, req, res){
 				    quantity:     	j.quantity,
 				    fullPrice: 		j.endPrice,
 				    id_sale:  		sale.id_sale,
-				    serviceName: 	j.serviceName
+				    serviceName: 	j.serviceName,
+				    unityPrice: 	j.unityPrice
 		    	};
 
 		    	SaleDetail.create(saleDetailObj, function (err, saleDetail, next){
@@ -83,7 +90,7 @@ function createSale(saleObj, req, res){
 			    		console.log(err);
 			    		return res.redirect('/sale/new');
 			    	}
-	    			
+	    			res.redirect('/sale/new/');
 	    			console.log("Sale Detail OK!");
 	    		});
 	    	});

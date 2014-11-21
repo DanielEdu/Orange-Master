@@ -3,7 +3,15 @@
  *
  * @description :: Server-side logic for managing Clients
  * @help        :: See http://links.sailsjs.org/docs/controllers
- */
+ */ 
+ function parsingDate(data){ 
+
+	_.each(data, function(d){
+		d.createdAt = (d.createdAt).toISOString().replace(/T/, ' Hora: ').replace(/\..+/, '');
+	});
+
+	return data
+}
 
 module.exports = {
 	
@@ -28,12 +36,19 @@ module.exports = {
 	'show': function (req, res, next) {
 	    Client.findOne(req.param('id'), function (err, client){
 	    	District.findOne({ id_district: client.district }, function (err, district){
-			    if (err) return next(err);
-			      // if (!err) return next();
-			    res.view({
-			      	district: district.districtName,
-			        client: client
-			    });
+				ClientDetail.find({ where: { id_client: client.id_client }, sort: 'updatedAt DESC'}, function (err, detail) {   
+					Sale.find({id_client:client.id_client}, function (err, sale){
+					   	if (err) return next(err);
+				      	// if (!err) return next();
+				      	
+				    	res.view({
+					    	detail: parsingDate(detail),
+					      	district: district.districtName,
+					        client: client,
+					        details: parsingDate(sale)
+					    });
+				    });
+				});
 			});
 		});
 	},
