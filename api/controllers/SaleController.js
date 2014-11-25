@@ -50,7 +50,9 @@ create: function (req, res, next) {
 				fullPrice: 		 req.param('fullPrice')
 			};
 
-		   createSale(saleObj, req, res, next);
+		   res.send(createSale(saleObj, req, res, next));
+		   console.log("Sale Detail OK!");
+
 		}
     });
 },
@@ -59,7 +61,7 @@ create: function (req, res, next) {
 
 // All Functions
 
-function createSale(saleObj, req, res, next){
+function createSale(saleObj, req, res ){
 	 Sale.create(saleObj, function (err, sale, res){
 	    if(err){
 	        console.log("error:"+err);
@@ -72,7 +74,7 @@ function createSale(saleObj, req, res, next){
 
 	    _.each(json, function(j){	    	
 
-	    	Service.findOne({ serviceName: j.serviceName }, function (err, service, next) {
+	    	Service.findOne({ serviceName: j.serviceName }, function (err, service) {
 	    		//console.log(service);
 	    		if(err) console.log('Error:' + err);
 
@@ -85,13 +87,13 @@ function createSale(saleObj, req, res, next){
 				    unityPrice: 	j.unityPrice
 		    	};
 
-		    	SaleDetail.create(saleDetailObj, function (err, saleDetail, next){
+		    	SaleDetail.create(saleDetailObj, function (err, saleDetail){
 			    	if(err){
 			    		console.log(err);
 			    		return res.redirect('/sale/new');
 			    	}
-	    			res.redirect('/sale/new/');
-	    			console.log("Sale Detail OK!");
+	    			return 'Venta ok!';
+	    			
 	    		});
 	    	});
 	    }); 

@@ -20,6 +20,11 @@ function parsingDate(data){
 
 
 module.exports = {
+	'new': function (req,res, next) {
+		var id = req.param('id');
+		res.view({id:id});
+	},
+
 	'show': function (req, res, next) {
 	    ClientDetail.find({ where: { id_client: req.param("id") }, sort: 'updatedAt DESC'}, function (err, detail) {
 	    	Client.findOne({ id_client: req.param("id") }, function (err, client) {

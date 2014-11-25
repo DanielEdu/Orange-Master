@@ -85,11 +85,10 @@
     <% if (session.authenticated && (session.User.admin==='admin' || session.User.admin==='user')) { %>
       <li><a href="/sale/new/"> Ventas </a></li>
       <li><a href="/expense/new/"> Egresos </a></li>
-      <li><a href="/report/new/"> Reporte De Egresos </a></li>
       <li><a href="/salereport/new/"> Reporte De Ventas </a></li>
+      <li><a href="/report/new/"> Reporte De Egresos </a></li>
     <% } %>
     <% if (session.authenticated && session.User.admin==='admin' ) { %>
-      <li><a href="/clientdetail/search/">Rutinas</a></li>
       <li><a href="/client/">Clientes</a></li>
       <li><a href="/service/">Servicios</a></li>
       <li><a href="/user/">Usuarios</a></li>

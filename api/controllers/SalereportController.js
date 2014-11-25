@@ -7,17 +7,16 @@
 
 module.exports = {
 	'new': function (req, res, next) {
-		Service.find(function (err, servicios){
-			if (err) return next(err);
-			res.view({
-				servicios: servicios
+		var systemDate = new Date();
+		var systemDateFormat = systemDate.getFullYear()+'-'+(systemDate.getMonth()+1)+'-'+systemDate.getDate();
+			Service.find(function (err, servicios){
+				if (err) return next(err);		
+				//console.log(systemDateFormat)
+				res.view({systemDateFormat:systemDateFormat});
 			});
-		});
 	},
 
 	'show': function (req, res, next) {
-
-
 	    Sale.findOne(req.param('id'), function (err, sale){
 	   		SaleDetail.find({id_sale:req.param('id')}, function (err, details){
 			    if (err) return next(err);

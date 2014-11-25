@@ -10,9 +10,9 @@
     </div>
 <form >
 	<label for="">Desde: </label>
-	<input type="date" id="inicio" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
+	<input type="date" id="inicio" name="startDate" step="1" min="2013-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>">
 	<label for="">Hasta: </label>
-	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01"><br><br>
+	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>"><br><br>
     <div class="form-group" hidden><div class="input-group">
     <div class="input-group-addon">Servicio</div>
     <select class="form-control" id="idService"  name="service"/>    

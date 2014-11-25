@@ -17,13 +17,7 @@ function OnReady(){
 	$('#sCantidad').val("1");
 	$('#mensaje').hide();
 
-	$('#print').on('click', function() {
-		var restorepage = document.body.innerHTML;
-		var printcontent = document.getElementById('ticket').innerHTML;
-		document.body.innerHTML = printcontent;
-		window.print();
-		$("body").innerHTML = restorepage;
-	})
+	
 
 	$("#searchBT").on('click', function(){
 		$.ajax({
@@ -89,27 +83,27 @@ function OnReady(){
 		var cant = $('#sCantidad').val();
 		var precioUnit = parseFloat($('#sPrice').val()).toFixed(roundUp);
 		var precioTotal = parseFloat(precioUnit * cant).toFixed(roundUp);
-		var button = "<p class='delete btn-danger'>x</p>";
+		var button = "<button class='delete btn btn-danger btn-xs'>x</button>";
 		
 
 		$('tbody:first').append("<tr><td>"+button+"</td><td class='producto'>"+producto+"</td><td class='cantidad'>"+cant+"</td><td class='precio'>"+precioUnit+"</td><td class='endPrice'>"+precioTotal+"</td></tr>");
 
 		total = total + (precioUnit * cant);
 		$('#total').val(total.toFixed(roundUp));
-		$('#delete').on("click", function (e){
-        alert($(this).attr("id"));
-    		});
+		$("#idService").focus();
+
 
 	});
-	// ------------------------------------------------
 
-	$('table').on('click', 'td p', function () { 
+	// ------------Borrar filas de la tabla----------------
+
+	$('table').on('click', 'td button', function () { 
 		$(this).parent().parent().remove(); 
 	});
 
-	//----------------------------------------------
+	//-----------------------------------------------------
 
-    $('#send').on('click',function(e){
+    $('.saveSale').on('click',function(e){
 
     	e.preventDefault();
     	var $filas = $('.tableSale tr');
@@ -168,6 +162,13 @@ function OnReady(){
 	    	type: "POST",
 	    	data: data,
 	    	success: function (resp) {
+	    		$('#print').on('click', function() {
+					var restorepage = document.body.innerHTML;
+					var printcontent = document.getElementById('ticket').innerHTML;
+					document.body.innerHTML = printcontent;
+					window.print();
+					$("body").innerHTML = restorepage;
+				})
 	    		console.log(resp);
 	    		alert("Venta registrada correctamente.")
 	    		window.location.replace("/sale/new/");
@@ -180,7 +181,5 @@ function OnReady(){
 	    		console.log(estado);
 	    	}
    	 	});
-
     })  
-
 }

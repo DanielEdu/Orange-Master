@@ -7,8 +7,11 @@
 
 module.exports = {
 	'new': function (req, res, next) {
-
-		res.view();
+		var systemDate = new Date();
+		var systemDateFormat = systemDate.getFullYear()+'-'+(systemDate.getMonth()+1)+'-'+systemDate.getDate()
+		//console.log(systemDateFormat)
+		
+		res.view({systemDateFormat:systemDateFormat});
 	},
 
 	report: function (req, res, next) {

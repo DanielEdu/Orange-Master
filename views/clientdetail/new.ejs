@@ -1,0 +1,32 @@
+
+<div class="container">
+<h1>Crear Historial Rutina y Entrenamiento</h1>
+<div class="divForms">
+<form class="form-inline" action="/clientdetail/create/?id_client=<%= id %>" method="POST" >
+		<table>
+		<tr>
+		<td class="labeltd"><label>Altura: </label></td>
+		<td><input type="text" name="height" class="form-control" placeholder="ingresar altura en metros (m)" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Peso: </label></td>
+		<td><input type="text" name="weight" class="form-control" placeholder="Ingresar el peso en Kilogramos(Kg.)" /></td> 
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Rutina: </label></td>
+		<td><textarea name="workout" rows="5" cols="50" class="form-control" placeholder="Ingresar rutina de entrenamiento"></textarea></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Dieta: </label> </td>		
+		<td><textarea name="diet" rows="5" cols="50" class="form-control" placeholder="Ingresar la dieta..."></textarea></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Observaciones: </label></td>
+		<td><textarea name="observations" rows="5" cols="50" class="form-control" placeholder="Ingresar observaciones..."></textarea></td>
+		</tr>
+		</table>
+		<br /><br>
+		<input type="submit" class="btn btn-success" value="Registrar Nuevo Historial" /> <br/><br><br>
+
+	</form>
+</div></div>

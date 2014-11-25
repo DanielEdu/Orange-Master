@@ -1,0 +1,54 @@
+figure{
+	text-align: center;
+	margin: 0em;
+	padding: 1em 0em;
+}
+body{
+	font-size: 18px;
+}
+footer{
+	position: absolute;
+	bottom: 0;
+	right: 1em;
+	color: white;
+	font-size: 0.8em;
+}
+html {
+    background: url(/images/login.jpg) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+input{
+	width: 93%;
+	padding: 11px 10px 11px 13px;
+	display: block;
+	margin: 0;
+	border: 0;
+}
+ul {
+	background-color: rgba(30, 30, 30, 0.46);
+	color: white;
+	font-size: 0.9em;
+	list-style: none;
+	border-radius: 5px;
+}
+
+
+.divForms{
+	position: absolute;
+	padding: 0 10px 0 10px;
+	width: 302px;
+	height: 500px;
+	top: 50%;
+	left: 50%;
+	margin-left: -156px;
+	margin-top: -229px;
+}
+#login {
+	margin: 0.2em 0em;
+	width: 100%;
+	color: white;
+	background: rgba(213, 43, 43, 0.96);
+}

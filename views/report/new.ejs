@@ -5,21 +5,19 @@
 <div id="mensaje" >
     <ul class="alert alert-info">
         <li id="msj">indique el intervalo de tiempo para su reporte</li>
-    </ul>
+    </ul> 
 </div>
 
     <form >
     	<label for="">Desde: </label>
-    	<input type="date" id="inicio" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
+    	<input type="date" id="inicio" name="startDate" step="1" min="2013-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>">
     	<label for="">Hasta: </label>
-    	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="2016-12-31" value="2013-01-01">
+    	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>">
 
     	<button id="send" class="btn btn-info"> Filtrar </button> 
-    </form>
-   
+    </form>   
 
 </div>
-
 
     <div class="tableContainer">
     <hr>

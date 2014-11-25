@@ -4,6 +4,10 @@
  * @description :: Server-side logic for managing Users
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
+ formidable = require('formidable'),
+ util = require('util')
+ fs   = require('fs-extra'),
+ qt   = require('quickthumb');
 
 module.exports = {
 
@@ -44,14 +48,16 @@ module.exports = {
 	create: function (req, res, next) {
 
 	    var userObj = {
-	      userId:     	req.param('userId'),
-	      firstName:    req.param('firstName'),
-	      lastName:     req.param('lastName'),
-	      phoneNumber:  req.param('phoneNumber'),
-	      email:    	req.param('email'),
-	      confirmation: req.param('confirmation'),
-	      password: 	req.param('password'),
-	      saleSerialized: req.param('saleSerialized')
+
+		    userId:     	req.param('userId'),
+		    firstName:    	req.param('firstName'),
+		    lastName:     	req.param('lastName'),
+		    phoneNumber:  	req.param('phoneNumber'),
+		    email:    		req.param('email'),
+		    confirmation: 	req.param('confirmation'),
+		    password: 		req.param('password'),
+		    saleSerialized: req.param('saleSerialized'),
+		    admin: 			req.param('admin')
 	    }
 
 	    User.create(userObj, function (err, user){
