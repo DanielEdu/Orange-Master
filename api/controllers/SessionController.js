@@ -9,6 +9,7 @@ var bcrypt = require('bcrypt');
 module.exports = {
 
 	'new': function (req, res, next) {
+		req.session.destroy();
 		res.view();
     },
 
@@ -114,7 +115,7 @@ module.exports = {
 
 		User.findOne(req.session.User.id_user, function foundUser(err, user) {
 			var userId = req.session.User.id_user;
-			if (user) {
+			/*if (user) {
 				// The user is "logging out" (e.g. destroying the session) so change the online attribute to false.
 				User.update(userId, {
 					online: false
@@ -135,14 +136,14 @@ module.exports = {
 					// Redirect the browser to the sign-in screen
 					res.redirect('/');
 				});
-			} else {
+			} else {*/
 
 				// Wipe out the session (log out)
 				req.session.destroy();
 
 				// Redirect the browser to the sign-in screen
 				res.redirect('/');
-			}
+			//}
 		});
 	}
 	

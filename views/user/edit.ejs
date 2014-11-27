@@ -1,4 +1,13 @@
 <div class="container">
+
+	<% if(flash && flash.err) { %>
+		<ul class="alert alert-info">
+	<% Object.keys(flash.err).forEach(function(error) { %>
+		<li><%- JSON.stringify(flash.err[error]) %></li>
+	<% }) %>
+	</ul>
+	<% } %>
+
 <h1>EDITAR USUARIO</h1>
 <div class="divForms">
 <form action="/user/update/<%= user.id_user %>" method="POST">
@@ -11,9 +20,19 @@
 	<input type="text" name="phoneNumber" class="form-control" value="<%= user.phoneNumber %>" /> <br/>
 	<label for="">E-mail: </label>
 	<input type="text" name="email" class="form-control" value="<%= user.email %>" /> <br/>
+	<label>Contraseña</label>
+	<input type="password" name="password" class="form-control" placeholder="ingresar Contraseña" /> <br/>
+	<label>Confirmar</label>
+	<input type="password"  placeholder="confirmar Contraseña" name="confirmation" class="form-control"><br>
 	<input type="text" name="cod" value="" hidden>
-	
-	<input class="btn btn-danger" type="submit" value="Guardar"/>	
+	<input class="btn btn-danger" type="submit" value="Guardar"/>
+
+</form>
+<hr>
+<form action="/user/upload/" enctype="multipart/form-data" method="post">
+<input multiple="multiple" name="upload" type="file" />
+<input type="submit" value="Upload" />
+<br><br>
 </form>
 
 <div>

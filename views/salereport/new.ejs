@@ -10,19 +10,10 @@
     </div>
 <form >
 	<label for="">Desde: </label>
-	<input type="date" id="inicio" name="startDate" step="1" min="2013-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>">
+	<input type="date" id="inicio" name="startDate" step="1" min="2013-01-01" max="<%= systemDateFormatRest %>" value="<%= systemDateFormatRest %>">
 	<label for="">Hasta: </label>
 	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>"><br><br>
-    <div class="form-group" hidden><div class="input-group">
-    <div class="input-group-addon">Servicio</div>
-    <select class="form-control" id="idService"  name="service"/>    
-        <% _.each(servicios, function(serv){ %>
-        <option value="<%= serv.id_service %>"> 
-            <%= serv.serviceName %>
-        </option>
-        <%})%>
-    </select>
-    </div></div>
+    
 	<button id="send" class="btn btn-success"> Filtrar </button> 
 	
 </form>

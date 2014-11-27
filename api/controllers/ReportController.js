@@ -8,10 +8,14 @@
 module.exports = {
 	'new': function (req, res, next) {
 		var systemDate = new Date();
-		var systemDateFormat = systemDate.getFullYear()+'-'+(systemDate.getMonth()+1)+'-'+systemDate.getDate()
+		var systemDateFormat = systemDate.getFullYear()+'-'+(systemDate.getMonth()+1)+'-'+(systemDate.getDate()+1);
+		var systemDateFormatRest = systemDate.getFullYear()+'-'+systemDate.getMonth()+'-'+systemDate.getDate();	
 		//console.log(systemDateFormat)
 		
-		res.view({systemDateFormat:systemDateFormat});
+		res.view({
+			systemDateFormat:systemDateFormat,
+			systemDateFormatRest: systemDateFormatRest
+		});
 	},
 
 	report: function (req, res, next) {

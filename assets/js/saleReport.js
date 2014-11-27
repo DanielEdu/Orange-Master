@@ -4,7 +4,7 @@ $(document).ready(OnReady);
 function OnReady(){
 
  	$('.tableContainer').hide();
- 	$("#msj").append("indique el intervalo de tiempo para su reporte");
+ 	$("#msj").append("Indique el intervalo de tiempo para su reporte");
 
 	$('#send').on('click',function(e){
 		e.preventDefault();

@@ -88,7 +88,22 @@ module.exports = {
 
 	    // This checks to make sure the password and password confirmation match before creating record
 	    if (!values.password || values.password != values.confirmation) {
-	      return next({err: ["Password doesn't match password confirmation."]});
+	      return next({err: "Las contraseñas no coinsiden. "});
+	    }
+
+	    require('bcrypt').hash(values.password, 10, function (err, encryptedPassword) {
+	      if (err) return next(err);
+	      values.encryptedPassword = encryptedPassword;
+	      // values.online= true;
+	      next();
+	    });
+  	},
+
+  	beforeUpdate: function (values, next) {
+
+	    // This checks to make sure the password and password confirmation match before creating record
+	    if (!values.password || values.password != values.confirmation) {
+	      return next({err: "Las contraseñas no coinsiden. "});
 	    }
 
 	    require('bcrypt').hash(values.password, 10, function (err, encryptedPassword) {

@@ -26,24 +26,31 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
- '*': "flash",
+client: "sessionAuth",
+service: "sessionAuth",
+clientdetail: "sessionAuth",
+expense: "sessionAuth",
+report: "sessionAuth",
+sale: "sessionAuth",
+salereport: "sessionAuth",
  
 
-  /*user: {
-    'new': "flash",
-    subscribe: ["flash", "userCanSeeProfile"],
-    show: "userCanSeeProfile",
-    edit: "userCanSeeProfile",
-    update: "userCanSeeProfile",
+
+ '*': "flash",
+
+
+  user: {
+    //edit: ["flash", "admin"],
+    show: "user",
+    edit: ["user","flash"],
+    update: "user",
     '*': "admin",
   },
+/*
   sale: {
-    'new': ["flash", "userCanSeeProfile"],
-    create: "userCanSeeProfile",
-    '*': "admin",
-
-  },*/
-
+    '*': ["user", "admin"]
+  },
+*/
  
 
   /***************************************************************************

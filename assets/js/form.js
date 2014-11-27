@@ -2,9 +2,9 @@ var cMsgSuccess = 1; // codigo de exito
 var roundUp = 2;	//variable de redondeo de decimales
 var bUser = false;   // true si el usuario existe, false si no y se creara uno nuevo
 
+	$('#mensaje').hide();
 $(document).ready(OnReady);
 function OnReady(){
-	
 	$('#example').DataTable();
 
 	$.get("/service/findByName/", {service: $('#idService').val()}, 
@@ -15,7 +15,7 @@ function OnReady(){
 	);
 	$("#mysearch").focus();
 	$('#sCantidad').val("1");
-	$('#mensaje').hide();
+	
 
 	
 
@@ -95,9 +95,12 @@ function OnReady(){
 
 	});
 
-	// ------------Borrar filas de la tabla----------------
+	// ------------Borrar filas de la tabla y restarle el precio al total----------------
 
 	$('table').on('click', 'td button', function () { 
+		var price = $(this).parent().siblings('.endPrice').text();
+		total -= price;
+		$('#total').val(total.toFixed(roundUp));
 		$(this).parent().parent().remove(); 
 	});
 
