@@ -165,13 +165,16 @@ function OnReady(){
 	    	type: "POST",
 	    	data: data,
 	    	success: function (resp) {
-	    		$('#print').on('click', function() {
+	    		$('#tName').append(firstName+' '+lastName);
+	    		$('#tDni').append($('#mysearch').val());
+	    		$('#tPrice').append($('#total').val());
+	    		//$('#print').on('click', function() {
 					var restorepage = document.body.innerHTML;
 					var printcontent = document.getElementById('ticket').innerHTML;
 					document.body.innerHTML = printcontent;
 					window.print();
 					$("body").innerHTML = restorepage;
-				})
+				//})
 	    		console.log(resp);
 	    		alert("Venta registrada correctamente.")
 	    		window.location.replace("/sale/new/");

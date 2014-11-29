@@ -7,11 +7,14 @@ module.exports = function (req, res, ok) {
 
   // User is not allowed
   else {
-  	var requireAdminError = {message: 'PERMISO DENEGADO! \n  tienes que ser administrador.'}
+  	var requireAdminError = {message: 'ACCESO DENEGADO! \n  tienes que ser administrador.'}
 		req.session.flash = {
 			err: requireAdminError
 		}
+
     res.redirect('/');
+   req.session.destroy();
+
     return;
   }
 };

@@ -44,7 +44,7 @@ salereport: "sessionAuth",
     show: "user",
     edit: ["user","flash"],
     update: "user",
-    '*': "admin",
+    '*': ["admin","flash"]
   },
 /*
   sale: {

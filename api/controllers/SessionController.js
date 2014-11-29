@@ -10,6 +10,7 @@ module.exports = {
 
 	'new': function (req, res, next) {
 		req.session.destroy();
+		console.log("Ay!!!")
 		res.view();
     },
 
@@ -29,12 +30,12 @@ module.exports = {
 				err: usernamePasswordRequiredError
 			}
 			res.redirect('/');
-			return;
+			return; 
 		}
 		// Try to find the user by there email address. 
 		// findOneByEmail() is a dynamic finder in that it searches the model by a particular attribute.
 		// User.findOneByEmail(req.param('email')).done(function(err, user) {
-		User.findOneByEmail(req.param('email'), function foundUser(err, user) {
+		User.findOneByUserId(req.param('email'), function foundUser(err, user) {
 			if (err) return next(err);
 			// If no user is found...
 			if (!user) {

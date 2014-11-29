@@ -8,6 +8,7 @@
     "bcrypt": "^0.8.0",
     "ejs": "~0.8.4",
     "excel": "^0.1.1",
+    "forever": "^0.13.0",
     "formidable": "^1.0.15",
     "fs-extra": "^0.12.0",
     "grunt": "0.4.2",
@@ -42,5 +43,8 @@
     "url": "git://github.com/daniel/OrangeApp.git"
   },
   "author": "daniel",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "grunt-forever": "^0.4.5"
+  }
 }

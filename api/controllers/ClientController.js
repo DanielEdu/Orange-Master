@@ -120,6 +120,12 @@ module.exports = {
 		});
 	},
 
+	findById: function(req, res, next) {
+		Client.findOne(req.param('id'), function (err, clients) {
+			if(err) return next(err);
+			res.send({client:clients })
+		});
+	},
 
 	findByDni: function(req, res, next) {
 		var dni = req.param('dni');

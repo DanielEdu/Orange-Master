@@ -11,29 +11,44 @@
 <h1>EDITAR USUARIO</h1>
 <div class="divForms">
 <form action="/user/update/<%= user.id_user %>" method="POST">
-
-	<label for="">Nombres: </label>
-	<input type="text" name="firstName" class="form-control" value="<%= user.firstName %>" /> <br/>
-	<label for="">Apellidos: </label>
-	<input type="text" name="lastName" class="form-control" value="<%= user.lastName %>" /> <br/>
-	<label for="">Teléfono: </label>
-	<input type="text" name="phoneNumber" class="form-control" value="<%= user.phoneNumber %>" /> <br/>
-	<label for="">E-mail: </label>
-	<input type="text" name="email" class="form-control" value="<%= user.email %>" /> <br/>
-	<label>Contraseña</label>
-	<input type="password" name="password" class="form-control" placeholder="ingresar Contraseña" /> <br/>
-	<label>Confirmar</label>
-	<input type="password"  placeholder="confirmar Contraseña" name="confirmation" class="form-control"><br>
+<table>
+<tr>
+	<td class="labeltd"><label for="">Nombres: </label></td>
+	<td><input type="text" name="firstName" class="form-control" value="<%= user.firstName %>" /></td>
+</tr>
+<tr>
+	<td class="labeltd"><label for="">Apellidos: </label></td>
+	<td><input type="text" name="lastName" class="form-control" value="<%= user.lastName %>" /></td>
+</tr>
+<tr>	
+	<td class="labeltd"><label for="">Teléfono: </label></td>
+	<td><input type="text" name="phoneNumber" class="form-control" value="<%= user.phoneNumber %>" /></td>
+</tr>
+<tr>	
+	<td class="labeltd"><label for="">E-mail: </label></td>
+	<td><input type="text" name="email" class="form-control" value="<%= user.email %>" /></td>
+</tr>
+<tr>	
+	<td class="labeltd"><label>Contraseña</label></td>
+	<td><input type="password" name="password" class="form-control" placeholder="ingresar Contraseña" /></td>
+</tr>
+<tr>	
+	<td class="labeltd"><label>Confirmar</label></td>
+	<td><input type="password"  placeholder="confirmar Contraseña" name="confirmation" class="form-control"></td>
+</tr>
+</table>
 	<input type="text" name="cod" value="" hidden>
 	<input class="btn btn-danger" type="submit" value="Guardar"/>
 
 </form>
-<hr>
-<form action="/user/upload/" enctype="multipart/form-data" method="post">
+
+<p>Puede cambiar los permisos del usuario sin cambiar los demas datos</p>
+
+<!--<form action="/user/upload/" enctype="multipart/form-data" method="post">
 <input multiple="multiple" name="upload" type="file" />
 <input type="submit" value="Upload" />
 <br><br>
-</form>
+</form>-->
 
 <div>
 	<% if (session.authenticated && session.User.admin==='admin') { %>
