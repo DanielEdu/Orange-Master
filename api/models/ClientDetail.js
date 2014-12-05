@@ -8,7 +8,7 @@
 
 module.exports = {
 	schema: true,
-	tableName: 'tUserDetails',
+	tableName: 'tClientDetails',
 
 	attributes: {
 	  	id_detail: {
@@ -22,18 +22,30 @@ module.exports = {
         },
 		height: {
 			type: 'decimal',
-			
 		},
 		weight: {
 			type: 'decimal',
 		},
-		workout: {
-			type: 'text',
-			defaultsTo: '',
+		fatPercentage: {
+			type: 'decimal',
+		},
+		arm: {
+			type: 'decimal',
+		},
+		forearm: {
+			type: 'decimal',
+		},
+		leg: {
+			type: 'decimal',
+		},
+		calf: {
+			type: 'decimal',
+		},
+		waist: {
+			type: 'decimal',
 		},
 		diet: {
 			type: 'text',
-			defaultsTo: '',
 		},
 		observations: {
 			type: 'text',

@@ -1,36 +1,54 @@
 
 <div id="main" class="container" >
-<h1>HISTORIAL</h1>
+<h1>HISTORIAL</h1> 
 
 <div class="divForms">
 <form action="/clientdetail/create/?id_client=<%= client.id_client %>" method="POST" >
 	<table>
-	<tr>
-	<td class="labeltd" ><label >Altura: </label></td> 
-		<td><input type="text" name="height" class="form-control" value="<%= client.height %>" placeholder="Altura en metros (m)" /> </td>
-	</tr>
-	<tr>
-	<td class="labeltd" ><label >Peso: </label></td> 
-		<td><input type="text" name="weight" class="form-control" value="<%= client.weight %>" placeholder="Peso en Kilogramos(Kg.)" /></td>
-	</tr>
-<% if (session.User.admin === 'trainer') { %>  
-	<tr>
-	<td class="labeltd" ><label >Rutina: </label></td> 
-		<td><textarea name="workout" rows="4" cols="45" class="form-control" placeholder="Ingresar rutina de entrenamiento"></textarea>	</td>
-	</tr>
-<% }%>
-<% if (session.User.admin === 'nutritionist') { %>  
-	<tr>	
-	<td class="labeltd" ><label >Dieta: </label></td> 
-		<td><textarea name="diet" rows="4" cols="45" class="form-control" placeholder="Ingresar plan de dieta..."></textarea></td>
-	</tr>
-<% }%>
-	<tr>
-	<td class="labeltd" ><label >Observaciones: </label></td> 
-		<td><textarea name="observations" rows="4" cols="45" class="form-control" placeholder="Ingresar observaciones..."></textarea></td>
-	</tr>
-	</table>
-		<input type="submit" id="regDetails" class="btn btn-danger" value="Registrar " />
+		<tr>
+		<td class="labeltd"><label>Peso: </label></td>
+		<td><input type="text" name="weight" class="form-control" placeholder="Peso en Kilogramos(Kg.)" value="<%= client.weight %>" /></td> 
+		</tr>
+		<tr>
+		<tr>
+		<td class="labeltd"><label>Altura: </label></td>
+		<td><input type="text" name="height" class="form-control" placeholder="Altura en Metros (m.)" value="<%= client.height %>" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>% de Grasa: </label></td>
+		<td><input type="text" name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal" value="<%= client.fatPercentage %>" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Brazo: </label></td>
+		<td><input type="text" name="arm" class="form-control" value="<%= client.arm
+		 %>" placeholder="Medida de Brazos" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Antebrazo: </label></td>
+		<td><input type="text" name="forearm" class="form-control" value="<%= client.forearm %>" placeholder="Medida de Antebrazos" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Piernas: </label></td>
+		<td><input type="text" name="leg" class="form-control" value="<%= client.leg %>" placeholder="Medida de Piernas" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Pantorrillas: </label></td>
+		<td><input type="text" name="calf" class="form-control" value="<%= client.calf %>" placeholder="Medida de Pantorrillas" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Cintura: </label></td>
+		<td><input type="text" name="waist" class="form-control" value="<%= client.waist %>"  placeholder="Medida de Cintura" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Observaciones: </label></td>
+		<td><textarea name="observations" rows="5" cols="50" placeholder="Ingresar observaciones..."><%= client.observations
+		 %></textarea></td>
+		</tr>
+		</table>
+		<input type="file" name="avatar" multiple="multiple"><br>
+    
+		<br/>
+		<input type="submit" class="btn btn-success" value="Guardar Registro"/> <br/>
 	
 	</form>
 </div>

@@ -8,18 +8,16 @@
 
 
 
-<div id="main" class="container col-md-8 col-md-offset-2" >
+<div id="main" class="container" >
 <h1>HISTORIAL</h1>
-
+<div class="divForms">
 <div >
-
 	<label >Ingresar DNI:</label>
 	<input id="mysearch" type="search" name="userSeach" list="myUserList" class="form-control" /> 
 	<datalist id="myUserList" >
 		
 	</datalist>
 	<button id="searchBT" class="btn btn-info"/> Buscar</button><br/><br/>
-
 </div>
 
 <div id="mensaje" >
@@ -28,40 +26,57 @@
 	</ul>
 	<div id="create">
 	<h3 id="h" > </h3>
+<% if (session.User.admin === 'nutritionist') { %> 			
 
 	<form class="form-inline" action="" method="POST" >
 		<table>
 		<tr>
-		<td class="labeltd"><label>Altura: </label></td>
-		<td><input type="text" name="height" class="form-control"placeholder="ingresar altura en metros (m)" /></td>
-		</tr>
-		<tr>
 		<td class="labeltd"><label>Peso: </label></td>
-		<td><input type="text" name="weight" class="form-control" placeholder="Ingresar el peso en Kilogramos(Kg.)" /></td> 
+		<td><input type="text" name="weight" class="form-control" placeholder="Peso en Kilogramos(Kg.)" /></td> 
 		</tr>
-<% if (session.User.admin === 'trainer') { %> 	
 		<tr>
-		<td class="labeltd"><label>Rutina: </label></td>
-		<td><textarea name="workout" rows="5" cols="50" placeholder="Ingresar rutina de entrenamiento"></textarea></td>
-		</tr>
-<% }%>
-<% if (session.User.admin === 'nutritionist') { %> 		
 		<tr>
-		<td class="labeltd"><label>Dieta: </label> </td>		
-		<td><textarea name="diet" rows="5" cols="50" placeholder="Ingresar la dieta..."></textarea></td>
+		<td class="labeltd"><label>Altura: </label></td>
+		<td><input type="text" name="height" class="form-control" placeholder="Altura en Metros (m.)" /></td>
 		</tr>
-<% }%>
+		<tr>
+		<td class="labeltd"><label>% de Grasa: </label></td>
+		<td><input type="text" name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Brazo: </label></td>
+		<td><input type="text" name="arm" class="form-control" placeholder="Medida de Brazos" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Antebrazo: </label></td>
+		<td><input type="text" name="forearm" class="form-control"placeholder="Medida de Antebrazos" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Piernas: </label></td>
+		<td><input type="text" name="leg" class="form-control" placeholder="Medida de Piernas" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Pantorrillas: </label></td>
+		<td><input type="text" name="calf" class="form-control" placeholder="Medida de Pantorrillas" /></td>
+		</tr>
+		<tr>
+		<td class="labeltd"><label>Cintura: </label></td>
+		<td><input type="text" name="waist" class="form-control" placeholder="Medida de Cintura" /></td>
+		</tr>
 		<tr>
 		<td class="labeltd"><label>Observaciones: </label></td>
 		<td><textarea name="observations" rows="5" cols="50" placeholder="Ingresar observaciones..."></textarea></td>
 		</tr>
 		</table>
-		<br /><br>
-		<input type="submit" class="btn btn-success" value="Registrar Nuevo Historial" /> <br/><br><br>
+		<input type="file" name="avatar" multiple="multiple"><br>
+    <input type="submit" value="Upload" class="form-control" />
+		<br/>
+		<input type="submit" class="btn btn-success" value="Guardar Registro"/> <br/>
 
 	</form>
+<% }%>
 	</div>
-
+</div>
 </div>
 </div>
 

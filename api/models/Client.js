@@ -28,6 +28,11 @@ module.exports = {
 			type: 'string',
 			required: true,
 		},
+		sex: {
+			type: 'boolean',
+			defaultsTo: true,
+			required: true,
+		},
 		phoneNumber: {
 			type: 'string',
 			size: 9
@@ -54,8 +59,13 @@ module.exports = {
             collection: 'ClientDetail',
             via: 'id_client'
         },
+        workout:{
+            collection: 'Workout',
+            via: 'id_client'
+        },
         observations: {
-			type: 'text'
+			type: 'text',
+			defaultsTo: ''
 		},
 
   }

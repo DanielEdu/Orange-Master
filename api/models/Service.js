@@ -29,6 +29,14 @@ module.exports = {
 		serviceDescription: {
 			type: 'text'
 		},
+		serviceProvider: {
+			type: 'string',
+			defaultsTo: ''
+		},
+		serviceFlag: {
+			type: 'string',
+  			enum: ['product', 'service'],
+		},
 		state: {
 			type: 'boolean',
 			defaultsTo: true

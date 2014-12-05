@@ -20,10 +20,6 @@ function parsingDate(data){
 
 
 module.exports = {
-	'new': function (req,res, next) {
-		var id = req.param('id');
-		res.view({id:id});
-	},
 
 	'show': function (req, res, next) {
 	    ClientDetail.find({ where: { id_client: req.param("id") }, sort: 'updatedAt DESC'}, function (err, detail) {
@@ -37,6 +33,25 @@ module.exports = {
 		      		detail: detailFormat,
 		      		client: client
 		      	});
+		    });
+	    });
+	},
+
+'workoutshow': function (req, res, next) {
+	    ClientDetail.find({ where: { id_client: req.param("id") }, sort: 'updatedAt DESC'}, function (err, detail) {
+	    	Client.findOne({ id_client: req.param("id") }, function (err, client) {
+	    		Workout.find({ where: { id_client: req.param("id") }, sort: 'updatedAt DESC'}, function (err, workout) {
+
+			    	if (err) return next(err);
+			      	//if (!err) return next();
+			      	//console.log(detail[0])
+			      	var detailFormat = parsingDate(detail);
+			      	res.view({
+			      		detail: detailFormat,
+			      		client: client,
+			      		workout: parsingDate(workout)
+			      	});
+			    });
 		    });
 	    });
 	},
@@ -59,14 +74,18 @@ module.exports = {
 	},
 
     create: function (req, res, next) {
-
+    	
 	    var userObj = {
-	      id_client:    req.param('id_client'),
-	      height:    	req.param('height'),
-	      weight:     	req.param('weight'),
-	      workout:  	req.param('workout'),
-	      diet:    		req.param('diet'),
-	      observations: req.param('observations'),
+	      	id_client:    	req.param('id_client'),
+		    height:    		req.param('height'),
+		    weight:    		req.param('weight'),
+		    fatPercentage: 	req.param('fatPercentage'),
+		    arm:    		req.param('arm'),
+		    forearm:    	req.param('forearm'),
+		    leg:    		req.param('leg'),
+		    calf:    		req.param('calf'),
+		    waist:    		req.param('waist'),
+		    observations: 	req.param('observations'),
 	    }
 
 	    ClientDetail.create(userObj, function (err, client){
@@ -105,8 +124,7 @@ module.exports = {
 			dni = 0;
 		}
 
-	    Client.find({or : [{documentNumber: dni },{ firstName: { 'startsWith': cadena } }, { lastName: { 'startsWith': cadena } }]}, function (err, client) {
-			console.log(client)
+	    Client.find({or : [{documentNumber: dni},{firstName: {'startsWith': cadena}}, {lastName:{'startsWith': cadena }}]}, function (err, client) {
 			if(err) console.log('Error:' + err);
 			
 			if(client.length===0){
@@ -118,6 +136,7 @@ module.exports = {
 		    	var clienId = client[0].id_client;
 		    	ClientDetail.find({ id_client: clienId }, function (err, detail) {
 			  		if(err) console.log('Error:' + err);
+			  		console.log(detail)
 			  		if(detail.length === 0){
 			  			resJson.dat = {
 			  				clientName: client[0].firstName,
@@ -127,11 +146,19 @@ module.exports = {
 				    	resJson.cod = clientNoHistory;
 				    	res.send(resJson);
 			  		}else{
-
+			  			if (req.session.User.admin==='nutritionist'){ 
 			  			resJson.dat  = '/clientdetail/show/'+clienId;
 			    		resJson.cod  = successFull;
-			    		res.send(resJson);
+				    		res.send(resJson);
+				  		}
+				  		if (req.session.User.admin==='trainer'){ 
+				  			resJson.dat  = '/clientdetail/workoutshow/'+clienId;
+				    		resJson.cod  = successFull;
+				    		res.send(resJson);
+				  		}
 			  		}
+			  		
+
 		  		});
 		  	}
 	    });

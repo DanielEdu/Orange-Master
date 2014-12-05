@@ -1,12 +1,13 @@
 <div class="container">
-<h1>SERVICIOS</h1> 
-<a class="btn btn-success btn-default" href="/service/new/">+ Crear nuevo Servicio</a><br>
+<h1>PRODUCTOS</h1> 
+<a class="btn btn-success btn-default" href="/service/newproduct/">+ Ingresar Nuevo Producto</a><br>
 	<table id="dvData" class="display table table-borderd table-hover" >
 		<thead>
 		<tr>
 		<!--		<th>ID</th>-->
-			<th>Servicio</th>
-			<th>precio</th>
+			<th>Producto</th>
+			<th>Proveedor</th>
+			<th>Precio</th>
 			<th></th>
 			<th>on/off</th>
 		</tr>
@@ -17,6 +18,7 @@
 		<tr> 
 		<!--	<td><%= service.id_service %></td> -->
 			<td><%= service.serviceName %></td>
+			<td><%= service.serviceProvider %></td>
 			<td>S/. <%= service.servicePrice %></td>
 			<td>
 				<a href="/service/show/<%= service.id_service %>">Ver</a> /

@@ -1,16 +1,18 @@
 <div class="container">
 	
-	<h1>CREAR SERVICIO</h1>
+	<h1>INGRESAR NUEVO PRODUCTO</h1>
 	<div class="divForms">
 	<form action="/service/create" method="POST">
-	<input type="text" name="flag" hidden value="service"> <!-- indicador de que es un producto -->
-		<label>Servicio:</label>
+	<input type="text" name="flag" hidden value="product"> <!-- indicador de que es un producto -->
+		<label>Nombre:</label>
 		<input type="text" class="form-control" name="serviceName" placeholder="Ingresar Nombre del servicio" required/><br>
 		<label>Precio:</label>
 		<input type="text" class="form-control" name="servicePrice" placeholder="Ingresar Precio del servicio" required/><br>
+		<label>Proveedor:</label>
+		<input type="text" class="form-control" name="serviceProvider" placeholder="Ingresar Nombre del servicio" required/><br>
 		<label>Descripción:</label>
 		<textarea name="serviceDescription" class="form-control" rows="10" cols="50" placeholder="Ingresar breve descripción del servicio..."></textarea> <br/>
-		<input type="submit" value=" Crear " class="btn " /> <br/>
+		<input type="submit" value=" Crear " class="btn btn-success" /> <br/>
 	</form>
 	</div>
 </div>

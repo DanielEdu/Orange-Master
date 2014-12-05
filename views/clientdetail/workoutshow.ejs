@@ -1,0 +1,77 @@
+<div class="container">
+<h1><strong>Plan de Seguimiento de:</strong>  <%= client.firstName %> <%= client.lastName %></h1>
+	<div class="divForms">
+		<h4><strong>Peso: </strong> <%= detail[0].weight %> kg.</h4> 
+		<h4><strong>Altura: </strong> <%= detail[0].height %> m.</h4>
+		<h4><strong>IMC: </strong> <%= (detail[0].weight/Math.pow(detail[0].height , 2)).toFixed(2) %> <h4>
+		<h4><strong>% de Grasa: </strong><%= detail[0].fatPercentage %><h4>
+		
+		<p><strong>Ultima Fecha: </strong> <%= detail[0].createdAt %> </p>
+		<p><strong>Rutina: </strong><a href="">Ver Ultima Rutina</a>
+		<br><br>	
+	<button class="addWorkout btn btn-info">Agregar Nuevo Registro</button>
+	</div>
+	
+	<div class="tableHistory">
+	<table id="dvData" class="display table table-borderd table-hover" >
+		<thead>
+		<tr>
+			<th>Fecha</th>
+			<th>Rutina</th>
+			<th>observaciones</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<% _.each(workout, function(wk){ %>
+		<tr>
+			<td><%= wk.createdAt %></td> 
+			<td><a href="">ver</a></td>	
+			<td><%= wk.observations %></td>
+		</tr>
+		<%})%>
+		</tbody>
+	</table>
+	</div>
+
+<div class="divForms formWorkout" hidden>
+<form action="/workout/create/<%= client.id_client %>" >
+	<table>
+	<tr>
+		<td class="labeltd"><label for="">Observaciones: </label></td>
+		<td><textarea name="observations" class="form-control" rows="5" cols="50" placeholder="Ingresar observaciones..."></textarea></td>
+	</tr>
+	<tr>
+		<td class="labeltd"><label for="">Rutina: </label></td>
+		<td><input type="file" name="workuotFile" multiple="multiple"><br></td>
+	</tr>
+	</table>	
+	<button class="btn btn-success">Guardar</button>	
+</form>
+</div>
+
+</div>
+
+<script>
+
+    $(document).ready(OnReady);
+      function OnReady(){
+        $('#dvData').DataTable({
+
+        	"language": {
+        		"search": "Buscar",
+        		"lengthMenu": "Mostrar _MENU_ campos por página",
+        		"zeroRecords": "No se encontro - intente con otros datos",
+        		"info": "",
+        		"infoFiltered": "",
+        	}
+        });
+
+        $('.addWorkout').on('click', function() {
+        	$('.tableHistory').hide();
+        	$('.formWorkout').show();
+        	$(this).hide();
+        })
+      }
+        
+</script>

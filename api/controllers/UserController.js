@@ -4,11 +4,7 @@
  * @description :: Server-side logic for managing Users
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
- formidable = require('formidable'),
- util = require('util')
- fs   = require('fs-extra'),
- qt   = require('quickthumb');
- qt.static(__dirname + '/');
+
 
 module.exports = {
 

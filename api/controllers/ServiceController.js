@@ -11,13 +11,26 @@ module.exports = {
 		res.view();
     },
 
+    'newproduct': function (req, res) {
+		res.view();
+    },
+
     'index': function (req, res, next) {
-	  Service.find(function (err, services) {
-	    if (err) return next(err);
-	      res.view({
-	      	services: services
-	      });
-	  });
+		Service.find({where: { serviceFlag: 'service' }, sort: 'serviceName'}, function (err, services) {
+		    if (err) return next(err);
+	      	res.view({	 
+	      		services: services
+	     	});
+		});
+	},
+
+	'indexProducts': function (req, res, next) {
+		Service.find({where: { serviceFlag: 'product' }, sort: 'serviceName'}, function (err, services) {
+		    if (err) return next(err);
+		    res.view({
+		    	services: services
+		    });
+		});
 	},
 
 	'show': function (req, res, next) {
@@ -27,10 +40,10 @@ module.exports = {
 		    	console.log("No hay service")
 		    	//return next("servicio no hay");
 		    } 
+		    
 		    res.view({
 		    	service: service
 		    });
-
 	    });
 	},
 
@@ -44,21 +57,32 @@ module.exports = {
 		});
 	},
 
-
 	create: function (req, res, next) {
-
-	    var serviceObj = {
-	      serviceName:    req.param('serviceName'),
-	      servicePrice:   req.param('servicePrice'),
-	      serviceDescription: req.param('serviceDescription')
-	    }
-
+		if (req.param('flag')==='service'){
+			var serviceObj = {
+		      serviceName:    		req.param('serviceName'),
+		      servicePrice:   		req.param('servicePrice'),
+		      serviceDescription: 	req.param('serviceDescription'),
+		      serviceFlag: 			'service',
+		    }
+		}
+		if (req.param('flag')==='product'){
+			var serviceObj = {
+		      serviceName:    		req.param('serviceName'),
+		      servicePrice:   		req.param('servicePrice'),
+		      serviceDescription: 	req.param('serviceDescription'),
+		      serviceProvider: 	  	req.param('serviceProvider'),
+		      serviceFlag: 			'product',
+		    }
+		}
+	    
 	    Service.create(serviceObj, function (err, service){
 	      if(err){
 	        console.log(err);
 	        return res.redirect('service/new');
-	      } 
-	      res.redirect('/service/new/');
+	      }
+	      if (req.param('flag')==='service') {res.redirect('/service/');}
+	      if (req.param('flag')==='product') {res.redirect('/service/indexProducts/');}
 	      console.log("Create OK!");
 	    });
 	},

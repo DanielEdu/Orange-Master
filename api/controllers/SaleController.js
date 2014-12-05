@@ -27,6 +27,14 @@ module.exports = {
 	});
 },
 
+'registration': function (req, res, next){
+	District.find(function (err, districts) {
+		if (err) return next(err);
+		res.view({
+			districts: districts
+		});
+	});
+},
 
 create: function (req, res, next) {
 

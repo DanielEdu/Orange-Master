@@ -2,22 +2,23 @@
 <div class="container">
 <h1><strong>Plan de Seguimiento de:</strong>  <%= client.firstName %> <%= client.lastName %></h1>
 	<div class="divForms">
-	<h3><strong>Altura:</strong> <%= detail[0].height %> m.</h3>
-	<h3><strong>Peso:</strong> <%= detail[0].weight %> kg.</h3> 
+	<h3><strong>Peso: </strong> <%= detail[0].weight %> kg.</h3> 
+	<h3><strong>Altura: </strong> <%= detail[0].height %> m.</h3>
 	<p><strong>IMC: </strong> <%= (detail[0].weight/Math.pow(detail[0].height , 2)).toFixed(2) %> </p>
-	<% if (session.User.admin==='admin' || session.User.admin==='trainer' ) { %>
-	<p><strong>Rutina:</strong> <%= detail[0].workout %> </p>
-	<% } %>
-	<% if (session.User.admin==='admin' || session.User.admin==='nutritionist' ) { %>
+	<p><strong>% de Grasa: </strong><%= detail[0].fatPercentage %></p>
+	<p><strong>Brazo: </strong><%= detail[0].arm %></p>
+	<p><strong>Antebrazo: </strong><%= detail[0].forearm %></p>
+	<p><strong>Pierna: </strong><%= detail[0].leg %></p>
+	<p><strong>Pantorrilla: </strong><%= detail[0].calf %></p>
+	<p><strong>Cintura: </strong><%= detail[0].waist %></p>
 	<p><strong>Dieta: </strong> <%= detail[0].diet %> </p>
-	<% } %>
 	<p><strong>Observaciones: </strong> <%= detail[0].observations %> </p>
 	<p><strong>Ultima Fecha: </strong> <%= detail[0].createdAt %> </p>
-	<br>
-	
+	<br>	
 
 	<a href="/clientdetail/upgrade/<%= client.id_client %>"><strong>Añadir Nuevo Historial</strong></a>
 </div>
+
 	<table id="dvData" class="display table table-borderd table-hover" >
 		<thead>
 		<tr>
@@ -25,12 +26,8 @@
 			<th>Peso</th>
 			<th>Altura</th>
 			<th>IMC: </th>
-		<% if (session.User.admin==='admin' || session.User.admin==='trainer' ) { %>
-			<th>Rutina</th>
-		<% } %>
-		<% if (session.User.admin==='admin' || session.User.admin==='nutritionist' ) { %>
+			<th>% de Grasa: </th>
 			<th>Dieta</th>
-		<% } %>		
 			<th>observaciones</th>
 			<th></th>
 		</tr>
@@ -40,15 +37,11 @@
 		<% _.each(detail, function(dt){ %>
 		<tr>
 			<td><%= dt.createdAt %></td> 
-			<td><%= dt.weight %></td>
-			<td><%= dt.height %></td>
+			<td><%= dt.weight %> Kg.</td>
+			<td><%= dt.height %> m.</td>
 			<td><%=(dt.weight/Math.pow(dt.height , 2)).toFixed(2) %></td>
-		<% if (session.User.admin==='admin' || session.User.admin==='trainer' ) { %>
-			<td><%= dt.workout %></td>
-		<% } %>
-		<% if (session.User.admin==='admin' || session.User.admin==='nutritionist' ) { %>
-			<td><%= dt.diet %></td>
-		<% } %>	
+			<td><%= dt.fatPercentage %></td>
+			<td><a href="">Ver</a></td>
 			<td><%= dt.observations %></td>
 			<td><form action="/clientdetail/destroy/?id=<%= dt.id_detail %>" method="POST"/>
 				<input type="hidden" name="_method" value="delete"/>
@@ -59,16 +52,13 @@
 		<%})%>
 		</tbody>
 	</table>
+
 	
-<a id="excel" download="<%= client.firstName %> <%= client.lastName %>.xls" onclick="return ExcellentExport.excel(this, 'dvData', 'Sheet Name Here');" ><img src="/images/excel.png" class="" height="42" width="42">  Exportar a Excel el Historial de <%= client.firstName %></a>
+<a id="excel" download="<%= client.firstName %> <%= client.lastName %>.xls" onclick="return ExcellentExport.excel(this, 'dvData', 'Sheet Name Here');" ><img src="/images/excel.png" class="" height="42" width="42"> Exportar a Excel el Historial de <%= client.firstName %></a>
 <br>
-<br>
-<br>
-<br>
+
 
 </div>
-
-
 
 <script>
 

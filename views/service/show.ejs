@@ -1,8 +1,16 @@
 <div class="container">
-<h1>DETALLE DE SERVICIO</h1>
+<% if (service.serviceFlag === 'product') { %>
+<h1>DETALLE DEL PRODUCTO</h1>
+<% } %>
+<% if (service.serviceFlag === 'service') { %>
+<h1>DETALLE DEL SERVICIO</h1>
+<% } %>
 <div class="divForms">
 	<h2>Nombre: <%= service.serviceName %></h2>
 	<h3>Precio: <%= service.servicePrice %></h3>
+	<% if (service.serviceFlag === 'product') { %>
+	<h4>Proveedor: <%= service.serviceProvider %></h4>
+	<% } %>
 	<p>Descripción: <%= service.serviceDescription %> </p> 
 
 	<a href="/service/edit/<%= service.id_service %>">Editar</a>

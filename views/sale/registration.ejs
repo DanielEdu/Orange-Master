@@ -1,6 +1,4 @@
-<div class="container">
-
-<h1>CREAR CLIENTE</h1>
+<h1>REGISTRAR CLIENTE</h1>
 <div class="divForms">
 <form  action="/client/create" method="POST" >
 <table>
@@ -21,7 +19,7 @@
 	<td><input type="text" name="phoneNumber" class="form-control" placeholder="Telefono/celular" /></td>
 </tr>
 	<td class="labeltd"><label>E-mail: </label>	</td>	
-	<td><input type="email" name="email" class="form-control" placeholder="Ingresar E-mail" /> 
+	<td><input type="email" name="email" class="form-control" placeholder="Ingresar E-mail" /> </td>
 <tr>
 </tr>
 	<td class="labeltd"><label>Direccón: </label></td>
@@ -29,14 +27,34 @@
 <tr>
 </tr>
 	<td class="labeltd"><label>Distrito: </label></td>
-	<td><select  id="pais" class="cambio form-control" name="district" >
-			<% _.each(distritos, function(distrito){ %>
-			<option value="<%= distrito.id_district %>"> 
-				<%= distrito.districtName %>
+	<td><select  id="pais" class="cambio form-control" name="district" required>
+			<% _.each(districts, function(district){ %>
+			<option value="<%= district.id_district %>"> 
+				<%= district.districtName %>
 			</option>
 			<%})%>
     </select></td>
 </tr>
+</tr>
+	<td class="labeltd"><label>Sexo: </label>	</td>	
+	<td><select  id="pais" class="cambio form-control" name="district" required>
+			<option value="F">Femenino</option>
+			<option value="M">Masculino</option>
+		</select>
+	</td> 
+<tr>
+</tr>
+	<td class="labeltd"><label>Pero: </label>	</td>	
+	<td><input type="email" name="email" class="form-control" placeholder="Ingresar el Peso" /> </td>
+<tr>
+</tr>
+	<td class="labeltd"><label>Altura: </label>	</td>	
+	<td><input type="email" name="email" class="form-control" placeholder="Ingresar la Altura" /> </td>
+<tr>
+</tr>
+	<td class="labeltd"><label>% de Grasa: </label>	</td>	
+	<td><input type="email" name="email" class="form-control" placeholder="% de Grasa Corporal" /> </td>
+<tr>
 </table>
 	<input type="submit" class="btn btn-danger" value=" Crear "/> <br/>
 </form>
