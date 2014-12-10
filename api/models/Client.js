@@ -30,7 +30,6 @@ module.exports = {
 		},
 		sex: {
 			type: 'boolean',
-			defaultsTo: true,
 			required: true,
 		},
 		phoneNumber: {

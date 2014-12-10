@@ -1,10 +1,11 @@
 <h1>REGISTRAR CLIENTE</h1>
 <div class="divForms">
 <form  action="/client/create" method="POST" >
+	<input type="text" name="flag" value="2" hidden /> 
 <table>
 <tr>
 	<td class="labeltd"><label>DNI: </label></td>
-	<td><input type="text" name="documentNumber" class="form-control" placeholder="Ingresar DNI " required/> </td>
+	<td><input type="text" name="documentNumber" class="form-control" placeholder="Ingresar DNI " value="<%= dni %>" required/> </td>
 <tr>
 </tr>
 	<td class="labeltd"><label>Nombres: </label></td>
@@ -27,7 +28,7 @@
 <tr>
 </tr>
 	<td class="labeltd"><label>Distrito: </label></td>
-	<td><select  id="pais" class="cambio form-control" name="district" required>
+	<td><select  class="cambio form-control" name="district" required>
 			<% _.each(districts, function(district){ %>
 			<option value="<%= district.id_district %>"> 
 				<%= district.districtName %>
@@ -37,23 +38,23 @@
 </tr>
 </tr>
 	<td class="labeltd"><label>Sexo: </label>	</td>	
-	<td><select  id="pais" class="cambio form-control" name="district" required>
-			<option value="F">Femenino</option>
-			<option value="M">Masculino</option>
+	<td><select class="cambio form-control" name="sex" required>
+			<option value="false">Femenino</option>
+			<option value="true">Masculino</option>
 		</select>
 	</td> 
 <tr>
 </tr>
-	<td class="labeltd"><label>Pero: </label>	</td>	
-	<td><input type="email" name="email" class="form-control" placeholder="Ingresar el Peso" /> </td>
+	<td class="labeltd"><label>Peso: </label>	</td>	
+	<td><input name="weight" class="form-control" placeholder="Ingresar el Peso" /> </td>
 <tr>
 </tr>
 	<td class="labeltd"><label>Altura: </label>	</td>	
-	<td><input type="email" name="email" class="form-control" placeholder="Ingresar la Altura" /> </td>
+	<td><input name="height" class="form-control" placeholder="Ingresar la Altura" /> </td>
 <tr>
 </tr>
 	<td class="labeltd"><label>% de Grasa: </label>	</td>	
-	<td><input type="email" name="email" class="form-control" placeholder="% de Grasa Corporal" /> </td>
+	<td><input name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal" /> </td>
 <tr>
 </table>
 	<input type="submit" class="btn btn-danger" value=" Crear "/> <br/>

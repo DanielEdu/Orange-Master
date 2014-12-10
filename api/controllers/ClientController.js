@@ -70,23 +70,37 @@ module.exports = {
 	},
 
     create: function (req, res, next) {
-
+console.log(req.params.all());
 	    var clientObj = {
 	      documentNumber: req.param('documentNumber'),
-	      firstName:    req.param('firstName'),
-	      lastName:     req.param('lastName'),
-	      phoneNumber:  req.param('phoneNumber'),
-	      email:    	req.param('email'),
-	      address: 		req.param('address'),
-	      district: 	req.param('district')
+	      firstName:      req.param('firstName'),
+	      lastName:       req.param('lastName'),
+	      phoneNumber:    req.param('phoneNumber'),
+	      email:    	  req.param('email'),
+	      address: 		  req.param('address'),
+	      district: 	  req.param('district'),
+	      sex: 	  		  req.param('sex')
+		}
+	    
+	    if(req.param('flag')==='2'){
+
+		    var clientDetail = {
+		      documentNumber: req.param('weight'),
+		      firstName:    req.param('height'),
+		      lastName:     req.param('lastName'),
+		      phoneNumber:  req.param('fatPercentage'),
+    		}
 	    }
 
 	    Client.create(clientObj, function (err, client){
-	      if(err){
-	        console.log(err);
-	        return res.redirect('client/new');
-	      } 
-	      res.redirect('/client/new/');
+		    if(err){
+		        console.log(err);
+		        return res.redirect('client/new');
+		    }
+	      	if(req.param('flag')==='1')
+	      		res.redirect('/client/new/');
+	  		if(req.param('flag')==='2')
+	  			console.log(clientDetail);
 	      console.log("Cliente creado OK!");
 	    });
 	},

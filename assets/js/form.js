@@ -20,11 +20,13 @@ function OnReady(){
 	
 
 	$("#searchBT").on('click', function(){
+
+		var dni = $('#mysearch').val();
 		$.ajax({
 	    	url: "/client/findByDni/",
 	    	type: "GET",
 	    	data: {
-	    		dni: $('#mysearch').val()
+	    		dni: dni,
 	    	},
 	    	success: function (resp) {
 	    		//$(".clientInfo").prop('enable', true);
@@ -46,13 +48,15 @@ function OnReady(){
 	    			}
 	    			if(!data.dat.state){
 	    				alert("El cliente esta desabilitado, contacte con su administrador.")
-	    				window.location.replace("/sale/new/");
+	    				window.location.replace("/sale/new/" );
 	    			}
 
-				}else{
-				$("#msj").append(data.resp);
-				$('#mensaje').show();
-					bUser = false;
+				}
+				else{
+				// $("#msj").append(data.resp);
+				// $('#mensaje').show();
+				// 	bUser = false;
+				window.location.replace("/sale/registration/"+ dni);
 				}
 	    	},
 	    	error: function (jqXHR, estado, error) {

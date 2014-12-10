@@ -8,30 +8,30 @@
 module.exports = {
 
 'new': function (req, res, next) {
-	District.find(function (err, distritos) {
+
+	Service.find({sort: 'id_service'},function (err, servicios){
 		if (err) return next(err);
-		Service.find({sort: 'id_service'},function (err, servicios){
-			if (err) return next(err);
-			//--------enviar los servicios que estan activos----
-			var serviceCheck=[];
-			_.each(servicios, function(serv){
-				if(serv.state)
-					serviceCheck.push(serv);
-			});
-			//----------------------------------------------
-			res.view({
-				distritos: distritos,
-				servicios: serviceCheck
-			});
+		//--------enviar los servicios que estan activos----
+		var serviceCheck=[];
+		_.each(servicios, function(serv){
+			if(serv.state)
+				serviceCheck.push(serv);
+		});
+		//----------------------------------------------
+		res.view({
+			servicios: serviceCheck
 		});
 	});
+	
 },
 
 'registration': function (req, res, next){
 	District.find(function (err, districts) {
 		if (err) return next(err);
+		var dni = req.param('id');
 		res.view({
-			districts: districts
+			districts: districts,
+			dni:dni
 		});
 	});
 },

@@ -18,7 +18,7 @@
 	<div class="form-group"><div class="input-group">
 	<div class="input-group-addon">Nombres</div>
 	<input type="text" class="clientInfo form-control" name="firstName" placeholder="Nombres" required/><br/>
-	</div></div><br>
+	</div></div>
 	<div class="form-group"><div class="input-group">
 	<div class="input-group-addon">Apellidos</div>
 	<input type="text" class="clientInfo form-control" name="lastName" placeholder="Apellidos" /> 
@@ -35,24 +35,9 @@
 	      <div class="input-group-addon">@E-mail</div>
 			<input type="email" class="clientInfo form-control" name="email" placeholder="e-mail" />
 	    </div>
-  	</div><br/>		
-	<div class="form-group">
-	    <div class="input-group">
-	      <div class="input-group-addon">Dirección</div>
-			<input type="text" class="clientInfo form-control" name="address" placeholder="Dirección" />
-	</div></div>
-	<div class="form-group">
-	    <div class="input-group">
-	      <div class="input-group-addon">Distrito</div>
+  	</div><br/>
+  	<hr>		
 	
-			<select class="clientInfo form-control" name="district" />
-				<% _.each(distritos, function(distrito){ %>
-				<option value="<%= distrito.id_district %>" > 
-					<%= distrito.districtName %>
-				</option>
-				<%})%>
-		    </select>
-	</div></div>
 </form>
 
 <form name="fo2" class="form-inline">
@@ -77,7 +62,7 @@
 	</div></div>
 		<input type="submit" id="add" class="btn btn-danger" value="+" /><br/>
 	</div>
-	<hr>
+	<br>
 	<div id="tableSale">
 	<table id="tableSale" class="table table-hover" >
 	    <thead>
@@ -108,6 +93,7 @@
 
 
 	<h4>** ONE Fitness **</h4>
+	<p>RUC: 2323578963</p>
 	<p id="tName">Nombre: </p>
 	<p id="tDni">DIN: </p>
 	<p id="tPrice">Precio total: S/.</p>
@@ -126,7 +112,6 @@
 <!--   *******  Fin del Ticket  ******   -->
 
     <button id="print" class="saveSale btn btn-danger"> imprimir y Guardar </button>
-    <button id="send" class="saveSale btn btn-danger"> Guardar </button>
     <a class="btn btn-danger navbar-btn navbar-right" href="/sale/new">Borrar Todo</a>
 	</div>
 	</form>
