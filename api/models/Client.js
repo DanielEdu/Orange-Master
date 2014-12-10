@@ -18,7 +18,8 @@ module.exports = {
 		},
 		documentNumber: {
 			type: 'integer',
-			required: true
+			required: true,
+			unique: true
 		},
 		firstName: {
 			type: 'string',

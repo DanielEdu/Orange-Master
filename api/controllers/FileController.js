@@ -20,13 +20,14 @@ module.exports = {
   },
 
   upload: function  (req, res) {
-    var uploadPath = './assets/files/';
-  	req.file('avatar').upload({ dirname: uploadPath },function onUploadComplete (err, files) {             
+    var uploadPath = 'assets/file/';
+  	req.file('avatar').upload(function onUploadComplete (err, files) {             
 		if (err)
 			return res.serverError(err);
+    console.log(files);
 
 	    
-	});
+	 });
   },
 
   show: function(req, res) {

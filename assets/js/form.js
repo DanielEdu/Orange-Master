@@ -7,18 +7,51 @@ $(document).ready(OnReady);
 function OnReady(){
 	$('#example').DataTable();
 
+	//precio del primer producto que aparece en la lista
 	$.get("/service/findByName/", {service: $('#idService').val()}, 
 		function(data){
-			console.log(data.price)
 			$('#sPrice').val(data.price)
 		}
 	);
+
 	$("#mysearch").focus();
-	$('#sCantidad').val("1");
-	
 
+	$('#sCantidad').val("1");  // cantidad inicial de productos en 1
 	
-
+	if($('.preSale').val()==1){
+		console.log($('.preSale').val())
+		var dni = $('#mysearch').val();
+		$.ajax({
+	    	url: "/client/findByDni/",
+	    	type: "GET",
+	    	data: {
+	    		dni: dni,
+	    	},
+	    	success: function (resp) {
+	    		//$(".clientInfo").prop('enable', true);
+	    		var data = resp
+	    		if(data.cod == cMsgSuccess){
+	    			if(data.dat.state){
+	    				$('input[name="firstName"]').val(data.dat.firstName);
+						$('input[name="lastName"]').val(data.dat.lastName);
+						$(".clientInfo").prop('disabled', true);
+						$("#msj").append("Resgistre a neustro nuevo socio de ONE Fitness.");
+						$('#mensaje').show();
+						bUser = true;
+						$("#idService").focus();
+	    			}
+				}
+	    	},
+	    	error: function (jqXHR, estado, error) {
+	    		console.log(estado);
+	    		console.log(error);
+	    	},
+	    	complete: function (jqXHR, estado) {
+	    		console.log(estado);
+	    	}
+   	 	});
+	}
+	
 	$("#searchBT").on('click', function(){
 
 		var dni = $('#mysearch').val();
@@ -35,11 +68,6 @@ function OnReady(){
 	    			if(data.dat.state){
 	    				$('input[name="firstName"]').val(data.dat.firstName);
 						$('input[name="lastName"]').val(data.dat.lastName);
-						$('input[name="phoneNumber"]').val(data.dat.phoneNumber);
-						$('input[name="email"]').val(data.dat.email);
-						$('input[name="address"]').val(data.dat.address);
-						$('select[name="district"]').val(data.dat.district);
-
 						$(".clientInfo").prop('disabled', true);
 						$("#msj").append("cliente encontrado");
 						$('#mensaje').show();

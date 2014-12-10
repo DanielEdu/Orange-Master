@@ -70,7 +70,7 @@ module.exports = {
 	},
 
     create: function (req, res, next) {
-console.log(req.params.all());
+
 	    var clientObj = {
 	      documentNumber: req.param('documentNumber'),
 	      firstName:      req.param('firstName'),
@@ -80,28 +80,34 @@ console.log(req.params.all());
 	      address: 		  req.param('address'),
 	      district: 	  req.param('district'),
 	      sex: 	  		  req.param('sex')
-		}
-	    
-	    if(req.param('flag')==='2'){
-
-		    var clientDetail = {
-		      documentNumber: req.param('weight'),
-		      firstName:    req.param('height'),
-		      lastName:     req.param('lastName'),
-		      phoneNumber:  req.param('fatPercentage'),
-    		}
-	    }
+		}    
 
 	    Client.create(clientObj, function (err, client){
 		    if(err){
 		        console.log(err);
 		        return res.redirect('client/new');
 		    }
+		    //si el cliente se crea desde la venta 
+			if(req.param('flag')==='2'){
+			    var clientDetail = {
+			    	id_client: 		client.id_client,
+			      	weight: 		req.param('weight'),
+			      	height:    		req.param('height'),
+			      	fatPercentage: 	req.param('fatPercentage'),	    		
+	    		}
+
+	    		ClientDetail.create(clientDetail, function (err, clientDetail) {
+	    		 	if(err){
+				        console.log(err);
+				        return res.redirect('/sale/new/');
+				    }
+				    console.log("Detalles creados")
+				    return res.redirect('/sale/imcsale/?dni='+client.documentNumber+'&name='+client.firstName+'&weight='+clientDetail.weight+'&height='+clientDetail.height+'&fat='+clientDetail.fatPercentage);
+	    		});
+		    }
+	      	console.log("Cliente creado OK!");
 	      	if(req.param('flag')==='1')
-	      		res.redirect('/client/new/');
-	  		if(req.param('flag')==='2')
-	  			console.log(clientDetail);
-	      console.log("Cliente creado OK!");
+	      		res.redirect('/client/show/'+client.id_client);
 	    });
 	},
 
@@ -164,8 +170,7 @@ console.log(req.params.all());
 		    		resJson.resp = "Cliente encontrado!!"
 		    		resJson.cod = 1;
 		    		res.send(resJson);
-		    	}
-				
+		    	}				
 			});
 		}
 		if(cadena!=='' && (obj/obj !== 1))

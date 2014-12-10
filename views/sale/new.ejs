@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/styles/newSaleStyle.css">
 
 <!-- //////////////////////////// -->
-
+<input type="text" class="preSale" hidden value="<%= flag %>" />
 <div id="main" class="container" >
 <h1>INGRESO DE VENTA</h1>
 <div id="mensaje" >
@@ -13,7 +13,7 @@
 <div class="divForms">
 	<form name="fo1" class="form-inline" >
 	<label >Ingresar DNI:</label>
-	<input id="mysearch" type="search" name="dniSeach" class="form-control" /> 
+	<input id="mysearch" type="search" name="dniSeach" class="form-control" value="<%= dni%>" /> 
 	<button id="searchBT" class="btn btn-info"/> Buscar</button><br/><br/>
 	<div class="form-group"><div class="input-group">
 	<div class="input-group-addon">Nombres</div>
@@ -23,19 +23,6 @@
 	<div class="input-group-addon">Apellidos</div>
 	<input type="text" class="clientInfo form-control" name="lastName" placeholder="Apellidos" /> 
 	</div></div><br/>
-
-	<div class="form-group">
-	    <div class="input-group">
-	      <div class="input-group-addon">#Teléfono</div>
-	      <input type="text" class="clientInfo form-control" name="phoneNumber" placeholder="Telefono/celular" /> 
-	    </div>
-  	</div>	
-	<div class="form-group">
-	    <div class="input-group">
-	      <div class="input-group-addon">@E-mail</div>
-			<input type="email" class="clientInfo form-control" name="email" placeholder="e-mail" />
-	    </div>
-  	</div><br/>
   	<hr>		
 	
 </form>
@@ -83,7 +70,9 @@
 		<div class="input-group-addon">Total: S/.</div>
 		<input class="form-control" id="total" type="text" name="fullPrice" disabled value="0.00">
 	</div></div>
+
 <!--   *******   Ticket  ******   -->
+
 <div id="ticket" hidden >
 	<style type="text/css">
 	#ticket {

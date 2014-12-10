@@ -1,0 +1,27 @@
+<style type="text/css">
+.imcImg{
+   	width: 101%
+}
+</style>
+
+
+<h1>Resultados de <%= name %> </h1>
+<div class="divForms">
+<p>Peso: <%= weight %> Kg.</p>
+<p>Altura: <%= height %> m.</p>
+<p><strong>IMC: <%= imc %></strong></p>
+<p>Grasa corporal: <%= fat %>%</p>
+<p>Resultado: </p>
+<a href="/sale/new/<%= dni %>" class="btn btn-danger">Unir a <%= name %> con nosotros</a>
+<figure  >
+	<img src="/images/imc.png" alt="" class="imcImg" />
+</figure>
+
+</div>
+
+<script>
+(document).ready(OnReady);
+	function OnReady(){
+	$("#mysearch").focus();
+}
+</script>

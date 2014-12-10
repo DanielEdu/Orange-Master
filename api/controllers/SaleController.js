@@ -1,13 +1,17 @@
-/**
+/*****************************************************************
  * SaleController
  *
  * @description :: Server-side logic for managing sales
  * @help        :: See http://links.sailsjs.org/docs/controllers
- */
+ *
+ *****************************************************************/
 
 module.exports = {
 
 'new': function (req, res, next) {
+	if(req.param('id')){
+		console.log("true")
+	}
 
 	Service.find({sort: 'id_service'},function (err, servicios){
 		if (err) return next(err);
@@ -17,12 +21,23 @@ module.exports = {
 			if(serv.state)
 				serviceCheck.push(serv);
 		});
-		//----------------------------------------------
-		res.view({
-			servicios: serviceCheck
-		});
-	});
-	
+		//-------------si el parametro existe----------------
+		if(req.param('id')){
+			res.view({
+				servicios: serviceCheck,
+				dni: req.param('id'),
+				flag: 1
+			});
+		}
+		if(!req.param('id')){
+			res.view({
+				servicios: serviceCheck,
+				dni: '',
+				flag: 0
+			});
+		}
+		
+	});	
 },
 
 'registration': function (req, res, next){
@@ -33,6 +48,18 @@ module.exports = {
 			districts: districts,
 			dni:dni
 		});
+	});
+},
+
+'imcsale': function (req, res, next){
+	var imc  = (req.param('weight')/Math.pow(req.param('height'), 2)).toFixed(2) 
+	res.view({
+		dni: 	req.param('dni'),
+		name: 	req.param('name'),
+		weight: req.param('weight'),
+		height: req.param('height'),
+		fat: 	req.param('fat'),
+		imc: 	imc
 	});
 },
 
