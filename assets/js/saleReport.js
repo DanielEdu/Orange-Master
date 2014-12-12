@@ -15,7 +15,8 @@ function OnReady(){
 	    	data: {
 	    		startDate: 	$('#inicio').val(),
 				endDate: 	$('#fin').val(),
-				id_service: $('#idService').val()
+				id_service: $('#idService').val(),
+				saler: 		$(".saler").val(),
 	    	},
 	    	success: function (resp) {
 	    		for (var i = 0; i < resp.length; i++) {

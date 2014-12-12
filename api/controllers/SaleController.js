@@ -11,7 +11,7 @@ module.exports = {
 'new': function (req, res, next) {
 	if(req.param('id')){
 		console.log("true")
-	}
+	} 
 
 	Service.find({sort: 'id_service'},function (err, servicios){
 		if (err) return next(err);

@@ -14,6 +14,15 @@
 	<label for="">Hasta: </label>
 	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>"><br><br>
     
+<label>Vendedor: </label>
+    <select class="saler cambio form-control" name="saler" >
+            <% _.each(users, function(user){ %>
+            <option value="<%= user.id_user %>"> 
+                <%= user.firstName+' '+user.lastName %>
+            </option>
+            <%})%>
+    </select>
+
 	<button id="send" class="btn btn-success"> Filtrar </button> 
 	
 </form>
