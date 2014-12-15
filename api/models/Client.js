@@ -55,6 +55,38 @@ module.exports = {
             collection: 'Sale',
             via: 'id_client'
         },
+        question1: {
+			type: 'text',
+			defaultsTo: ''
+		},
+		question2: {
+			type: 'text',
+			defaultsTo: ''
+		},
+		question3: {
+			type: 'text',
+			defaultsTo: ''
+		},
+		question4: {
+			type: 'text',
+			defaultsTo: ''
+		},
+		question5: {
+			type: 'text',
+			defaultsTo: ''
+		},
+		question6: {
+			type: 'text',
+			defaultsTo: ''
+		},
+		question7: {
+			type: 'text',
+			defaultsTo: ''
+		},
+        observations: {
+			type: 'text',
+			defaultsTo: ''
+		},
         clientDetail:{
             collection: 'ClientDetail',
             via: 'id_client'
@@ -63,10 +95,6 @@ module.exports = {
             collection: 'Workout',
             via: 'id_client'
         },
-        observations: {
-			type: 'text',
-			defaultsTo: ''
-		},
 
   }
 };

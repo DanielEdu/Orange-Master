@@ -10,19 +10,22 @@
 module.exports = {
 	'new': function (req, res, next) {
 		User.find({admin: ['user', 'admin']}, function (err, users) {
-			if (err) return next(err);
-			//Obtener la fecha del istema y darle formato --------
-			var systemDate = new Date();
-			var systemDateFormat = systemDate.getFullYear()+'-'+(systemDate.getMonth()+1)+'-'+(systemDate.getDate()+1);
-			var systemDateFormatRest = systemDate.getFullYear()+'-'+systemDate.getMonth()+'-'+systemDate.getDate();
-			//----------------------------------------------------
-			Service.find(function (err, servicios){
-				if (err) return next(err);		
-				//console.log(systemDateFormat)
-				res.view({
-					systemDateFormat: 		systemDateFormat,
-					systemDateFormatRest: 	systemDateFormatRest,
-					users: 					users,
+			Client.find(function (err, clients) {
+				if (err) return next(err);
+				//Obtener la fecha del istema y darle formato --------
+				var systemDate = new Date();
+				var systemDateFormat = systemDate.getFullYear()+'-'+(systemDate.getMonth()+1)+'-'+(systemDate.getDate()+1);
+				var systemDateFormatRest = systemDate.getFullYear()+'-'+systemDate.getMonth()+'-'+systemDate.getDate();
+				//----------------------------------------------------
+				Service.find(function (err, servicios){
+					if (err) return next(err);		
+					//console.log(systemDateFormat)
+					res.view({
+						systemDateFormat: 		systemDateFormat,
+						systemDateFormatRest: 	systemDateFormatRest,
+						users: 					users,
+						clients:   				clients,
+					});
 				});
 			});
 		});
@@ -50,15 +53,16 @@ module.exports = {
 			if(err) console.log('Error:' + err);
 			console.log(req.params.all());
 			console.log('==============================')
-			console.log(sale);
-			console.log('==============================')
 			var resp = []
 			_.each(sale, function(s){
 
-				if(req.param('saler') && sale.id_user==1){
-					resp.push(sale)
+				if(req.param('saler') && s.id_user==req.param('saler') && !req.param('client')){
+					resp.push(s)
 				}
-
+				if(req.param('client') && s.id_client==req.param('client') && !req.param('user')){
+					resp.push(s)
+				}
+ 
 			});
 			console.log(resp)
 

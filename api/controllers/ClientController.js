@@ -1,15 +1,15 @@
-/**
+/****
  * ClientController
  *
  * @description :: Server-side logic for managing Clients
  * @help        :: See http://links.sailsjs.org/docs/controllers
- */ 
- function parsingDate(data){ 
+ ****/ 
 
+ function parsingDate(data){ 
+ 	
 	_.each(data, function(d){
 		d.createdAt = (d.createdAt).toISOString().replace(/T/, ' Hora: ').replace(/\..+/, '');
 	});
-
 	return data
 }
 
@@ -72,15 +72,22 @@ module.exports = {
     create: function (req, res, next) {
 
 	    var clientObj = {
-	      documentNumber: req.param('documentNumber'),
-	      firstName:      req.param('firstName'),
-	      lastName:       req.param('lastName'),
-	      phoneNumber:    req.param('phoneNumber'),
-	      email:    	  req.param('email'),
-	      address: 		  req.param('address'),
-	      district: 	  req.param('district'),
-	      sex: 	  		  req.param('sex')
-		}    
+		    documentNumber: req.param('documentNumber'),
+		    firstName:      req.param('firstName'),
+		    lastName:       req.param('lastName'),
+		    phoneNumber:    req.param('phoneNumber'),
+		    email:    	  	req.param('email'),
+		    address: 		req.param('address'),
+		    district: 	  	req.param('district'),
+		    sex: 	  		req.param('sex'),
+		    question1: 		req.param('question1'),
+	      	question2: 		req.param('question2'),
+	      	question3: 		req.param('question3'),
+	      	question4: 		req.param('question4'),
+	      	question5: 		req.param('question5'),
+	      	question6: 		req.param('question6'),
+	      	question7: 		req.param('question7'),
+		}     
 
 	    Client.create(clientObj, function (err, client){
 		    if(err){
@@ -93,7 +100,8 @@ module.exports = {
 			    	id_client: 		client.id_client,
 			      	weight: 		req.param('weight'),
 			      	height:    		req.param('height'),
-			      	fatPercentage: 	req.param('fatPercentage'),	    		
+			      	fatPercentage: 	req.param('fatPercentage'),
+			      		    		
 	    		}
 
 	    		ClientDetail.create(clientDetail, function (err, clientDetail) {

@@ -14,21 +14,31 @@
 	<label for="">Hasta: </label>
 	<input type="date" id="fin" name="startDate" step="1" min="2013-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>"><br><br>
     
-<label>Vendedor: </label>
+    <label>Vendedor: </label>
     <select class="saler cambio form-control" name="saler" >
-            <% _.each(users, function(user){ %>
+        <option value="false"></option>
+        <% _.each(users, function(user){ %>
             <option value="<%= user.id_user %>"> 
-                <%= user.firstName+' '+user.lastName %>
+            <%= user.firstName+' '+user.lastName %>
             </option>
-            <%})%>
-    </select>
+        <%})%>
+    </select><br><br>
+
+    <label>Cliente: </label>
+    <select class="client cambio form-control" name="saler" >
+        <option value="false"></option>
+        <% _.each(clients, function(client){ %>
+            <option value="<%= client.id_client %>"> 
+            <%= client.firstName+' '+client.lastName %>
+            </option>
+        <%})%>
+    </select><br><br>
 
 	<button id="send" class="btn btn-success"> Filtrar </button> 
-	
 </form>
+
 </div>
 <br>
-
 <br>
 <div class="tableContainer">
 <hr>
@@ -58,8 +68,7 @@
     </tfoot>
 </table>
 <a download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'advData', 'Sheet Name Here');"><img src="/images/excel.png" height="42" width="42"> Exportar a Excel</a>
-</div>
-        <br/>
+</div><br/>
 </div>
 
 <script src="/js/saleReport.js"></script>
