@@ -31,6 +31,7 @@
     "sails": "~0.10.5",
     "sails-disk": "~0.10.0",
     "sails-postgresql": "^0.10.9",
+    "skipper": "^0.5.3",
     "underscore": "^1.7.0"
   },
   "scripts": {
