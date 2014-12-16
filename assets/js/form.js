@@ -2,9 +2,11 @@ var cMsgSuccess = 1; // codigo de exito
 var roundUp = 2;	//variable de redondeo de decimales
 var bUser = false;   // true si el usuario existe, false si no y se creara uno nuevo
 
-	$('#mensaje').hide();
+$('#mensaje').hide();
+
 $(document).ready(OnReady);
 function OnReady(){
+	
 	$('#example').DataTable();
 
 	//precio del primer producto que aparece en la lista
@@ -123,6 +125,7 @@ function OnReady(){
 		total = total + (precioUnit * cant);
 		$('#total').val(total.toFixed(roundUp));
 		$("#idService").focus();
+		$('.saveSale').attr("disabled", false);      // se activa el boton de guardar e imprimir
 
 
 	});
@@ -134,6 +137,8 @@ function OnReady(){
 		total -= price;
 		$('#total').val(total.toFixed(roundUp));
 		$(this).parent().parent().remove(); 
+		if($("#total").val()===0.00)  			// si no hay productos o servicios en la tabla, se desabilita el boton
+			$('.saveSale').attr("disabled", true);
 	});
 
 	//-----------------------------------------------------

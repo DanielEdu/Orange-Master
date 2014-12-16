@@ -4,7 +4,7 @@
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
-
+ 
 
 module.exports = {
 	schema: true,
@@ -50,10 +50,6 @@ module.exports = {
   			defaultsTo: 'user',
   			columnName: 'userRole'
   		},
-  		/*admin: {
-  			type: 'boolean',
-  			defaultsTo: false
-    	},*/
     	sales:{
             collection: 'Sale',
             via: 'id_user'

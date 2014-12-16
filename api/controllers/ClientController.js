@@ -56,15 +56,15 @@ module.exports = {
 	'edit': function (req, res, next) {
 		Client.findOne(req.param('id'), function (err, client){
 			District.find(function (err, distritos) {
-	    	District.findOne({ id_district: client.district }, function (err, district){
-			    if (err) return next(err);
-			      // if (!err) return next();
-			    res.view({
-			      	district: district.districtName,
-			      	distritos: distritos,
-			        client: client
-			    });
-			});
+		    	District.findOne({ id_district: client.district }, function (err, district){
+				    if (err) return next(err);
+				      // if (!err) return next();
+				    res.view({
+				      	district: district.districtName,
+				      	distritos: distritos,
+				        client: client
+				    });
+				});
 			});
 		});
 	},
@@ -94,27 +94,28 @@ module.exports = {
 		        console.log(err);
 		        return res.redirect('client/new');
 		    }
-		    //si el cliente se crea desde la venta 
-			if(req.param('flag')==='2'){
-			    var clientDetail = {
-			    	id_client: 		client.id_client,
-			      	weight: 		req.param('weight'),
-			      	height:    		req.param('height'),
-			      	fatPercentage: 	req.param('fatPercentage'),
-			      		    		
-	    		}
+		    
+			var clientDetail = {
+		    	id_client: 		client.id_client,
+		      	weight: 		req.param('weight'),
+		      	height:    		req.param('height'),
+		      	fatPercentage: 	req.param('fatPercentage'),
+		      		    		
+    		}
 
-	    		ClientDetail.create(clientDetail, function (err, clientDetail) {
-	    		 	if(err){
-				        console.log(err);
-				        return res.redirect('/sale/new/');
-				    }
-				    console.log("Detalles creados")
-				    return res.redirect('/sale/imcsale/?dni='+client.documentNumber+'&name='+client.firstName+'&weight='+clientDetail.weight+'&height='+clientDetail.height+'&fat='+clientDetail.fatPercentage);
-	    		});
-		    }
+    		ClientDetail.create(clientDetail, function (err, clientDetail) {
+    		 	if(err){
+			        console.log(err);
+			        return res.redirect('/sale/new/');
+			    }
+			    console.log("Detalles creados")
+			    if(req.param('flag')==='2'){
+			    	return res.redirect('/sale/imcsale/?dni='+client.documentNumber+'&name='+client.firstName+'&weight='+clientDetail.weight+'&height='+clientDetail.height+'&fat='+clientDetail.fatPercentage);
+    			}
+    		});
+		    
 	      	console.log("Cliente creado OK!");
-	      	if(req.param('flag')==='1')
+	      	if(req.param('flag')==='1')					//si el cliente se crea desde la venta 
 	      		res.redirect('/client/show/'+client.id_client);
 	    });
 	},
@@ -205,20 +206,6 @@ module.exports = {
 			res.send("vacio")
 		}
 
-	    
-		 /* if(!client){
-		  	resJson.resp = "El Cliente no existe";
-	    	resJson.cod = 0;
-	    	res.send(resJson);
-	    	 }
-		  else {
-	    		console.log("peticion de DNI OK");
-	    		resJson.dat = client;
-	    		resJson.resp = "Cliente encontrado!!"
-	    		resJson.cod = 1;
-	    		res.send(resJson);
-	    	}*/
-	   
   	}
 
 

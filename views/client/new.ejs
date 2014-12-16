@@ -1,12 +1,12 @@
 <div class="container">
-<h1>CREAR CLIENTE</h1> 
+<h1>REGISTRAR CLIENTE</h1> 
 <div class="divForms">
 	<form  action="/client/create" method="POST" >
 		<input type="text" name="flag" value="1" hidden /> 
 		<table>
-		<tr>
+		<tr> 
 			<td class="labeltd"><label>DNI: </label></td>
-			<td><input type="text" name="documentNumber" class="form-control" placeholder="Ingresar DNI " required/> </td>
+			<td><input type="text" name="documentNumber" class="documentNumber form-control" placeholder="Ingresar DNI " required/> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Nombres: </label></td>
@@ -48,57 +48,75 @@
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Peso: </label>	</td>	
-			<td><input name="weight" class="form-control" placeholder="Ingresar el Peso" /> </td>
+			<td><input name="weight" class="form-control" placeholder="Ingresar el Peso" required/> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Altura: </label>	</td>	
-			<td><input name="height" class="form-control" placeholder="Ingresar la Altura" /> </td>
+			<td><input name="height" class="form-control" placeholder="Ingresar la Altura" required/> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>% de Grasa: </label>	</td>	
 			<td><input name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal" /> </td>
 		</tr>
+		</table>
+		<br><br>
+		<table>
 		<tr>
-			<td class="labeltd"><label>¿Actualmente estas entrenando? </label>	</td>	
-			<td><select class="cambio form-control" name="question1" required>
+			<td class=""><label>¿Actualmente estas entrenando? </label>	</td>
+		</tr>
+		<tr>	
+			<td><select class="cambio form-control" name="question1" >
 					<option value="Si">Si</option>
 					<option value="No">No</option>
 				</select>
 			</td> 
 		</tr>
 		<tr>
-			<td class="labeltd"><label>¿Ya lo has tomado antes? ¿Como te fue? </label></td>
-			<td><input type="text" name="question2" class="form-control"/> </td>
+			<td class=""><label>¿Ya lo has tomado antes? ¿Como te fue? </label></td>
 		</tr>
 		<tr>
-			<td class="labeltd"><label>¿Cuánto compraste o promoción adquiriste? </label></td>
-			<td><input type="text" name="question3" class="form-control"/> </td>
-		<tr>
-		</tr>
-			<td class="labeltd"><label>¿Dónde lo compraste? </label></td>
-			<td><input type="text" name="question4" class="form-control"/> </td>
+			<td><input type="text" name="question2" class="form-control" required /> </td>
 		</tr>
 		<tr>
-			<td class="labeltd"><label>¿Dónde entrenas? </label></td>
-			<td><input type="text" name="question5" class="form-control"/> </td>
+			<td class=""><label>¿Cuánto compraste o promoción adquiriste? </label></td>
 		</tr>
 		<tr>
-			<td class="labeltd"><label>¿Cómo conociste nuestra tienda? </label></td>
-			<td><input type="text" name="question6" class="form-control"/> </td>
+			<td><input type="text" name="question3" class="form-control" required/> </td>
+		<tr>
+		</tr>
+			<td class=""><label>¿Dónde lo compraste? </label></td>
 		</tr>
 		<tr>
-			<td class="labeltd"><label>¿observaciones? </label></td>
-			<td><input type="text" name="question7" class="form-control"/> </td>
+			<td><input type="text" name="question4" class="form-control" required/> </td>
+		</tr>
 		<tr>
-		</table>
-		<input type="submit" class="btn btn-danger" value=" Crear "/> <br/>
+			<td class=""><label>¿Dónde entrenas? </label></td>
+		</tr>
+		<tr>
+			<td><input type="text" name="question5" class="form-control" required/> </td>
+		</tr>
+		<tr>
+			<td class=""><label>¿Cómo conociste nuestra tienda? </label></td>
+		</tr>
+		<tr>
+			<td><input type="text" name="question6" class="form-control" required/> </td>
+		</tr>
+		<tr>
+			<td class=""><label>Observaciones: </label></td>
+		</tr>
+		<tr>
+			<td><input type="text" name="question7" class="form-control" required/> </td>
+		<tr>
+		</table><br><br>
+		<input type="submit" class="btn btn-danger" value=" Registrar Cliente"/> <br/>
 	</form>
 </div>
 </div>
 
 <script>
-(document).ready(OnReady);
-	function OnReady(){
-	$("#mysearch").focus();
+$(document).ready(OnReady);
+function OnReady(){
+	$(".documentNumber").focus();
+
 }
 </script>

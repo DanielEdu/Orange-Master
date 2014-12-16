@@ -20,44 +20,6 @@
 	<a href="/client/edit/<%= client.id_client %>"><strong>Editar</strong></a>	
 </div>
 
-<% if (session.User.admin === 'admin') { %>
-<h2>Historial Plan de Entrenamiento</h2> 
-<table  class="display table table-borderd table-hover" >
-		<thead>
-		<tr>
-			<th>Fecha</th>
-			<th>Peso</th>
-			<th>Altura</th>
-			<th>IMC: </th>
-			<th>Rutina</th>
-			<th>Dieta</th>
-			<th>observaciones</th>
-			<th></th>
-		</tr>
-		</thead>
-
-		<tbody>
-		<% _.each(detail, function(dt){ %>
-		<tr>
-			<td><%= dt.createdAt %></td> 
-			<td><%= dt.weight %> Kg.</td>
-			<td><%= dt.height %> m.</td>
-			<td><%=(dt.weight/Math.pow(dt.height , 2)).toFixed(2) %></td>
-			<td><%= dt.workout %></td>
-			<td><%= dt.diet %></td>
-			<td><%= dt.observations %></td>
-			<td>
-				<form action="/clientdetail/destroy/?id=<%= dt.id_detail %>" method="POST"/>
-				<input type="hidden" name="_method" value="delete"/>
-				<input type="submit" class="btn btn-danger" value="Borrar">	
-				</form>
-			</td>
-		</tr>
-		<%})%>
-		</tbody>
-	</table>
-<hr>
-
 <h2>Historial de Compras</h2>
 
 	<table class="display table table-borderd table-hover">
@@ -67,6 +29,7 @@
 			<td>Vendedor</td>
 			<td>Monto</td>
 			<td>Fecha</td>
+			<td></td>
 		</tr>
 	</thead>
 	<% _.each(details, function(detail){ %>
@@ -75,11 +38,13 @@
 		<td><%= detail.sellerName %></td>
 		<td>S/. <%= detail.fullPrice %></td>
 		<td><%= detail.createdAt %></td>
+		<td><a href="/salereport/show/<%= detail.id_sale %>">ver</a></td>
 	</tr>
 	<%})%>
-	</table>
+	</table><br><br>
+	<br>
+	<br>
 
-<% } %>
 </div> 
 
 <script>

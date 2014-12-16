@@ -2,36 +2,64 @@
 <div class="container">
 <h1>EDITAR CLIENTE</h1>
 <div class="divForms">
-	
+	 
 
-<form action="/client/update/<%= client.id_client %>" method="POST">
-	<input type="text" name="cod" value="" hidden />
-	<label for="">DIN: </label>
-	<input type="text" class="form-control" name="documentNumber" value="<%= client.documentNumber %>" /> <br/>
-	<label for="">Nombres: </label>
-	<input type="text" class="form-control" name="firstName" value="<%= client.firstName %>" /> <br/>
-	<label for="">Apellidos: </label>
-	<input type="text" class="form-control" name="lastName" value="<%= client.lastName %>" /> <br/>
-	<label for="">Telefono: </label>
-	<input type="text" class="form-control" name="phoneNumber" value="<%= client.phoneNumber %>" /> <br/>
-	<label for="">E-mail: </label>
-	<input type="text" class="form-control" name="email" value="<%= client.email %>" /> <br/>
-	<label for="">Dirección: </label>
-	<input type="text" class="form-control" name="address" value="<%= client.address %>" /> <br/>
-	<label for="">Distrito: </label>
-	<select  id="district" class="cambio form-control" name="district" required>
-			<option value="<%= client.district %>"> <%= district %> </option>
-			<% _.each(distritos, function(distrito){ %>
+	<form action="/client/update/<%= client.id_client %>" method="POST">
+		<input type="text" name="cod" value="" hidden />
+		<table>
+		<tr>
+			<td class="labeltd"><label for="">DIN: </label></td>
+			<td><input type="text" class="documentNumber form-control" name="documentNumber" value="<%= client.documentNumber %>" required/></td>
+		</tr>
+		<tr>
+			<td class="labeltd"><label for="">Nombres: </label></td>
+			<td><input type="text" class="form-control" name="firstName" value="<%= client.firstName %>" required/></td>
+		</tr>
+		<tr>
+			<td class="labeltd"><label for="">Apellidos: </label></td>
+			<td><input type="text" class="form-control" name="lastName" value="<%= client.lastName %>" required/></td>
+		</tr>
+		<tr>
+			<td class="labeltd"><label for="">Telefono: </label></td>
+			<td><input type="text" class="form-control" name="phoneNumber" value="<%= client.phoneNumber %>" /> </td>
+		</tr>
+		<tr>
+			<td class="labeltd"><label for="">E-mail: </label></td>
+			<td><input type="text" class="form-control" name="email" value="<%= client.email %>" /></td>
+		</tr>
+		<tr>
+			<td class="labeltd"><label for="">Dirección: </label></td>
+			<td><input type="text" class="form-control" name="address" value="<%= client.address %>" /></td>
+		</tr>
+		<tr>
+			<td class="labeltd"><label for="">Distrito: </label></td>
+			<td><select  id="district" class="cambio form-control" name="district" required>
+					<option value="<%= client.district %>"> <%= district %> </option>
+					<% _.each(distritos, function(distrito){ %>
 
-			<option value="<%= distrito.id_district %>" > 
-				<%= distrito.districtName %>
-			</option>
-			
-			<%})%>
-    </select><br>
-     <label for="">Observaciones: </label>
-    <textarea name="observations" class="form-control" rows="10" cols="50" value="<%= client.serviceDescription %>" ></textarea> <br/>
-	<input type="submit" class="btn btn-success" value="Guardar"/>	
-</form>
+					<option value="<%= distrito.id_district %>" > 
+						<%= distrito.districtName %>
+					</option>
+					
+					<%})%>
+		    </select></td>
+		</tr>
+		<tr>
+		    <td class="labeltd"><label for="">Observaciones: </label></td>
+		    <td><textarea name="observations" class="form-control" rows="10" cols="50" value="<%= client.serviceDescription %>" ></textarea></td>
+		</tr>
+		</table>
+	    <br/>
+		<input type="submit" class="btn btn-danger" value="Guardar"/>	
+	</form>
 </div>
 </div>
+
+
+<script>
+$(document).ready(OnReady);
+function OnReady(){
+	$(".documentNumber").focus();
+
+}
+</script>
