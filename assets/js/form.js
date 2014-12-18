@@ -206,6 +206,7 @@ function OnReady(){
 	    		$('#tName').append(firstName+' '+lastName);
 	    		$('#tDni').append($('#mysearch').val());
 	    		$('#tPrice').append($('#total').val());
+	    		$('#ticketNro').append(resp);
 	    		//$('#print').on('click', function() {
 					var restorepage = document.body.innerHTML;
 					var printcontent = document.getElementById('ticket').innerHTML;
@@ -214,6 +215,7 @@ function OnReady(){
 					$("body").innerHTML = restorepage;
 				//})
 	    		console.log(resp);
+	    		console.log("***************")
 	    		alert("Venta registrada correctamente.")
 	    		window.location.replace("/sale/new/");
 	    	},

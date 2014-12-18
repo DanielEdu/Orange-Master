@@ -80,17 +80,29 @@
 			font-size: 0.7em;
 			text-align: center;
 			font-family: serif;
+			text-transform: capitalize;
+			text-decoration: none;
+		}
+
+		td {
+			padding: 0 0.5em;
+
+		}
+		th{
+			padding: 0 0.5em;
 		}
 
 	</style>
 
 	
 	<div class="divBody">
-		<h4>** ONE Fitness **</h4>
-		<p>R.U.C. 2323578963 Telefono 054-224455</p>
-		<p id="tName">Nombre: </p>
+		<h4>** ONE FITNESS **</h4>
+		<p>R.U.C. 2323578963, TELÉFONO 054-224455</p>
+		<p>FECHA: <%= systemDate %></p>
+		<p id="tName">NOMBRE: </p>
 		<p id="tDni">DIN: </p>
-		<p> ------------------------------------ </p>
+		<p id="ticketNro">TICKET: </p>
+		<p> -------------------------------------------------- </p>
 		<table id="tableSalePrint" >
 		    <thead>
 		        <tr>	     
@@ -102,8 +114,9 @@
 		    </thead>
 		    <tbody class="tableSalePrint"> </tbody>
 		</table>
-		<p> ---------------------------------- </p>
-		<p>Precio total: S/.</p>
+		<p id="tPrice" > Precio total: S/.</p>
+		<p> -------------------------------------------------- </p>
+		<p>Vendedor: <%= session.User.firstName %> <%= session.User.lastName %></p>
 	</div>
 </div>	
 <!--   *******  Fin del Ticket  ******   -->

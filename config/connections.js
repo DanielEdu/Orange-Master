@@ -80,7 +80,7 @@ module.exports.connections = {
     host: 'localhost',
   // user: 'postgres',
     //password: '$PHP=0',
-    user: 'daniel',
+    user: 'postgres',
     password: 'root',
     schema: true,
     port: 5432,

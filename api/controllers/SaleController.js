@@ -12,6 +12,8 @@ module.exports = {
 	if(req.param('id')){
 		console.log("true")
 	} 
+	
+	var systemDate = new Date();
 
 	Service.find({sort: 'id_service'},function (err, servicios){
 		if (err) return next(err);
@@ -21,17 +23,21 @@ module.exports = {
 			if(serv.state)
 				serviceCheck.push(serv);
 		});
+
+		var systemDateFormat = systemDate.getFullYear()+'/'+(systemDate.getMonth()+1)+'/'+(systemDate.getDate()+1)+"   "+systemDate.getHours()+":"+systemDate.getMinutes();
 		//-------------si el parametro existe----------------
 		if(req.param('id')){
 			res.view({
-				servicios: serviceCheck,
-				dni: req.param('id'),
+				systemDate: systemDateFormat,
+				servicios: 	serviceCheck,
+				dni: 		req.param('id'),
 				flag: 1
 			});
 		}
 		if(!req.param('id')){
 			res.view({
-				servicios: serviceCheck,
+				systemDate: systemDateFormat,
+				servicios: 	serviceCheck,
 				dni: '',
 				flag: 0
 			});
@@ -128,7 +134,7 @@ function createSale(saleObj, req, res ){
 			    		console.log(err);
 			    		return res.redirect('/sale/new');
 			    	}
-	    			return 'Venta ok!';
+	    			return "sale.id_sale";
 	    			
 	    		});
 	    	});
