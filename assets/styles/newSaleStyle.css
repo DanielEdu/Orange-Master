@@ -4,19 +4,3 @@
 #sPrice{
 	width: 6em;
 }
-
-#ticket{
-	font-size: 8px;
-
-}
-
-
-@media print {
-	#ticket {
-		background: red;
-	}
-	h4{
-		font-size: 0.5em;
-	}
-
-}

@@ -120,7 +120,8 @@ function OnReady(){
 		var button = "<button class='delete btn btn-danger btn-xs'>x</button>";
 		
 
-		$('tbody:first').append("<tr><td>"+button+"</td><td class='producto'>"+producto+"</td><td class='cantidad'>"+cant+"</td><td class='precio'>"+precioUnit+"</td><td class='endPrice'>"+precioTotal+"</td></tr>");
+		$('#tableSale tbody:first').append("<tr><td>"+button+"</td><td class='producto'>"+producto+"</td><td class='cantidad'>"+cant+"</td><td class='precio'>"+precioUnit+"</td><td class='endPrice'>"+precioTotal+"</td></tr>");
+		$('#tableSalePrint tbody:first').append("<tr><td>"+producto+"</td><td>"+cant+"</td><td>"+precioUnit+"</td><td>"+precioTotal+"</td></tr>");
 
 		total = total + (precioUnit * cant);
 		$('#total').val(total.toFixed(roundUp));

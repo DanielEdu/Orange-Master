@@ -1,0 +1,137 @@
+commit d7ac059f2d6db17fc4b9c5e0c6a1d42dbd33dbb5
+Author: Daniel Portugal <gx.pinwii@gmail.com>
+Date:   Tue Dec 16 15:12:07 2014 -0500
+
+    mm
+
+commit 99305331872845471045f480c63ecd927a9dba26
+Author: Daniel Portugal <gx.pinwii@gmail.com>
+Date:   Tue Dec 16 01:45:48 2014 -0500
+
+    crear usuario ok! se acomodo un poco la estructura de los formularios y focus y required
+
+commit 072c0145c3ba7faf85f4084877ed62bbd9b8f7fc
+Author: Daniel Portugal <gx.pinwii@gmail.com>
+Date:   Mon Dec 15 10:48:52 2014 -0500
+
+    se agrego preventa, preguntas, filtros
+
+commit 783e1b1e0c510c3abd7a14813887cab8936e700b
+Author: Daniel Portugal <gx.pinwii@gmail.com>
+Date:   Fri Dec 12 08:29:01 2014 -0500
+
+    intento de fintro de vendedor
+
+commit d8abc75e7e58fbf41ead91c767c23bf7e0f31de8
+Author: Daniel Portugal <gx.pinwii@gmail.com>
+Date:   Wed Dec 10 15:01:58 2014 -0500
+
+    preventa ok! faltaria guardar al vendedor. falta los filtros y poder descargar los archivos
+
+commit 7a093872d2467359f595293a6089a22c0268cf2e
+Author: Daniel Portugal <gx.pinwii@gmail.com>
+Date:   Wed Dec 10 05:38:35 2014 -0500
+
+    el pre registro guarda datos de cliente, fala detalless
+
+commit 096903a542b40ee906922ba0788dd982b5afc3b4
+Author: Daniel Portugal <gx.pinwii@gmail.com>
+Date:   Fri Dec 5 10:32:47 2014 -0500
+
+    se creo la vista del PreRegistro, se separo el entrenador del nutricionista. Falta hacer la preventa y venta, aumentar filtros y ver el tema de imprmir en pdf, excel e importar y exportar.
+
+commit 7db529da0a4ec556acd9dd831b10ab70f9f19ee2
+Author: Daniel Portugal <gx.pinwii@gmail.com>
+Date:   Fri Nov 28 19:17:13 2014 -0500
+
+    casi listo, falta imprimir ticket
+
+commit de1624980ffa66f345e91e1bf323c4c42167b08d
+Author: Daniel Portugal <gx.pinwii@gmail.com>
+Date:   Thu Nov 27 14:21:09 2014 -0500
+
+    se mejoro los permisos, pero falta. falta ordenar las dietas y rutinas, no nulls
+
+commit 691f47a56425509a7a2cf4a5c83832905ee13fa0
+Author: Daniel Portugal <gx.pinwii@gmail.com>
+Date:   Tue Nov 25 13:26:15 2014 -0500
+
+    falta que imprima el ticket y se malogro las observaciones de desabilitar cliente
+
+commit f7a6f4487899a5182909a263fbf805a7395c9d37
+Author: Daniel Portugal <gx.pinwii@gmail.com>
+Date:   Fri Nov 21 13:55:55 2014 -0500
+
+    Login finalizado, modulo nutricionista creado falta aprovacion, falta restringir los permisos, añadir filtros y optimizar
+
+commit d81d419e65e86ea8fb80f0ff652f648bdb81f957
+Author: DanielEdu <gx.pinwii@gmail.com>
+Date:   Mon Nov 17 13:06:06 2014 -0500
+
+    estilos al 70%, problemas con los @media de boostrap.
+
+commit 7d1115d71dca5f7906d270e954fa4e1a2cb68887
+Author: DanielEdu <gx.pinwii@gmail.com>
+Date:   Fri Nov 14 15:04:45 2014 -0500
+
+    falta el filtro deventas, y el search por nombre
+
+commit a6e0c1b03c32b65e4135a0698a550dac85cbee4c
+Author: DanielEdu <gx.pinwii@gmail.com>
+Date:   Fri Oct 31 11:54:36 2014 -0500
+
+    falta  tabla de ventas
+
+commit e703e8f1bde88d2badb1567cb278db22f25d1191
+Author: DanielEdu <gx.pinwii@gmail.com>
+Date:   Mon Oct 27 11:22:21 2014 -0500
+
+    problemas en obtener id del servicio en las ventas
+
+commit 4c97898aa83d6edf3c2d3ab7e77a2c61ed63e0d1
+Author: DanielEdu <gx.pinwii@gmail.com>
+Date:   Thu Oct 23 13:10:43 2014 -0500
+
+    enviar objs con ajax y pedir por post con un seach
+
+commit 67df59213699ff9440399a35a40ece3ae2083e89
+Author: DanielEdu <gx.pinwii@gmail.com>
+Date:   Tue Oct 21 12:08:39 2014 -0500
+
+    proceso de venta y detalles super incompleto
+
+commit c963c051563e9fffe1ea9b76ace9858657b3746a
+Author: DanielEdu <gx.pinwii@gmail.com>
+Date:   Thu Oct 16 13:06:59 2014 -0500
+
+    politicas de usuario y admin, falta el check para cambiar a un usuario a administrador.
+
+commit b2771dec9f87f4b8191afc03230951d6abaefed3
+Author: Daniel P <d.portugal@iasoftgroup.com>
+Date:   Wed Oct 15 14:38:12 2014 -0500
+
+    Final de los CRUD de los modelos maestros
+
+commit 48848c684c0e244e386d890b06855a057ef3bde4
+Author: Daniel P <d.portugal@iasoftgroup.com>
+Date:   Tue Oct 14 12:08:08 2014 -0500
+
+    creacion de maestros finalizada
+
+commit 4f84fa6bb68166e771455f9018e42d64cc0af746
+Author: Daniel P <d.portugal@iasoftgroup.com>
+Date:   Fri Oct 10 16:46:46 2014 -0500
+
+    se creo los controladores de los maestros y sus vistas de Create (new)
+
+commit d3ca9e4ea5d35b4d802dc4535e4c845e2961c0e6
+Author: Daniel P <d.portugal@iasoftgroup.com>
+Date:   Fri Oct 10 16:12:11 2014 -0500
+
+    se agrego el modelo de las tablas maestro
+
+commit 121f6e98b4674c7ac596c742518d38f7fd6c208f
+Author: Daniel P <d.portugal@iasoftgroup.com>
+Date:   Fri Oct 10 13:22:50 2014 -0500
+
+    Inicio de la OrangeAPP
