@@ -203,6 +203,8 @@ function OnReady(){
 	    	type: "POST",
 	    	data: data,
 	    	success: function (resp) {
+	    		console.log(resp);
+	    		console.log("***************")
 	    		$('#tName').append(firstName+' '+lastName);
 	    		$('#tDni').append($('#mysearch').val());
 	    		$('#tPrice').append($('#total').val());
@@ -214,8 +216,7 @@ function OnReady(){
 					window.print();
 					$("body").innerHTML = restorepage;
 				//})
-	    		console.log(resp);
-	    		console.log("***************")
+	    		
 	    		alert("Venta registrada correctamente.")
 	    		window.location.replace("/sale/new/");
 	    	},
