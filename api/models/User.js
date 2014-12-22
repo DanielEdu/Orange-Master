@@ -7,7 +7,7 @@
  
 
 module.exports = {
-	schema: true,
+	
 	tableName: 'mUsers',
 
 	attributes: {
@@ -42,7 +42,15 @@ module.exports = {
 			defaultsTo: true
 		},
 		encryptedPassword: {
-  			type: 'string'
+  			type: 'string',
+  			defaultsTo: '',
+  		},
+  		avatarUrl: {
+  			type: 'string',
+  			defaultsTo: '',
+  		},
+  		avatarFd: {
+  			type: 'string',
   		},
   		admin: {
   			type: 'string',
