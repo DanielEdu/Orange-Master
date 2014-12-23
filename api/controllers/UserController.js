@@ -13,7 +13,7 @@ module.exports = {
     },
 
     'index': function (req, res, next) {
-	  User.find(function (err, users) {
+	  User.find({ firstName: { '!': 'root'}}, function (err, users) {
 	    if (err) return next(err);
 	    	res.view({
 	      	users: users
@@ -123,7 +123,7 @@ module.exports = {
 
 	    //-----------------------------------------------------------------
 
-		User.update(req.param('id'), userObj, function (err){
+		User.update(req.param('id'), userObj, function (err){ 
 			
 			if(err){
 		        console.log(err);

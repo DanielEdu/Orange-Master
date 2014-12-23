@@ -124,6 +124,11 @@ module.exports = {
 	    Service.findOne({ serviceName: name }, function (err, service) {
 			if(err) console.log('Error:' + err);
 
+			if(!service){
+				res.send({
+					price: 0.00
+				});
+			}
 			else {
 				res.send({
 					price: service.servicePrice
