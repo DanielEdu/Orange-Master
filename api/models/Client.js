@@ -39,14 +39,18 @@ module.exports = {
 		},
 		email: {
 			type: 'string',
-			email: true
+			email: true,
 		},
 		address: {
-			type: 'string'
+			type: 'string',
 		},
 		district:{
-            model: 'District'
+            model: 'District',
         },
+        avatarFd: {
+  			type: 'string',
+  			defaultsTo: '',
+  		},
         state: {
 			type: 'boolean',
 			defaultsTo: true

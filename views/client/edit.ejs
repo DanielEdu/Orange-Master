@@ -4,8 +4,7 @@
 <div class="divForms">
 	 
 
-	<form action="/client/update/<%= client.id_client %>" method="POST">
-		<input type="text" name="cod" value="" hidden />
+	<form action="/client/update/<%= client.id_client %>" enctype="multipart/form-data" method="POST">
 		<table>
 		<tr>
 			<td class="labeltd"><label for="">DIN: </label></td>
@@ -50,6 +49,7 @@
 		</tr>
 		</table>
 	    <br/>
+    	<input type="file" name="avatar" ><br><br>
 		<input type="submit" class="btn btn-danger" value="Guardar"/>	
 	</form>
 </div>

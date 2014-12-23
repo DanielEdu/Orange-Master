@@ -33,20 +33,32 @@ module.exports = {
 	  });
 	},
 
+
+
 	'show': function (req, res, next) {
+
 	    Client.findOne(req.param('id'), function (err, client){
+
 	    	District.findOne({ id_district: client.district }, function (err, district){
 				ClientDetail.find({ where: { id_client: client.id_client }, sort: 'updatedAt DESC'}, function (err, detail) {   
 					Sale.find({id_client:client.id_client}, function (err, sale){
 					   	if (err) return next(err);
 				      	// if (!err) return next();
-				      	
-				    	res.view({
-					    	detail: parsingDate(detail),
-					      	district: district.districtName,
-					        client: client,
-					        details: parsingDate(sale)
-					    });
+				      	if (!district){
+				      		res.view({
+						    	detail: parsingDate(detail),
+						      	district: '',
+						        client: client,
+						        details: parsingDate(sale)
+					    	});
+				      	}else{
+				      		res.view({
+						    	detail: parsingDate(detail),
+						      	district: district.districtName,
+						        client: client,
+						        details: parsingDate(sale)
+					    	});
+				      	}
 				    });
 				});
 			});
@@ -59,11 +71,19 @@ module.exports = {
 		    	District.findOne({ id_district: client.district }, function (err, district){
 				    if (err) return next(err);
 				      // if (!err) return next();
-				    res.view({
-				      	district: district.districtName,
-				      	distritos: distritos,
-				        client: client
-				    });
+				    if(!district){
+				    	res.view({
+					      	district: '',
+					      	distritos: distritos,
+					        client: client
+				    	});
+				    }else{
+				    	res.view({
+					      	district: district.districtName,
+					      	distritos: distritos,
+					        client: client
+					    });
+				    }  
 				});
 			});
 		});
@@ -120,19 +140,30 @@ module.exports = {
 	    });
 	},
 
-	update: function (req, res, next) {
-		console.log(req.params.all())
+	update: function (req, res, next) {		
 
-		Client.update(req.param('id'), req.params.all(), function userUpdated (err){
-			if (err) {
-				return res.redirect('/client/edit/' + req.param('id'));
-			}
-			if(req.param('cod')==''){
-				res.redirect('/client/show/' + req.param('id'));				
-			}
-			if(req.param('cod')=='4' || req.param('cod')=='6'){
-				res.send("succsess cod: "+req.param('cod'));
-			}		
+		req.file('avatar').upload({maxBytes: 4000000},function whenDone(err, uploadedFiles) {
+			    
+			    if (err) return res.negotiate(err);	
+			    // Grab the first file and use it's `fd` (file descriptor)		    
+			    var avatarFd = uploadedFiles[0].fd;
+			    var params = req.params.all();
+
+			    if(!req.param('cod')) params.avatarFd = avatarFd;
+
+			Client.update(req.param('id'), params, function userUpdated (err){
+				console.log(avatarFd)
+				if (err) {
+					return res.redirect('/client/edit/' + req.param('id'));
+				}else{
+				    if(!req.param('cod')){
+						res.redirect('/client/show/' + req.param('id'));				
+					}
+					if(req.param('cod')=='4' || req.param('cod')=='6'){
+						res.send("succsess cod: "+req.param('cod'));
+					}	
+			    }
+			});				
 		});
 	},
 
@@ -201,13 +232,13 @@ module.exports = {
 					res.send(data);
 				}
 			});
-		}if (cadena==='')
+		}
+		if(cadena==='')
 		{
 			res.send("vacio")
 		}
 
   	}
-
 
 };
 

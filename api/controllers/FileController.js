@@ -21,14 +21,11 @@ module.exports = {
   },
 
   upload: function  (req, res) {
-    req.file('avatar').upload({maxBytes: 10000000
+    req.file('avatar').upload({maxBytes: 4000000
     },function whenDone(err, uploadedFiles) {
       if (err) {
         return res.negotiate(err);
       }
-
-      // If no files were uploaded, respond with an error.
-     
         // Generate a unique URL where the avatar can be downloaded.
         avatarUrl = require('util').format('%s/user/avatar/%s', sails.getBaseUrl(), req.session.User.id_user),
         // Grab the first file and use it's `fd` (file descriptor)
@@ -43,13 +40,7 @@ module.exports = {
         }).pipe(res);
 
       // Save the "fd" and the url where the avatar for a user can be accessed
-     /* User.update(req.session.User.id_user, file, function (err){   
-          if(err){
-            console.log('err: ' + err);
-        } 
-        
-        console.log("se gusrdo la imagen")
-      })*/
+  
     });
   },
 
@@ -65,28 +56,27 @@ avatar: function (req, res){
     id: 'string'
   });
 
-  User.findOne(req.param('id')).exec(function (err, user){
+  Client.findOne(req.param('id'), function (err, client){
+    console.log(client.avatarFd)
     if (err) return res.negotiate(err);
-    if (!user) return res.notFound();
+    if (!client) return res.notFound();
 
     // User has no avatar image uploaded.
     // (should have never have hit this endpoint and used the default image)
-    if (!user.avatarFd) {
-      return res.notFound();
-    }
-
     var SkipperDisk = require('skipper-disk');
-    var fileAdapter = SkipperDisk(/* optional opts */);
+    var fileAdapter = SkipperDisk( );
 
+    if (!client.avatarFd) {
+      client.avatarFd = "/home/daniel/Workspace/2014/Orange/OrangeApp/.tmp/uploads/1b1c58c3-d99e-4e3d-9db2-0bd4c4f7a251.jpg"
+    }   
     // Stream the file down
-    fileAdapter.read(user.avatarFd)
-    .on('error', function (err){
+    fileAdapter.read(client.avatarFd).on('error', function (err){
       return res.serverError(err);
-    })
-    .pipe(res);
-  });
-}
+    }).pipe(res);
 
+  });
+
+}
   
 
 };

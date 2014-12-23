@@ -49,9 +49,6 @@ module.exports = {
   			type: 'string',
   			defaultsTo: '',
   		},
-  		avatarFd: {
-  			type: 'string',
-  		},
   		admin: {
   			type: 'string',
   			enum: ['admin', 'user', 'trainer','nutritionist'],
