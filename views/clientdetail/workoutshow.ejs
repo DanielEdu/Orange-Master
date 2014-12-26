@@ -1,6 +1,9 @@
 <div class="container">
 <h1><strong>Plan de Seguimiento de:</strong>  <%= client.firstName %> <%= client.lastName %></h1>
 	<div class="divForms">
+	<figure >	
+		<img src="http://localhost:1337/file/avatar/<%= client.id_client %>" class="clientAvatar">
+	</figure>
 		<h4><strong>Peso: </strong> <%= detail[0].weight %> kg.</h4> 
 		<h4><strong>Altura: </strong> <%= detail[0].height %> m.</h4>
 		<h4><strong>IMC: </strong> <%= (detail[0].weight/Math.pow(detail[0].height , 2)).toFixed(2) %> <h4>

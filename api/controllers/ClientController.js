@@ -33,8 +33,6 @@ module.exports = {
 	  });
 	},
 
-
-
 	'show': function (req, res, next) {
 
 	    Client.findOne(req.param('id'), function (err, client){
@@ -148,6 +146,8 @@ module.exports = {
 			    // Grab the first file and use it's `fd` (file descriptor)		    
 			    var avatarFd = uploadedFiles[0].fd;
 			    var params = req.params.all();
+			    console.log(avatarFd);
+			    console.log(uploadedFiles);
 
 			    if(!req.param('cod')) params.avatarFd = avatarFd;
 

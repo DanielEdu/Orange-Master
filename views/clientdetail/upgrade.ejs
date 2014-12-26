@@ -7,37 +7,37 @@
 	<table>
 		<tr>
 		<td class="labeltd"><label>Peso: </label></td>
-		<td><input type="number" name="weight" class="form-control" placeholder="Peso en Kilogramos(Kg.)" value="<%= client.weight %>" /></td> 
+		<td><input type="number" min="0" step="any" name="weight" class="form-control" placeholder="Peso en Kilogramos(Kg.)" value="<%= client.weight %>" required /></td> 
 		</tr>
 		<tr>
 		<tr>
 		<td class="labeltd"><label>Altura: </label></td>
-		<td><input type="number" name="height" class="form-control" placeholder="Altura en Metros (m.)" value="<%= client.height %>" /></td>
+		<td><input type="number" min="0" step="any" name="height" class="form-control" placeholder="Altura en Metros (m.)" value="<%= client.height %>" required/></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>% de Grasa: </label></td>
-		<td><input type="number" name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal" value="<%= client.fatPercentage %>" /></td>
+		<td><input type="number" min="0" step="any" name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal" value="<%= client.fatPercentage %>" /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Brazo: </label></td>
-		<td><input type="number" name="arm" class="form-control" value="<%= client.arm
+		<td><input type="number" min="0" step="any" name="arm" class="form-control" value="<%= client.arm
 		 %>" placeholder="Medida de Brazos" /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Antebrazo: </label></td>
-		<td><input type="number" name="forearm" class="form-control" value="<%= client.forearm %>" placeholder="Medida de Antebrazos" /></td>
+		<td><input type="number" min="0" step="any" name="forearm" class="form-control" value="<%= client.forearm %>" placeholder="Medida de Antebrazos" /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Piernas: </label></td>
-		<td><input type="number" name="leg" class="form-control" value="<%= client.leg %>" placeholder="Medida de Piernas" /></td>
+		<td><input type="number" min="0" step="any" name="leg" class="form-control" value="<%= client.leg %>" placeholder="Medida de Piernas" /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Pantorrillas: </label></td>
-		<td><input type="number" name="calf" class="form-control" value="<%= client.calf %>" placeholder="Medida de Pantorrillas" /></td>
+		<td><input type="number" min="0" step="any" name="calf" class="form-control" value="<%= client.calf %>" placeholder="Medida de Pantorrillas" /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Cintura: </label></td>
-		<td><input type="number" name="waist" class="form-control" value="<%= client.waist %>"  placeholder="Medida de Cintura" /></td>
+		<td><input type="number" min="0" step="any" name="waist" class="form-control" value="<%= client.waist %>"  placeholder="Medida de Cintura" /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Observaciones: </label></td>

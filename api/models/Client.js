@@ -35,14 +35,17 @@ module.exports = {
 		},
 		phoneNumber: {
 			type: 'string',
+			defaultsTo: '',
 			size: 9
 		},
 		email: {
 			type: 'string',
+			defaultsTo: '',
 			email: true,
 		},
 		address: {
 			type: 'string',
+			defaultsTo: '',
 		},
 		district:{
             model: 'District',

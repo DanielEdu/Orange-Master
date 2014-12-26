@@ -21,7 +21,8 @@ function OnReady(){
 	$('#sCantidad').val("1");  // cantidad inicial de productos en 1
 	
 	if($('.preSale').val()==1){
-		console.log($('.preSale').val())
+		//console.log($('.preSale').val())
+
 		var dni = $('#mysearch').val();
 		$.ajax({
 	    	url: "/client/findByDni/",

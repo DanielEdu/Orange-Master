@@ -7,7 +7,7 @@
  
 
 module.exports = {
-	
+	schema: true,
 	tableName: 'mUsers',
 
 	attributes: {
