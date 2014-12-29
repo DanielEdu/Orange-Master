@@ -3,14 +3,14 @@
 	<div class="divForms">
 		<form action="/service/create" method="POST">
 			<input type="text" name="flag" hidden value="service"> <!-- indicador de que es un producto -->
-			<table>
+			<table> 
 			<tr> 	
 				<td class="labeltd"><label>Servicio:</label></td>
 				<td><input type="text" class="serviceName form-control" name="serviceName" placeholder="Ingresar Nombre del servicio" required /></td>
 			</tr>
 			<tr>
 				<td class="labeltd"><label>Precio:</label></td>
-				<td><input type="number" class="form-control" name="servicePrice" placeholder="Ingresar Precio del servicio" required/></td>
+				<td><input type="number" step="any" class="form-control" name="servicePrice" placeholder="Ingresar Precio del servicio" required/></td>
 			</tr>
 			<tr>
 				<td class="labeltd"><label>Descripción:</label></td>

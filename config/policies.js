@@ -26,17 +26,25 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-client: "sessionAuth",
-service: "sessionAuth",
-clientdetail: "sessionAuth",
-expense: "sessionAuth",
-report: "sessionAuth",
-sale: "sessionAuth",
-salereport: "sessionAuth",
+  client:{
+    index: "admin",
+    new: ["admin","flash"],
+    '*': "sessionAuth",
+  }, 
+  sale:{
+    new: ["admin","user"],
+    registration: ["admin","user","flash"],
+    '*': "sessionAuth",
+  }, 
+  service: "admin",
+  clientdetail: "sessionAuth",
+  expense: "sessionAuth",
+  report: "sessionAuth",
+  salereport: "sessionAuth",
  
 
-
  '*': "flash",
+
 
 
   user: {

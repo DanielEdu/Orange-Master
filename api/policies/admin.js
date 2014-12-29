@@ -7,7 +7,7 @@ module.exports = function (req, res, ok) {
 
   // User is not allowed
   else {
-  	var requireAdminError = {message: 'ACCESO DENEGADO! \n  tienes que ser administrador.'}
+  	var requireAdminError = {err: 'ACCESO DENEGADO! \n  tienes que ser administrador.'}
 		req.session.flash = {
 			err: requireAdminError
 		}

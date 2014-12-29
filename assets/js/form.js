@@ -209,7 +209,7 @@ function OnReady(){
 	    		$('#tName').append(firstName+' '+lastName);
 	    		$('#tDni').append($('#mysearch').val());
 	    		$('#tPrice').append($('#total').val());
-	    		$('#ticketNro').append(resp);
+	    		$('#ticketNro').append(resp.resp);
 	    		//$('#print').on('click', function() {
 					var restorepage = document.body.innerHTML;
 					var printcontent = document.getElementById('ticket').innerHTML;
@@ -224,6 +224,8 @@ function OnReady(){
 	    	error: function (jqXHR, estado, error) {
 	    		console.log(estado);
 	    		console.log(error);
+	    		alert("Error.");
+	    		window.location.replace("/sale/new/");
 	    	},
 	    	complete: function (jqXHR, estado) {
 	    		console.log(estado);

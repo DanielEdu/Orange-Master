@@ -56,17 +56,30 @@ module.exports = {
 		    saleSerialized: req.param('saleSerialized'),
 		    admin: 			req.param('admin')
 	    }
- 
-	    User.create(userObj, function (err, user){
-	      if(err){
-	        console.log(err);
-	        req.session.flash = {
-          		err: err
-        	}
-	        return res.redirect('/user/new');
-	      } 
-	      res.redirect('/user/show/'+user.id_user);
-	    });
+ 	
+	 	User.find({ userId: req.param('userId')}, function (err, user){
+		    if(user) {
+		    	req.session.flash = {
+	          		err: {
+	          			err:"El ID "+req.param('userId')+" ya esta en uso.",
+	          		}
+	        	}
+	        	console.log("El usuario ya existe")
+	        	return res.redirect('/user/new');
+		    }
+		    if(!user){
+			    User.create(userObj, function (err, user){
+			      if(err){
+			        console.log(err);
+			        req.session.flash = {
+		          		err: err
+		        	}
+			        return res.redirect('/user/new');
+			      } 
+			      res.redirect('/user/show/'+user.id_user);
+			    });   	
+		    }
+		});
 	},
 
 	update: function (req, res, next) {		

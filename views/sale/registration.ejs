@@ -1,27 +1,35 @@
 <h1>REGISTRAR CLIENTE</h1>
+
 <div class="divForms">
-	<form  action="/client/create" method="POST" >
+<% if(flash && flash.err) { %>
+		<ul class="alert alert-danger">
+	<% Object.keys(flash.err).forEach(function(error) { %>
+		<li><%- JSON.stringify(flash.err[error]) %></li>
+	<% }) %>
+	</ul>
+	<% } %>
+	<form  action="/client/create" id="clientNewSale" method="POST" >
 		<input type="text" name="flag" value="2" hidden /> 
 		<table>
 		<tr>
 			<td class="labeltd"><label>DNI: </label></td>
-			<td><input type="number" min="0" name="documentNumber" class="form-control" value="<%= dni%>" placeholder="Ingresar DNI " required/> </td>
+			<td><input type="number" id="documentNumber" name="documentNumber" class="form-control" value="<%= dni%>" placeholder="Ingresar DNI " required/> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Nombres: </label></td>
-			<td><input type="text" name="firstName" class="form-control" placeholder="Ingresar Nombres" required/> </td>
+			<td><input type="text" id="firstName" name="firstName" class="form-control" placeholder="Ingresar Nombres" required/> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Apellidos: </label></td>
-			<td><input type="text" name="lastName" class="form-control" placeholder="Ingresar Apellidos" required/></td>
+			<td><input type="text" id="lastName" name="lastName" class="form-control" placeholder="Ingresar Apellidos" required/></td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Teléfono: </label></td>
-			<td><input type="number" min="0" name="phoneNumber" class="form-control" placeholder="Telefono/celular" /></td>
+			<td><input type="number" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Telefono/celular" /></td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>E-mail: </label>	</td>	
-			<td><input type="email" name="email" class="form-control" placeholder="Ingresar E-mail" /> 
+			<td><input type="email" id="email" name="email" class="form-control" placeholder="Ingresar E-mail" /> 
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Direccón: </label></td>
@@ -47,15 +55,15 @@
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Peso: </label>	</td>	
-			<td><input type="number" min="0" step="any" name="weight" class="form-control" placeholder="Ingresar el Peso" required /> </td>
+			<td><input type="number" id="weight" step="any" name="weight" class="form-control" placeholder="Ingresar el Peso" required /> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Altura: </label>	</td>	
-			<td><input type="number" name="height" class="form-control" placeholder="Ingresar la Altura" required /> </td>
+			<td><input type="number" id="height" name="height" class="form-control" placeholder="Ingresar la Altura" required /> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>% de Grasa: </label>	</td>	
-			<td><input type="number" name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal"  /> </td>
+			<td><input type="number" id="fatPercentage" name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal"  /> </td>
 		</tr>
 		</table>
 <hr>
@@ -117,8 +125,74 @@
 <!-- //////////////  scripts //////////// -->
 
 <script>
-(document).ready(OnReady);
+$(document).ready(OnReady);
 	function OnReady(){
-	$("#mysearch").focus();
+	$("#firstName").focus();
+
+	$("#clientNewSale").validate({
+		rules:{
+			firstName:"required",
+			lastName:"required",
+			documentNumber:{
+				required: 	true,
+				number: 	true,
+				minlength: 	8,
+				maxlength: 	8,
+			},
+			email:{
+				email: true,
+			},
+			phoneNumber:{
+				number: 	true,
+				minlength: 	6,
+				maxlength: 	9,
+			},
+			weight:{
+				number: true,
+				min: 	1,
+			},
+			height:{
+				number: true,
+				min: 	1,
+				max: 	2.99,
+			},
+			fatPercentage:{
+				number: true,
+				min: 	1,
+				max: 	100,
+			},
+			
+		},
+		messages: {
+			
+			email: 		"Por favor ingrese un e-mail valido ",
+			documentNumber: {
+				required: 	"Debe ingresar el numero de DNI.",
+				number: 	"El DNI debe ser numerico de 8 digitos.",
+				minlength: 	"El DNI debe ser de 8 digitos",
+				maxlength: 	"El DNI debe ser de 8 digitos",
+			},
+			phoneNumber: {
+				number: 	"El Nro. telefonico debe ser numerico.",
+				minlength: 	"No puede ser menor a 6 digitos",
+				maxlength: 	"No puede ser mayot a 8 digitos",
+			},
+			weight:{
+				number: "Debe ser un valor numerico en Kilogramos",
+				min:  	"No puede ser Negativo.",
+			},
+			height:{
+				number: "Debe ser un valor numerico en Metros",
+				min: 	"No puede ser Negativo.",
+				max: 	"Ingrese una altura en Metros(0.00 a 2.99 m.)"
+			},
+			fatPercentage:{
+				number: 	"Debe ser numerico del 0 al 100",
+				min: 	"No puede ser Negativo.",
+				max: "No puede ser mas del 100%",
+			},
+
+		}
+	});
 }
 </script>

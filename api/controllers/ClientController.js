@@ -106,36 +106,58 @@ module.exports = {
 	      	question6: 		req.param('question6'),
 	      	question7: 		req.param('question7'),
 		}     
+		Client.findOne({ documentNumber: req.param('documentNumber')}, function (err, client){
+			console.log(client)
+			if(client){
+				req.session.flash = {
+	          		err: {
+	          			err:"El DNI "+req.param('documentNumber')+" ya esta registrado.",
+	          		}
+	        	}
+	        	console.log("El usuario ya existe")
+	        	if(req.param('flag')==='2'){
+	        		return res.redirect('sale/registration/');	        		
+	        	}else{
+	        		return res.redirect('client/new/');
+	        	}
+			}
+			if(!client){
+			    Client.create(clientObj, function (err, client){
+				    if(err){
+				        console.log(err);
+				        if(req.param('flag')==='1'){
+				        	return res.redirect('client/new/');
+				        }
+				        if(req.param('flag')==='2'){
+				        	return res.redirect('sale/registration/'+req.param('documentNumber'));
+				        }
+				    }
+				    
+					var clientDetail = {
+				    	id_client: 		client.id_client,
+				      	weight: 		req.param('weight'),
+				      	height:    		req.param('height'),
+				      	fatPercentage: 	req.param('fatPercentage'),				     		    		
+		    		}
 
-	    Client.create(clientObj, function (err, client){
-		    if(err){
-		        console.log(err);
-		        return res.redirect('client/new');
-		    }
-		    
-			var clientDetail = {
-		    	id_client: 		client.id_client,
-		      	weight: 		req.param('weight'),
-		      	height:    		req.param('height'),
-		      	fatPercentage: 	req.param('fatPercentage'),
-		      		    		
-    		}
+		    		ClientDetail.create(clientDetail, function (err, clientDetail) {
+		    		 	if(err){
+					        console.log(err);
+					        return res.redirect('/sale/new/');
+					    }
+					    console.log("Detalles creados")
+					    if(req.param('flag')==='2'){
+					    	return res.redirect('/sale/imcsale/?dni='+client.documentNumber+'&name='+client.firstName+'&weight='+clientDetail.weight+'&height='+clientDetail.height+'&fat='+clientDetail.fatPercentage);
+		    			}
+		    		});
+				    
+			      	console.log("Cliente creado OK!");
+			      	if(req.param('flag')==='1')					//si el cliente se crea desde la venta 
+			      		res.redirect('/client/show/'+client.id_client);
+			    });	
+			}
 
-    		ClientDetail.create(clientDetail, function (err, clientDetail) {
-    		 	if(err){
-			        console.log(err);
-			        return res.redirect('/sale/new/');
-			    }
-			    console.log("Detalles creados")
-			    if(req.param('flag')==='2'){
-			    	return res.redirect('/sale/imcsale/?dni='+client.documentNumber+'&name='+client.firstName+'&weight='+clientDetail.weight+'&height='+clientDetail.height+'&fat='+clientDetail.fatPercentage);
-    			}
-    		});
-		    
-	      	console.log("Cliente creado OK!");
-	      	if(req.param('flag')==='1')					//si el cliente se crea desde la venta 
-	      		res.redirect('/client/show/'+client.id_client);
-	    });
+		});
 	},
 
 	update: function (req, res, next) {		

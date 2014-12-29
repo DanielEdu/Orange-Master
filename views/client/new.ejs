@@ -1,4 +1,11 @@
 <div class="container">
+	<% if(flash && flash.err) { %>
+		<ul class="alert alert-danger">
+	<% Object.keys(flash.err).forEach(function(error) { %>
+		<li><%- JSON.stringify(flash.err[error]) %></li>
+	<% }) %>
+	</ul>
+	<% } %>
 <h1>REGISTRAR CLIENTE</h1> 
 <div class="divForms">
 	<form  action="/client/create" id="clientNew" method="POST" >
@@ -52,11 +59,11 @@
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Altura: </label>	</td>	
-			<td><input type="number" min="0" step="any" name="height" class="form-control" placeholder="Ingresar la Altura" /> </td>
+			<td><input type="number" id="height" min="0" step="any" name="height" class="form-control" placeholder="Ingresar la Altura" /> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>% de Grasa: </label>	</td>	
-			<td><input type="number" min="0" step="any" name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal" /> </td>
+			<td><input type="text" id="fatPercentage" step="any"  name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal" /> </td>
 		</tr>
 		</table>
 		<br><br>
@@ -125,39 +132,64 @@ function OnReady(){
 			firstName:"required",
 			lastName:"required",
 			documentNumber:{
-				required: true,
-				number: true,
-				minlength: 8,
-				maxlength: 8,
+				required: 	true,
+				number: 	true,
+				minlength: 	8,
+				maxlength: 	8,
 			},
 			email:{
 				email: true,
 			},
 			phoneNumber:{
-				number: true,
-				minlength: 6,
-				maxlength: 9,
+				number: 	true,
+				minlength: 	6,
+				maxlength: 	9,
 			},
 			weight:{
 				number: true,
-				minlength: 0,
-			}
+				min: 	1,
+			},
+			height:{
+				number: true,
+				min: 	1,
+				max: 	2.99,
+			},
+			fatPercentage:{
+				number: true,
+				min: 	1,
+				max: 	100,
+			},
 		},
 		messages: {
-			firstName: "Por favor ingresar nombre(s).",
-			lastName: "Por favor ingresar apellido(s).",
-			email: "Por favor ingrese un e-mail valido "
+			firstName: 	"Por favor ingresar nombre(s).",
+			lastName: 	"Por favor ingresar apellido(s).",
+			email: 		"Por favor ingrese un e-mail valido ",
 			documentNumber: {
-				required: "Debe ingresar el numero de DNI.",
-				number: "El DNI debe ser numerico de 8 digitos.",
-				minlength: "El DNI debe ser de 8 digitos",
-				maxlength: "El DNI debe ser de 8 digitos",
+				required: 	"Debe ingresar el numero de DNI.",
+				number: 	"El DNI debe ser numerico de 8 digitos.",
+				minlength: 	"El DNI debe ser de 8 digitos",
+				maxlength: 	"El DNI debe ser de 8 digitos",
 			},
 			phoneNumber: {
-				number: "El Nro. telefonico debe ser numerico.",
-				minlength: "no puede ser menor a 6 digitos",
-				maxlength: "no puede ser mayot a 8 digitos",
+				number: 	"El Nro. telefonico debe ser numerico.",
+				minlength: 	"No puede ser menor a 6 digitos",
+				maxlength: 	"No puede ser mayot a 8 digitos",
 			},
+			weight:{
+				number: "Debe ser un valor numerico en Kilogramos",
+				min:  	"No puede ser Negativo.",
+			},
+			height:{
+				number: "Debe ser un valor numerico en Metros",
+				min: 	"No puede ser Negativo.",
+				max: 	"Ingrese una altura en Metros"
+			},
+			fatPercentage:{
+				number: 	"Debe ser numerico del 0 al 100",
+				min: 	"No puede ser Negativo.",
+				max: "No puede ser mas del 100%",
+			},
+
 		}
 	});
 

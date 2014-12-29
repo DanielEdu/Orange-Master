@@ -11,11 +11,11 @@ module.exports = {
 
     res.writeHead(200, {'content-type': 'text/html'});
     res.end(
-    '<form action="http://localhost:1337/file/upload" enctype="multipart/form-data" method="POST">'+
-    '<input type="text" name="title"><br>'+
-    '<input type="file" name="avatar" multiple="multiple"><br>'+
-    '<input type="submit" value="Upload">'+
-    '</form>'
+      '<form action="http://localhost:1337/file/upload" enctype="multipart/form-data" method="POST">'+
+      '<input type="text" name="title"><br>'+
+      '<input type="file" name="avatar" multiple="multiple"><br>'+
+      '<input type="submit" value="Upload">'+
+      '</form>'
     )
     
   },
@@ -83,10 +83,9 @@ avatar: function (req, res){
   
    dow: function (req,res) {
 var fs = require('fs');
-      fs.readFile('.tmp/uploads/fa226ab5-bedc-4227-b9df-fd4b7f4fe0b6.docx', function (err, data) {
+      fs.readFile('.tmp/uploads/1b1c58c3-d99e-4e3d-9db2-0bd4c4f7a251.jpg', function (err, data) {
         if (err) throw err;
-
-        res.end(data);
+        res.send(data);
 
       });
 

@@ -6,7 +6,7 @@
  *
  *****************************************************************/
 
-module.exports = {
+module.exports = { 
 
 	'new': function (req, res, next) {
 		if(req.param('id')){
@@ -25,7 +25,9 @@ module.exports = {
 			});
 
 			var systemDateFormat = systemDate.getFullYear()+'/'+(systemDate.getMonth()+1)+'/'+(systemDate.getDate()+1)+"   "+systemDate.getHours()+":"+systemDate.getMinutes();
+			
 			//-------------si el parametro existe----------------
+
 			if(req.param('id')){
 				res.view({
 					systemDate: systemDateFormat,
@@ -41,8 +43,7 @@ module.exports = {
 					dni: '',
 					flag: 0
 				});
-			}
-			
+			}		
 		});	
 	},
 
@@ -118,10 +119,13 @@ module.exports = {
 				    	SaleDetail.create(saleDetailObj, function (err, saleDetail){
 					    	if(err){
 					    		console.log(err);
-					    		return res.redirect('/sale/new');
+					    		return res.redirect('sale/new/');
 					    	}
+					    	var resp = {
+					    		resp: sale.id_sale,
+					    	}
+			    			res.send(resp);
 					    	console.log("Sale Detail Success! pertenece a: "+sale.id_sale);
-			    			res.send(sale.id_sale);
 			    			
 			    		});
 			    	});

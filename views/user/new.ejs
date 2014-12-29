@@ -1,7 +1,7 @@
 <div class="container">
 
 	<% if(flash && flash.err) { %>
-		<ul class="alert alert-success">
+		<ul class="alert alert-danger">
 	<% Object.keys(flash.err).forEach(function(error) { %>
 		<li><%- JSON.stringify(flash.err[error]) %></li>
 	<% }) %>
@@ -13,7 +13,7 @@
 
 <div class="divForms">
 
-	<form role="form" action="/user/create" method="POST" >
+	<form role="form" action="/user/create" id="newUser" method="POST" >
 		<table>
 		<tr>
 			<td class="labeltd"><label>ID: </label></td>
@@ -29,7 +29,7 @@
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Teléfono</label></td>
-			<td><input name="phoneNumber" type="number" step="any" class="form-control" placeholder="ingresar Telefono o celular" /></td>
+			<td><input name="phoneNumber" type="number" class="form-control" placeholder="ingresar Telefono o celular" /></td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>E-mail</label></td>		

@@ -19,7 +19,7 @@ module.exports = {
 		userId: {
 			type: 'string',
 			required: true,
-			size: 15
+			unique: true
 		},
 		firstName: {
 			type: 'string',
@@ -91,7 +91,7 @@ module.exports = {
 	    if (!values.password || values.password != values.confirmation) {
 	      return next({err: "Las contraseñas no coinsiden. "});
 	    }
-
+	    
 	    require('bcrypt').hash(values.password, 10, function (err, encryptedPassword) {
 	      if (err) return next(err);
 	      values.encryptedPassword = encryptedPassword;
