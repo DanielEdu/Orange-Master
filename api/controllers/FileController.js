@@ -17,7 +17,7 @@ module.exports = {
     '<input type="submit" value="Upload">'+
     '</form>'
     )
-    console.log(req.session.User.id_user)
+    
   },
 
   upload: function  (req, res) {
@@ -72,11 +72,23 @@ avatar: function (req, res){
     // Stream the file down
     fileAdapter.read(client.avatarFd).on('error', function (err){
       return res.serverError(err);
+
     }).pipe(res);
 
   });
 
-}
-  
+},
 
+ 
+  
+   dow: function (req,res) {
+var fs = require('fs');
+      fs.readFile('.tmp/uploads/fa226ab5-bedc-4227-b9df-fd4b7f4fe0b6.docx', function (err, data) {
+        if (err) throw err;
+
+        res.end(data);
+
+      });
+
+    }
 };
