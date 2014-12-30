@@ -58,7 +58,7 @@ module.exports = {
 	    }
  	
 	 	User.find({ userId: req.param('userId')}, function (err, user){
-		    if(user) {
+		    if(user.length > 0) {
 		    	req.session.flash = {
 	          		err: {
 	          			err:"El ID "+req.param('userId')+" ya esta en uso.",
@@ -67,7 +67,7 @@ module.exports = {
 	        	console.log("El usuario ya existe")
 	        	return res.redirect('/user/new');
 		    }
-		    if(!user){
+		    if(user.length === 0){
 			    User.create(userObj, function (err, user){
 			      if(err){
 			        console.log(err);

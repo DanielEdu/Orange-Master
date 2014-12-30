@@ -76,9 +76,12 @@ module.exports.connections = {
   ***************************************************************************/
   somePostgresqlServer: {
     adapter: 'sails-postgresql',
-    database: 'BDProyectoOrange',
     host: 'localhost',
-  // user: 'postgres',
+    database: 'BDProyectoOrange',
+    //database: 'apocali2_onerp',
+    //user: 'apocali2_onerpuser',
+    //password: 'TRSsm[w2(F(.',
+    //user: 'postgres',
     //password: '$PHP=0',
     user: 'postgres',
     password: 'root',
