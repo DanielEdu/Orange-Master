@@ -12,7 +12,6 @@ module.exports = {
     res.writeHead(200, {'content-type': 'text/html'});
     res.end(
       '<form action="http://localhost:1337/file/upload" enctype="multipart/form-data" method="POST">'+
-      '<input type="text" name="title"><br>'+
       '<input type="file" name="avatar" multiple="multiple"><br>'+
       '<input type="submit" value="Upload">'+
       '</form>'
@@ -21,7 +20,7 @@ module.exports = {
   },
 
   upload: function  (req, res) {
-    req.file('avatar').upload({maxBytes: 4000000
+    req.file('avatar').upload({maxBytes: 1000000
     },function whenDone(err, uploadedFiles) {
       if (err) {
         return res.negotiate(err);
@@ -45,43 +44,89 @@ module.exports = {
   },
 
 
-/**
- * Download avatar of the user with the specified id
- *
- * (GET /user/avatar/:id)
- */
-avatar: function (req, res){
+  /**
+   * Download avatar of the user with the specified id
+   *
+   * (GET /user/avatar/:id)
+   */
+  avatar: function (req, res){
 
-  req.validate({
-    id: 'string'
-  });
+    req.validate({
+      id: 'string'
+    });
+   
+    Client.findOne(req.param('id'), function (err, client){
+      console.log(client.avatarFd)
+      if (err) return res.negotiate(err);
+      if (!client) return res.notFound();
 
-  Client.findOne(req.param('id'), function (err, client){
-    console.log(client.avatarFd)
-    if (err) return res.negotiate(err);
-    if (!client) return res.notFound();
+      // User has no avatar image uploaded.
+      // (should have never have hit this endpoint and used the default image)
+      var SkipperDisk = require('skipper-disk');
+      var fileAdapter = SkipperDisk( );
 
-    // User has no avatar image uploaded.
-    // (should have never have hit this endpoint and used the default image)
-    var SkipperDisk = require('skipper-disk');
-    var fileAdapter = SkipperDisk( );
+      if (!client.avatarFd) {
+        client.avatarFd = "/home/daniel/Workspace/2014/Orange/OrangeApp/.tmp/uploads/1b1c58c3-d99e-4e3d-9db2-0bd4c4f7a251.jpg"
+      }   
+      // Stream the file down
+      fileAdapter.read(client.avatarFd).on('error', function (err){
+        return res.serverError(err);
 
-    if (!client.avatarFd) {
-      client.avatarFd = "/home/daniel/Workspace/2014/Orange/OrangeApp/.tmp/uploads/1b1c58c3-d99e-4e3d-9db2-0bd4c4f7a251.jpg"
-    }   
-    // Stream the file down
-    fileAdapter.read(client.avatarFd).on('error', function (err){
-      return res.serverError(err);
+      }).pipe(res);
 
-    }).pipe(res);
+    });
 
-  });
+  },
 
-},
+  nutritionFile: function (req, res){
+   
+    ClientDetail.find({ where: { id_client: req.param("id") }, sort: 'updatedAt DESC'}, function (err, client){
+      console.log(client[0].nutritionFile)
+      if (err) return res.negotiate(err);
+      if (!client) return res.notFound();
 
+      // User has no avatar image uploaded.
+      // (should have never have hit this endpoint and used the default image)
+      var SkipperDisk = require('skipper-disk');
+      var fileAdapter = SkipperDisk( );
+
+      
+      // Stream the file down
+      fileAdapter.read(client[0].nutritionFile).on('error', function (err){
+        return res.serverError(err);
+
+      }).pipe(res);
+    });
+  },
+
+
+  workoutFile: function (req, res){
+   
+    Workout.find({ where: { id_client: req.param("id") }, sort: 'updatedAt DESC'}, function (err, client){
+      console.log(client[0].workoutFile)
+      if (err) return res.negotiate(err);
+      if (!client) return res.notFound();
+
+      // User has no avatar image uploaded.
+      // (should have never have hit this endpoint and used the default image)
+      var SkipperDisk = require('skipper-disk');
+      var fileAdapter = SkipperDisk( );
+
+      
+      // Stream the file down
+      fileAdapter.read(client[0].workoutFile).on('error', function (err){
+        return res.serverError(err);
+
+      }).pipe(res);
+    });
+  },
  
-  
-   dow: function (req,res) {
+
+
+
+//  ---------- metodo mas corto ----------------
+
+/*   dow: function (req,res) {
 var fs = require('fs');
       fs.readFile('.tmp/uploads/1b1c58c3-d99e-4e3d-9db2-0bd4c4f7a251.jpg', function (err, data) {
         if (err) throw err;
@@ -89,5 +134,5 @@ var fs = require('fs');
 
       });
 
-    }
+    }*/
 };

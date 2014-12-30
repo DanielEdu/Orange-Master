@@ -10,35 +10,13 @@
 		<h4><strong>% de Grasa: </strong><%= detail[0].fatPercentage %><h4>
 		
 		<p><strong>Ultima Fecha: </strong> <%= detail[0].createdAt %> </p>
-		<p><strong>Rutina: </strong><a href="">Ver Ultima Rutina</a>
+		<p><strong>Rutina: </strong><a href="http://localhost:1337/file/workoutFile/<%= client.id_client %>" download="<%= client.firstName %>.xlsx" ><img src="/images/excel.png" height="40" width="40">Descargar Rutina</a> </p>
 		<br><br>	
-	<button class="addWorkout btn btn-info">Agregar Nuevo Registro</button>
-	</div>
-	
-	<div class="tableHistory">
-	<table id="dvData" class="display table table-borderd table-hover" >
-		<thead>
-		<tr>
-			<th>Fecha</th>
-			<th>Rutina</th>
-			<th>observaciones</th>
-		</tr>
-		</thead>
-
-		<tbody>
-		<% _.each(workout, function(wk){ %>
-		<tr>
-			<td><%= wk.createdAt %></td> 
-			<td><a href="">ver</a></td>	
-			<td><%= wk.observations %></td>
-		</tr>
-		<%})%>
-		</tbody>
-	</table>
+	<button class="addWorkout btn btn-danger">Agregar Rutina</button>
 	</div>
 
 <div class="divForms formWorkout" hidden>
-<form action="/workout/create/<%= client.id_client %>" >
+<form action="/workout/create/?id_client=<%= client.id_client %>" enctype="multipart/form-data" method="POST" >
 	<table>
 	<tr>
 		<td class="labeltd"><label for="">Observaciones: </label></td>
@@ -46,10 +24,10 @@
 	</tr>
 	<tr>
 		<td class="labeltd"><label for="">Rutina: </label></td>
-		<td><input type="file" name="workuotFile" multiple="multiple"><br></td>
+		<td><input type="file" name="workoutFile" required><br></td>
 	</tr>
 	</table>	
-	<button class="btn btn-success">Guardar</button>	
+	<button class="btn btn-danger">Guardar</button>	
 </form>
 </div>
 
@@ -59,16 +37,6 @@
 
     $(document).ready(OnReady);
       function OnReady(){
-        $('#dvData').DataTable({
-
-        	"language": {
-        		"search": "Buscar",
-        		"lengthMenu": "Mostrar _MENU_ campos por página",
-        		"zeroRecords": "No se encontro - intente con otros datos",
-        		"info": "",
-        		"infoFiltered": "",
-        	}
-        });
 
         $('.addWorkout').on('click', function() {
         	$('.tableHistory').hide();

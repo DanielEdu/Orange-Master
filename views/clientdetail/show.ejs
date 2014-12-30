@@ -14,7 +14,7 @@
 	<p><strong>Pierna: </strong><%= detail[0].leg %></p>
 	<p><strong>Pantorrilla: </strong><%= detail[0].calf %></p>
 	<p><strong>Cintura: </strong><%= detail[0].waist %></p>
-	<p><strong>Dieta: </strong> <%= detail[0].diet %> </p>
+	<p><strong>Dieta: </strong> <a href="http://localhost:1337/file/nutritionFile/<%= client.id_client %>" download="<%= client.firstName %> .xlsx" ><img src="/images/excel.png" height="40" width="40">Descargar</a> </p>
 	<p><strong>Observaciones: </strong> <%= detail[0].observations %> </p>
 	<p><strong>Ultima Fecha: </strong> <%= detail[0].createdAt %> </p>
 	<br>	
@@ -30,7 +30,6 @@
 			<th>Altura</th>
 			<th>IMC: </th>
 			<th>% de Grasa: </th>
-			<th>Dieta</th>
 			<th>observaciones</th>
 			<th></th>
 		</tr>
@@ -44,7 +43,6 @@
 			<td><%= dt.height %> m.</td>
 			<td><%=(dt.weight/Math.pow(dt.height , 2)).toFixed(2) %></td>
 			<td><%= dt.fatPercentage %></td>
-			<td><a href="">Ver</a></td>
 			<td><%= dt.observations %></td>
 			<td><form action="/clientdetail/destroy/?id=<%= dt.id_detail %>" method="POST"/>
 				<input type="hidden" name="_method" value="delete"/>

@@ -59,6 +59,10 @@ module.exports = {
 		observations: {
 			type: 'text',
 			defaultsTo: '',
+		},
+		nutritionFile: {
+			type: 'text',
+			defaultsTo: '',
 		}
 
 	}

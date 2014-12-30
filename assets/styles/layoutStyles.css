@@ -2,7 +2,7 @@
 body
 {
   background: #EEEEEE;
-  font-size: 17px;
+  font-size: 16px;
 
 }
 
@@ -21,7 +21,8 @@ footer
   padding: .5em 0;
   text-align: center;
   clear: both;
-  border-top: 0.33em solid #e21607;
+  border-top: 0.25em solid #e21607;
+  font-size: 0.86em;
   
 }
 h1 
@@ -45,7 +46,7 @@ header figure
 header ul 
 {
   float: right;
-  margin: 0 4.5em 0 0;  
+  margin: 0 5em 0 0;  
 }
 header ul li 
 {
@@ -54,23 +55,25 @@ header ul li
 header ul li a
 {
   color: white;
-  margin: 0 0.5em;
+  margin: 0 0.6em;
 }
 nav 
 {
+  text-align: right;
   border-bottom: 0.33em solid #e21607;
   background-image: url("/images/2.jpg");
   background-position: right center;
   width: 100%;
-  font-size: 1.1em;
+  font-size: 1.15em;
   overflow: hidden;
   background-repeat: no-repeat;
-background-repeat-y: initial;
+  background-repeat-y: initial;
   /*position: relative;*/
 }
 nav #logo 
 {
   float: left;
+  padding: 0 0 0 2em;
 }
 nav #logo img
 {
@@ -85,7 +88,7 @@ nav ul li a
 {
   color: #6C6C6C;
   display: block;
-  padding: 2.5em 1em 1em 1em;
+  padding: 2em 1.1em 1em 0;
 }
 ul 
 {
@@ -111,6 +114,7 @@ ul
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  min-height: 610px;
 
 }
 .divForms

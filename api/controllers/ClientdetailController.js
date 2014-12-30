@@ -74,27 +74,22 @@ module.exports = {
 	},
 
     create: function (req, res, next) {
-    	
-	    var userObj = {
-	      	id_client:    	req.param('id_client'),
-		    height:    		req.param('height'),
-		    weight:    		req.param('weight'),
-		    fatPercentage: 	req.param('fatPercentage'),
-		    arm:    		req.param('arm'),
-		    forearm:    	req.param('forearm'),
-		    leg:    		req.param('leg'),
-		    calf:    		req.param('calf'),
-		    waist:    		req.param('waist'),
-		    observations: 	req.param('observations'),
-	    }
+    	req.file('nutritionFile').upload({maxBytes: 1000000},function whenDone(err, uploadedFiles) {
+			    
+		    if (err) return res.negotiate(err);
+		    var nutritionObj = req.params.all(); 
+		    // Grab the first file and use it's `fd` (file descriptor)	
+		
+		   	nutritionObj.nutritionFile = uploadedFiles[0].fd;
 
-	    ClientDetail.create(userObj, function (err, client){
-	      if(err){
-	        console.log(err);
-	      } 
-	      console.log("rutinas creadas")
-	      res.redirect('/clientdetail/show/' + client.id_client);
-	    });
+		    ClientDetail.create(nutritionObj, function (err, client){
+		      if(err){
+		        console.log(err);
+		      } 
+		      console.log("nuevos datos de nutición creados")
+		      res.redirect('/clientdetail/show/' + client.id_client);
+		    });
+		});  
 	},
 
 	destroy: function (req, res, next) {
@@ -136,7 +131,7 @@ module.exports = {
 		    	var clienId = client[0].id_client;
 		    	ClientDetail.find({ id_client: clienId }, function (err, detail) {
 			  		if(err) console.log('Error:' + err);
-			  		console.log(detail)
+			  		//console.log(detail)
 			  		if(detail.length === 0){
 			  			resJson.dat = {
 			  				clientName: client[0].firstName,
@@ -157,10 +152,9 @@ module.exports = {
 				    		res.send(resJson);
 				  		}
 			  		}
-			  		
-
 		  		});
 		  	}
 	    });
   	}
 };
+

@@ -9,7 +9,7 @@ function OnReady(){
 	
 
 	$('#mensaje').hide();
-	$("#mysearch").on('keyup', function() {
+/*	$("#mysearch").on('keyup', function() {
 
 		$.ajax({
 	    	url: "/client/findByDni/",
@@ -34,7 +34,7 @@ function OnReady(){
 	    		console.log(estado);
 	    	}
    	 	});
-	});
+	});*/
 	$("#searchBT").on('click', function(){
 		$.ajax({
 	    	url: "/clientdetail/findByDni/",

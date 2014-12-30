@@ -16,7 +16,7 @@ module.exports = {
 		    primaryKey: true,
 		    autoIncrement: true
 		},
-		workout: {
+		workoutFile: {
 			type: 'string',
 		},
 		observations: {

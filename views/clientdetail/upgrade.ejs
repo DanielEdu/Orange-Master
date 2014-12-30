@@ -3,49 +3,49 @@
 <h1>HISTORIAL</h1> 
 
 <div class="divForms">
-<form action="/clientdetail/create/?id_client=<%= client.id_client %>" method="POST" >
+<form action="/clientdetail/create/?id_client=<%= client.id_client %>" enctype="multipart/form-data" method="POST" >
 	<table>
 		<tr>
 		<td class="labeltd"><label>Peso: </label></td>
-		<td><input type="number" min="0" step="any" name="weight" class="form-control" placeholder="Peso en Kilogramos(Kg.)" value="<%= client.weight %>" required /></td> 
+		<td><input type="number" min="0" step="any" name="weight" class="form-control" placeholder="Peso en Kilogramos(Kg.)"  required /></td> 
 		</tr>
 		<tr>
 		<tr>
 		<td class="labeltd"><label>Altura: </label></td>
-		<td><input type="number" min="0" step="any" name="height" class="form-control" placeholder="Altura en Metros (m.)" value="<%= client.height %>" required/></td>
+		<td><input type="number" min="0" step="any" name="height" class="form-control" placeholder="Altura en Metros (m.)"  required/></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>% de Grasa: </label></td>
-		<td><input type="number" min="0" step="any" name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal" value="<%= client.fatPercentage %>" /></td>
+		<td><input type="number" min="0" step="any" name="fatPercentage" class="form-control" placeholder="% de Grasa Corporal"  /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Brazo: </label></td>
-		<td><input type="number" min="0" step="any" name="arm" class="form-control" value="<%= client.arm
-		 %>" placeholder="Medida de Brazos" /></td>
+		<td><input type="number" min="0" step="any" name="arm" class="form-control" placeholder="Medida de Brazos" /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Antebrazo: </label></td>
-		<td><input type="number" min="0" step="any" name="forearm" class="form-control" value="<%= client.forearm %>" placeholder="Medida de Antebrazos" /></td>
+		<td><input type="number" min="0" step="any" name="forearm" class="form-control" placeholder="Medida de Antebrazos" /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Piernas: </label></td>
-		<td><input type="number" min="0" step="any" name="leg" class="form-control" value="<%= client.leg %>" placeholder="Medida de Piernas" /></td>
+		<td><input type="number" min="0" step="any" name="leg" class="form-control" placeholder="Medida de Piernas" /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Pantorrillas: </label></td>
-		<td><input type="number" min="0" step="any" name="calf" class="form-control" value="<%= client.calf %>" placeholder="Medida de Pantorrillas" /></td>
+		<td><input type="number" min="0" step="any" name="calf" class="form-control" placeholder="Medida de Pantorrillas" /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Cintura: </label></td>
-		<td><input type="number" min="0" step="any" name="waist" class="form-control" value="<%= client.waist %>"  placeholder="Medida de Cintura" /></td>
+		<td><input type="number" min="0" step="any" name="waist" class="form-control" placeholder="Medida de Cintura" /></td>
 		</tr>
 		<tr>
 		<td class="labeltd"><label>Observaciones: </label></td>
-		<td><textarea name="observations" rows="5" cols="50" placeholder="Ingresar observaciones..."><%= client.observations
-		 %></textarea></td>
+		<td><textarea name="observations" rows="5" cols="50" placeholder="Ingresar observaciones...">
+			</textarea>
+		</td>
 		</tr>
 		</table>
-		<input type="file" name="avatar" multiple="multiple"><br>
+		<input type="file" name="nutritionFile" required>*maximo 1MB<br>
     
 		<br/>
 		<input type="submit" class="btn btn-success" value="Guardar Registro"/> <br/>
