@@ -3,7 +3,7 @@
 		<ul class="alert alert-danger">
 	<% Object.keys(flash.err).forEach(function(error) { %>
 		<li><%- JSON.stringify(flash.err[error]) %></li>
-	<% }) %>
+	<% }) %> 
 	</ul>
 	<% } %>
 <h1>REGISTRAR CLIENTE</h1> 
@@ -166,26 +166,26 @@ function OnReady(){
 			email: 		"Por favor ingrese un e-mail valido ",
 			documentNumber: {
 				required: 	"Debe ingresar el numero de DNI.",
-				number: 	"El DNI debe ser numerico de 8 digitos.",
+				number: 	"El DNI debe ser numírico de 8 dígitos.",
 				minlength: 	"El DNI debe ser de 8 digitos",
 				maxlength: 	"El DNI debe ser de 8 digitos",
 			},
 			phoneNumber: {
-				number: 	"El Nro. telefonico debe ser numerico.",
-				minlength: 	"No puede ser menor a 6 digitos",
-				maxlength: 	"No puede ser mayot a 8 digitos",
+				number: 	"El Nro. telefónico debe ser numérico.",
+				minlength: 	"No puede ser menor a 6 dígitos",
+				maxlength: 	"No puede ser mayor a 8 dígitos",
 			},
 			weight:{
-				number: "Debe ser un valor numerico en Kilogramos",
+				number: "Debe ser un valor numérico en Kilogramos",
 				min:  	"No puede ser Negativo.",
 			},
 			height:{
-				number: "Debe ser un valor numerico en Metros",
+				number: "Debe ser un valor numérico en Metros",
 				min: 	"No puede ser Negativo.",
 				max: 	"Ingrese una altura en Metros"
 			},
 			fatPercentage:{
-				number: 	"Debe ser numerico del 0 al 100",
+				number: 	"Debe ser numérico del 0 al 100",
 				min: 	"No puede ser Negativo.",
 				max: "No puede ser mas del 100%",
 			},

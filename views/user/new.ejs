@@ -13,39 +13,39 @@
 
 <div class="divForms">
 
-	<form role="form" action="/user/create" id="newUser" method="POST" >
+	<form role="form" action="/user/create" id="userNewForm" method="POST" >
 		<table>
 		<tr>
-			<td class="labeltd"><label>ID: </label></td>
-			<td><input type="text" name="userId" class="userId form-control" placeholder="ingresar ID del usuario" required/></td>
+			<td class="labeltd"><label>*ID(Alias): </label></td>
+			<td><input type="text" id="userId" name="userId" class="userId form-control" placeholder="ingresar ID del usuario" required/></td>
 		</tr>
 		<tr>
-			<td class="labeltd"><label>Nombres: </label></td>
-			<td><input type="text" name="firstName" class=" form-control" placeholder="Ingresar Nombre(s)" required/></td>
+			<td class="labeltd"><label>*Nombres: </label></td>
+			<td><input type="text" id="firstName" name="firstName" class=" form-control" placeholder="Ingresar Nombre(s)" required/></td>
 		</tr>
 		<tr>
-			<td class="labeltd"><label>Apellidos:</label></td>
-			<td><input type="text" name="lastName" class="form-control"	placeholder="Ingresar Apellido(s)" required/></td>
+			<td class="labeltd"><label>*Apellidos:</label></td>
+			<td><input type="text" id="lastName" name="lastName" class="form-control"	placeholder="Ingresar Apellido(s)" required/></td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Teléfono</label></td>
-			<td><input name="phoneNumber" type="number" class="form-control" placeholder="ingresar Telefono o celular" /></td>
+			<td><input type="text" id="phoneNumber" name="phoneNumber" type="number" class="form-control" placeholder="ingresar Telefono o celular" /></td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>E-mail</label></td>		
-			<td><input type="email" name="email" class="form-control"	placeholder="ingresar E-mail" /></td>
+			<td><input type="email" id="email" name="email" class="form-control"	placeholder="ingresar E-mail" /></td>
 		</tr>
 		<tr>
-			<td class="labeltd"><label>Contraseña</label></td>
-			<td><input type="password" name="password" class="form-control" placeholder="ingresar Contraseña" required/></td>
+			<td class="labeltd"><label>**Contraseña</label></td>
+			<td><input type="password" id="password" name="password" class="form-control" placeholder="ingresar Contraseña" required/></td>
 		</tr>
 		<tr>
-			<td class="labeltd"><label>Confirmar</label></td>
-			<td><input type="password"  placeholder="confirmar Contraseña" name="confirmation" class="form-control" required></td>
+			<td class="labeltd"><label>**Confirmar</label></td>
+			<td><input type="password" id="confirmation"  placeholder="confirmar Contraseña" name="confirmation" class="form-control" required></td>
 		</tr>
 		</table>
 		<br>
-		
+		<p>"Seleccione el Rol del usuario(si no selecciona ninguno por defecto sera Vendedor)"</p>
 		<div>
 			<input type="radio" name="admin" value="admin" id="admin" >
 			<label for="admin">Administrador</label>
@@ -63,7 +63,10 @@
 			<label for="nutritionist">Nutricionista</label>
 		</div>
 		<br/>
-		<input type="submit" class="btn btn-danger" value="Crear" /> <br/>
+		<input type="submit" class="btn btn-danger" value="Crear" /> <br/><br><br>
+
+		<p class="legend">(*) campos requeridos</p>
+		<p class="legend">(**) La contraseña y al confirmación deben ser iguales mismas</p>
 
 	</form>
 </div>
@@ -73,6 +76,56 @@
 $(document).ready(OnReady);
 function OnReady(){
 	$(".userId").focus();
+
+		$("#userNewForm").validate({
+
+		rules:{
+			userId: "required",
+			firstName:"required",
+			lastName:"required",
+			email:{
+				email: true,
+			},
+			email:{
+				email: true,
+			},
+			phoneNumber:{
+				number: 	true,
+				minlength: 	6,
+				maxlength: 	9,
+			},
+			password: {
+				required: true,
+				minlength: 6,
+			},
+			confirmation: {
+				required: true,
+				minlength: 6,
+				equalTo: "#password"
+			},
+		},
+
+		messages: {
+			userId: "Ingrese un alias para su usuario",
+			firstName: 	"Por favor ingresar nombre(s).",
+			lastName: 	"Por favor ingresar apellido(s).",
+			email: 		"Por favor ingrese un e-mail valido ",
+			phoneNumber: {
+				number: 	"El Nro. telefonico debe ser numérico.",
+				minlength: 	"No puede ser menor a 6 dígitos",
+				maxlength: 	"No puede ser mayor a 8 dígitos",
+			},
+			password: {
+				required: "Ingrese su contraseña o una nueva",
+				minlength: "La contraseña no debe ser menor a 6 dígitos",
+			},
+			confirmation: {
+				required: "Ingrese una contraseña paras su usuario no menor a 6 dígitos",
+				minlength: "La contraseña no debe ser menor a 6 dígitos",
+				equalTo: "Las contraseñas no coinciden",
+			},
+		},
+	});
 }
 </script>
 

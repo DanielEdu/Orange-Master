@@ -90,6 +90,13 @@ nav ul li a
   display: block;
   padding: 2em 1.1em 1em 0;
 }
+label.error
+{
+  color: rgb(236, 74, 74);
+  font-size: 0.8em;
+  font-style: italic;
+
+}
 ul 
 {
   list-style: none;
@@ -137,6 +144,11 @@ ul
 .labeltd{
   text-align: right;
   padding: 0 .5em;
+  width: 25%;
+}
+.legend{
+  margin: 0;
+font-size: 0.85em;
 }
 
 input[type=number]::-webkit-inner-spin-button,

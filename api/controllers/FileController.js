@@ -11,7 +11,7 @@ module.exports = {
 
     res.writeHead(200, {'content-type': 'text/html'});
     res.end(
-      '<form action="http://localhost:1337/file/upload" enctype="multipart/form-data" method="POST">'+
+      '<form action="file/upload" enctype="multipart/form-data" method="POST">'+
       '<input type="file" name="avatar" multiple="multiple"><br>'+
       '<input type="submit" value="Upload">'+
       '</form>'
@@ -29,7 +29,7 @@ module.exports = {
         avatarUrl = require('util').format('%s/user/avatar/%s', sails.getBaseUrl(), req.session.User.id_user),
         // Grab the first file and use it's `fd` (file descriptor)
          avatarFd = uploadedFiles[0].fd
-
+       console.log(avatarFd)  
       var SkipperDisk = require('skipper-disk');
       var fileAdapter = SkipperDisk(/* optional opts */);
 

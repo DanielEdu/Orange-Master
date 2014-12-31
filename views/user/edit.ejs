@@ -8,112 +8,180 @@
 	</ul>
 	<% } %>
 
-<h1>EDITAR USUARIO</h1>
-<div class="divForms">
-<form action="/user/update/<%= user.id_user %>" method="POST">
-<table>
-<tr>
-	<td class="labeltd"><label for="">Nombres: </label></td>
-	<td><input type="text" name="firstName" class="form-control" value="<%= user.firstName %>" /></td>
-</tr>
-<tr>
-	<td class="labeltd"><label for="">Apellidos: </label></td>
-	<td><input type="text" name="lastName" class="form-control" value="<%= user.lastName %>" /></td>
-</tr>
-<tr>	
-	<td class="labeltd"><label for="">Teléfono: </label></td>
-	<td><input type="number" name="phoneNumber" class="form-control" value="<%= user.phoneNumber %>" /></td>
-</tr>
-<tr>	
-	<td class="labeltd"><label for="">E-mail: </label></td>
-	<td><input type="text" name="email" class="form-control" value="<%= user.email %>" /></td>
-</tr>
-<tr>	
-	<td class="labeltd"><label>Contraseña</label></td>
-	<td><input type="password" name="password" class="form-control" placeholder="ingresar Contraseña" /></td>
-</tr>
-<tr>	
-	<td class="labeltd"><label>Confirmar</label></td>
-	<td><input type="password"  placeholder="confirmar Contraseña" name="confirmation" class="form-control"></td>
-</tr>
-</table>
-	<input type="text" name="cod" value="" hidden>
-	<input class="btn btn-danger" type="submit" value="Guardar"/>
+	<h1>EDITAR USUARIO</h1>
+	<div class="divForms">
+	<form action="/user/update/<%= user.id_user %>" id="userEditForm" method="POST">
+		<table>
+		<tr>
+			<td class="labeltd"><label for="">*Nombres: </label></td>
+			<td><input type="text" id="firstName" name="firstName" class="form-control" value="<%= user.firstName %>" /></td>
+		</tr>
+		<tr>
+			<td class="labeltd"><label for="">*Apellidos: </label></td>
+			<td><input type="text" id="lastName" name="lastName" class="form-control" value="<%= user.lastName %>" /></td>
+		</tr>
+		<tr>	
+			<td class="labeltd"><label for="">Teléfono: </label></td>
+			<td><input type="number" id="phoneNumber" name="phoneNumber" class="form-control" value="<%= user.phoneNumber %>" /></td>
+		</tr>
+		<tr>	
+			<td class="labeltd"><label for="">E-mail: </label></td>
+			<td><input type="text" id="email" name="email" class="form-control" value="<%= user.email %>" /></td>
+		</tr>
+		<tr>	
+			<td class="labeltd"><label>**Contraseña</label></td>
+			<td><input type="password" id="password" name="password" class="form-control" placeholder="ingresar Contraseña" /></td>
+		</tr>
+		<tr>	
+			<td class="labeltd"><label>**Confirmar</label></td>
+			<td><input type="password" id="confirmation"  placeholder="confirmar Contraseña" name="confirmation" class="form-control"></td>
+		</tr>
+		</table>
+			<input type="text" name="cod" value="" hidden>
+			<input class="btn btn-danger" type="submit" value="Guardar"/><br><br>
+		<p class="legend">(*) campos requeridos</p>
+		<p class="legend">(**) La contraseña y al confirmación deben ser iguales mismas</p>
 
-</form>
+	</form>
+<hr>
+	<p>"Puede cambiar los permisos del usuario sin cambiar los demas datos"</p>
 
-<p>Puede cambiar los permisos del usuario sin cambiar los demas datos</p>
-
-<!--<form action="/user/upload/" enctype="multipart/form-data" method="post">
-<input multiple="multiple" name="upload" type="file" />
-<input type="submit" value="Upload" />
-<br><br>
-</form>-->
-
-<div>
-	<% if (session.authenticated && session.User.admin==='admin') { %>
-		<% if (user.admin==='admin') { %>
-			<div>
-			<input type="radio" name="admin" value="admin" id="admin" checked>
-			<label for="admin">Administrador</label> 
-			</div>
-			<div>
-			<input type="radio" name="admin" value="user" id="user">
-			<label for="user">Vendedor</label>
-			</div>
-			<div>
-			<input type="radio" name="admin" value="trainer" id="trainer">
-			<label for="trainer">Entrenador</label>
-			</div>
-			<div>
-			<input type="radio" name="admin" value="nutritionist" id="nutritionist">
-			<label for="trainer">Nutricionista</label>
-			</div>
-		<% } %>
-		<% if (user.admin==='user') { %>
-			<div>
-			<input type="radio" name="admin" value="admin" id="admin" />
-			<label for="admin">Administrador</label>
-			</div>
-			<div>
-			<input type="radio" name="admin" value="user" id="user" checked />
-			<label for="user">Vendedor</label>
-			</div>
-			<div>
-			<input type="radio" name="admin" value="trainer" id="trainer">
-			<label for="trainer">Entrenador</label>
-			</div>
-			<div>
-			<input type="radio" name="admin" value="nutritionist" id="nutritionist">
-			<label for="trainer">Nutricionista</label>
-			</div>
-		<% } %>
-		<% if (user.admin==='trainer') { %>
-			<div>
-			<input type="radio" name="admin" value="admin" id="admin" />
-			<label for="admin">Administrador</label>
-			</div>
-			<div>
-			<input type="radio" name="admin" value="user" id="user"  />
-			<label for="user">Vendedor</label>
-			</div>
-			<div>
-			<input type="radio" name="admin" name="fruit" value="trainer" id="trainer" checked />
-			<label for="trainer">Entrenador</label>
-			</div>
-			<div>
-			<input type="radio" name="admin" value="nutritionist" id="nutritionist">
-			<label for="trainer">Nutricionista</label>
-			</div>
-		<% } %>
-	<% } %> 
-</div>
-</div>
+	<div>
+		<% if (session.authenticated && session.User.admin==='admin') { %>
+			<% if (user.admin==='admin') { %>
+				<div>
+				<input type="radio" name="admin" value="admin" id="admin" checked>
+				<label for="admin">Administrador</label> 
+				</div>
+				<div>
+				<input type="radio" name="admin" value="user" id="user">
+				<label for="user">Vendedor</label>
+				</div>
+				<div>
+				<input type="radio" name="admin" value="trainer" id="trainer">
+				<label for="trainer">Entrenador</label>
+				</div>
+				<div>
+				<input type="radio" name="admin" value="nutritionist" id="nutritionist">
+				<label for="trainer">Nutricionista</label>
+				</div>
+			<% } %>
+			<% if (user.admin==='user') { %>
+				<div>
+				<input type="radio" name="admin" value="admin" id="admin" />
+				<label for="admin">Administrador</label>
+				</div>
+				<div>
+				<input type="radio" name="admin" value="user" id="user" checked />
+				<label for="user">Vendedor</label>
+				</div>
+				<div>
+				<input type="radio" name="admin" value="trainer" id="trainer">
+				<label for="trainer">Entrenador</label>
+				</div>
+				<div>
+				<input type="radio" name="admin" value="nutritionist" id="nutritionist">
+				<label for="trainer">Nutricionista</label>
+				</div>
+			<% } %>
+			<% if (user.admin==='trainer') { %>
+				<div>
+				<input type="radio" name="admin" value="admin" id="admin" />
+				<label for="admin">Administrador</label>
+				</div>
+				<div>
+				<input type="radio" name="admin" value="user" id="user"  />
+				<label for="user">Vendedor</label>
+				</div>
+				<div>
+				<input type="radio" name="admin" name="fruit" value="trainer" id="trainer" checked />
+				<label for="trainer">Entrenador</label>
+				</div>
+				<div>
+				<input type="radio" name="admin" value="nutritionist" id="nutritionist">
+				<label for="trainer">Nutricionista</label>
+				</div>
+			<% } %>
+			<% if (user.admin==='nutritionist') { %>
+				<div>
+				<input type="radio" name="admin" value="admin" id="admin" />
+				<label for="admin">Administrador</label>
+				</div>
+				<div>
+				<input type="radio" name="admin" value="user" id="user"  />
+				<label for="user">Vendedor</label>
+				</div>
+				<div>
+				<input type="radio" name="admin" name="fruit" value="trainer" id="trainer"  />
+				<label for="trainer">Entrenador</label>
+				</div>
+				<div>
+				<input type="radio" name="admin" value="nutritionist" id="nutritionist" checked>
+				<label for="trainer">Nutricionista</label>
+				</div>
+			<% } %>
+		<% } %> 
+	</div>
+	</div>
 </div>
 
  
 <script>
+$(document).ready(OnReady);
+function OnReady(){
+	$("#firstName").focus();
+
+	$("#userEditForm").validate({
+
+
+		rules:{
+			email:{
+				email: true,
+			},
+			firstName:"required",
+			lastName:"required",
+			email:{
+				email: true,
+			},
+			phoneNumber:{
+				number: 	true,
+				minlength: 	6,
+				maxlength: 	9,
+			},
+			password: {
+				required: true,
+				minlength: 6,
+			},
+			confirmation: {
+				required: true,
+				minlength: 6,
+				equalTo: "#password"
+			}
+		},
+
+		messages: {
+			firstName: 	"Por favor ingresar nombre(s).",
+			lastName: 	"Por favor ingresar apellido(s).",
+			email: 		"Por favor ingrese un e-mail valido ",
+			phoneNumber: {
+				number: 	"El Nro. telefonico debe ser numérico.",
+				minlength: 	"No puede ser menor a 6 dígitos",
+				maxlength: 	"No puede ser mayor a 8 dígitos",
+			},
+			password: {
+				required: "Ingrese su contraseña o una nueva",
+				minlength: "La contraseña no debe ser menor a 6 dígitos",
+			},
+			confirmation: {
+				required: "Ingrese su contraseña o una nueva",
+				minlength: "La contraseña no debe ser menor a 6 dígitos",
+				equalTo: "Las contraseñas no coinciden"
+			}
+		},
+	});
+
 	$( "input:radio" ).on("click", function (){
+
 		url = $("form").attr('action');
     	var val = $( "input:checked" ).val();
     	var data = {
@@ -127,17 +195,20 @@
 	    	type: "POST",
 	    	data: data,
 	    	success: function (resp) {
-	    		console.log(resp);
-	    		alertify.success("Success log message");
+	    		alert("Se cambio los privilegios exitosamente.");
 	    	},
 	    	error: function (jqXHR, estado, error) {
 	    		console.log(estado);
 	    		console.log(error);
+	    		alert("Ocurrio un error al cambiar los privilegios");
+	    		window.location.replace("/user/");
 	    	},
 	    	complete: function (jqXHR, estado) {
 	    		console.log(estado);
 	    	}
-   	 	});
-    	    
+   	 	}); 
     });
+
+    
+}   
 </script>
