@@ -46,10 +46,11 @@ module.exports = {
 			      	//if (!err) return next();
 			      	//console.log(detail[0])
 			      	var detailFormat = parsingDate(detail);
+			      	var workoutDateFormat = parsingDate(workout)
 			      	res.view({
 			      		detail: detailFormat,
 			      		client: client,
-			      		workout: parsingDate(workout)
+			      		workout: workoutDateFormat
 			      	});
 			    });
 		    });

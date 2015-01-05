@@ -26,7 +26,7 @@ module.exports = {
         return res.negotiate(err);
       }
         // Generate a unique URL where the avatar can be downloaded.
-        avatarUrl = require('util').format('%s/user/avatar/%s', sails.getBaseUrl(), req.session.User.id_user),
+        //avatarUrl = require('util').format('%s/user/avatar/%s', sails.getBaseUrl(), req.session.User.id_user),
         // Grab the first file and use it's `fd` (file descriptor)
          avatarFd = uploadedFiles[0].fd
        console.log(avatarFd)  
@@ -66,7 +66,7 @@ module.exports = {
       var fileAdapter = SkipperDisk( );
 
       if (!client.avatarFd) {
-        client.avatarFd = "/home/daniel/Workspace/2014/Orange/OrangeApp/.tmp/uploads/1b1c58c3-d99e-4e3d-9db2-0bd4c4f7a251.jpg"
+        client.avatarFd = sails.config.myconf.dirRoot+".tmp/uploads/anonymous.jpg"
       }   
       // Stream the file down
       fileAdapter.read(client.avatarFd).on('error', function (err){
