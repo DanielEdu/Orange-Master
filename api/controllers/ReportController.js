@@ -7,14 +7,15 @@
 
 module.exports = {
 	'new': function (req, res, next) {
-		var systemDate = new Date();
-		var systemDateFormat = systemDate.getFullYear()+'-'+(systemDate.getMonth()+1)+'-'+(systemDate.getDate()+1);
-		var systemDateFormatRest = systemDate.getFullYear()+'-'+systemDate.getMonth()+'-'+systemDate.getDate();	
-		//console.log(systemDateFormat)
+
+		var day 	= sails.config.myconf.systemDate.day;
+		var month 	= sails.config.myconf.systemDate.month;
+		var year 	= sails.config.myconf.systemDate.year;
+
+		var systemDateFormat = year+'-'+month+'-'+day;
 		
 		res.view({
-			systemDateFormat:systemDateFormat,
-			systemDateFormatRest: systemDateFormatRest
+			systemDateFormat:systemDateFormat
 		});
 	},
 

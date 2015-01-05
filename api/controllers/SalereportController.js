@@ -12,17 +12,17 @@ module.exports = {
 		User.find({admin: ['user', 'admin']}, function (err, users) {
 			Client.find(function (err, clients) {
 				if (err) return next(err);
-				//Obtener la fecha del istema y darle formato --------
-				var systemDate = new Date();
-				var systemDateFormat = systemDate.getFullYear()+'-'+(systemDate.getMonth()+1)+'-'+(systemDate.getDate()+1);
-				var systemDateFormatRest = systemDate.getFullYear()+'-'+systemDate.getMonth()+'-'+systemDate.getDate();
-				//----------------------------------------------------
+				//Obtener la fecha del sitema
+				var day 	= sails.config.myconf.systemDate.day;
+				var month 	= sails.config.myconf.systemDate.month;
+				var year 	= sails.config.myconf.systemDate.year;
+
+				var systemDateFormat = year+'-'+month+'-'+day;
+				//--------------------------------------------------
 				Service.find(function (err, servicios){
-					if (err) return next(err);		
-					//console.log(systemDateFormat)
+					if (err) return next(err);	
 					res.view({
 						systemDateFormat: 		systemDateFormat,
-						systemDateFormatRest: 	systemDateFormatRest,
 						users: 					users,
 						clients:   				clients,
 					});
