@@ -14,7 +14,7 @@
 	</tr>
 	<tr>
 	<td class="labeltd" ><label>Monto: </label></td >	
-		<td  ><input type="number" name="moneyOutput" class="form-control" placeholder="S/. Monto" required></td >
+		<td  ><input type="number" name="moneyOutput" id="moneyOutput" class="form-control" placeholder="S/. Monto" required></td >
 	</tr>
 	<tr>
 	<td class="labeltd" ><label>Descripción: </label>
@@ -27,10 +27,14 @@
 </div>
 </div>
 
-<script>
+<script type="text/javascript">
 $(document).ready(OnReady);
 function OnReady(){
 	$(".firstName").focus();
 
+    $('#moneyOutput').blur(function() {
+        var amt = parseFloat(this.value);
+        $(this).val(amt.toFixed(2));
+    });
 }
 </script>

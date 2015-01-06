@@ -11,7 +11,7 @@
 			</tr>
 			<tr>
 				<td class="labeltd"><label>Precio:</label></td>
-				<td><input type="number" class="form-control" name="servicePrice" placeholder="Ingresar Precio del servicio" required/></td>
+				<td><input type="number" class="form-control" id="servicePrice" name="servicePrice" placeholder="Ingresar Precio del servicio" required/></td>
 			</tr>
 			<tr>
 				<td class="labeltd"><label>Proveedor:</label></td>
@@ -32,6 +32,11 @@
 $(document).ready(OnReady);
 function OnReady(){
 	$(".serviceName").focus();
+
+	 $('#servicePrice').blur(function() {
+        var amt = parseFloat(this.value);
+        $(this).val(amt.toFixed(2));
+    });
 
 }
 </script>

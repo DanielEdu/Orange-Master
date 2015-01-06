@@ -18,6 +18,11 @@ function OnReady(){
 
 	$("#mysearch").focus();
 
+	$('#sCantidad').blur(function() {		// redondea a nuemro entero la cantidad de articulos
+        var amt = parseFloat(this.value);
+        $(this).val(amt.toFixed(0));
+    });
+
 	$('#sCantidad').val("1");  // cantidad inicial de productos en 1
 	
 	if($('.preSale').val()==1){
@@ -87,7 +92,7 @@ function OnReady(){
 				// $("#msj").append(data.resp);
 				// $('#mensaje').show();
 				// 	bUser = false;
-				window.location.replace("/sale/registration/"+ dni);
+					window.location.replace("/sale/registration/"+ dni);
 				}
 	    	},
 	    	error: function (jqXHR, estado, error) {
@@ -120,15 +125,23 @@ function OnReady(){
 		var precioTotal = parseFloat(precioUnit * cant).toFixed(roundUp);
 		var button = "<button class='delete btn btn-danger btn-xs'>x</button>";
 		
+		if($('#sCantidad').val()!=="" && $('#sPrice').val()!==""){
 
-		$('#tableSale tbody:first').append("<tr><td>"+button+"</td><td class='producto'>"+producto+"</td><td class='cantidad'>"+cant+"</td><td class='precio'>"+precioUnit+"</td><td class='endPrice'>"+precioTotal+"</td></tr>");
-		$('#tableSalePrint tbody:first').append("<tr><td>"+producto+"</td><td>"+cant+"</td><td>"+precioUnit+"</td><td>"+precioTotal+"</td></tr>");
+			
+			$('#tableSale tbody:first').append("<tr><td>"+button+"</td><td class='producto'>"+producto+"</td><td class='cantidad'>"+cant+"</td><td class='precio'>"+precioUnit+"</td><td class='endPrice'>"+precioTotal+"</td></tr>");
+			$('#tableSalePrint tbody:first').append("<tr><td>"+producto+"</td><td>"+cant+"</td><td>"+precioUnit+"</td><td>"+precioTotal+"</td></tr>");
 
-		total = total + (precioUnit * cant);
-		$('#total').val(total.toFixed(roundUp));
-		$("#idService").focus();
-		$('.saveSale').attr("disabled", false);      // se activa el boton de guardar e imprimir
-
+			total = total + (precioUnit * cant);
+			$('#total').val(total.toFixed(roundUp));
+			$("#idService").focus();
+			$('.saveSale').attr("disabled", false);      // se activa el boton de guardar e imprimir
+		}
+		if($('#sCantidad').val()===""){
+			$("#sCantidad").focus();
+		}
+		if($('#sPrice').val()===""){
+			$("#sPrice").focus();
+		}
 
 	});
 
@@ -139,7 +152,7 @@ function OnReady(){
 		total -= price;
 		$('#total').val(total.toFixed(roundUp));
 		$(this).parent().parent().remove(); 
-		if($("#total").val()===0.00)  			// si no hay productos o servicios en la tabla, se desabilita el boton
+		if($("#total").val()==0.00)  			// si no hay productos o servicios en la tabla, se desabilita el boton
 			$('.saveSale').attr("disabled", true);
 	});
 

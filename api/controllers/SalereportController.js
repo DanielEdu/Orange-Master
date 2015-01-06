@@ -43,43 +43,50 @@ module.exports = {
 	   	});
 	},
 
+	'showservices': function (req, res, next) {
+		Service.find({where: { serviceFlag: 'service' }, sort: 'serviceName'}, function (err, services) {
+		    if (err) return next(err);
+	      	res.view({	 
+	      		services: services
+	     	});
+		});
+	},
+	
+
 	report: function (req, res, next) {
 
-		var gmtPeru 	= '00:00:00-05';
 		var startDate 	= parsing(req.param('startDate'));
 		var endDate 	= parsing(req.param('endDate'));
 
-		Sale.find({ createdAt: { '>': new Date(startDate+' '+gmtPeru), '<': new Date(endDate+' '+gmtPeru) } }, function (err, sale) {
+		Sale.find({createdAt:{ '>=': new Date(startDate), '<=': new Date(endDate)}}, function (err, sale) {
 			if(err) console.log('Error:' + err);
-			console.log(req.params.all());
-			console.log('==============================')
+
 			var resp = []
-			_.each(sale, function(s){
 
-				if(req.param('saler') && s.id_user==req.param('saler') && !req.param('client')){
-					resp.push(s)
-				}
-				if(req.param('client') && s.id_client==req.param('client') && !req.param('user')){
-					resp.push(s)
-				}
- 
-			});
-			console.log(resp)
+			if(req.param('saler') || req.param('client')){
+				_.each(sale, function(s){
+					console.log("entro en for each")
+					if(req.param('saler') && s.id_user==req.param('saler') && !req.param('client')){
+						resp.push(s)
+					}
+					if(req.param('client') && s.id_client==req.param('client') && !req.param('user')){
+						resp.push(s)
+					}
+				});
+			}
+			else if(!req.param('client') && !req.param('user')){
+				console.log("no entro")
+				resp = sale;
+			}
 
-			var saleInfo = parsingDate(resp);
-			res.send(saleInfo);		
+			//var saleInfo = parsingDate(resp);
+			res.send(resp);		
 			console.log("Reporte de ventas ok");
 			
 	    });
 	},
 
-
 };
-
-
- function searchForUser (){
-
- }
 
 
 function parsingDate(sale){

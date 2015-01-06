@@ -1,17 +1,29 @@
-<div class="container">
-	
 
-<h1>EDITAR SERVICIO</h1>
-<div class="divForms">
-<form action="/service/update/<%= service.id_service %>" method="POST">
-<input type="text" name="cod" value="" hidden />
-	<label for="">Nombre</label>
-	<input type="text" name="serviceName" class="form-control" value="<%= service.serviceName %>" /> <br/>
-	<label for="">Precio S/.</label>
-	<input type="number" name="servicePrice" class="form-control" value="<%= service.servicePrice %>" /> <br/>
-	<label for="">Descripción</label>
-	<textarea name="serviceDescription" class="form-control" rows="10" cols="50" placeholder="<%= service.serviceDescription %>" ></textarea> <br/>
-	<input type="submit" class="btn" value="Guardar"/>	
-</form>
+<div class="container">	
+	<h1>EDITAR SERVICIO</h1>
+	<div class="divForms">
+		<form action="/service/update/<%= service.id_service %>" method="POST">
+			<input type="text" name="cod" value="" hidden />
+			<label for="">Nombre: </label>
+			<input type="text" name="serviceName" id="serviceName" class="form-control" value="<%= service.serviceName %>" /> <br/>
+			<label for="">Precio S/.</label>
+			<input type="number" name="servicePrice" id="servicePrice" class="form-control" value="<%= service.servicePrice %>" /> <br/>
+			<label for="">Descripción</label>
+			<textarea name="serviceDescription" class="form-control" rows="10" cols="50" placeholder="<%= service.serviceDescription %>" ></textarea> <br/>
+			<input type="submit" class="btn btn-danger" value="Guardar"/>	
+		</form>
+	</div>
 </div>
-</div>
+
+<script type="text/javascript">
+$(document).ready(OnReady);
+function OnReady(){
+
+	$("#serviceName").focus();
+
+    $('#servicePrice').blur(function() {
+        var amt = parseFloat(this.value);
+        $(this).val(amt.toFixed(2));
+    });
+}
+</script>

@@ -21,11 +21,10 @@ module.exports = {
 
 	report: function (req, res, next) {
 
-		var gmtPeru 	= '00:00:00-05';
 		var startDate 	= parsing(req.param('startDate'));
 		var endDate 	= parsing(req.param('endDate'));
 
-		Expense.find({ createdAt: { '>': new Date(startDate+' '+gmtPeru), '<': new Date(endDate+' '+gmtPeru) } }, function (err, expense) {
+		Expense.find({createdAt: {'>': new Date(startDate), '<': new Date(endDate)}}, function (err, expense) {
 			if(err) console.log('Error:' + err);
 
 			else {
@@ -40,7 +39,7 @@ module.exports = {
 function parsingDate(data){
 
 	_.each(data, function(d){
-		d.createdAt = (d.createdAt).toISOString().replace(/T/, ' ').replace(/\..+/, '');
+		d.createdAt = (d.createdAt).toISOString().replace(/T/, ' hora:').replace(/\..+/, '');
 	});
 
 	return data

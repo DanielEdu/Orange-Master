@@ -2,7 +2,7 @@
 
 var systemDate = new Date();
 
-var day 	= systemDate.getDate()+1;
+var day 	= systemDate.getDate();
 var month 	= systemDate.getMonth()+1;
 var year 	= systemDate.getFullYear();
 
