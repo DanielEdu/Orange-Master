@@ -1,0 +1,39 @@
+<div class="container">
+<h1>PRODUCTOS Y SERVICIOS</h1> 
+
+	<table id="dvData" class="display table table-borderd table-hover" >
+		<thead>
+		<tr>
+		<!--		<th>ID</th>-->
+			<th>Servicio</th>
+			<th>precio</th>
+			<th></th>
+			<th>on/off</th>
+		</tr>
+		</thead>
+
+		<tbody>	
+		<% _.each(services, function(service){ %>
+		<tr> 
+		<!--	<td><%= service.id_service %></td> -->
+			<td><%= service.serviceName %></td>
+			<td>S/. <%= service.servicePrice %></td>
+			<td>
+				<a href="/service/show/<%= service.id_service %>">Ver</a> /
+				<a href="/service/edit/<%= service.id_service %>">Editar</a>
+			</td>
+			<td>
+				<div class="onoffswitch">
+				<input type="checkbox" name="onoffswitch" class="check onoffswitch-checkbox" id="<%= service.id_service %>" <% if (service.state) { %>checked<% } %> >
+				<label class="onoffswitch-label" for="<%= service.id_service %>">
+				<span class="onoffswitch-inner"></span>
+				<span class="onoffswitch-switch"></span>
+				</label>
+				</div>
+			</td>
+		</tr>
+		<%})%>
+		</tbody>
+
+	</table>
+</div>
