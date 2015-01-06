@@ -60,8 +60,8 @@ function OnReady(){
    	 	});
 	}
 	
-	$("#searchBT").on('click', function(){
-
+	$("#searchBT").on('click', function(e){
+		e.preventDefault();
 		var dni = $('#mysearch').val();
 		$.ajax({
 	    	url: "/client/findByDni/",
@@ -70,14 +70,14 @@ function OnReady(){
 	    		dni: dni,
 	    	},
 	    	success: function (resp) {
-	    		//$(".clientInfo").prop('enable', true);
+	    		
 	    		var data = resp
 	    		if(data.cod == cMsgSuccess){
 	    			if(data.dat.state){
-	    				$('input[name="firstName"]').val(data.dat.firstName);
-						$('input[name="lastName"]').val(data.dat.lastName);
+	    				$('#firstName').val(data.dat.firstName);
+						$('#lastName').val(data.dat.lastName);
 						$(".clientInfo").prop('disabled', true);
-						$("#msj").append("cliente encontrado");
+						$("#msj").text('"Cliente Encontrado"');
 						$('#mensaje').show();
 						bUser = true;
 						$("#idService").focus();
@@ -140,7 +140,7 @@ function OnReady(){
 			$("#sCantidad").focus();
 		}
 		if($('#sPrice').val()===""){
-			$("#sPrice").focus();
+			$("#sPrice").focus()
 		}
 
 	});

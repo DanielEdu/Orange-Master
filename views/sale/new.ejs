@@ -4,24 +4,25 @@
 <input type="text" class="preSale" hidden value="<%= flag %>" />
 <div id="main" class="container" >
 <h1>INGRESO DE VENTA</h1>
+
+ 
+<div class="divForms">
 <div id="mensaje" >
-	<ul class="alert alert-success">
+	<ul class="alert alert-info">
 		<li id="msj" >mensaje: </li>
 	</ul> 
 </div> 
- 
-<div class="divForms">
 	<form name="fo1" class="form-inline" >
 	<label >Ingresar DNI:</label>
 	<input id="mysearch" type="number" name="dniSeach" class="form-control" value="<%= dni%>" /> 
 	<button id="searchBT" class="btn btn-info"/> Buscar</button><br/><br/>
 	<div class="form-group"><div class="input-group">
 	<div class="input-group-addon">Nombres</div>
-	<input type="text" class="clientInfo form-control"  name="firstName" placeholder="Nombres" /><br/>
+	<input type="text" class="clientInfo form-control" id="firstName" name="firstName" placeholder="Nombres" required/><br/>
 	</div></div>
 	<div class="form-group"><div class="input-group">
 	<div class="input-group-addon">Apellidos</div>
-	<input type="text" class="clientInfo form-control" name="lastName" placeholder="Apellidos" /> 
+	<input type="text" class="clientInfo form-control" id="lastName" name="lastName" placeholder="Apellidos" /> 
 	</div></div><br/>
   	<hr>		
 	
@@ -49,7 +50,6 @@
 	</div></div>
 		<input type="submit" id="add" class="btn btn-danger" value="+" /><br/>
 	</div>
-	
 	<br>
 	<div id="tableSale">
 	<table id="tableSale" class="table table-hover" >
@@ -123,7 +123,7 @@
 <!--   *******  Fin del Ticket  ******   -->
 
     <button id="print" class="saveSale btn btn-danger" disabled > imprimir y Guardar </button>
-    <a class="danger navbar-right" href="/sale/new"><strong>*Borrar Todo</strong></a>
+    <a class="btn btn-danger navbar-btn navbar-right" href="/sale/new"><strong>*Borrar Todo</strong></a>
 	</div>
 	</form>
 </div>
@@ -131,5 +131,3 @@
 
 
 <script src="/js/form.js"></script>
-
- 
