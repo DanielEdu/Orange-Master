@@ -1,4 +1,7 @@
-
+a.hover:hover{
+  color: #f24141;
+  text-decoration: none;
+}
 body
 {
   background: #EEEEEE;

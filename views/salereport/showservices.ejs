@@ -1,24 +1,92 @@
 <div class="container">
-<h1>PRODUCTOS Y SERVICIOS</h1> 
+<h1>SERVICIOS</h1> 
 
 	<table id="dvData" class="display table table-borderd table-hover" >
 		<thead>
 		<tr>
 		<!--		<th>ID</th>-->
 			<th>Servicio</th>
+			<th>Numero de Ventas</th>
 			<th>Total</th>
+
+			
+		</tr>
+		</thead>
+
+		<tbody>	<% var a=0.00 %>
+			<% _.each(result, function(r){ %>
+			<tr> 
+				<td><%= r.name %></td>
+				<td><%= r.cant %></td>
+				<td>S/.<%= r.total %>  <% a+=parseFloat(r.total) %></td>
+			</tr>
+			<%})%>
+		</tbody>
+	
+		<tfoot>
+        <tr>
+            <th></th>
+            <th ></th>
+            <th>S/.<%= a.toFixed(2) %></th>
+        </tr>
+    </tfoot>
+
+	</table><br><br>
+<hr><br>
+	<h1>PRODUCTOS</h1>
+
+	<table id="dvData2" class="display table table-borderd table-hover" >
+		<thead>
+		<tr>
+			
+			<th>Producto</th>
+			<th>Numero de Ventas</th>
+			<th>Total S/.</th>
 			
 		</tr>
 		</thead>
 
 		<tbody>	
-		
-		<tr> 
-			<td></td>
-			<td>S/. </td>
-
-		</tr>
+		<% var b=0.0 %>
+			<% _.each(result2, function(r){ %>
+			<tr> 
+				<td><%= r.name %></td>
+				<td><%= r.cant %></td>
+				<td>S/.<%= r.total %> <% b+=parseFloat(r.total) %></td>
+			</tr>
+			<%})%>
 		</tbody>
-
-	</table>
+		<tfoot>
+	        <tr>
+	            <th></th>
+	            <th ></th>
+	            <th>S/.<%= b.toFixed(2) %></th>
+	        </tr>
+	    </tfoot>
+	</table> 
 </div>
+
+<script>
+$(document).ready(OnReady);
+  	function OnReady(){
+	    $('#dvData').DataTable({
+	    	"scrollY":        "300px",
+        	"scrollCollapse": true,
+	    	"paging":   false,
+	    	"info":     false,
+	    	"language": {
+	    		"search": "Buscar",
+	    	}
+	    });
+
+	    $('#dvData2').DataTable({
+	    	"scrollY":        "300px",
+        	"scrollCollapse": true,
+	    	"paging":   false,
+	    	"info":     false,
+	    	"language": {
+	    		"search": "Buscar",
+	    	}
+	    });
+	}
+</script>

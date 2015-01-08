@@ -12,7 +12,7 @@
 	<label for="">Desde: </label>
 	<input type="date" id="inicio" name="startDate" step="1" min="2014-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>">
 	<label for="">Hasta: </label>
-	<input type="date" id="fin" name="startDate" step="1" min="2015-01-01" max="2020-01-01" value="<%= systemDateFormat %>"> ** <br><br>
+	<input type="date" id="fin" name="startDate" step="1" min="2015-01-01" max="2020-01-01" value="<%= systemDateFormat %>"> <br><br>
     
     <label>Vendedor: </label>
     <select class="saler cambio form-control" name="saler" >
@@ -33,10 +33,12 @@
             </option>
         <%})%>
     </select><br><br>
+    <label for=""><a class="hover" href="/salereport/showservices/"><strong>Reporte Por Servicios y productos</strong></a></label><br><br>
 
 	<button id="send" class="btn btn-danger"> Filtrar </button> 
+
 </form>
-<p class="legend">(**) Las ventas se procesan a las 12 a.m. del día seleccionado, para ver las ventas del último día ingresar el día siguiente.</p>
+
 </div>
 <br>
 <br>

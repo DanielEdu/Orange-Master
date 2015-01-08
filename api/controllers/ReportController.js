@@ -23,8 +23,9 @@ module.exports = {
 
 		var startDate 	= parsing(req.param('startDate'));
 		var endDate 	= parsing(req.param('endDate'));
+		endDate += " 23:59:59"
 
-		Expense.find({createdAt: {'>': new Date(startDate), '<': new Date(endDate)}}, function (err, expense) {
+		Expense.find({createdAt: {'>=': new Date(startDate), '<=': new Date(endDate)}}, function (err, expense) {
 			if(err) console.log('Error:' + err);
 
 			else {

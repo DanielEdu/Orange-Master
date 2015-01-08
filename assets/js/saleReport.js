@@ -18,7 +18,7 @@ $('#advData').DataTable({
     });
 
  	$('.tableContainer').hide();
- 	$("#msj").append("Indique el intervalo de tiempo para su reporte. Las ventas se procesan a las 12 a.m. del día seleccionado ");
+ 	$("#msj").append("Indique el intervalo de tiempo para su reporte.");
 
  	// ----- Si se escoge un filtro el otro se borra ------
 	$('.client').on('change', function(){

@@ -62,10 +62,10 @@
     </figure>
     <ul>
       <li>
-        <a href="/user/show/<%= session.User.id_user%>"> <%= session.User.firstName %>   </a>
+        <a class="hover" href="/user/show/<%= session.User.id_user%>"> <%= session.User.firstName %>   </a>
       </li>
       <li>
-        <a href="/session/destroy">Salir</a>
+        <a class="hover" href="/session/destroy">Salir</a>
       </li>
     </ul>
   </header>
@@ -83,16 +83,16 @@
       <li><a href="/clientdetail/search/">Rutinas</a></li>
     <% } %>
     <% if (session.authenticated && (session.User.admin==='admin' || session.User.admin==='user')) { %>
-      <li><a href="/sale/new/"> Ventas </a></li>
-      <li><a href="/expense/new/"> Egresos </a></li>
-      <li><a href="/salereport/new/"> Reporte De Ventas </a></li>
-      <li><a href="/report/new/"> Reporte De Egresos </a></li>
+      <li><a class="hover" href="/sale/new/"> Ventas </a></li>
+      <li><a class="hover" href="/expense/new/"> Egresos </a></li>
+      <li><a class="hover" href="/salereport/new/"> Reporte De Ventas </a></li>
+      <li><a class="hover" href="/report/new/"> Reporte De Egresos </a></li>
     <% } %>
     <% if (session.authenticated && session.User.admin==='admin' ) { %>
-      <li><a href="/client/">Clientes</a></li>
-      <li><a href="/service/">Servicios</a></li>
-       <li><a href="/service/indexProducts">Productos</a></li>
-      <li><a href="/user/">Usuarios</a></li>
+      <li><a class="hover" href="/client/">Clientes</a></li>
+      <li><a class="hover" href="/service/">Servicios</a></li>
+       <li><a class="hover" href="/service/indexProducts">Productos</a></li>
+      <li><a class="hover" href="/user/">Usuarios</a></li>
     <% } %>
 
     </ul>  
@@ -101,7 +101,7 @@
     <%- body %>
 
  <footer>
-      Desarrollado por <img src="/images/ia_blanco.png" alt="iaSoft Groupe"> e-mail:   ventas@iasoftgroup.com
+      Desarrollado por <a class="hover" href="http://www.iasoftgroup.com/" target="_blank"><img src="/images/ia_blanco.png" alt="iaSoft Group"></a> ventas@iasoftgroup.com
 </footer>
 
     <!--
@@ -128,7 +128,6 @@
     <!--TEMPLATES-->
     
     <!--TEMPLATES END-->
-
 
     <!--
 
@@ -167,7 +166,7 @@
   <% if (!session.authenticated) { %> 
  <%- body %>
  <footer>
-      desarrollado por <a href="http://www.iasoftgroup.com/" target="_blank"><img src="/images/ia_blanco.png" alt="iaSoft Groupe"></a> ventas@iasoftgroup.com
+      Desarrollado por <a class="hover" href="http://www.iasoftgroup.com/" target="_blank"><img src="/images/ia_blanco.png" alt="iaSoft Group"></a> ventas@iasoftgroup.com
 </footer>
  <% }%>
   </body>

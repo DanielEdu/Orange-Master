@@ -43,26 +43,39 @@ module.exports = {
 	   	});
 	},
  
+
 	'showservices': function (req, res, next) {
+		var obj = [];
+		var obj2 = [];
 		async.auto({
 	        services: function(callback){
-	            Service.find({where: { serviceFlag: 'service' }, sort: 'serviceName'}).exec(callback);
+	            Service.find().exec(callback);
 	        },
 	        result: ['services', function(callback,results){
-	            var obj = [];
+	            
 	            async.each(results.services, function(s, innercb){
 	                SaleDetail.find({id_service:s.id_service}).exec(function(err, details){
-	                    var total = 0.0
-	                    var cont = 0
+	                    var total = 0.0  //almacenara el total de ganancia generado
+	                    var cont = 0 		//almacenará el numero de veces que se adquirio
 	                    _.each(details, function(d){
-	                        total = (total + parseFloat(d.fullPrice)).toFixed(2);
-	                        cont ++;
+	                        total = total + parseFloat(d.fullPrice);
+	                        cont += parseInt(d.quantity);
 	                    });
-	                    obj.push({
-	                        name: s.serviceName,
-	                        cant: cont,
-	                        total: total,
-	                    });
+	                    if(s.serviceFlag === 'service'){
+	                    	obj.push({					//se arma el objeto para la vista
+		                        name: s.serviceName,
+		                        cant: cont,
+		                        total: total.toFixed(2),
+	                    	});
+	                    }
+	                    if(s.serviceFlag === 'product'){
+	                    	obj2.push({					//se arma el objeto para la vista
+		                        name: s.serviceName,
+		                        cant: cont,
+		                        total: total.toFixed(2),
+	                    	});
+	                    }
+	                    
 	                    innercb();
 	                });
 	            }, function(err){
@@ -72,8 +85,10 @@ module.exports = {
 	    }, 
 	    function(err,result){
 	        if (err) return next(err);
-	        res.view();
-	        console.log(result.result);
+	        res.view({
+	        	result: obj,
+	        	result2: obj2,
+	        });
 	    });
 	},
 	
@@ -82,6 +97,8 @@ module.exports = {
 
 		var startDate 	= parsing(req.param('startDate'));
 		var endDate 	= parsing(req.param('endDate'));
+
+		endDate += " 23:59:59"
 
 		Sale.find({createdAt:{ '>=': new Date(startDate), '<=': new Date(endDate)}}, function (err, sale) {
 			if(err) console.log('Error:' + err);
