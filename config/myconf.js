@@ -26,5 +26,5 @@ module.exports.myconf = {
     	day: day,
     	month: month,
     	year: year,
-    }
+    },
 };

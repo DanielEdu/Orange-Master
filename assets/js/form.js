@@ -43,7 +43,7 @@ function OnReady(){
 	    				$('input[name="firstName"]').val(data.dat.firstName);
 						$('input[name="lastName"]').val(data.dat.lastName);
 						$(".clientInfo").prop('disabled', true);
-						$("#msj").append("Resgistre a neustro nuevo socio de ONE Fitness.");
+						$("#msj").text('"¡'+data.dat.firstName + " ha sido registrado exitosamente como cliente!. Proceda a realizar la venta");
 						$('#mensaje').show();
 						bUser = true;
 						$("#idService").focus();

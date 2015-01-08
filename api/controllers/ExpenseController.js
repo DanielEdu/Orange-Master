@@ -7,13 +7,13 @@
 
 module.exports = {
 
-'new': function (req, res, next) {
-	res.view();
-},
+  'new': function (req, res, next) {
+  	res.view();
+  },
 
 
-create: function (req, res, next) {
-//console.log(req.params.all());
+  create: function (req, res, next) {
+  //console.log(req.params.all());
     var expenseObj = {
       firstName:   req.param('firstName'),
       lastName:    req.param('lastName'),
@@ -24,14 +24,21 @@ create: function (req, res, next) {
     Expense.create(expenseObj, function (err, expense){
       if(err){
         console.log("Error: " + err);
-        return res.redirect('/expense/new/');
-      } 
-      res.redirect('/expense/new/');
-      console.log("Egreso registrado");
-    });
-},
-	
+        return res.redirect('/expense/new');
+      }
 
+      res.writeHead(200, {'content-type': 'text/html'});
+      res.end(
+        '<script>'+
+        'alert(" ¡Egreso registrado! ");'+
+        'window.location.replace("/expense/new");'+
+        '</script>'
+      );
+      console.log("Egreso registrado");
+
+    });
+  },
+	
 
 };
 

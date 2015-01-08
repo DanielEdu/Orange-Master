@@ -32,7 +32,7 @@
 			<td><input type="email" id="email" name="email" class="form-control" placeholder="Ingresar E-mail" /> 
 		</tr>
 		<tr>
-			<td class="labeltd"><label>Direccón: </label></td>
+			<td class="labeltd"><label>Dirección: </label></td>
 			<td><input type="text" name="address" class="form-control" placeholder="Ingresar Dirección" /> </td>
 		</tr>
 		<tr>
@@ -55,11 +55,11 @@
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Peso: </label>	</td>	
-			<td><input type="number" id="weight" step="any" name="weight" class="form-control" placeholder="Ingresar el Peso" required /> </td>
+			<td><input type="number" id="weight" step="any" name="weight" class="form-control" placeholder="Ingresar el Peso en kilogramos ej. (70)" required /> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Altura: </label>	</td>	
-			<td><input type="number" id="height" name="height" class="form-control" placeholder="Ingresar la Altura" required /> </td>
+			<td><input type="number" id="height" name="height" class="form-control" placeholder="Ingresar la Altura en metros ej. (1.70)" required /> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>% de Grasa: </label>	</td>	
@@ -175,7 +175,7 @@ $(document).ready(OnReady);
 			phoneNumber: {
 				number: 	"El Nro. telefonico debe ser numerico.",
 				minlength: 	"No puede ser menor a 6 digitos",
-				maxlength: 	"No puede ser mayot a 8 digitos",
+				maxlength: 	"No puede ser mayor a 9 digitos",
 			},
 			weight:{
 				number: "Debe ser un valor numerico en Kilogramos",

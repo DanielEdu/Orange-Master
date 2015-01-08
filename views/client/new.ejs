@@ -32,7 +32,7 @@
 			<td><input type="text" id="email" name="email" class="form-control" placeholder="Ingresar E-mail" /> 
 		</tr>
 		<tr>
-			<td class="labeltd"><label>Direccón: </label></td>
+			<td class="labeltd"><label>Dirección: </label></td>
 			<td><input type="text" name="address" class="form-control" placeholder="Ingresar Dirección" /> </td>
 		</tr>
 		<tr>
@@ -55,11 +55,11 @@
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Peso: </label>	</td>	
-			<td><input type="number" id="weight" step="any" name="weight" class="form-control" placeholder="Ingresar el Peso" /> </td>
+			<td><input type="number" id="weight" step="any" name="weight" class="form-control" placeholder="Ingresar el Peso en kilogramos ej.(70)" /> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>Altura: </label>	</td>	
-			<td><input type="number" id="height" min="0" step="any" name="height" class="form-control" placeholder="Ingresar la Altura" /> </td>
+			<td><input type="number" id="height" min="0" step="any" name="height" class="form-control" placeholder="Ingresar la Altura en metros ej.(1.70)" /> </td>
 		</tr>
 		<tr>
 			<td class="labeltd"><label>% de Grasa: </label>	</td>	
@@ -167,13 +167,13 @@ function OnReady(){
 			documentNumber: {
 				required: 	"Debe ingresar el numero de DNI.",
 				number: 	"El DNI debe ser numírico de 8 dígitos.",
-				minlength: 	"El DNI debe ser de 8 digitos",
-				maxlength: 	"El DNI debe ser de 8 digitos",
+				minlength: 	"El DNI debe ser de 8 dígitos",
+				maxlength: 	"El DNI debe ser de 8 dígitos",
 			},
 			phoneNumber: {
 				number: 	"El Nro. telefónico debe ser numérico.",
 				minlength: 	"No puede ser menor a 6 dígitos",
-				maxlength: 	"No puede ser mayor a 8 dígitos",
+				maxlength: 	"No puede ser mayor a 9 dígitos",
 			},
 			weight:{
 				number: "Debe ser un valor numérico en Kilogramos",

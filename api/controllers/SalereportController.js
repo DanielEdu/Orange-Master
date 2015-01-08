@@ -42,14 +42,39 @@ module.exports = {
 			});
 	   	});
 	},
-
+ 
 	'showservices': function (req, res, next) {
-		Service.find({where: { serviceFlag: 'service' }, sort: 'serviceName'}, function (err, services) {
-		    if (err) return next(err);
-	      	res.view({	 
-	      		services: services
-	     	});
-		});
+		async.auto({
+	        services: function(callback){
+	            Service.find({where: { serviceFlag: 'service' }, sort: 'serviceName'}).exec(callback);
+	        },
+	        result: ['services', function(callback,results){
+	            var obj = [];
+	            async.each(results.services, function(s, innercb){
+	                SaleDetail.find({id_service:s.id_service}).exec(function(err, details){
+	                    var total = 0.0
+	                    var cont = 0
+	                    _.each(details, function(d){
+	                        total = (total + parseFloat(d.fullPrice)).toFixed(2);
+	                        cont ++;
+	                    });
+	                    obj.push({
+	                        name: s.serviceName,
+	                        cant: cont,
+	                        total: total,
+	                    });
+	                    innercb();
+	                });
+	            }, function(err){
+	                callback(err, obj);
+	            });
+	        }],
+	    }, 
+	    function(err,result){
+	        if (err) return next(err);
+	        res.view();
+	        console.log(result.result);
+	    });
 	},
 	
 

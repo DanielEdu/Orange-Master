@@ -18,7 +18,7 @@ $('#advData').DataTable({
     });
 
  	$('.tableContainer').hide();
- 	$("#msj").append("Indique el intervalo de tiempo para su reporte");
+ 	$("#msj").append("Indique el intervalo de tiempo para su reporte. Las ventas se procesan a las 12 a.m. del día seleccionado ");
 
  	// ----- Si se escoge un filtro el otro se borra ------
 	$('.client').on('change', function(){
@@ -63,7 +63,6 @@ $('#advData').DataTable({
 		    	}
 		}
 
-console.log(data)
 		$.ajax({
 	    	url: "/salereport/report/",
 	    	type: "GET",
@@ -71,13 +70,12 @@ console.log(data)
 	    	success: function (resp) {
 
 	    		for (var i = 0; i < resp.length; i++) {
-	    			console.log(resp[i]);
 	    			var saleNumber 	= resp[i].id_sale;
 		    		var clientName 	= resp[i].clienteName;
 		    		var money		= resp[i].fullPrice;
 		    		var seller		= resp[i].sellerName;
 		    		var date		= resp[i].createdAt;
-		    		total += parseFloat(money);
+		    		total += parseFloat(money); 
 
 		    		$('tbody:first').append("<tr><td>"+saleNumber+"</td><td>"+clientName+"</td><td>"+seller+"</td><td>"+date+"</td><td>S/."+money+"</td><td><a href='/salereport/show/"+saleNumber+"'>Ver</a></td></tr>");
 	    		}
