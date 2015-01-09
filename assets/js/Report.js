@@ -18,12 +18,16 @@ function OnReady(){
 
 	$('#send').on('click',function(e){
 		e.preventDefault();
-		$('tr td').remove();
-		var startDate = $('#inicio').val();
-		var endDate = $('#fin').val();	
 		var total = 0.00; 
-
+		$('tr td').remove();
+		
 		$.ajax({
+			beforeSend: function(){
+				$('.spin').spin('show'); 		//mostrar spin antes de enviar ajax
+				var startDate = $('#inicio').val();
+				var endDate = $('#fin').val();	
+				
+			},
 	    	url: "/report/report/",
 	    	type: "GET",
 	    	data: {
@@ -45,7 +49,11 @@ function OnReady(){
 	    		$("#total").text(total.toFixed(2));
 	    		$('.tableContainer').show();
 	    		$("#mensaje").hide();
+
+	    		$('.spin').spin('hide'); 	//ocultar el spin
+
 	    		$('#excel').attr('download', startDate+" al "+endDate+'.xls');
+	    		
 	    	},
 	    	error: function (jqXHR, estado, error) {
 	    		console.log(estado);

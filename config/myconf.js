@@ -6,10 +6,10 @@ var day 	= systemDate.getDate();
 var month 	= systemDate.getMonth()+1;
 var year 	= systemDate.getFullYear();
 
-if(day<9){
+if(day<10){
 	day = '0' + day;
 }
-if(month<9){
+if(month<10){
 	month = '0' + month;
 }
 //***************************************************

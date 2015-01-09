@@ -13,7 +13,6 @@ module.exports = {
 		var year 	= sails.config.myconf.systemDate.year;
 
 		var systemDateFormat = year+'-'+month+'-'+day;
-		
 		res.view({
 			systemDateFormat:systemDateFormat
 		});
