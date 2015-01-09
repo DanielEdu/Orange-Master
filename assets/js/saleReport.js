@@ -64,6 +64,9 @@ $('#advData').DataTable({
 		}
 
 		$.ajax({
+			beforeSend: function(){
+				$('.spin').spin('show'); 		//mostrar spin antes de enviar ajax
+			},
 	    	url: "/salereport/report/",
 	    	type: "GET",
 	    	data: data,
@@ -77,10 +80,11 @@ $('#advData').DataTable({
 		    		var date		= resp[i].createdAt;
 		    		total += parseFloat(money); 
 
-		    		$('tbody:first').append("<tr><td>"+saleNumber+"</td><td>"+clientName+"</td><td>"+seller+"</td><td>"+date+"</td><td>S/."+money+"</td><td><a href='/salereport/show/"+saleNumber+"'>Ver</a></td></tr>");
+		    		$('tbody:first').append("<tr><td>"+saleNumber+"</td><td>"+clientName+"</td><td>"+seller+"</td><td>"+date+"</td><td>S/."+money+"</td><td><a href='/salereport/show/"+saleNumber+"' target='_blank'>Ver</a></td></tr>");
 	    		}
 	    		
 			    $("#total").text(total.toFixed(2));
+			    $('.spin').spin('hide'); 	//ocultar el spin
 	    		$('.tableContainer').show();
 	    		$("#mensaje").hide();
 
