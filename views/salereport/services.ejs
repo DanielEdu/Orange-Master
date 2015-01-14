@@ -1,0 +1,56 @@
+<div class="container">
+	<h1>SERVICIOS</h1> 
+	<div class="divForms">
+		<form >
+	    	<label for="">Desde: </label>
+	    	<input type="date" id="inicio" name="startDate" step="1" min="2014-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>">
+	    	<label for="">Hasta: </label>
+	    	<input type="date" id="fin" name="startDate" step="1" min="2015-01-01" max="2020-01-01" value="<%= systemDateFormat %>"> <br><br>
+
+	        <label>Articulo: </label>
+	        <select class="service cambio form-control" name="saler" >
+	            <option value="false">*Todos los Artículos</option>
+	            <% _.each(services, function(art){ %>
+	                <option value="<%= art.id_service %>"> 
+	                <%= art.serviceName %>
+	                </option>
+	            <%})%>
+	        </select><br><br>
+	    	<button id="send" class="btn btn-danger"> Filtrar </button> <div class="spin" ></div>
+	    </form>
+	</div>
+	<div class="tableContainer">
+        <hr>
+        <table id="advData" class="table table-borderd table-hover" >
+            <thead>
+                <tr>
+                	<th>Nombre</th>
+                    <th>Nro. de Venta</th>
+                	<th>Fecha y hora</th>
+                    <th>Cantidad</th>
+                    <th>Precio/u</th>
+                    <th>Precio Total</th>
+                    <th>Detalles</th>
+                </tr>
+            </thead>
+
+            <tbody></tbody>
+
+            <tfoot>
+                <tr>
+                	<th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>TOTAL:</th>
+                    <th id="total">S/.</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <a download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'advData', 'Sheet Name Here');"><img src="/images/excel.png" height="42" width="42"> Exportar a Excel</a>
+    </div>	
+</div>
+
+<script src="/js/servicereport.js"></script>

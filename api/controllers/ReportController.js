@@ -28,8 +28,8 @@ module.exports = {
 			if(err) console.log('Error:' + err);
 
 			else {
-				var expenseInfo = parsingDate(expense);
-				res.send(expenseInfo);	
+				parsingDate(expense);
+				res.send(expense);	
 			}
 	    });
 	},
@@ -38,8 +38,9 @@ module.exports = {
 
 function parsingDate(data){
 
-	_.each(data, function(d){
-		d.createdAt = (d.createdAt).toISOString().replace(/T/, ' hora:').replace(/\..+/, '');
+	_.each(data, function(sl){
+		sl.createdAt = sl.createdAt.getFullYear()+'/'+(sl.createdAt.getMonth()+1)+'/'+sl.createdAt.getDate()+'  '+
+			sl.createdAt.getHours()+':'+sl.createdAt.getMinutes()+':'+sl.createdAt.getSeconds();
 	});
 
 	return data

@@ -1,76 +1,93 @@
 
 
 <div class="container">
-<h1>REPORTE DE VENTAS</h1>
-<div class="divForms">
-    <div id="mensaje" >
-        <ul class="alert alert-info">
-            <li id="msj"></li>
-        </ul>
+    <h1>REPORTE DE VENTAS</h1>
+    <div class="divForms">
+        <div id="mensaje" >
+            <ul class="alert alert-info">
+                <li id="msj"></li>
+            </ul>
+        </div>
+        <form >
+        	<label for="">Desde: </label>
+        	<input type="date" id="inicio" name="startDate" step="1" min="2014-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>">
+        	<label for="">Hasta: </label>
+        	<input type="date" id="fin" name="startDate" step="1" min="2015-01-01" max="2020-01-01" value="<%= systemDateFormat %>"> <br><br>
+            
+            <label>Vendedor: </label>
+            <select class="saler cambio form-control" name="saler" >
+                <option value="false">*Todos los Vendedores</option>
+                <% _.each(users, function(user){ %>
+                    <option value="<%= user.id_user %>"> 
+                    <%= user.firstName+' '+user.lastName %>
+                    </option>
+                <%})%>
+            </select><br><br>
+
+            <label>Cliente: </label>
+            <select class="client cambio form-control" name="saler" >
+                <option value="false">*Todos los Clientes</option>
+                <% _.each(clients, function(client){ %>
+                    <option value="<%= client.id_client %>"> 
+                    <%= client.firstName+' '+client.lastName %>
+                    </option>
+                <%})%>
+            </select><br><br>
+            
+            <label for=""><a class="hover" href="/salereport/services/"><strong>Reporte Por Servicios y productos</strong></a></label><br><br>
+
+        	<button id="send" class="btn btn-danger"> Filtrar </button> <div class="spin" ></div>
+
+        </form>
+
     </div>
-<form >
-	<label for="">Desde: </label>
-	<input type="date" id="inicio" name="startDate" step="1" min="2014-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>">
-	<label for="">Hasta: </label>
-	<input type="date" id="fin" name="startDate" step="1" min="2015-01-01" max="2020-01-01" value="<%= systemDateFormat %>"> <br><br>
-    
-    <label>Vendedor: </label>
-    <select class="saler cambio form-control" name="saler" >
-        <option value="false">*Todos los Vendedores</option>
-        <% _.each(users, function(user){ %>
-            <option value="<%= user.id_user %>"> 
-            <%= user.firstName+' '+user.lastName %>
-            </option>
-        <%})%>
-    </select><br><br>
+    <br>
+    <div class="tableContainer">
+        <hr>
+        <h4><a href=""> *Ver Extornos</a></h4>
+        <table id="advData" class=" table table-borderd table-hover" >
+            <thead>
+                <tr>
+                    <th>Extorno</th>
+                    <th>Nro. de Venta</th>
+                	<th>Fecha y Hora</th>
+                    <th>Cliente</th>
+                    <th>Vendedor</th>
+                    <th>Monto</th>
+                    <th>Detalle</th>
+                </tr>
+            </thead>
 
-    <label>Cliente: </label>
-    <select class="client cambio form-control" name="saler" >
-        <option value="false">*Todos los Clientes</option>
-        <% _.each(clients, function(client){ %>
-            <option value="<%= client.id_client %>"> 
-            <%= client.firstName+' '+client.lastName %>
-            </option>
-        <%})%>
-    </select><br><br>
-    <label for=""><a class="hover" href="/salereport/showservices/"><strong>Reporte Por Servicios y productos</strong></a></label><br><br>
+            <tbody></tbody>
 
-	<button id="send" class="btn btn-danger"> Filtrar </button> <div class="spin" ></div>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>TOTAL:</th>
+                    <th id="total" class="endPrice">S/.</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
 
-</form>
+        <a download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'advData', 'Sheet Name Here');"><img src="/images/excel.png" height="42" width="42"> Exportar a Excel</a>
+    </div>
 
 </div>
-<br>
-<br>
-<div class="tableContainer">
-<hr>
-<table id="advData" class=" table table-borderd table-hover" >
-    <thead>
-        <tr>
-            <th>Nro. de Venta</th>
-        	<th>Cliente</th>
-            <th>Vendedor</th>
-            <th>Fecha y hora</th>
-            <th>Monto</th>
-            <th></th>
-        </tr>
-    </thead>
 
-    <tbody></tbody>
+<!-- **********    Form pop up  **********   -->
+<div id="dialogo" class="ventana"  title="¿Por que se extorno la venta?" hidden>
 
-    <tfoot>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>TOTAL:</th>
-            <th id="total">S/.</th>
-            <th></th>
-        </tr>
-    </tfoot>
-</table>
-<a download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'advData', 'Sheet Name Here');"><img src="/images/excel.png" height="42" width="42"> Exportar a Excel</a>
-</div><br/>
+    <textarea id="observation" rows="5" cols="55" /></textarea>   
 </div>
+<!-- ************************************  -->
 
 <script src="/js/saleReport.js"></script>
+<style>
+    #observation {
+        background: gray;
+    }
+</style>

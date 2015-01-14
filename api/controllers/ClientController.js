@@ -39,7 +39,7 @@ module.exports = {
 
 	    	District.findOne({ id_district: client.district }, function (err, district){
 				ClientDetail.find({ where: { id_client: client.id_client }, sort: 'updatedAt DESC'}, function (err, detail) {   
-					Sale.find({id_client:client.id_client}, function (err, sale){
+					Sale.find({id_client:client.id_client, state:{'!': false }}, function (err, sale){
 					   	if (err) return next(err);
 				      	// if (!err) return next();
 				      	if (!district){

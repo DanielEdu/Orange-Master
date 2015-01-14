@@ -33,7 +33,7 @@
   100% {
     opacity: 0.4; } }
 .spin {
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 30px;
   height: 30px;

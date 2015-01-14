@@ -119,7 +119,7 @@ module.exports = {
 				    	SaleDetail.create(saleDetailObj, function (err, saleDetail){
 					    	if(err){
 					    		console.log(err);
-					    		return res.redirect('sale/new/');
+					    		return res.redirect('/sale/new/');
 					    	}
 					    	var resp = {
 					    		resp: sale.id_sale,
@@ -132,7 +132,6 @@ module.exports = {
 			    }); 
 			});
 		});
-
 		/*Client.findOne({ documentNumber: req.param('clientDocument') }, function (err, client, next) {
 			
 			if(err) console.log('Error:' + err);
@@ -151,7 +150,15 @@ module.exports = {
 				};
 			}
 	    });*/
+	},
 
+	update: function (req, res, next) {	
+		console.log(req.params.all())	
+		Sale.update(req.param('id'), req.params.all(), function (err){ 			
+			if(err) console.log(err);
+			res.send("Update success");
+
+		});       
 	},
 
 };

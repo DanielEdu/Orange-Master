@@ -2,35 +2,74 @@
 
 $(document).ready(OnReady);
 function OnReady(){
-
-$('#advData').DataTable({
-    	//"scrollY":        "300px",
-        "scrollCollapse": true,
- 		"paging":   	  false,
-    	"info":     	  false,
-    	"language": {
-    		"search": 		"Buscar",
-    		"lengthMenu": 	"Mostrar _MENU_ campos por página",
-    		"zeroRecords": 	"No se encontro - intente con otros datos",
-    		"info": 		"",
-    		"infoFiltered": "",
-    	}
-    });
+alert = function() {};
 
  	$('.tableContainer').hide();
  	$("#msj").append("Indique el intervalo de tiempo para su reporte.");
 
  	// ----- Si se escoge un filtro el otro se borra ------
-	$('.client').on('change', function(){
+	$('.service').on('change', function(){
 		$(".saler").val('false');
-	});
-	$('.saler').on('change', function(){
 		$(".client").val('false');
 	});
-	// ----------------------------------------------------
 
+	//----- extorno ------
+	$('table').on('click', 'td button', function () { 
+		var id = $(this).attr('id');
+		var obs = '';
+		$("#dialogo").dialog({ // muestra la ventana  -->
+            width: 510,  // ancho de la ventana -->
+            height: 310,// altura de la ventana -->
+            show: "scale", // animación de la ventana al aparecer -->
+            hide: "scale", // animación al cerrar la ventana -->
+            resizable: "false", // fija o redimensionable si ponemos este valor a "true" -->
+            position: "center",// posición de la ventana en la pantalla (left, top, right...) -->
+            modal: "true", // si esta en true bloquea el contenido de la web mientras la ventana esta activa (muy elegante) -->
+    	    buttons: {
+    	    	OK: function(){
+    	    		obs = $("#observation").val();
+    	    		extorn(id, obs);  //llamar ajax de extorno
+    	    				// re-consultar nuevo reporte
+					$(this).dialog("close");  //cerrar el dialogo 
+    	    	},
+    	    },
+        });			
+	});
+
+	//------Consultar reporte--------------------
 	$('#send').on('click',function(e){
 		e.preventDefault();
+		simplex();		
+	});	
+}
+
+/**************                  ***************/
+	function extorn(id, obs){
+		$.ajax({
+            url: "/sale/update/",
+            type: "POST",
+            data: {
+                id: 	id,
+                state: 	false,
+                observations: obs,
+            },
+            success: function (resp) {
+                console.log(resp)
+                simplex();
+            },
+            error: function (jqXHR, estado, error) {
+                console.log(estado);
+                console.log(error);
+            },
+            complete: function (jqXHR, estado) {
+                console.log(estado);
+            }
+        });
+        
+	}
+
+	function simplex(){
+
 		$('tr td').remove();
 
 		var total = 0.00;
@@ -63,6 +102,8 @@ $('#advData').DataTable({
 		    	}
 		}
 
+		
+
 		$.ajax({
 			beforeSend: function(){
 				$('.spin').spin('show'); 		//mostrar spin antes de enviar ajax
@@ -71,20 +112,33 @@ $('#advData').DataTable({
 	    	type: "GET",
 	    	data: data,
 	    	success: function (resp) {
-
 	    		for (var i = 0; i < resp.length; i++) {
 	    			var saleNumber 	= resp[i].id_sale;
 		    		var clientName 	= resp[i].clienteName;
 		    		var money		= resp[i].fullPrice;
 		    		var seller		= resp[i].sellerName;
 		    		var date		= resp[i].createdAt;
+	    			var button = "<button id='"+saleNumber+"' class='delete btn btn-danger btn-xs'>x</button>";
 		    		total += parseFloat(money); 
 
-		    		$('tbody:first').append("<tr><td>"+saleNumber+"</td><td>"+clientName+"</td><td>"+seller+"</td><td>"+date+"</td><td>S/."+money+"</td><td><a href='/salereport/show/"+saleNumber+"' target='_blank'>Ver</a></td></tr>");
+		    		$('tbody:first').append("<tr><td>"+button+"</td><td>"+saleNumber+"</td><td>"+date+"</td><td>"+clientName+"</td><td>"+seller+"</td><td class='endPrice'>S/."+money+"</td><td><a href='/salereport/show/"+saleNumber+"' target='_blank'>Ver</a></td></tr>");
 	    		}
-	    		
-			    $("#total").text(total.toFixed(2));
 			    $('.spin').spin('hide'); 	//ocultar el spin
+	    		
+			    $("#total").text("S/."+total.toFixed(2));
+			    $('#advData').DataTable({
+			    	//"scrollY":        "300px",
+			        "scrollCollapse": true,
+			 		"paging":   	  false,
+			    	"info":     	  false,
+			    	"language": {
+			    		"search": 		"Buscar",
+			    		"lengthMenu": 	"Mostrar _MENU_ campos por página",
+			    		"zeroRecords": 	"No se encontró resultados - intente con otros datos",
+			    		"info": 		"",
+			    		"infoFiltered": "",
+			    	}
+			    });
 	    		$('.tableContainer').show();
 	    		$("#mensaje").hide();
 
@@ -97,6 +151,4 @@ $('#advData').DataTable({
 	    		console.log(estado);
 	    	}
    	 	});
-
-	});
-}
+	}

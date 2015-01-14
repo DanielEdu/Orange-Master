@@ -32,6 +32,14 @@ module.exports = {
 			type: 'string',
 			required: true
 		},
+		state: {
+			type: 'boolean',
+			defaultsTo: true
+		},
+		observations: {
+			type: 'text',
+			defaultsTo: ''
+		},
 		id_user: {
 			model:'User'
 		},

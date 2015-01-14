@@ -1,6 +1,28 @@
 <div class="container">
 <h1>SERVICIOS</h1> 
 
+	<form >
+    	<label for="">Desde: </label>
+    	<input type="date" id="inicio" name="startDate" step="1" min="2014-01-01" max="<%= systemDateFormat %>" value="<%= systemDateFormat %>">
+    	<label for="">Hasta: </label>
+    	<input type="date" id="fin" name="startDate" step="1" min="2015-01-01" max="2020-01-01" value="<%= systemDateFormat %>"> <br><br>
+        
+       
+        <label>Articulo: </label>
+        <select class="service cambio form-control" name="saler" >
+            <option value="false">*Todos los Artículos</option>
+            <% _.each(services, function(art){ %>
+                <option value="<%= art.id_service %>"> 
+                <%= art.serviceName %>
+                </option>
+            <%})%>
+        </select><br><br>
+        <label for=""><a class="hover" href="/salereport/showservices/"><strong>Reporte Por Servicios y productos</strong></a></label><br><br>
+
+    	<button id="send" class="btn btn-danger"> Filtrar </button> <div class="spin" ></div>
+
+    </form>
+
 	<table id="dvData" class="display table table-borderd table-hover" >
 		<thead>
 		<tr>

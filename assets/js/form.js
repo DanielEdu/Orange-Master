@@ -125,7 +125,7 @@ function OnReady(){
 		var precioTotal = parseFloat(precioUnit * cant).toFixed(roundUp);
 		var button = "<button class='delete btn btn-danger btn-xs'>x</button>";
 		
-		if($('#sCantidad').val()!=="" && $('#sPrice').val()!==""){
+		if($('#sCantidad').val()!=="" && $('#sPrice').val()!=="" && $('#firstName').val()!==""){
 
 			
 			$('#tableSale tbody:first').append("<tr><td>"+button+"</td><td class='producto'>"+producto+"</td><td class='cantidad'>"+cant+"</td><td class='precio'>"+precioUnit+"</td><td class='endPrice'>"+precioTotal+"</td></tr>");
@@ -141,6 +141,9 @@ function OnReady(){
 		}
 		if($('#sPrice').val()===""){
 			$("#sPrice").focus()
+		}
+		if($('#firstName').val()===""){
+			$("#mysearch").focus()
 		}
 
 	});

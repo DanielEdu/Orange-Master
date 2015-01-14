@@ -2,17 +2,7 @@ var total = 0.00;
 
 $(document).ready(OnReady);
 function OnReady(){
-	$('#dvData').DataTable({
-		"paging":   false,
-    	"info":     false,
-    	"language": {
-    		"search": "Buscar",
-    		"lengthMenu": "Mostrar _MENU_ campos por página",
-    		"zeroRecords": "No se encontro - intente con otros datos",
-    		"info": "",
-    		"infoFiltered": "",
-    	}
-    });
+	alert = function() {}; //sobrescribir alert 
 
  	$('.tableContainer').hide();
 
@@ -46,9 +36,20 @@ function OnReady(){
 		    		$('tbody:first').append("<tr><td>"+date+"</td><td>"+firstName+"</td><td>"+lastName+"</td><td>"+observations+"</td><td>S/."+money+"</td></tr>");
 	    		}
 	    		
-	    		$("#total").text(total.toFixed(2));
+	    		$("#total").text("S/."+total.toFixed(2));
 	    		$('.tableContainer').show();
 	    		$("#mensaje").hide();
+	    		$('#dvData').DataTable({
+		"paging":   false,
+    	"info":     false,
+    	"language": {
+    		"search": "Buscar",
+    		"lengthMenu": "Mostrar _MENU_ campos por página",
+    		"zeroRecords": "No se encontró - intente con otros datos",
+    		"info": "",
+    		"infoFiltered": "",
+    	}
+    });
 
 	    		$('.spin').spin('hide'); 	//ocultar el spin
 

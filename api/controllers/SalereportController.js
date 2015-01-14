@@ -11,6 +11,7 @@ module.exports = {
 	'new': function (req, res, next) {
 		User.find({admin: ['user', 'admin']}, function (err, users) {
 			Client.find(function (err, clients) {
+			
 				if (err) return next(err);
 				//Obtener la fecha del sitema
 				var day 	= sails.config.myconf.systemDate.day;
@@ -22,13 +23,36 @@ module.exports = {
 				Service.find(function (err, servicios){
 					if (err) return next(err);	
 					res.view({
-						systemDateFormat: 		systemDateFormat,
-						users: 					users,
-						clients:   				clients,
+						systemDateFormat: 	systemDateFormat,
+						users: 				users,
+						clients:   			clients,
 					});
 				});
 			});
 		});
+	},
+
+
+	'services': function (req, res, next) {
+		
+				Service.find(function (err, services) {
+					if (err) return next(err);
+					//Obtener la fecha del sitema
+					var day 	= sails.config.myconf.systemDate.day;
+					var month 	= sails.config.myconf.systemDate.month;
+					var year 	= sails.config.myconf.systemDate.year;
+
+					var systemDateFormat = year+'-'+month+'-'+day;
+					//--------------------------------------------------
+					Service.find(function (err, servicios){
+						if (err) return next(err);	
+						res.view({
+							systemDateFormat: 	systemDateFormat,
+							services: 			services,
+						});
+					});
+				});	
+			
 	},
 
 	'show': function (req, res, next) {
@@ -43,8 +67,8 @@ module.exports = {
 	   	});
 	},
  
-
-	'showservices': function (req, res, next) {
+//codigo chevere sincrono
+	/*'showservices': function (req, res, next) {
 		var obj = [];
 		var obj2 = [];
 		async.auto({
@@ -90,8 +114,34 @@ module.exports = {
 	        	result2: obj2,
 	        });
 	    });
+	},*/
+
+	reportservice: function (req, res, next){
+		var startDate 	= parsing(req.param('startDate'));
+		var endDate 	= parsing(req.param('endDate'));
+		endDate += " 23:59:59"
+		var resp = []
+
+		SaleDetail.find({createdAt:{ '>=': new Date(startDate), '<=': new Date(endDate)}}, function (err, saleDetail) {
+			Service.find(function (err, services) {
+
+				if(err) console.log('Error:' + err);
+				if(req.param('service')){
+					_.each(saleDetail, function(sd){
+						if(sd.id_service==req.param('service')){
+							resp.push(sd)
+						}
+					});
+				}
+
+				if(!req.param('service')){	
+					resp = saleDetail;
+				}
+
+				res.send(parsingDate(resp));
+			});
+		});
 	},
-	
 
 	report: function (req, res, next) {
 
@@ -100,40 +150,51 @@ module.exports = {
 
 		endDate += " 23:59:59"
 
-		Sale.find({createdAt:{ '>=': new Date(startDate), '<=': new Date(endDate)}}, function (err, sale) {
+		Sale.find({
+			createdAt:{ 
+				'>=': new Date(startDate), 
+				'<=': new Date(endDate)
+			}, 
+			state: { 
+				'!': false 
+			}
+		}, function (err, sale) {
 			if(err) console.log('Error:' + err);
 
 			var resp = []
-
+			
 			if(req.param('saler') || req.param('client')){
 				_.each(sale, function(s){
-					console.log("entro en for each")
+					
 					if(req.param('saler') && s.id_user==req.param('saler') && !req.param('client')){
 						resp.push(s)
 					}
-					if(req.param('client') && s.id_client==req.param('client') && !req.param('user')){
+					if(req.param('client') && s.id_client==req.param('client') && !req.param('saler')){
+						resp.push(s)
+					}
+					if(req.param('client') && req.param('client') && s.id_client==req.param('client') && s.id_user==req.param('saler')){
 						resp.push(s)
 					}
 				});
 			}
 			else if(!req.param('client') && !req.param('user')){
-				console.log("no entro")
+				
 				resp = sale;
 			}
 
-			//var saleInfo = parsingDate(resp);
+			parsingDate(resp);
 			res.send(resp);		
-			console.log("Reporte de ventas ok");
-			
+			console.log("Reporte de ventas ok");			
 	    });
 	},
-
 };
 
+//*************  Functions *******************
 
 function parsingDate(sale){
 	_.each(sale, function(sl){
-			sl.createdAt = (sl.createdAt).toISOString().replace(/T/, ' ').replace(/\..+/, '');
+			sl.createdAt = sl.createdAt.getFullYear()+'/'+(sl.createdAt.getMonth()+1)+'/'+sl.createdAt.getDate()+'  '+
+			sl.createdAt.getHours()+':'+sl.createdAt.getMinutes()+':'+sl.createdAt.getSeconds();
 
 		});
 
