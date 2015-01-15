@@ -29,3 +29,16 @@
 		</tbody>
 	</table>
 </div>
+
+<script>
+$(document).ready(OnReady);
+function OnReady(){
+    $('#dvData').DataTable({
+    	"paging":   false,
+    	"info":     false,
+    	"language": {
+    		"search": "Buscar",
+    	}
+    });
+}
+</script>
