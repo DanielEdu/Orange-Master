@@ -32,27 +32,45 @@ module.exports = {
 		});
 	},
 
-
 	'services': function (req, res, next) {
 		
-				Service.find(function (err, services) {
-					if (err) return next(err);
-					//Obtener la fecha del sitema
-					var day 	= sails.config.myconf.systemDate.day;
-					var month 	= sails.config.myconf.systemDate.month;
-					var year 	= sails.config.myconf.systemDate.year;
+		Service.find(function (err, services) {
+			if (err) return next(err);
+			//Obtener la fecha del sitema
+			var day 	= sails.config.myconf.systemDate.day;
+			var month 	= sails.config.myconf.systemDate.month;
+			var year 	= sails.config.myconf.systemDate.year;
 
-					var systemDateFormat = year+'-'+month+'-'+day;
-					//--------------------------------------------------
-					Service.find(function (err, servicios){
-						if (err) return next(err);	
-						res.view({
-							systemDateFormat: 	systemDateFormat,
-							services: 			services,
-						});
-					});
-				});	
-			
+			var systemDateFormat = year+'-'+month+'-'+day;
+			//--------------------------------------------------
+			Service.find(function (err, servicios){
+				if (err) return next(err);	
+				res.view({
+					systemDateFormat: 	systemDateFormat,
+					services: 			services,
+				});
+			});
+		});				
+	},
+
+	'extorno': function (req, res, next) {
+
+		Sale.find({
+			/*createdAt:{ 
+				'>=': new Date(startDate), 
+				'<=': new Date(endDate)
+			},*/ 
+			state: { 
+				'!': true 
+			}
+		},
+		function (err, sale) {
+			if (err) return next(err);
+			parsingDate(sale);
+			res.view({
+					sale: sale,					
+				});
+		});
 	},
 
 	'show': function (req, res, next) {
@@ -66,8 +84,11 @@ module.exports = {
 			});
 	   	});
 	},
- 
-//codigo chevere sincrono
+
+
+  //*************************************************************//
+ //************** Código chevere sin-crono *********************//
+//*************************************************************//
 	/*'showservices': function (req, res, next) {
 		var obj = [];
 		var obj2 = [];
@@ -122,7 +143,16 @@ module.exports = {
 		endDate += " 23:59:59"
 		var resp = []
 
-		SaleDetail.find({createdAt:{ '>=': new Date(startDate), '<=': new Date(endDate)}}, function (err, saleDetail) {
+		SaleDetail.find({
+			createdAt:{ 
+				'>=': new Date(startDate), 
+				'<=': new Date(endDate),
+			},
+			state: { 
+				'!': false, 
+			},
+		},
+		function (err, saleDetail) {
 			Service.find(function (err, services) {
 
 				if(err) console.log('Error:' + err);

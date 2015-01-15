@@ -26,6 +26,10 @@ module.exports = {
 			type :'decimal',
 			required: true
 		},
+		state: {
+			type: 'boolean',
+			defaultsTo: true
+		},
 		id_sale: {
             model:'Sale'
         },

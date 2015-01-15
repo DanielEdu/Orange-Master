@@ -154,10 +154,11 @@ module.exports = {
 
 	update: function (req, res, next) {	
 		console.log(req.params.all())	
-		Sale.update(req.param('id'), req.params.all(), function (err){ 			
-			if(err) console.log(err);
-			res.send("Update success");
-
+		Sale.update(req.param('id'), req.params.all(), function (err){ 	
+			SaleDetail.update({id_sale:req.param('id')},{state:req.param('state')}, function (err){
+				if(err) console.log(err);
+				res.send("Update success");
+			});		
 		});       
 	},
 

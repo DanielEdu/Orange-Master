@@ -1,0 +1,31 @@
+<div class="container">
+<h1>EXTORNOS</h1> 
+<hr>
+
+	<table id="dvData" class="display table table-borderd table-hover dataTable no-footer" >
+		<thead>
+			<tr>
+				<th>Nro. de Venta</th>
+				<th>Fecha y Hora</th>
+				<th>Cliente</th>
+				<th>Vendedor</th>
+				<th>Monto</th>
+				<th>observaciones</th>
+				<th>Detalle</th>				
+			</tr>
+		</thead>
+		<tbody>
+			<% _.each(sale, function(sl){ %>
+			<tr data-id="" data-model="client">
+				<td><%= sl.id_sale %></td> 
+				<td><%= sl.createdAt %></td>
+				<td><%= sl.clienteName %></td>
+				<td><%= sl.sellerName %></td>
+				<td>S/.<%= sl.fullPrice %></td>
+				<td><%= sl.observations %></td>
+				<td><a href='/salereport/show/<%= sl.id_sale %>' target='_blank'>Ver</a></td>				
+			</tr>
+			<%})%>
+		</tbody>
+	</table>
+</div>
