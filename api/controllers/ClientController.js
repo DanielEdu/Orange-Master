@@ -107,7 +107,7 @@ module.exports = {
 	      	question7: 		req.param('question7'),
 		}     
 		Client.findOne({ documentNumber: req.param('documentNumber')}, function (err, client){
-			console.log(client)
+			
 			if(client){
 				req.session.flash = {
 	          		err: {
@@ -173,7 +173,7 @@ module.exports = {
 			    if(!req.param('cod')) params.avatarFd = avatarFd;
 
 			Client.update(req.param('id'), params, function userUpdated (err){
-				console.log(avatarFd)
+				
 				if (err) {
 					return res.redirect('/client/edit/' + req.param('id'));
 				}else{

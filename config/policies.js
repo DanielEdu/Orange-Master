@@ -25,40 +25,31 @@ module.exports.policies = {
   * access)                                                                  *
   *                                                                          *
   ***************************************************************************/
+session: "flash",
+sale: "sessionAuth",
+service: {
+  index: "admin",
+  edit: "admin", 
+  index: "admin",
+  indexProducts: "admin",
+  new: "admin",
+  newproduct: "admin",
+  show: "admin",
+},
+user: {
+  index: "admin",
+  new: "admin",
+  show: "user",
+  edit: ["flash","user"],
+},
+client: {
+  index: "admin",
+  new: "admin",
+  show: "admin",
+  edit: ["flash","admin"],
+},
+'*': "sessionAuth"
 
-  client:{
-    index: "admin",
-    new: ["admin","flash"],
-    '*': "sessionAuth",
-  }, 
-  sale:{
-    new: ["admin","user"],
-    registration: ["admin","user","flash"],
-    '*': "sessionAuth",
-  }, 
-  service: "admin",
-  clientdetail: "sessionAuth",
-  expense: "sessionAuth",
-  report: "sessionAuth",
-  salereport: "sessionAuth",
- 
-
- '*': "flash",
-
-
-
-  user: {
-    //edit: ["flash", "admin"],
-    show: "user",
-    edit: ["user","flash"],
-    update: "user",
-    '*': ["admin","flash"]
-  },
-/*
-  sale: {
-    '*': ["user", "admin"]
-  },
-*/
  
 
   /***************************************************************************

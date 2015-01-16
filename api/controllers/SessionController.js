@@ -9,6 +9,7 @@ var bcrypt = require('bcrypt');
 module.exports = {
 
 	'new': function (req, res, next) {
+		req.session.authenticated=false;
 		req.session.destroy();
 		console.log("Ay!!!")
 		res.view();

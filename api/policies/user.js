@@ -3,6 +3,7 @@
  * Allow admins to see everyone
  */
 
+
 module.exports = function(req, res, ok) {
 
 	var sessionUserMatchesId = req.session.User.id === req.param('id_user');
@@ -15,8 +16,8 @@ module.exports = function(req, res, ok) {
 		req.session.flash = {
 			err: noRightsError
 		}
-    res.redirect('/');
-    return;
+	    res.redirect('/');
+	    return;
 	}
 
 	ok();
