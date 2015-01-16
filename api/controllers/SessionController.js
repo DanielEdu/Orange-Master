@@ -9,8 +9,8 @@ var bcrypt = require('bcrypt');
 module.exports = {
 
 	'new': function (req, res, next) {
-		req.session.authenticated=false;
-		req.session.destroy();
+		req.session.authenticated=false;  // destroy de authenticated (para que en el login no salga los estilos del layout)
+		req.session.destroy();  //destruir secion siempre que se regrese al login 
 		console.log("Ay!!!")
 		res.view();
     },

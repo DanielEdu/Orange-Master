@@ -26,7 +26,7 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 session: "flash",
-sale: "sessionAuth",
+sale: ["sessionAuth","flash"],
 service: {
   index: "admin",
   edit: "admin", 
