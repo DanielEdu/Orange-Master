@@ -1,7 +1,7 @@
 <div class="container">
 <div class="divForms">
 	<% if (user.admin==='admin') { %>
-	<img src="/images/admin.png"  /><h3><strong>Administrador</strong></h3>
+	<img src="/images/admin.png" height="110" width="110" /><h3><strong>Administrador</strong></h3>
 	<% } %>
 	<% if (user.admin==='nutritionist') { %>
 	<img src="/images/doctor.png" height="100" width="100" /><h3><strong>Nutricionista</strong></h3>
@@ -10,7 +10,7 @@
 	<img src="/images/pawn.png" height="100" width="100" /><h3><strong>Vendedor</strong></h3>
 	<% } %>
 	<% if (user.admin==='trainer') { %>
-	<img src="/images/trainer.png" height="100" width="100" /><h3><strong>Entrenador</strong></h3>
+	<img src="/images/trainer.png" height="100" width="140" /><h3><strong>Entrenador</strong></h3>
 	<% } %>
 
 	<h2>Nombre: <%= user.firstName %> <%= user.lastName %></h2>
