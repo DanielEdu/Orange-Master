@@ -1,19 +1,20 @@
 <div class="container">
 <div class="divForms">
 	<% if (user.admin==='admin') { %>
-	<img src="/images/admin.png"><strong>Administrador</strong>
+	<img src="/images/admin.png"  /><h3><strong>Administrador</strong></h3>
 	<% } %>
 	<% if (user.admin==='nutritionist') { %>
-	<img src="/images/doctor.png">
+	<img src="/images/doctor.png" height="100" width="100" /><h3><strong>Nutricionista</strong></h3>
 	<% } %>
 	<% if (user.admin==='user') { %>
-	<img src="/images/pawn.png">
+	<img src="/images/pawn.png" height="100" width="100" /><h3><strong>Vendedor</strong></h3>
 	<% } %>
 	<% if (user.admin==='trainer') { %>
-	<img src="/images/trainer.png">
+	<img src="/images/trainer.png" height="100" width="100" /><h3><strong>Entrenador</strong></h3>
 	<% } %>
 
 	<h2>Nombre: <%= user.firstName %> <%= user.lastName %></h2>
+	<h3>ID: <%= user.userId %> </h3>
 	<p>Teléfono: <%= user.phoneNumber %> </p> 
 	<p>E-mail: <%= user.email %> </p>
 

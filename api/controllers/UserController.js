@@ -84,8 +84,10 @@ module.exports = {
 
 	update: function (req, res, next) {		
 	
+	console.log(req.params.all())
 		if(req.param('cod')=='4'){
 			var userObj = {
+				cod: true,
 				state: req.param('state')
 	      	}
 	    }

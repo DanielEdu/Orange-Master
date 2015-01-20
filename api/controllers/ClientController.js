@@ -166,9 +166,9 @@ module.exports = {
 			    
 			    if (err) return res.negotiate(err);	
 			    // Grab the first file and use it's `fd` (file descriptor)		    
-			    var avatarFd = uploadedFiles[0].fd;
+			    if(!req.param('cod')) var avatarFd = uploadedFiles[0].fd;
+			    if(!req.param('cod')) console.log(avatarFd);
 			    var params = req.params.all();
-			    console.log(avatarFd);
 
 			    if(!req.param('cod')) params.avatarFd = avatarFd;
 
