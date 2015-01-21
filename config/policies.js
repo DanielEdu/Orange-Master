@@ -38,13 +38,13 @@ service: {
 },
 user: {
   index: "admin",
-  new: "admin",
+  new: ["flash","admin"],
   show: "user",
   edit: ["flash","user"],
 },
 client: {
   index: "admin",
-  new: "admin",
+  new: ["flash","admin"],
   show: "admin",
   edit: ["flash","admin"],
 },

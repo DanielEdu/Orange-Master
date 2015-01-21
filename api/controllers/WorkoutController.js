@@ -12,7 +12,7 @@ module.exports = {
 
 		    var workoutObj = req.params.all();
 
-			workoutObj.workoutFile = uploadedFiles[0].fd;
+			if(uploadedFiles[0]) workoutObj.workoutFile = uploadedFiles[0].fd;
 
 		    Workout.create(workoutObj, function (err, client){
 		      if(err){

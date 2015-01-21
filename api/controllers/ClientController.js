@@ -166,11 +166,14 @@ module.exports = {
 			    
 			    if (err) return res.negotiate(err);	
 			    // Grab the first file and use it's `fd` (file descriptor)		    
-			    if(!req.param('cod')) var avatarFd = uploadedFiles[0].fd;
-			    if(!req.param('cod')) console.log(avatarFd);
+			    //if(!req.param('cod')) var avatarFd = uploadedFiles[0].fd;
+			   
 			    var params = req.params.all();
 
-			    if(!req.param('cod')) params.avatarFd = avatarFd;
+			    if(!req.param('cod') && uploadedFiles[0]){
+			    	params.avatarFd = uploadedFiles[0].fd;
+			    	console.log(params.avatarFd);
+			    } 
 
 			Client.update(req.param('id'), params, function userUpdated (err){
 				

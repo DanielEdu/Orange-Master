@@ -9,14 +9,16 @@ var clientNoHistory 	= 2;
 var successFull 		= 1;
 var thereIsNotClient 	= 0;
 
-function parsingDate(data){ 
+function parsingDate(data){
 
-	_.each(data, function(d){
-		d.createdAt = (d.createdAt).toISOString().replace(/T/, ' Hora: ').replace(/\..+/, '');
+	_.each(data, function(sl){
+		sl.createdAt = sl.createdAt.getFullYear()+'/'+(sl.createdAt.getMonth()+1)+'/'+sl.createdAt.getDate()+'  '+
+			sl.createdAt.getHours()+':'+sl.createdAt.getMinutes()+':'+sl.createdAt.getSeconds();
 	});
 
 	return data
 }
+
 
 
 module.exports = {
@@ -80,8 +82,8 @@ module.exports = {
 		    if (err) return res.negotiate(err);
 		    var nutritionObj = req.params.all(); 
 		    // Grab the first file and use it's `fd` (file descriptor)	
-		
-		   	nutritionObj.nutritionFile = uploadedFiles[0].fd;
+			
+		   	if(uploadedFiles[0]) nutritionObj.nutritionFile = uploadedFiles[0].fd;
 
 		    ClientDetail.create(nutritionObj, function (err, client){
 		      if(err){

@@ -87,14 +87,15 @@ module.exports = {
 	console.log(req.params.all())
 		if(req.param('cod')=='4'){
 			var userObj = {
-				cod: true,
+				validate: true,
 				state: req.param('state')
 	      	}
 	    }
 	    if(req.param('cod')=='5')
 	    {
 	    	var userObj = {
-				admin: req.param('admin')
+				admin: req.param('admin'),
+				validate: true,
 	      	}
 	    }
 	    if(req.param('cod')=='')
@@ -105,7 +106,8 @@ module.exports = {
 	      		phoneNumber: req.param('phoneNumber'),
 	      		email:    	 req.param('email'),
 	      		confirmation:req.param('confirmation'),
-		    	password: 	 req.param('password'),		        
+		    	password: 	 req.param('password'),
+		    	validate: false,	        
 		    }
 	    }
 
@@ -114,7 +116,7 @@ module.exports = {
 		User.update(req.param('id'), userObj, function (err){ 
 			
 			if(err){
-		        console.log(err);
+		        console.log("ERRORRRR");
 		        req.session.flash = {
 	          		err: err
 	        	}
