@@ -121,8 +121,10 @@ module.exports = {
 					    		console.log(err);
 					    		return res.redirect('/sale/new/');
 					    	}
+					    	var date = getDateFormat();
 					    	var resp = {
 					    		resp: sale.id_sale,
+					    		date: date,
 					    	}
 			    			res.send(resp);
 					    	console.log("Sale Detail Success! pertenece a: "+sale.id_sale);
@@ -207,6 +209,21 @@ function createSale(saleObj, req, res ){
 }
 */
 
+function getDateFormat(){
+	var systemDate = new Date();
+
+	var day 	= systemDate.getDate();
+	var month 	= systemDate.getMonth()+1;
+	var year 	= systemDate.getFullYear();
+
+	if(day<10){
+		day = '0' + day;
+	}
+	if(month<10){
+		month = '0' + month;
+	}
+	return day+"/"+month+"/"+year+' - '+systemDate.getHours()+':'+systemDate.getMinutes()+':'+systemDate.getSeconds();
+}
 
 
 

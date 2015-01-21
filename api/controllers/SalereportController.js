@@ -14,9 +14,18 @@ module.exports = {
 			
 				if (err) return next(err);
 				//Obtener la fecha del sitema
-				var day 	= sails.config.myconf.systemDate.day;
-				var month 	= sails.config.myconf.systemDate.month;
-				var year 	= sails.config.myconf.systemDate.year;
+				var systemDate = new Date();
+
+				var day 	= systemDate.getDate();
+				var month 	= systemDate.getMonth()+1;
+				var year 	= systemDate.getFullYear();
+
+				if(day<10){
+					day = '0' + day;
+				}
+				if(month<10){
+					month = '0' + month;
+				}
 
 				var systemDateFormat = year+'-'+month+'-'+day;
 				//--------------------------------------------------
@@ -37,9 +46,18 @@ module.exports = {
 		Service.find(function (err, services) {
 			if (err) return next(err);
 			//Obtener la fecha del sitema
-			var day 	= sails.config.myconf.systemDate.day;
-			var month 	= sails.config.myconf.systemDate.month;
-			var year 	= sails.config.myconf.systemDate.year;
+			var systemDate = new Date();
+
+				var day 	= systemDate.getDate();
+				var month 	= systemDate.getMonth()+1;
+				var year 	= systemDate.getFullYear();
+
+				if(day<10){
+					day = '0' + day;
+				}
+				if(month<10){
+					month = '0' + month;
+				}
 
 			var systemDateFormat = year+'-'+month+'-'+day;
 			//--------------------------------------------------

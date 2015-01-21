@@ -11,17 +11,20 @@
 	<p><strong>Email:</strong> <%= client.email %> </p>
 	<p><strong>Dirección:</strong> <%= client.address %> </p>
 	<p><strong>Distrito:</strong> <%= district %> </p>
-	<hr>
-	<p><strong>¿Actualmente estas entrenando? </strong> <%= client.question1 %> </p>
-	<p><strong>¿Ya lo has tomado antes? ¿Como te fue?  </strong> <%= client.question2%> </p>
-	<p><strong>¿Cuánto compraste o promoción adquiriste? </strong> <%= client.question3 %> </p>
-	<p><strong>¿Dónde lo compraste? </strong> <%= client.question4 %> </p>
-	<p><strong>¿Dónde entrenas? </strong> <%= client.question5 %> </p>
-	<p><strong>¿Cómo conociste nuestra tienda? </strong> <%= client.question6 %> </p>
-	<p><strong>¿observaciones?  </strong> <%= client.question7 %> </p>
-	<p><strong>Observaciones:</strong> <%= client.observations %></p> 
-
-	<a href="/client/edit/<%= client.id_client %>"><strong>Editar</strong></a>	
+	<a href="/client/edit/<%= client.id_client %>"><strong>Editar la información personal de <%= client.firstName %></strong></a><br><br>
+	<button class="showAsk btn btn-info">Ver/ocultar Cuestionario</button>
+	<div class="ask " hidden>
+		<hr>
+		<p><strong>¿Actualmente estas entrenando? </strong> <%= client.question1 %> </p>
+		<p><strong>¿Ya lo has tomado antes? ¿Como te fue?  </strong> <%= client.question2%> </p>
+		<p><strong>¿Cuánto compraste o promoción adquiriste? </strong> <%= client.question3 %> </p>
+		<p><strong>¿Dónde lo compraste? </strong> <%= client.question4 %> </p>
+		<p><strong>¿Dónde entrenas? </strong> <%= client.question5 %> </p>
+		<p><strong>¿Cómo conociste nuestra tienda? </strong> <%= client.question6 %> </p>
+		<p><strong>¿observaciones?  </strong> <%= client.question7 %> </p>
+		<p><strong>Observaciones:</strong> <%= client.observations %></p> 
+	</div>
+		
 </div>
 
 <h2>Historial de Compras</h2>
@@ -29,25 +32,73 @@
 	<table class="display table table-borderd table-hover">
 	<thead>
 		<tr>
-			<td>Nro de Venta</td>
-			<td>Vendedor</td>
-			<td>Monto</td>
-			<td>Fecha</td>
-			<td></td>
+			<th>Nro de Venta</th>
+			<th>Vendedor</th>
+			<th>Monto</th>
+			<th>Fecha</th>
+			<th>Ver Detalle</th>
+			<th>Ticket</th>
 		</tr>
 	</thead>
 	<% _.each(details, function(detail){ %>
 	<tr> 
-		<td><%= detail.id_sale %></td>
-		<td><%= detail.sellerName %></td>
-		<td>S/. <%= detail.fullPrice %></td>
-		<td><%= detail.createdAt %></td>
+		<td class="idSale">000-<%= detail.id_sale %></td>
+		<td class="saller"><%= detail.sellerName %></td>
+		<td class="tPrice">S/. <%= detail.fullPrice %></td>
+		<td class="date"><%= detail.createdAt %></td>
 		<td><a href="/salereport/show/<%= detail.id_sale %> target='_blank'">ver</a></td>
+		<td><button  class="print saveSale btn btn-danger" >Imprimir</button></td>
 	</tr>
 	<%})%>
 	</table><br><br>
 	<br>
 	<br>
+
+<!--   *******   Ticket  ******   -->
+
+<div id="ticket" hidden >
+	<style type="text/css">
+		.divBody{
+			font-size: 0.7em;
+			text-align: center;
+			font-family: serif;
+			text-transform: capitalize;
+			text-decoration: none;
+		}
+		td {
+			padding: 0 0.5em;
+		}
+		th{
+			padding: 0 0.5em;
+		}
+	</style>
+
+	
+	<div class="divBody">
+		<h4>** ONE FITNESS **</h4>
+		<p>R.U.C. 2323578963, TELÉFONO 054-224455</p>
+		<p id="date">FECHA: </p>
+		<p id="tName">NOMBRE: <%= client.firstName %> <%= client.lastName %></p>
+		<p id="tDni">DIN: <%= client.documentNumber %></p>
+		<p id="ticketNro">TICKET: #</p>
+		<p> -------------------------------------------------- </p>
+		<table id="tableSalePrint" >
+		    <thead>
+		        <tr>	     
+		            <th>Descripción</th>
+		            <th>Cant</th>
+		            <th>P/u</th>
+		            <th>P-Tot</th>
+		        </tr>
+		    </thead>
+		    <tbody class="tableSalePrint"> </tbody>
+		</table>
+		<p id="tPrice" > Precio total: S/.</p>
+		<p> -------------------------------------------------- </p>
+		<p id="saller">Vendedor: </p>
+	</div>
+</div>	
+<!--   *******  Fin del Ticket  ******   -->
 
 </div> 
 
@@ -67,6 +118,26 @@ function OnReady(){
     		"infoFiltered": "",
     	}
     });
+
+	$('table').on('click', 'td button', function () { 
+		$("#date").append($(this).parent().siblings('.date').text());
+		$("#ticketNro").append($(this).parent().siblings('.idSale').text());
+		$("#saller").append($(this).parent().siblings('.saller').text());
+		$("#tPrice").append($(this).parent().siblings('.tPrice').text());
+
+		var restorepage = document.body.innerHTML;
+		var printcontent = document.getElementById('ticket').innerHTML;
+		document.body.innerHTML = printcontent;
+		window.print();
+		$("body").innerHTML = restorepage;
+		window.location.reload()
+		//window.location.replace("/client/show/");
+	});
+
+	$(".showAsk").on("click", function(){
+		$(".ask").toggle();
+	})
+
 }
 </script>
 

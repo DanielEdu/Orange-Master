@@ -5,11 +5,15 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  ****/ 
 
- function parsingDate(data){ 
- 	
-	_.each(data, function(d){
-		d.createdAt = (d.createdAt).toISOString().replace(/T/, ' Hora: ').replace(/\..+/, '');
+ 
+
+ function parsingDate(data){
+
+	_.each(data, function(sl){
+		sl.createdAt = sl.createdAt.getFullYear()+'/'+(sl.createdAt.getMonth()+1)+'/'+sl.createdAt.getDate()+'  '+
+			sl.createdAt.getHours()+':'+sl.createdAt.getMinutes()+':'+sl.createdAt.getSeconds();
 	});
+
 	return data
 }
 
@@ -33,7 +37,7 @@ module.exports = {
 	  });
 	},
 
-	'show': function (req, res, next) {
+	'show': function (req, res, next) { 
 
 	    Client.findOne(req.param('id'), function (err, client){
 

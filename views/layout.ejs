@@ -81,15 +81,15 @@
     <ul>
     <% if (session.authenticated && (session.User.admin === 'trainer' || session.User.admin === 'nutritionist') ) { %>
     
-      <li><a href="/clientdetail/search/">Rutinas</a></li>
+      <li><a href="/clientdetail/search/">Seguimiento del Cliente</a></li>
     <% } %>
     <% if (session.authenticated && (session.User.admin==='admin' || session.User.admin==='user')) { %>
       <li><a class="hover" href="/sale/new/"> Ventas </a></li>
-      <li><a class="hover" href="/expense/new/"> Egresos </a></li>
-      <li><a class="hover" href="/salereport/new/"> Reporte De Ventas </a></li>
-      <li><a class="hover" href="/report/new/"> Reporte De Egresos </a></li>
+      <li><a class="hover" href="/expense/new/"> Egresos </a></li>    
     <% } %>
     <% if (session.authenticated && session.User.admin==='admin' ) { %>
+      <li><a class="hover" href="/salereport/new/"> Reporte De Ventas </a></li>
+      <li><a class="hover" href="/report/new/"> Reporte De Egresos </a></li>
       <li><a class="hover" href="/client/">Clientes</a></li>
       <li><a class="hover" href="/service/">Servicios</a></li>
        <li><a class="hover" href="/service/indexProducts">Productos</a></li>

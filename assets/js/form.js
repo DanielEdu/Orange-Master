@@ -226,6 +226,7 @@ function OnReady(){
 	    		$('#tDni').append($('#mysearch').val());
 	    		$('#tPrice').append($('#total').val());
 	    		$('#ticketNro').append(resp.resp);
+	    		$('#date').append(resp.date);
 	    		//$('#print').on('click', function() {
 					var restorepage = document.body.innerHTML;
 					var printcontent = document.getElementById('ticket').innerHTML;

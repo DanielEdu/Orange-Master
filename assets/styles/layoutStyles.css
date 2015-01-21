@@ -63,11 +63,11 @@ header ul li a
 nav 
 {
   text-align: right;
-  border-bottom: 0.33em solid #e21607;
+  border-bottom: 0.2em solid #e21607;
   background-image: url("/images/2.jpg");
   background-position: right center;
   width: 100%;
-  font-size: 1.15em;
+  font-size: 1.1em;
   overflow: hidden;
   background-repeat: no-repeat;
   background-repeat-y: initial;
