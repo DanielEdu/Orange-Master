@@ -7,13 +7,13 @@
 
 module.exports = {
 	create: function (req, res, next) {
-    	req.file('workoutFile').upload({maxBytes: 1000000},function whenDone(err, uploadedFiles) {			    
+		var dir = req.param('id_client')+"/workoutsdir"
+    	req.file('workoutFile').upload({dirname: dir},function whenDone(err, uploadedFiles) {			    
 		    if (err) return res.negotiate(err);
-
 		    var workoutObj = req.params.all();
 
-			if(uploadedFiles[0]) workoutObj.workoutFile = uploadedFiles[0].fd;
-
+			if(uploadedFiles[0]) workoutObj.workoutFile = uploadedFiles[0].fd.replace(sails.config.myconf.dirRoot,'');
+			console.log(workoutObj)
 		    Workout.create(workoutObj, function (err, client){
 		      if(err){
 		        console.log(err);

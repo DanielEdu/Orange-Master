@@ -11,6 +11,7 @@ alert = function() {};
 	$('.service').on('change', function(){
 		$(".saler").val('false');
 		$(".client").val('false');
+
 	});
 
 	//----- extorno ------
@@ -39,6 +40,7 @@ alert = function() {};
 	//------Consultar reporte--------------------
 	$('#send').on('click',function(e){
 		e.preventDefault();
+
 		simplex();		
 	});	
 }
@@ -71,6 +73,7 @@ alert = function() {};
 	function simplex(){
 
 		$('tr td').remove();
+
 
 		var total = 0.00;
 		if($(".client").val()!=='false' && $(".saler").val()==='false'){
@@ -106,7 +109,9 @@ alert = function() {};
 
 		$.ajax({
 			beforeSend: function(){
+				$('#excel').attr('download',"Ventas del "+data.startDate+" al "+data.endDate+'.xls');
 				$('.spin').spin('show'); 		//mostrar spin antes de enviar ajax
+
 			},
 	    	url: "/salereport/report/",
 	    	type: "GET",

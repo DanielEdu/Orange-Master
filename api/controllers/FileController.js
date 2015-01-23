@@ -25,20 +25,19 @@ module.exports = {
       if (err) {
         return res.negotiate(err);
       }
+      console.log(uploadedFiles)
         // Generate a unique URL where the avatar can be downloaded.
         //avatarUrl = require('util').format('%s/user/avatar/%s', sails.getBaseUrl(), req.session.User.id_user),
         // Grab the first file and use it's `fd` (file descriptor)
          avatarFd = uploadedFiles[0].fd
-       console.log(avatarFd)  
-      var SkipperDisk = require('skipper-disk');
-      var fileAdapter = SkipperDisk(/* optional opts */);
+        var fs = require('fs');
+        fs.readFile(avatarFd, function (err, data) {
+          if (err) throw err;
+          res.end(data);
+        });
+        
 
-      // Stream the file down
-      fileAdapter.read(avatarFd).on('error', function (err){
-          return res.serverError(err);
-        }).pipe(res);
-
-      // Save the "fd" and the url where the avatar for a user can be accessed
+        // Save the "fd" and the url where the avatar for a user can be accessed
   
     });
   },
@@ -56,26 +55,34 @@ module.exports = {
     });
    
     Client.findOne(req.param('id'), function (err, client){
-      console.log(client.avatarFd)
+      
       if (err) return res.negotiate(err);
       if (!client) return res.notFound();
 
       // User has no avatar image uploaded.
       // (should have never have hit this endpoint and used the default image)
-      var SkipperDisk = require('skipper-disk');
-      var fileAdapter = SkipperDisk( );
+     /* var SkipperDisk = require('skipper-disk');
+      var fileAdapter = SkipperDisk( );*/
 
-      if (!client.avatarFd) {
-        client.avatarFd = sails.config.myconf.dirRoot+".tmp/uploads/anonymous.jpg"
+      if (!client.avatarFd || client.avatarFd=='') {
+        client.avatarFd = ".tmp/uploads/anonymous.jpg"
       }   
       // Stream the file down
-      fileAdapter.read(client.avatarFd).on('error', function (err){
+      /*fileAdapter.read(client.avatarFd).on('error', function (err){
         return res.serverError(err);
 
-      }).pipe(res);
+      }).pipe(res);*/
+
+    console.log(client.avatarFd+"&&")
+    
+      var fs = require('fs');
+        fs.readFile(client.avatarFd, function (err, data) {
+          if (err) throw err;
+          res.end(data);
+        });
+
 
     });
-
   },
 
   nutritionFile: function (req, res){
@@ -85,17 +92,16 @@ module.exports = {
       if (err) return res.negotiate(err);
       if (!client) return res.notFound();
 
-      // User has no avatar image uploaded.
-      // (should have never have hit this endpoint and used the default image)
-      var SkipperDisk = require('skipper-disk');
-      var fileAdapter = SkipperDisk( );
+        var fs = require('fs');
+        fs.readFile(client[0].nutritionFile, function (err, data) {
+          if (err) throw err;
+          
+         
+          res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+          res.setHeader("Content-Disposition");
+          res.end(data, 'binary');
 
-      
-      // Stream the file down
-      fileAdapter.read(client[0].nutritionFile).on('error', function (err){
-        return res.serverError(err);
-
-      }).pipe(res);
+        });
     });
   },
 
@@ -103,36 +109,36 @@ module.exports = {
   workoutFile: function (req, res){
    
     Workout.find({ where: { id_client: req.param("id") }, sort: 'updatedAt DESC'}, function (err, client){
-      console.log(client[0].workoutFile)
+     // console.log(client[0].workoutFile)
       if (err) return res.negotiate(err);
       if (!client) return res.notFound();
 
-      // User has no avatar image uploaded.
-      // (should have never have hit this endpoint and used the default image)
-      var SkipperDisk = require('skipper-disk');
-      var fileAdapter = SkipperDisk( );
+      var fs = require('fs');
+      fs.readFile(client[0].workoutFile, function (err, data) {
+        if (err) throw err;
+        
+        
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+        res.setHeader("Content-Disposition");
+        res.end(data, 'binary');
 
+      });
       
-      // Stream the file down
-      fileAdapter.read(client[0].workoutFile).on('error', function (err){
-        return res.serverError(err);
-
-      }).pipe(res);
     });
   },
  
 
 
-
-//  ---------- metodo mas corto ----------------
-
-/*   dow: function (req,res) {
-var fs = require('fs');
-      fs.readFile('.tmp/uploads/1b1c58c3-d99e-4e3d-9db2-0bd4c4f7a251.jpg', function (err, data) {
+/*
+      fs.readFile('/home/daniel/Workspace/2014/Orange/OrangeApp/.tmp/uploads/b4efe798-861f-42c9-a8ee-9f741e492442.docx', function (err, data) {
         if (err) throw err;
-        res.send(data);
+        //res.send(data, 'binary');
+        console.log(data)
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+        res.setHeader("Content-Disposition", "attachment; filename=" + "Report.xlsx");
+        res.end(data, 'binary');
 
       });
-
-    }*/
+*/
+    
 };

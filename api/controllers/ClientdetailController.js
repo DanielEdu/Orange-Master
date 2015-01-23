@@ -77,13 +77,14 @@ module.exports = {
 	},
 
     create: function (req, res, next) {
-    	req.file('nutritionFile').upload({maxBytes: 1000000},function whenDone(err, uploadedFiles) {
+    	var dir = req.param('id_client')+"/nutritiondir"
+    	req.file('nutritionFile').upload({dirname: dir},function whenDone(err, uploadedFiles) {
 			    
 		    if (err) return res.negotiate(err);
 		    var nutritionObj = req.params.all(); 
 		    // Grab the first file and use it's `fd` (file descriptor)	
 			
-		   	if(uploadedFiles[0]) nutritionObj.nutritionFile = uploadedFiles[0].fd;
+		   	if(uploadedFiles[0]) nutritionObj.nutritionFile = uploadedFiles[0].fd.replace(sails.config.myconf.dirRoot,'');
 
 		    ClientDetail.create(nutritionObj, function (err, client){
 		      if(err){

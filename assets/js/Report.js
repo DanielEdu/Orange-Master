@@ -15,7 +15,8 @@ function OnReady(){
 			beforeSend: function(){
 				$('.spin').spin('show'); 		//mostrar spin antes de enviar ajax
 				var startDate = $('#inicio').val();
-				var endDate = $('#fin').val();	
+				var endDate = $('#fin').val();
+				$('#excel').attr('download',"Egresos del "+startDate+" al "+endDate+'.xls');	
 				
 			},
 	    	url: "/report/report/",
@@ -51,9 +52,7 @@ function OnReady(){
     	}
     });
 
-	    		$('.spin').spin('hide'); 	//ocultar el spin
-
-	    		$('#excel').attr('download', startDate+" al "+endDate+'.xls');
+	    		$('.spin').spin('hide'); 	//ocultar el spin	    		
 	    		
 	    	},
 	    	error: function (jqXHR, estado, error) {

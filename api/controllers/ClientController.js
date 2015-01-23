@@ -160,24 +160,26 @@ module.exports = {
 			      		res.redirect('/client/show/'+client.id_client);
 			    });	
 			}
-
 		});
 	},
 
-	update: function (req, res, next) {		
+	update: function (req, res, next) {	
+		var dir = req.param('id')+"/avatar"	
 
-		req.file('avatar').upload({maxBytes: 3000000},function whenDone(err, uploadedFiles) {
+		req.file('avatar').upload({dirname: dir},function whenDone(err, uploadedFiles) {
 			    
-			    if (err) return res.negotiate(err);	
-			    // Grab the first file and use it's `fd` (file descriptor)		    
-			    //if(!req.param('cod')) var avatarFd = uploadedFiles[0].fd;
-			   
-			    var params = req.params.all();
+		    if (err) return res.negotiate(err);	
+		    // Grab the first file and use it's `fd` (file descriptor)		    
+		    //if(!req.param('cod')) var avatarFd = uploadedFiles[0].fd;
+		   
+		    var params = req.params.all();
 
-			    if(!req.param('cod') && uploadedFiles[0]){
-			    	params.avatarFd = uploadedFiles[0].fd;
-			    	console.log(params.avatarFd);
-			    } 
+		    if(!req.param('cod') && uploadedFiles[0]){
+		    	params.avatarFd = uploadedFiles[0].fd.replace(sails.config.myconf.dirRoot,'');
+		    	//console.log(params);
+		    	deleteavatar(req.param('id'));  //llamar a funcion que borra el anterior avatar
+		    } 
+
 
 			Client.update(req.param('id'), params, function userUpdated (err){
 				
@@ -203,8 +205,7 @@ module.exports = {
 			User.destroy(req.param('id'), function (err){
 				if(err) return next(err);
 				res.redirect('/client/');
-			});
-			
+			});			
 		});
 	},
 
@@ -242,8 +243,7 @@ module.exports = {
 			});
 		}
 		if(cadena!=='' && (obj/obj !== 1))
-		{
-			
+		{			
 			Client.find({or : [{ firstName: { 'startsWith': cadena } }, { lastName: {'startsWith': cadena } }]}, function (err, client) {
 			  	if(err) console.log('Error:' + err);
 				if(!client){res.send("DNI no existe");}
@@ -254,8 +254,7 @@ module.exports = {
 
 					_.each(client, function(i){
 						console.log(i.firstName+" "+i.lastName);
-						data.push("<option value='"+i.firstName+" "+i.lastName+"'>");
-						
+						data.push("<option value='"+i.firstName+" "+i.lastName+"'>");						
 					});
 					res.send(data);
 				}
@@ -265,8 +264,27 @@ module.exports = {
 		{
 			res.send("vacio")
 		}
-
   	}
 
 };
 
+
+//************************************//
+
+
+// *****  Funcion para borrar el anterior avatar ********  //
+function deleteavatar (id){
+	Client.find(id, function (err, client){		
+		var fs = require('fs-extra');
+		if(client[0].avatarFd!=''){
+			
+			fs.remove(client[0].avatarFd, function (err) {
+			  	if (err) return console.error (err)
+
+			  	console.log("avatar borrado!!")
+				return;
+			})
+		}
+		return
+	});
+}
