@@ -105,7 +105,7 @@ module.exports = {
 
 
   //*************************************************************//
- //************** Código chevere sin-crono *********************//
+ //************** Código chevere sincrono *********************//
 //*************************************************************//
 	/*'showservices': function (req, res, next) {
 		var obj = [];
@@ -196,7 +196,8 @@ module.exports = {
 		var startDate 	= parsing(req.param('startDate'));
 		var endDate 	= parsing(req.param('endDate'));
 
-		endDate += " 23:59:59"
+		endDate += " 23:59:59";
+		startDate += " 00:00:01";
 
 		Sale.find({
 			createdAt:{ 
@@ -233,6 +234,91 @@ module.exports = {
 			parsingDate(resp);
 			res.send(resp);		
 			console.log("Reporte de ventas ok");			
+	    });
+	},
+
+	excel: function (req, res, next) {
+
+		var startDate 	= parsing(req.param('startDate'));
+		var endDate 	= parsing(req.param('endDate'));
+
+		endDate += " 23:59:59";
+		startDate += " 00:00:01";
+
+		Sale.find({
+			createdAt:{ 
+				'>=': new Date(startDate), 
+				'<=': new Date(endDate)
+			}, 
+			state: { 
+				'!': false 
+			}
+		}, function (err, sale) {
+			if(err) console.log('Error:' + err);
+
+			var resp = []
+			
+			if(req.param('saler') || req.param('client')){
+				_.each(sale, function(s){
+					
+					if(req.param('saler') && s.id_user==req.param('saler') && !req.param('client')){
+						resp.push(s)
+					}
+					if(req.param('client') && s.id_client==req.param('client') && !req.param('saler')){
+						resp.push(s)
+					}
+					if(req.param('client') && req.param('client') && s.id_client==req.param('client') && s.id_user==req.param('saler')){
+						resp.push(s)
+					}
+				});
+			}
+			else if(!req.param('client') && !req.param('user')){
+				
+				resp = sale;
+			}
+
+			parsingDate(resp);;
+
+			var nodeExcel = require('excel-export');
+		    var conf ={};
+
+		    conf.cols = [
+			    {
+			    	caption:'Nro de Venta',
+			    	type:'string',
+			    	width:20.7109375
+			    },
+			    {
+			    	caption:'Fecha y Hora',
+			      	type:'string',
+			      	width:27.7109375
+			    },
+			    {
+			        caption:'Cliente',
+			        type:'string',
+			        width:27.7109375
+			    },
+			    {
+			        caption:'Vendedor',
+			        type:'string',
+			        width:27.7109375
+			    },
+			    {
+			        caption:'Monto',
+			        type:'float'
+			    }
+		    ];
+		    conf.rows = [];
+
+		    _.each(resp, function(rp){
+				conf.rows.push([rp.id_sale, rp.createdAt, rp.clienteName, rp.sellerName, rp.fullPrice])
+			});
+
+	      	var result = nodeExcel.execute(conf);
+	      	res.setHeader('Content-Type', 'application/pdf');
+	      	res.setHeader("Content-Disposition", "attachment; filename=" + "Reporte de Ventas( del"+startDate+" al "+endDate+" ).xlsx");
+	      	
+	      	res.end(result, 'binary');			
 	    });
 	},
 };

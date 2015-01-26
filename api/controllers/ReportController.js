@@ -31,13 +31,73 @@ module.exports = {
 		var startDate 	= parsing(req.param('startDate'));
 		var endDate 	= parsing(req.param('endDate'));
 		endDate += " 23:59:59"
-
+		console.log(startDate)
 		Expense.find({createdAt: {'>=': new Date(startDate), '<=': new Date(endDate)}}, function (err, expense) {
 			if(err) console.log('Error:' + err);
 
 			else {
 				parsingDate(expense);
 				res.send(expense);	
+			}
+	    });
+	},
+
+	excel: function (req, res, next) {
+
+		console.log(req.params.all())
+		var startDate 	= parsing(req.param('startDate'));
+		var endDate 	= parsing(req.param('endDate'));
+		endDate += " 23:59:59"
+
+		Expense.find({createdAt: {'>=': new Date(startDate), '<=': new Date(endDate)}}, function (err, expense) {
+			if(err) console.log('Error:' + err);
+
+			else {
+				parsingDate(expense);
+
+				var nodeExcel = require('excel-export');
+			    var conf ={};
+
+			    conf.cols = [
+				    {
+				    	caption:'Fecha y Hora'.toUpperCase(),
+				    	type:'string',
+				    	width:20.7109375,
+				    	captionStyleIndex: 1,
+				    },
+				    {
+				    	caption:'Nombres',
+				      	type:'string',
+				      	width:27.7109375
+				    },
+				    {
+				        caption:'Apellidos',
+				        type:'string',
+				        width:27.7109375
+				    },
+				    {
+				        caption:'Observaciones',
+				        type:'string',
+				        width:27.7109375
+				    },
+				    {
+				        caption:'Monto',
+				        type:'float'
+				    }
+			    ];
+			    conf.rows = [];
+
+			    _.each(expense, function(exp){
+					conf.rows.push([exp.createdAt, exp.firstName, exp.lastName, exp.observations, exp.moneyOutput])
+				});
+
+		      	var result = nodeExcel.execute(conf);
+		      	res.setHeader('Content-Type', 'application/pdf');
+		      	res.setHeader("Content-Disposition", "attachment; filename=" + "pruebita excel.xlsx");
+		      	
+		      	res.end(result, 'binary');
+
+				//res.send("OK!");	
 			}
 	    });
 	},

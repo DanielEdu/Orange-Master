@@ -36,7 +36,10 @@
             
             <label for=""><a class="hover" href="/salereport/services/"><strong>Reporte Por Servicios y productos</strong></a></label><br><br>
 
-        	<button id="send" class="btn btn-danger"> Filtrar </button> <div class="spin" ></div>
+        	<button id="send" class="btn btn-danger"><img src="/images/lupa.png" class="" height="20" width="20"> Filtrar </button>
+            <button id="sendExcel" class="btn btn-success">
+            <img src="/images/excel.png" class="" height="20" width="20" /> Exportar como Excel </button>
+             <div class="spin" ></div>
 
         </form>
 
@@ -73,7 +76,7 @@
             </tfoot>
         </table>
 
-        <a id="excel" class="hover" download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'advData', 'Sheet Name Here');"><img src="/images/excel.png" height="42" width="42"><strong> Exportar a Excel</strong></a>
+        
     </div>
 
 </div>

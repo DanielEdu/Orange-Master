@@ -14,6 +14,41 @@ alert = function() {};
 
 	});
 
+	// ---------- Reporte en Excel --------
+	$('#sendExcel').on('click',function(e){
+ 		e.preventDefault();
+		
+		var startDate = $('#inicio').val();  //fecha de inicio (desde)
+		var endDate = $('#fin').val();		//fecha de fin (hasta)
+		var saler =	$(".saler").val();
+		var client = $(".client").val();
+
+		if($(".client").val()!=='false' && $(".saler").val()==='false'){
+			window.location.href = 
+			'/salereport/excel/?startDate='+startDate+
+			'&endDate='+endDate+
+			'&client='+client;			
+		}
+		if($(".saler").val()!=='false' && $(".client").val()==='false'){
+			window.location.href = 
+			'/salereport/excel/?startDate='+startDate+
+			'&endDate='+endDate+
+			'&saler='+saler;
+		}
+		if($(".client").val()!=='false' && $(".saler").val()!=='false'){
+			window.location.href = 
+			'/salereport/excel/?startDate='+startDate+
+			'&endDate='+endDate+
+			'&saler='+saler+
+			'&client='+client;			
+		}
+		if($(".client").val()==='false' && $(".saler").val()==='false'){
+			window.location.href = 
+			'/salereport/excel/?startDate='+startDate+
+			'&endDate='+endDate;
+		}		
+ 	});
+
 	//----- extorno ------
 	$('table').on('click', 'td button', function () { 
 		var id = $(this).attr('id');
@@ -104,7 +139,6 @@ alert = function() {};
 					endDate: 	$('#fin').val(),
 		    	}
 		}
-
 		
 
 		$.ajax({

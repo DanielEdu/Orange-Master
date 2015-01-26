@@ -130,10 +130,10 @@ module.exports = {
 				    if(err){
 				        console.log(err);
 				        if(req.param('flag')==='1'){
-				        	return res.redirect('client/new/');
+				        	return res.redirect('/client/new/');
 				        }
 				        if(req.param('flag')==='2'){
-				        	return res.redirect('sale/registration/'+req.param('documentNumber'));
+				        	return res.redirect('/sale/registration/'+req.param('documentNumber'));
 				        }
 				    }
 				    

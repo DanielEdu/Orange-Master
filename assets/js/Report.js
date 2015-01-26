@@ -6,6 +6,16 @@ function OnReady(){
 
  	$('.tableContainer').hide();
 
+ 	$('#sendExcel').on('click',function(e){
+ 		e.preventDefault();
+		
+		var startDate = $('#inicio').val();  //fecha de inicio (desde)
+		var endDate = $('#fin').val();		//fecha de fin (hasta)
+
+		window.location.href = '/report/excel/?startDate='+startDate+'&endDate='+endDate;
+
+ 	});
+
 	$('#send').on('click',function(e){
 		e.preventDefault();
 		var total = 0.00; 
@@ -41,16 +51,16 @@ function OnReady(){
 	    		$('.tableContainer').show();
 	    		$("#mensaje").hide();
 	    		$('#dvData').DataTable({
-		"paging":   false,
-    	"info":     false,
-    	"language": {
-    		"search": "Buscar",
-    		"lengthMenu": "Mostrar _MENU_ campos por página",
-    		"zeroRecords": "No se encontró - intente con otros datos",
-    		"info": "",
-    		"infoFiltered": "",
-    	}
-    });
+					"paging":   false,
+			    	"info":     false,
+			    	"language": {
+			    		"search": "Buscar",
+			    		"lengthMenu": "Mostrar _MENU_ campos por página",
+			    		"zeroRecords": "No se encontró - intente con otros datos",
+			    		"info": "",
+			    		"infoFiltered": "",
+			    	}
+			    });
 
 	    		$('.spin').spin('hide'); 	//ocultar el spin	    		
 	    		

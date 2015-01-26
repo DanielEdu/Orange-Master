@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-
+/*
   index: function (req,res){
 
     res.writeHead(200, {'content-type': 'text/html'});
@@ -15,8 +15,7 @@ module.exports = {
       '<input type="file" name="avatar" multiple="multiple"><br>'+
       '<input type="submit" value="Upload">'+
       '</form>'
-    )
-    
+    )   
   },
 
   upload: function  (req, res) {
@@ -36,12 +35,11 @@ module.exports = {
           res.end(data);
         });
         
-
         // Save the "fd" and the url where the avatar for a user can be accessed
   
     });
   },
-
+*/
 
   /**
    * Download avatar of the user with the specified id
@@ -73,7 +71,7 @@ module.exports = {
 
       }).pipe(res);*/
 
-    console.log(client.avatarFd+"&&")
+      //console.log(client.avatarFd)
     
       var fs = require('fs');
         fs.readFile(client.avatarFd, function (err, data) {
@@ -88,14 +86,13 @@ module.exports = {
   nutritionFile: function (req, res){
    
     ClientDetail.find({ where: { id_client: req.param("id") }, sort: 'updatedAt DESC'}, function (err, client){
-      console.log(client[0].nutritionFile)
+      //console.log(client[0].nutritionFile)
       if (err) return res.negotiate(err);
       if (!client) return res.notFound();
 
         var fs = require('fs');
         fs.readFile(client[0].nutritionFile, function (err, data) {
-          if (err) throw err;
-          
+          if (err) throw err;          
          
           res.setHeader('Content-Type', 'application/vnd.openxmlformats');
           res.setHeader("Content-Disposition");
@@ -115,8 +112,7 @@ module.exports = {
 
       var fs = require('fs');
       fs.readFile(client[0].workoutFile, function (err, data) {
-        if (err) throw err;
-        
+        if (err) throw err;       
         
         res.setHeader('Content-Type', 'application/vnd.openxmlformats');
         res.setHeader("Content-Disposition");
@@ -127,8 +123,6 @@ module.exports = {
     });
   },
  
-
-
 /*
       fs.readFile('/home/daniel/Workspace/2014/Orange/OrangeApp/.tmp/uploads/b4efe798-861f-42c9-a8ee-9f741e492442.docx', function (err, data) {
         if (err) throw err;
@@ -139,6 +133,8 @@ module.exports = {
         res.end(data, 'binary');
 
       });
+
+
 */
-    
+
 };

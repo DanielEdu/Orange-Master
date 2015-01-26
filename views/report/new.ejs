@@ -14,7 +14,9 @@
     	<label for=""> Hasta: </label>
     	<input type="date" id="fin" name="startDate" step="1" min="2015-01-01" max="2020-12-01" value="<%= systemDateFormat %>" />
 
-    	<button id="send" class="btn btn-danger"> Filtrar </button> <div class="spin" ></div>
+    	<button id="send" class="btn btn-danger"><img src="/images/lupa.png" class="" height="20" width="20"> Ver </button>
+        <button id="sendExcel" class="btn btn-success"><img src="/images/excel.png" class="" height="20" width="20"> Exportar como Excel </button>
+        <div class="spin" ></div>
     </form>   
 
 </div>
@@ -43,7 +45,7 @@
         </tfoot>
     </table>
     <br>
-    <a id="excel" download="reporte.xls" href="#" onclick="return ExcellentExport.excel(this, 'dvData', 'Sheet Name Here');"><img src="/images/excel.png" class="" height="42" width="42"> Exportar a Excel</a>
+    
     </div>
     </div>
         
