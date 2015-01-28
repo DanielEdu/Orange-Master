@@ -25,7 +25,9 @@ module.exports.policies = {
   * access)                                                                  *
   *                                                                          *
   ***************************************************************************/
-session: "flash",
+
+'*': "nocache",
+session: ["flash","nocache"],
 sale: ["sessionAuth","flash"],
 service: {
   index: "admin",
