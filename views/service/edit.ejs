@@ -1,11 +1,20 @@
 
 <div class="container">	
+	<% if(service.serviceFlag==='product'){%>
+	<h1>EDITAR PRODUCTO</h1>
+	<%}%>
+	<% if(service.serviceFlag==='service'){%>
 	<h1>EDITAR SERVICIO</h1>
+	<%}%>
 	<div class="divForms">
 		<form action="/service/update/<%= service.id_service %>" method="POST">
 			<input type="text" name="cod" value="" hidden />
 			<label for="">Nombre: </label>
 			<input type="text" name="serviceName" id="serviceName" class="form-control" value="<%= service.serviceName %>" /> <br/>
+			<% if(service.serviceFlag==='product'){%>
+			<label for="">Proveedor: </label>
+			<input type="text" name="serviceProvider" class="form-control" value="<%= service.serviceProvider %>" /> <br/>
+			<%}%>
 			<label for="">Precio S/.</label>
 			<input type="number" name="servicePrice" id="servicePrice" class="form-control" value="<%= service.servicePrice %>" /> <br/>
 			<label for="">Descripción</label>

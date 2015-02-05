@@ -160,7 +160,7 @@ alert = function() {};
 	    			var button = "<button id='"+saleNumber+"' class='delete btn btn-danger btn-xs'>x</button>";
 		    		total += parseFloat(money); 
 
-		    		$('tbody:first').append("<tr><td>"+button+"</td><td> 000-"+saleNumber+"</td><td>"+date+"</td><td>"+clientName+"</td><td>"+seller+"</td><td class='endPrice'>S/."+money+"</td><td><a href='/salereport/show/"+saleNumber+"' target='_blank'>Ver</a></td></tr>");
+		    		$('tbody:first').append("<tr><td>"+button+"</td><td> 000-"+saleNumber+"</td><td>"+date+"</td><td>"+clientName+"</td><td>"+seller+"</td><td class='endPrice'>"+money+"</td><td><a href='/salereport/show/"+saleNumber+"' target='_blank'>Ver</a></td></tr>");
 	    		}
 			    $('.spin').spin('hide'); 	//ocultar el spin
 	    		

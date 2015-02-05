@@ -32,11 +32,11 @@
 	<div >	
 	<div class="form-group"><div class="input-group">
 		<div class="input-group-addon">Servicio</div>
-		<select class="form-control" id="idService" name="service"/>	
+		<select class="form-control" id="idService" name="service" style="color: white;background: dimgrey;" />	
 			<% _.each(servicios, function(serv){ %>
-			<option value="<%= serv.serviceName %>"> 
-				<%= serv.serviceName %>
-			</option>
+				<option value="<%= serv.serviceName %>" <%if(serv.serviceFlag==='service'){%> style="background: rgb(245, 60, 60);"<%}else{%> style="background: rgb(60, 142, 245);" <%}%> > 
+					<%= serv.serviceName %>
+				</option>
 			<%})%>
 	   	</select>
 	</div></div>

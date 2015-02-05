@@ -7,9 +7,9 @@
 		<!--		<th>ID</th>-->
 			<th>Producto</th>
 			<th>Proveedor</th>
-			<th>Precio</th>
+			<th>Precio (S/.)</th>
 			<th></th>
-			<th>on/off</th>
+			<th>On/off</th>
 		</tr>
 		</thead>
 
@@ -19,7 +19,7 @@
 		<!--	<td><%= service.id_service %></td> -->
 			<td><%= service.serviceName %></td>
 			<td><%= service.serviceProvider %></td>
-			<td>S/. <%= service.servicePrice %></td>
+			<td><%= service.servicePrice %></td>
 			<td>
 				<a href="/service/show/<%= service.id_service %>">Ver</a> /
 				<a href="/service/edit/<%= service.id_service %>">Editar</a>

@@ -44,7 +44,7 @@ function OnReady(){
 		    		var date		 = resp[i].createdAt;
 	    			total += parseFloat(money);
 		    		
-		    		$('tbody:first').append("<tr><td>"+date+"</td><td>"+firstName+"</td><td>"+lastName+"</td><td>"+observations+"</td><td>S/."+money+"</td></tr>");
+		    		$('tbody:first').append("<tr><td>"+date+"</td><td>"+firstName+"</td><td>"+lastName+"</td><td>"+observations+"</td><td>"+money+"</td></tr>");
 	    		}
 	    		
 	    		$("#total").text("S/."+total.toFixed(2));
