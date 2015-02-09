@@ -15,15 +15,7 @@ module.exports = {
 		Service.find({sort: 'id_service'},function (err, servicios){
 			Shop.findOne({id_store:req.session.User.id_store},function (err, store){
 				if (err) return next(err);
-				if(!store){
-					var store = {
-
-						store.storeName: '',
-						store.storeAddress: '',
-						store.storeDistrict: '',
-						store.idStore :'',
-					}
-				} 
+				
 				
 				//--------enviar los servicios que estan activos----
 
@@ -37,6 +29,18 @@ module.exports = {
 				
 				//-------------si el parametro existe----------------
 
+				if(!store){
+					res.view({
+						storeName: 		'',
+						storeAddress: 	'',
+						storeDistrict: 	'',
+						storeId: 		'',
+						systemDate: 	systemDateFormat,
+						servicios: 		serviceCheck,
+						dni:  			req.param('id'),
+						flag: 1
+					});
+				} 
 				if(req.param('id')){
 					res.view({
 						storeName: 		store.storeName,
