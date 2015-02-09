@@ -39,7 +39,11 @@ module.exports = {
 		user:{
             collection: 'User',
             via: 'id_store'
-        }
+        },
+        sale:{
+            collection: 'Sale',
+            via: 'id_store'
+        },
 	}
 };
 

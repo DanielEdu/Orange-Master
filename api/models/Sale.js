@@ -46,6 +46,9 @@ module.exports = {
 		id_client: {
             model:'Client'
         },
+        id_store: {
+            model:'Shop'
+        },
         saleDetail:{
             collection: 'SaleDetail',
             via: 'id_sale'
