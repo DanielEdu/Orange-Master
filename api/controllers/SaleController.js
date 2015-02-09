@@ -16,11 +16,13 @@ module.exports = {
 			Shop.findOne({id_store:req.session.User.id_store},function (err, store){
 				if (err) return next(err);
 				if(!store){
-					var store
-					store.storeName = '';
-					store.storeAddress = '';
-					store.storeDistrict = '';
-					store.idStore = '',
+					var store = {
+
+						store.storeName: '',
+						store.storeAddress: '',
+						store.storeDistrict: '',
+						store.idStore :'',
+					}
 				} 
 				
 				//--------enviar los servicios que estan activos----
