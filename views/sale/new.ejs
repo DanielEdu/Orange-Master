@@ -92,10 +92,10 @@
 	</style>
 
 	<div class="divBody">
-		<p>ONE FITNESS</p>
-		<p>R.U.C.10409072041 - Teléfono:054-215180</p>
-		<p>OCTAVIO MUÑOZ NAJAR 242</p>
-		<p>AREQUIPA-AREQUIPA</p>
+		<p><%= ticket[0].rSocial %></p>
+		<p>R.U.C.10409072041 - Teléfono:<%= ticket[0].phoneNumber %></p>
+		<p><%= ticket[0].address %></p>
+		<p><%= ticket[0].city%>-<%= ticket[0].district %></p>
 		<p><%= storeName %></p>
 		<p><%= storeAddress %></p>
 		<p>NRO.AUTORI: 123456789</p>
@@ -118,8 +118,8 @@
 		<p id="tPrice" > Precio total: S/.</p>
 		<p> -------------------------------------------------- </p>
 		<p>Cajero: <%= session.User.firstName %> <%= session.User.lastName %></p>
-		<p>GRACIAS POR SU COMPRA</p><br>
-		<p>RECLAME SU COMPROBANTRE DE PAGO</p>
+		
+		<p><%= ticket[0].footer%></p>
 	</div>
 </div>	
 <!--   *******  Fin del Ticket  ******   -->

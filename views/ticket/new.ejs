@@ -1,0 +1,44 @@
+<div class="container">
+	<h1>CREAR PLANTILLA DE TICKET</h1>
+	<div class="divForms">
+		<form action="/ticket/create" method="POST">
+			<table> 
+				<tr> 	
+					<td class="labeltd"><label>Razón Social:</label></td>
+					<td><input type="text" class="storeName form-control" name="rSocial" placeholder="Ingresar Nombre de Tienda" required /></td>
+				</tr>
+				
+				<tr>
+					<td class="labeltd"><label>Distrito: </label></td>
+					<td>
+						<select  id="pais" class="cambio form-control" name="district" >
+							<% _.each(districts, function(distrito){ %>
+							<option value="<%= distrito.districtName %>"> 
+								<%= distrito.districtName %>
+							</option>
+							<%})%>
+				    	</select>
+				    </td>
+				</tr>
+				<tr>
+					<td class="labeltd"><label>Dirección:</label></td>
+					<td><input type="text" class="form-control"  name="address" placeholder="Ingresar Dirección de Tienda" required/></td>
+				</tr>
+				<tr> 	
+					<td class="labeltd"><label>Departamento:</label></td>
+					<td><input type="text" class="storeName form-control" name="city" placeholder="Ingresar Pie de ticket"  /></td>
+				</tr>
+				<tr>
+					<td class="labeltd"><label>Teléfono: </label></td>
+					<td><input type="number" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Teléfono/Celular" /></td>
+				</tr>
+				<tr> 	
+					<td class="labeltd"><label>Pie de ticket:</label></td>
+					<td><input type="text" class="storeName form-control" name="footer" placeholder="Ingresar Pie de ticket"  /></td>
+				</tr>
+			</table>
+			 <br/>
+			<input type="submit" value="  Crear Tienda" class="btn btn-danger" /> <br/>
+		</form>
+	</div>
+</div>

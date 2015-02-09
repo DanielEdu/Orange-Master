@@ -13,58 +13,64 @@ module.exports = {
 		var systemDate = new Date();
 
 		Service.find({sort: 'id_service'},function (err, servicios){
-			Shop.findOne({id_store:req.session.User.id_store},function (err, store){
-				if (err) return next(err);
-				
-				
-				//--------enviar los servicios que estan activos----
+			Ticket.find(function (err, ticket) {
+				Shop.findOne({id_store:req.session.User.id_store},function (err, store){
+					if (err) return next(err);
+					
+					
+					//--------enviar los servicios que estan activos----
 
-				var serviceCheck=[];
-				_.each(servicios, function(serv){
-					if(serv.state)
-						serviceCheck.push(serv);
+					var serviceCheck=[];
+					_.each(servicios, function(serv){
+						if(serv.state)
+							serviceCheck.push(serv);
+					});
+
+					var systemDateFormat = systemDate.getFullYear()+'/'+(systemDate.getMonth()+1)+'/'+(systemDate.getDate()+1)+"   "+systemDate.getHours()+":"+systemDate.getMinutes();
+					
+					//-------------si el parametro existe----------------
+
+					if(!store){
+						res.view({
+							ticket: 		ticket,
+							storeName: 		'',
+							storeAddress: 	'',
+							storeDistrict: 	'',
+							storeId: 		'',
+							systemDate: 	systemDateFormat,
+							servicios: 		serviceCheck,
+							dni:  			req.param('id'),
+							flag: 1
+						});
+					} else{					
+						if(req.param('id')){
+							res.view({
+								ticket: 		ticket,
+								storeName: 		store.storeName,
+								storeAddress: 	store.storeAddress,
+								storeDistrict: 	store.storeDistrict,
+								storeId: 		store.idStore,
+								systemDate: 	systemDateFormat,
+								servicios: 		serviceCheck,
+								dni:  			req.param('id'),
+								flag: 1
+							});
+						}
+						if(!req.param('id')){
+							res.view({
+								ticket: 		ticket,
+								storeAddress: 	store.storeAddress,
+								storeDistrict: 	store.storeDistrict,
+								storeName: 		store.storeName,
+								storeId: 		store.idStore,
+								systemDate: 	systemDateFormat,
+								servicios: 		serviceCheck,
+								dni: '',
+								flag: 0
+							});
+						}
+					}
 				});
-
-				var systemDateFormat = systemDate.getFullYear()+'/'+(systemDate.getMonth()+1)+'/'+(systemDate.getDate()+1)+"   "+systemDate.getHours()+":"+systemDate.getMinutes();
-				
-				//-------------si el parametro existe----------------
-
-				if(!store){
-					res.view({
-						storeName: 		'',
-						storeAddress: 	'',
-						storeDistrict: 	'',
-						storeId: 		'',
-						systemDate: 	systemDateFormat,
-						servicios: 		serviceCheck,
-						dni:  			req.param('id'),
-						flag: 1
-					});
-				} 
-				if(req.param('id')){
-					res.view({
-						storeName: 		store.storeName,
-						storeAddress: 	store.storeAddress,
-						storeDistrict: 	store.storeDistrict,
-						storeId: 		store.idStore,
-						systemDate: 	systemDateFormat,
-						servicios: 		serviceCheck,
-						dni:  			req.param('id'),
-						flag: 1
-					});
-				}
-				if(!req.param('id')){
-					res.view({
-						storeAddress: 	store.storeAddress,
-						storeDistrict: 	store.storeDistrict,
-						storeName: 		store.storeName,
-						storeId: 		store.idStore,
-						systemDate: 	systemDateFormat,
-						servicios: 		serviceCheck,
-						dni: '',
-						flag: 0
-					});
-				}
 			});			
 		});	
 	},

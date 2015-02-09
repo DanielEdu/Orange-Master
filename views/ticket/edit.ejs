@@ -1,0 +1,47 @@
+<div class="container">	
+	
+	<h1>EDITAR TIENDA</h1>
+
+	<div class="divForms">
+		<form action="/ticket/update/<%= ticket.id_ticket %>" method="POST">
+			<table> 
+				<tr> 	
+					<td class="labeltd"><label>Razón Social:</label></td>
+					<td><input type="text" class="storeName form-control" name="rSocial" placeholder="Ingresar Nombre de Tienda" value="<%= ticket.rSocial %>" required /></td>
+				</tr>
+				
+				<tr>
+					<td class="labeltd"><label>Distrito: </label></td>
+					<td>
+						<select  id="pais" class="cambio form-control" name="district" >
+						<option value="---Distritos---"> ---Distritos--- </option>
+							<% _.each(districts, function(district){ %>
+							<option value="<%= district.districtName %>"> 
+								<%= district.districtName %>
+							</option>
+							<%})%>
+				    	</select>
+				    </td>
+				</tr>
+				<tr>
+					<td class="labeltd"><label>Dirección:</label></td>
+					<td><input type="text" class="form-control" value="<%= ticket.address %>"  name="address" placeholder="Ingresar Dirección de Tienda" required/></td>
+				</tr>
+				<tr> 	
+					<td class="labeltd"><label>Departamento:</label></td>
+					<td><input type="text" class="storeName form-control" value="<%= ticket.city %>" name="city" placeholder="Ingresar Pie de ticket"  /></td>
+				</tr>
+				<tr>
+					<td class="labeltd"><label>Teléfono: </label></td>
+					<td><input type="number" id="phoneNumber" value="<%= ticket.phoneNumber %>" name="phoneNumber" class="form-control" placeholder="Teléfono/Celular" /></td>
+				</tr>
+				<tr> 	
+					<td class="labeltd"><label>Pie de ticket:</label></td>
+					<td><input type="text" class="storeName form-control" value="<%= ticket.footer %>" name="footer" placeholder="Ingresar Pie de ticket"  /></td>
+				</tr>
+			</table>
+			<input type="submit" class="btn btn-danger" value="Guardar"/>	
+		</form>
+	</div>
+</div>
+
