@@ -15,7 +15,14 @@ module.exports = {
 		Service.find({sort: 'id_service'},function (err, servicios){
 			Shop.findOne({id_store:req.session.User.id_store},function (err, store){
 				if (err) return next(err);
-				var storeId=store.idStore
+				if(!store){
+					var store
+					store.storeName = '';
+					store.storeAddress = '';
+					store.storeDistrict = '';
+					store.idStore = '',
+				} 
+				
 				//--------enviar los servicios que estan activos----
 
 				var serviceCheck=[];
@@ -33,7 +40,7 @@ module.exports = {
 						storeName: 		store.storeName,
 						storeAddress: 	store.storeAddress,
 						storeDistrict: 	store.storeDistrict,
-						storeId: 		storeId,
+						storeId: 		store.idStore,
 						systemDate: 	systemDateFormat,
 						servicios: 		serviceCheck,
 						dni:  			req.param('id'),
@@ -45,7 +52,7 @@ module.exports = {
 						storeAddress: 	store.storeAddress,
 						storeDistrict: 	store.storeDistrict,
 						storeName: 		store.storeName,
-						storeId: 		storeId,
+						storeId: 		store.idStore,
 						systemDate: 	systemDateFormat,
 						servicios: 		serviceCheck,
 						dni: '',
