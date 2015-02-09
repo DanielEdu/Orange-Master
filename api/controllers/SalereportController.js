@@ -286,7 +286,7 @@ module.exports = {
 			    {
 			    	caption:'Nro de Venta',
 			    	type:'string',
-			    	width:20.7109375
+			    	width:18.7109375
 			    },
 			    {
 			    	caption:'Fecha y Hora',
@@ -305,7 +305,7 @@ module.exports = {
 			    },
 			    {
 			        caption:'Monto',
-			        type:'float'
+			        type:'string'
 			    }
 		    ];
 		    conf.rows = [];
@@ -315,7 +315,7 @@ module.exports = {
 			});
 
 	      	var result = nodeExcel.execute(conf);
-	      	res.setHeader('Content-Type', 'application/pdf');
+	      	res.setHeader('Content-Type', 'application/vnd.openxmlformats');
 	      	res.setHeader("Content-Disposition", "attachment; filename=" + "Reporte de Ventas( del"+startDate+" al "+endDate+" ).xlsx");
 	      	
 	      	res.end(result, 'binary');			

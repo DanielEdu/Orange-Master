@@ -9,41 +9,50 @@
 module.exports = { 
 
 	'new': function (req, res, next) {
-		if(req.param('id')){
-			console.log("true")
-		} 
-		
+
 		var systemDate = new Date();
 
 		Service.find({sort: 'id_service'},function (err, servicios){
-			if (err) return next(err);
-			//--------enviar los servicios que estan activos----
-			var serviceCheck=[];
-			_.each(servicios, function(serv){
-				if(serv.state)
-					serviceCheck.push(serv);
-			});
+			Shop.findOne({id_store:req.session.User.id_store},function (err, store){
+				if (err) return next(err);
+				var storeId=store.idStore
+				//--------enviar los servicios que estan activos----
 
-			var systemDateFormat = systemDate.getFullYear()+'/'+(systemDate.getMonth()+1)+'/'+(systemDate.getDate()+1)+"   "+systemDate.getHours()+":"+systemDate.getMinutes();
-			
-			//-------------si el parametro existe----------------
+				var serviceCheck=[];
+				_.each(servicios, function(serv){
+					if(serv.state)
+						serviceCheck.push(serv);
+				});
 
-			if(req.param('id')){
-				res.view({
-					systemDate: systemDateFormat,
-					servicios: 	serviceCheck,
-					dni: 		req.param('id'),
-					flag: 1
-				});
-			}
-			if(!req.param('id')){
-				res.view({
-					systemDate: systemDateFormat,
-					servicios: 	serviceCheck,
-					dni: '',
-					flag: 0
-				});
-			}		
+				var systemDateFormat = systemDate.getFullYear()+'/'+(systemDate.getMonth()+1)+'/'+(systemDate.getDate()+1)+"   "+systemDate.getHours()+":"+systemDate.getMinutes();
+				
+				//-------------si el parametro existe----------------
+
+				if(req.param('id')){
+					res.view({
+						storeName: 		store.storeName,
+						storeAddress: 	store.storeAddress,
+						storeDistrict: 	store.storeDistrict,
+						storeId: 		storeId,
+						systemDate: 	systemDateFormat,
+						servicios: 		serviceCheck,
+						dni:  			req.param('id'),
+						flag: 1
+					});
+				}
+				if(!req.param('id')){
+					res.view({
+						storeAddress: 	store.storeAddress,
+						storeDistrict: 	store.storeDistrict,
+						storeName: 		store.storeName,
+						storeId: 		storeId,
+						systemDate: 	systemDateFormat,
+						servicios: 		serviceCheck,
+						dni: '',
+						flag: 0
+					});
+				}
+			});			
 		});	
 	},
 

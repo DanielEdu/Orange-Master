@@ -59,6 +59,9 @@ module.exports = {
             collection: 'Sale',
             via: 'id_user'
         },
+        id_store: {
+            model:'Shop'
+        },
 		// Override toJSON instance method to remove password value.
 		toJSON: function() {
 			var obj = this.toObject();

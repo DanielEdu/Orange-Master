@@ -1,0 +1,49 @@
+<div class="container">
+<h1>PUNTOS DE VENTA</h1> 
+<a class="btn btn-success btn-default" href="/shop/new/">+ Crear Tienda</a><br>
+	<table id="dvData" class="display table table-borderd table-hover" >
+		<thead>
+		<tr>
+		<!--		<th>ID</th>-->
+			<th>ID de Tienda</th>
+			<th>Nombre</th>
+			<th>Dirección</th>
+			<th>Teléfono</th>
+			<th>Ver/Editar</th>
+		</tr>
+		</thead>
+
+		<tbody>	
+		<% _.each(stores, function(store){ %>
+		<tr> 
+			<td><%= store.idStore %></td>
+			<td><%= store.storeName %></td>
+			<td><%= store.storeAddress %></td>
+			<td><%= store.phoneNumber %></td>
+			<td>
+				<a href="/shop/show/<%= store.id_store %>">Ver</a> /
+				<a href="/shop/edit/<%= store.id_store %>">Editar</a>
+			</td>
+			
+		</tr>
+		<%})%>
+		</tbody>
+
+	</table>
+</div>
+
+<script>
+
+$(document).ready(OnReady);
+  function OnReady(){
+    $('#dvData').DataTable({
+    	"paging":   false,
+    	"info":     false,
+    	"language": {
+    		"search": "Buscar",
+    	}
+    });
+
+ }
+        
+</script>

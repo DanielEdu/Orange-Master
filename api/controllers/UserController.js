@@ -9,36 +9,57 @@
 module.exports = {
 
 	'new': function (req, res) {
-		res.view();
+		Shop.find(function (err, stores) {
+			res.view({
+	      		stores: stores
+	      	});
+		});
     },
 
     'index': function (req, res, next) {
-	  User.find({ firstName: { '!': 'root'}}, function (err, users) {
-	    if (err) return next(err);
-	    	res.view({
-	      	users: users
-	      });
-	  });
+		User.find({ firstName: { '!': 'root'}}, function (err, users) {
+		    Shop.find(function (err, stores) {
+			    if (err) return next(err);
+			    _.each(users,function(user){
+			    	_.each(stores,function(store){ 
+			    		if(user.id_store===store.id_store)
+			    			user.id_store=store.storeName;
+			    	})
+			    })
+		    	res.view({
+		      		users: users
+		      	});
+		    });  	
+		});
 	},
 
     'show': function (req, res, next) {
 	    User.findOne(req.param('id'), function (err, user){
-	    	if (err) return next(err);
-	      	//if (!err) return next();
-	      	res.view({
-	      		user: user
-	     	 });
+	    	Shop.findOne(user.id_store, function (err, store){
+		    	if (err) return next(err);
+
+		      	res.view({
+		      		user: user,
+		      		store: store.storeName,
+		     	});
+		    });  
 	    });
 	},
 
 	'edit': function (req, res, next) {
 		User.findOne(req.param('id'), function (err, user){
-			if (err) return next(err);
-			if(!user) return next('El usuario no existe.');
-			//if (!err) return next();
-			res.view({
-				user: user
-	      });
+			Shop.find(function (err, stores) {
+		    	Shop.findOne(user.id_store, function (err, store){
+					if (err) return next(err);
+					if(!user) return next('El usuario no existe.');
+					//if (!err) return next();
+					res.view({
+						user: user,
+						stores: stores,
+			      		store: store.storeName,
+			      	});
+			    });  	
+			});	
 		});
 	},
 
@@ -54,7 +75,8 @@ module.exports = {
 		    confirmation: 	req.param('confirmation'),
 		    password: 		req.param('password'),
 		    saleSerialized: req.param('saleSerialized'),
-		    admin: 			req.param('admin')
+		    admin: 			req.param('admin'),
+		    id_store: 		req.param('id_store'),
 	    }
  	
 	 	User.find({ userId: req.param('userId')}, function (err, user){

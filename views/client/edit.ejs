@@ -19,7 +19,7 @@
 			<td><input type="text" class="form-control" name="lastName" value="<%= client.lastName %>" required/></td>
 		</tr>
 		<tr>
-			<td class="labeltd"><label for="">Telefono: </label></td>
+			<td class="labeltd"><label for="">Teléfono: </label></td>
 			<td><input type="number" min="0" class="form-control" name="phoneNumber" value="<%= client.phoneNumber %>" /> </td>
 		</tr>
 		<tr>
@@ -34,14 +34,14 @@
 			<td class="labeltd"><label for="">Distrito: </label></td>
 			<td><select  id="district" class="cambio form-control" name="district" required>
 					<option value="<%= client.district %>"> <%= district %> </option>
-					<% _.each(distritos, function(distrito){ %>
+					<% _.each(district, function(distrito){ %>
 
 					<option value="<%= distrito.id_district %>" > 
 						<%= distrito.districtName %>
 					</option>
 					
 					<%})%>
-		    </select></td>
+		    </select></td> 
 		</tr>
 		<tr>
 		    <td class="labeltd"><label for="">Observaciones: </label></td>

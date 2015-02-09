@@ -13,20 +13,35 @@
 	<form action="/user/update/<%= user.id_user %>" id="userEditForm" method="POST">
 		<table>
 		<tr>
-			<td class="labeltd"><label for="">*Nombres: </label></td>
+			<td class="labeltd"><label >*Nombres: </label></td>
 			<td><input type="text" id="firstName" name="firstName" class="form-control" value="<%= user.firstName %>" /></td>
 		</tr>
 		<tr>
-			<td class="labeltd"><label for="">*Apellidos: </label></td>
+			<td class="labeltd"><label >*Apellidos: </label></td>
 			<td><input type="text" id="lastName" name="lastName" class="form-control" value="<%= user.lastName %>" /></td>
 		</tr>
 		<tr>	
-			<td class="labeltd"><label for="">Teléfono: </label></td>
+			<td class="labeltd"><label >Teléfono: </label></td>
 			<td><input type="number" id="phoneNumber" name="phoneNumber" class="form-control" value="<%= user.phoneNumber %>" /></td>
 		</tr>
 		<tr>	
-			<td class="labeltd"><label for="">E-mail: </label></td>
+			<td class="labeltd"><label >E-mail: </label></td>
 			<td><input type="text" id="email" name="email" class="form-control" value="<%= user.email %>" /></td>
+		</tr>
+		<tr>
+			<td class="labeltd"><label>Tienda: </label></td>
+			<td>
+				<select  class="cambio form-control" name="id_store" required>
+					<option value="<%= store.id_store %>"> <%= store %> </option>
+					<% _.each(stores, function(store){ %>
+
+					<option value="<%= store.id_store %>" > 
+						<%= store.storeName %>
+					</option>
+					
+					<%})%>
+		   		</select>
+		   	</td> 
 		</tr>
 		<tr>	
 			<td class="labeltd"><label>**Contraseña</label></td>
@@ -44,7 +59,7 @@
 
 	</form>
 <hr>
-	<p>"Puede cambiar los permisos del usuario sin cambiar los demas datos"</p>
+	<p>"Puede cambiar el "ROL" del usuario sin cambiar los demas datos"</p>
 
 	<div>
 		<% if (session.authenticated && session.User.admin==='admin') { %>

@@ -109,7 +109,6 @@ alert = function() {};
 
 		$('tr td').remove();
 
-
 		var total = 0.00;
 		if($(".client").val()!=='false' && $(".saler").val()==='false'){
 			var data = {
@@ -164,10 +163,8 @@ alert = function() {};
 	    		}
 			    $('.spin').spin('hide'); 	//ocultar el spin
 	    		
-			    $("#total").text("S/."+total.toFixed(2));
+			    $("#total").text("S/."+total.toFixed(2)); 
 			    $('#advData').DataTable({
-			    	//"scrollY":        "300px",
-			        "scrollCollapse": true,
 			 		"paging":   	  false,
 			    	"info":     	  false,
 			    	"language": {

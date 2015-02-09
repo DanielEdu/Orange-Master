@@ -9,6 +9,7 @@
 			<th>Apellidos</th>
 			<th>E-mail</th>
 			<th>Permisos</th>
+			<th>Tienda</th>
 			<th></th>
 			<th>Estado</th>
 		</tr>
@@ -33,6 +34,7 @@
 			<% if (user.admin==='user') { %>
 			<td> <img src="/images/pawn.png" height="35" width="35"></td>
 			<% } %>	
+			<td><%= user.id_store %></td>
 			<td><a href="/user/show/<%= user.id_user %>">Ver</a><span> / </span>
 				<a href="/user/edit/<%= user.id_user %>">Editar</a></td>
 			<td>
@@ -48,7 +50,7 @@
 		<%})%>
 	</tbody>
 	</table> <br/>
-		<a download="Usuarios ONE Fitness.xls" href="#" onclick="return ExcellentExport.excel(this, 'dvData', 'Sheet Name Here');"><img src="/images/excel.png" height="42" width="42">Exportar a Excel</a>
+		
 		<br>
 </div>
 

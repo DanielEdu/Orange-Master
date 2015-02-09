@@ -49,7 +49,7 @@ module.exports = {
         saleDetail:{
             collection: 'SaleDetail',
             via: 'id_sale'
-        }	
+        },	
 	}
 };
 

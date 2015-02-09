@@ -1,0 +1,48 @@
+<div class="container">
+	<h1>CREAR PUNTO DE VENTA</h1>
+	<div class="divForms">
+		<form action="/shop/create" method="POST">
+			<table> 
+				<tr> 	
+					<td class="labeltd"><label>Nombre:</label></td>
+					<td><input type="text" class="storeName form-control" name="storeName" placeholder="Ingresar Nombre de Tienda" required /></td>
+				</tr>
+				<tr> 	
+					<td class="labeltd"><label>ID:</label></td>
+					<td><input type="text" class="storeName form-control" name="idStore" placeholder="Ingresar ID de tienda" required /></td>
+				</tr>
+				<tr>
+					<td class="labeltd"><label>Distrito: </label></td>
+					<td>
+						<select  id="pais" class="cambio form-control" name="storeDistrict" >
+							<% _.each(distritos, function(distrito){ %>
+							<option value="<%= distrito.id_district %>"> 
+								<%= distrito.districtName %>
+							</option>
+							<%})%>
+				    	</select>
+				    </td>
+				</tr>
+				<tr>
+					<td class="labeltd"><label>Dirección:</label></td>
+					<td><input type="text" class="form-control"  name="storeAddress" placeholder="Ingresar Dirección de Tienda" required/></td>
+				</tr>
+				<tr>
+					<td class="labeltd"><label>Teléfono: </label></td>
+					<td><input type="number" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Teléfono/Celular" /></td>
+				</tr>
+			</table>
+			 <br/>
+			<input type="submit" value="  Crear Tienda" class="btn btn-danger" /> <br/>
+		</form>
+	</div>
+</div>
+
+
+<script>
+$(document).ready(OnReady);
+function OnReady(){
+	$(".storeName").focus();
+
+}
+</script>

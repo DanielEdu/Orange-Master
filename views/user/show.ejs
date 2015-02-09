@@ -1,22 +1,23 @@
 <div class="container">
 <div class="divForms">
 	<% if (user.admin==='admin') { %>
-	<img src="/images/admin.png" height="110" width="110" /><h3><strong>Administrador</strong></h3>
+	<img src="/images/admin.png" height="110" width="110" /><h3><strong>*Administrador</strong></h3>
 	<% } %>
 	<% if (user.admin==='nutritionist') { %>
-	<img src="/images/doctor.png" height="100" width="100" /><h3><strong>Nutricionista</strong></h3>
+	<img src="/images/doctor.png" height="100" width="100" /><h3><strong>*Nutricionista</strong></h3>
 	<% } %>
 	<% if (user.admin==='user') { %>
-	<img src="/images/pawn.png" height="100" width="100" /><h3><strong>Vendedor</strong></h3>
+	<img src="/images/pawn.png" height="100" width="100" /><h3><strong>*Vendedor</strong></h3>
 	<% } %>
 	<% if (user.admin==='trainer') { %>
-	<img src="/images/trainer.png" height="100" width="140" /><h3><strong>Entrenador</strong></h3>
+	<img src="/images/trainer.png" height="100" width="140" /><h3><strong>*Entrenador</strong></h3>
 	<% } %>
 
-	<h2>Nombre: <%= user.firstName %> <%= user.lastName %></h2>
-	<h3>ID: <%= user.userId %> </h3>
-	<p>Teléfono: <%= user.phoneNumber %> </p> 
-	<p>E-mail: <%= user.email %> </p>
+	<h3><strong>Nombre:</strong> <%= user.firstName %> <%= user.lastName %></h3>
+	<h4><strong>ID: </strong><%= user.userId %> </h4>
+	<h4><strong>Tienda: </strong><%= store %> </h4>
+	<p><strong>Teléfono: </strong><%= user.phoneNumber %> </p> 
+	<p><strong>E-mail: </strong><%= user.email %> </p>
 
 	<a href="/user/edit/<%= user.id_user %>">Edit</a>
 </div>

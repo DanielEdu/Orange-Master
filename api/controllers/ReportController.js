@@ -64,7 +64,6 @@ module.exports = {
 				    	caption:'Fecha y Hora'.toUpperCase(),
 				    	type:'string',
 				    	width:20.7109375,
-				    	captionStyleIndex: 1,
 				    },
 				    {
 				    	caption:'Nombres',
@@ -83,7 +82,7 @@ module.exports = {
 				    },
 				    {
 				        caption:'Monto',
-				        type:'float'
+				        type:'string'
 				    }
 			    ];
 			    conf.rows = [];
@@ -93,7 +92,7 @@ module.exports = {
 				});
 
 		      	var result = nodeExcel.execute(conf);
-		      	res.setHeader('Content-Type', 'application/pdf');
+		      	res.setHeader('Content-Type', 'application/vnd.openxmlformats');
 		      	res.setHeader("Content-Disposition", "attachment; filename=" + "pruebita excel.xlsx");
 		      	
 		      	res.end(result, 'binary');

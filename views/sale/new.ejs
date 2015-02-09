@@ -76,48 +76,50 @@
 
 <div id="ticket" hidden >
 	<style type="text/css">
-
 		.divBody{
 			font-size: 0.7em;
 			text-align: center;
-			font-family: serif;
+			font-family: monospace;
 			text-transform: capitalize;
 			text-decoration: none;
 		}
-
+		p{
+			margin: 0.11em;
+		}
 		td {
 			padding: 0 0.5em;
-
 		}
-		th{
-			padding: 0 0.5em;
-		}
-
 	</style>
 
-	
 	<div class="divBody">
-		<h4>** ONE FITNESS **</h4>
-		<p>R.U.C. 2323578963, TELÉFONO 054-224455</p>
-		<p id="date">FECHA: </p>
-		<p id="tName">NOMBRE: </p>
+		<p>ONE FITNESS</p>
+		<p>R.U.C.10409072041 - Teléfono:054-215180</p>
+		<p>OCTAVIO MUÑOZ NAJAR 242</p>
+		<p>AREQUIPA-AREQUIPA</p>
+		<p><%= storeName %></p>
+		<p><%= storeAddress %></p>
+		<p>NRO.AUTORI: 123456789</p>
+		<p ><span id="date"></span> <span id="ticketNro">TICKET:<%= storeId %>-</span> </p>
+		<p id="tName">CLIENTE: </p>
 		<p id="tDni">DIN: </p>
-		<p id="ticketNro">TICKET: #000- </p>
-		<p> -------------------------------------------------- </p>
+	
 		<table id="tableSalePrint" >
 		    <thead>
 		        <tr>	     
-		            <th>Descripción</th>
-		            <th>Cant</th>
-		            <th>P/u</th>
-		            <th>P-Tot</th>
+		            <td>Descripción</td>
+		            <td>Can</td>
+		            <td>P-Uni</td>
+		            <td>P-Tot</td>
 		        </tr>
+		        <tr><td>-------------------------------------------------</td></tr>
 		    </thead>
 		    <tbody class="tableSalePrint"> </tbody>
 		</table>
 		<p id="tPrice" > Precio total: S/.</p>
 		<p> -------------------------------------------------- </p>
-		<p>Vendedor: <%= session.User.firstName %> <%= session.User.lastName %></p>
+		<p>Cajero: <%= session.User.firstName %> <%= session.User.lastName %></p>
+		<p>GRACIAS POR SU COMPRA</p><br>
+		<p>RECLAME SU COMPROBANTRE DE PAGO</p>
 	</div>
 </div>	
 <!--   *******  Fin del Ticket  ******   -->

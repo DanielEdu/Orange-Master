@@ -36,6 +36,18 @@
 			<td><input type="email" id="email" name="email" class="form-control"	placeholder="ingresar E-mail" /></td>
 		</tr>
 		<tr>
+			<td class="labeltd"><label>Tienda: </label></td>
+			<td>
+				<select  id="pais" class="cambio form-control" name="id_store" >
+					<% _.each(stores, function(store){ %>
+					<option value="<%= store.id_store %>"> 
+						<%= store.storeName %>
+					</option>
+					<%})%>
+		    	</select>
+		    </td>
+		</tr>
+		<tr>
 			<td class="labeltd"><label>**Contraseña</label></td>
 			<td><input type="password" id="password" name="password" class="form-control" placeholder="ingresar Contraseña" required/></td>
 		</tr>
