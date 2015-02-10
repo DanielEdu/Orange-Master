@@ -17,7 +17,7 @@ module.exports = {
 		    autoIncrement: true
 		},
 		documentNumber: {
-			type: 'integer',
+			type: 'string',
 			required: true,
 			unique: true
 		},

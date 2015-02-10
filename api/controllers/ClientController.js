@@ -93,6 +93,7 @@ module.exports = {
 
     create: function (req, res, next) {
 
+
 	    var clientObj = {
 		    documentNumber: req.param('documentNumber'),
 		    firstName:      req.param('firstName'),
@@ -217,6 +218,7 @@ module.exports = {
 	},
 
 	findByDni: function(req, res, next) {
+		
 		var dni = req.param('dni');
 		var cadena = req.param('dni');
 		var resJson = {
@@ -224,7 +226,9 @@ module.exports = {
 			dat: '',
 			resp: ''
 		}
+
 		var obj = parseInt(dni)
+		
 		if(obj/obj === 1){
 			Client.findOne({ documentNumber: dni }, function (err, client){
 				if(err) console.log('Error:' + err);
@@ -264,7 +268,27 @@ module.exports = {
 		{
 			res.send("vacio")
 		}
-  	}
+  	},
+
+  	templateUser: function(req, res, next) {
+  		var dni = req.param('dni');
+		
+		console.log(dni)
+		if(!isNaN(dni)){
+			Client.find({documentNumber:{'like': dni+'%' }}, function (err, clients) {
+				var clientsObj =[];
+
+				_.each(clients, function(clnt){					
+					clientsObj.push(clnt.documentNumber+" - "+clnt.firstName+" "+clnt.lastName );
+				})
+
+				console.log(clientsObj)
+				res.send({
+					resp: clientsObj
+				})
+			});	
+		}
+  	},
 
 };
 

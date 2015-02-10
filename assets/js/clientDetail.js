@@ -9,32 +9,42 @@ function OnReady(){
 	
 
 	$('#mensaje').hide();
-/*	$("#mysearch").on('keyup', function() {
 
-		$.ajax({
-	    	url: "/client/findByDni/",
-	    	type: "GET",
-	    	data: {
-	    		dni: $('#mysearch').val()
-	    	},
-	    	success: function (resp) {
-	    		$('datalist').empty();
-	    		for (var i = 0; i < resp.length; i++) {
+	$('#mysearch').blur(function() {
+	    var amt = parseInt(this.value);
+	    $(this).val(amt);
+	});
 
-	    			$('datalist:first').append(resp[i]);
-	    			console.log(resp[i]);
-	    		}
+	
 
-	    	},
-	    	error: function (jqXHR, estado, error) {
-	    		console.log(estado);
-	    		console.log(error);
-	    	},
-	    	complete: function (jqXHR, estado) {
-	    		console.log(estado);
-	    	}
-   	 	});
-	});*/
+	$("#mysearch").on('keypress', function(e) {
+		//e.preventDefault();
+
+		if($("#mysearch").val().length>2 && (e.charCode >= 48 && e.charCode < 57)){
+			console.info($("#mysearch").val().length)
+			$.ajax({
+		    	url: "/client/templateUser/",
+		    	type: "GET",
+		    	data: {
+		    		dni: $('#mysearch').val()
+		    	},
+		    	success: function (resp) {
+		    		console.log(resp.resp)
+		    		$( "#mysearch" ).autocomplete({
+				      	source: resp.resp
+				    });
+		    	},
+		    	error: function (jqXHR, estado, error) {
+		    		console.log(estado);
+		    		console.log(error);
+		    	},
+		    	complete: function (jqXHR, estado) {
+		    		console.log(estado);
+		    	}
+	   	 	}); 
+		}
+	});
+
 	$("#searchBT").on('click', function(){
 		$.ajax({
 	    	url: "/clientdetail/findByDni/",

@@ -81,8 +81,6 @@ module.exports.connections = {
     //database: 'apocali2_onerp',
     //user: 'apocali2_onerpuser',
     //password: 'TRSsm[w2(F(.',
-    //user: 'postgres',
-    //password: '$PHP=0',
     user: 'postgres',
     password: 'root',
     schema: true,
